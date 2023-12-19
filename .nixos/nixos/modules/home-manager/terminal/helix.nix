@@ -22,24 +22,9 @@
     haskell-language-server # haskell
     rust-analyzer # rust
     nil # nix
+
   ];
-  # programs.helix.enable = true;
-  # programs.helix.settings = {
-  # keys.normal = {
-  # space.w = ":w";
-  # space.q = ":q";
-  # };
-  # editor = {
-  # line-number = "relative";
-  # lsp.display-messages = true;
-  # };
-  # keys.normal = {
-  # space.space = "file_picker";
-  # space.w = ":w";
-  # space.q = ":q";
-  # esc = [ "collapse_selection" "keep_primary_selection" ];
-  # };
-  # };
+
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -99,15 +84,7 @@
         line-number = "relative";
         true-color = true;
       };
-      # "editor" = {
-      # cursor-shape.insert = "bar";
-      # indent-guides.render = true;
-      # };
-      # editor.statusline = {
-      # left = ["mode", "spinner", "read-only-indicator", "file-modification-indicator"];
-      # center = ["file-name"];
-      # right = ["diagnostics", "version-control", "selections", "position", "file-encoding", "file-line-ending"];
-      # };
+
       editor.lsp = { display-messages = true; };
       editor.cursor-shape = {
         insert = "bar";
@@ -119,10 +96,5 @@
         space.q = ":q";
       };
     };
-    # themes = {
-    # catppuccin-mocha = lib.trivial.importTOML
-    # (pkgs.martsPackages.helix-catppuccin + "/helix/catppuccin_mocha.toml");
-    # };
   };
-
 }

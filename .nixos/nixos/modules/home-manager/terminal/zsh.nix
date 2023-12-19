@@ -31,6 +31,8 @@
         "sudo nixos-rebuild test --flake /home/marts/.nixos/nixos#default";
       update =
         "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default";
+      rebuild =
+        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default";
 
     };
     history = {
@@ -41,6 +43,8 @@
       share = true;
     };
     historySubstringSearch.enable = true;
+
+    # TODO: either use startship or 10k...
 
   };
 }
