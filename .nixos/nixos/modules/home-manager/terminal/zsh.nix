@@ -12,28 +12,35 @@
     '';
 
     shellAliases = {
-      # config = "/usr/bin/git --git-dir=$HOME/nixos/ --work-tree=$HOME";
       config =
         "/etc/profiles/per-user/marts/bin/git --git-dir=$HOME/.nixos/ --work-tree=$HOME";
-      # /etc/profiles/per-user/marts/bin/git
+
+      # grep
+      grep = "grep --color=auto";
+      ga = "git add";
+      gb = "git branch";
+      # alias gc="git clone"
+      gc = "git commit -m";
+      gco = "git checkout";
+      gss = "git status -sb";
+      gpp = "git push";
+      gpu = "git pull";
+
+      #   # ssh = "TERM=xterm-256color /usr/bin/env ssh";
+      test-update =
+        "sudo nixos-rebuild test --flake /home/marts/.nixos/nixos#default";
+      update =
+        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default";
+
     };
-
-    #   # grep
-    #   grep = "grep --color=auto";
-    #   ga = "git add";
-    #   gb = "git branch";
-    #   # alias gc="git clone"
-    #   gc = "git commit -m";
-    #   gco = "git checkout";
-    #   gss = "git status -sb";
-    #   gpp = "git push";
-    #   gpu = "git pull";
-
-    #   # ssh = "TERM=xterm-256color /usr/bin/env ssh";
-    #   test-update = "sudo nixos-rebuild test --flake /home/marts/nixos#default";
-    #   update = "sudo nixos-rebuild switch --flake /home/marts/nixos#default";
-
-    # };
+    history = {
+      size = 1000000;
+      path = "${config.xdg.dataHome}/zsh/history";
+      ignoreDups = true;
+      ignoreSpace = true;
+      share = true;
+    };
+    historySubstringSearch.enable = true;
 
   };
 }
