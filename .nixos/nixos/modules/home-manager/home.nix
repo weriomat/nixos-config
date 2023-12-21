@@ -2,17 +2,8 @@
 # { config, pkgs, inputs, ouputs, ... }:
 
 {
-  imports = [
-    ./terminal/btop.nix
-    ./firefox.nix
-    ./terminal/helix.nix
-    ./terminal/kitty.nix
-    ./terminal/zsh.nix
-    ./terminal/ssh.nix
-    ./terminal/lazygit.nix
-    ./terminal/usefulPackages.nix
-    ./terminal/eza.nix
-  ];
+
+  imports = [ ./firefox.nix ./terminal/terminal.nix ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "marts";
