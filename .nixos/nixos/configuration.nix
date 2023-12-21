@@ -113,6 +113,15 @@
     # helix
     neofetch
 
+    (haskellPackages.ghcWithPackages (pkgs:
+      with pkgs; [
+        stack
+        cabal-install
+        MonadRandom
+        multiset-comb
+        haskell-language-server
+      ]))
+
     autoconf
     gnumake
 

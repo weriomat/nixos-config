@@ -17,6 +17,13 @@
 
     extraConfig = "IdentitiesOnly yes";
 
-    matchBlocks = { "github.com" = { user = "git"; }; };
+    matchBlocks = let tu_key = "/home/marts/.ssh/tu-gitlab.pub";
+    in {
+      "github.com" = { user = "git"; };
+      "git.tu-berlin.de" = {
+        user = "git";
+        identityFile = tu_key;
+      };
+    };
   };
 }
