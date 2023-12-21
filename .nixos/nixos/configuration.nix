@@ -89,14 +89,6 @@
     shell = pkgs.zsh;
   };
 
-  home-manager = {
-    #extraSpecialArgs = { inherit inputs outputs; };
-    extraSpecialArgs = { inherit inputs; };
-    useUserPackages = true;
-    useGlobalPkgs = true;
-    users = { "marts" = import ./modules/home-manager/home.nix; };
-  };
-
   # Allow unfree packages
   # nixpkgs.config.allowUnfree = true;
 

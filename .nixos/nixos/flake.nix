@@ -47,7 +47,17 @@
           ./configuration.nix
           ./hosts/default/hardware-configuration.nix
           # ./hosts/default/ssh.nix
-          inputs.home-manager.nixosModules.default
+          # inputs.home-manager.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              #extraSpecialArgs = { inherit inputs outputs; };
+              extraSpecialArgs = { inherit inputs; };
+              useUserPackages = true;
+              useGlobalPkgs = true;
+              users = { "marts" = import ./modules/home-manager/home.nix; };
+            };
+          }
         ];
       };
       #homeConfigurations.default = {

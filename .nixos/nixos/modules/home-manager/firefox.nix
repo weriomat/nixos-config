@@ -4,12 +4,26 @@
   programs.firefox = {
     enable = true;
     profiles.marts = {
-      bookmarks = [{
-        name = "Home-Manager Wiki";
-        tags = [ "wiki" ];
-        keyword = "homemanager";
-        url = "https://nix-community.github.io/home-manager/options.xhtml";
-      }];
+      bookmarks = [
+        {
+          name = "Home-Manager Wiki";
+          tags = [ "wiki" ];
+          keyword = "homemanager";
+          url = "https://nix-community.github.io/home-manager/options.xhtml";
+        }
+        {
+          name = "Nix - A One Pager -> Nix Language";
+          tags = [ "wiki" ];
+          keyword = "nix";
+          url = "https://github.com/tazjin/nix-1p";
+        }
+        {
+          name = "nixos-manual";
+          tags = [ "wiki" ];
+          keyword = "nixos";
+          url = "https://nixos.org/manual/nix/stable/introduction";
+        }
+      ];
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
         ublock-origin
         darkreader
@@ -54,40 +68,16 @@
             updateInterval = 24 * 60 * 60 * 1000; # every day
             definedAliases = [ "@nw" ];
           };
+          "Home Manager Options" = {
+            urls = [{
+              template = "https://mipmip.github.io/home-manager-option-search/";
+            }];
+            definedAliases = [ "@hm" ];
+          };
         };
         force = true;
       };
-      # search.default = "DuckDuckGo";
-      # search.engines = {
-      #   "Nix Packages" = {
-      #     urls = [{
-      #       template = "https://search.nixos.org/packages";
-      #       params = [
-      #         {
-      #           name = "type";
-      #           value = "packages";
-      #         }
-      #         {
-      #           name = "query";
-      #           value = "{searchTerms}";
-      #         }
-      #       ];
-      #     }];
-      #     icon =
-      #       "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-      #     definedAliases = [ "@np" ];
-      #   };
-      #   "NixOS Wiki" = {
-      #     urls = [{
-      #       template = "https://nixos.wiki/index.php?search={searchTerms}";
-      #     }];
-      #     iconUpdateURL = "https://nixos.wiki/favicon.png";
-      #     updateInterval = 24 * 60 * 60 * 1000; # every day
-      #     definedAliases = [ "@nw" ];
-      #   };
-      # };
-      # search.force = true;
-      # search.order = [ "DuckDuckGo" "Nix Packages" ];
+
       settings = {
         "browser.startup.homepage" = "https://duckduckgo.com";
         "browser.search.region" = "US";
