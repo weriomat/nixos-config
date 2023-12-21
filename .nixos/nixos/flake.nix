@@ -1,6 +1,5 @@
 {
-  description = "Nixos config flake";
-
+  description = "Marts - Nixos config flake";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -42,9 +41,8 @@
         specialArgs = { inherit inputs outputs; };
         # inherit system specialArgs;
         modules = [
-          # ./modules/nixos/configuration.nix
           ./modules/nixos/nix.nix
-          ./configuration.nix
+          ./modules/nixos/configuration.nix
           ./hosts/default/hardware-configuration.nix
           # ./hosts/default/ssh.nix
           # inputs.home-manager.nixosModules.default
