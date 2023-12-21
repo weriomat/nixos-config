@@ -26,7 +26,7 @@
       gpp = "git push";
       gpu = "git pull";
 
-      #   # ssh = "TERM=xterm-256color /usr/bin/env ssh";
+      # ssh = "TERM=xterm-256color /usr/bin/env ssh";
       test-update =
         "sudo nixos-rebuild test --flake /home/marts/.nixos/nixos#default";
       update =

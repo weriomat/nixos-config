@@ -1,3 +1,4 @@
+# { pkgs, inputs, outputs, ... }: {
 { pkgs, ... }: {
   imports = [
     ./btop.nix
@@ -8,5 +9,6 @@
     ./lazygit.nix
     ./usefulPackages.nix
     ./eza.nix
+    ./starship.nix
   ];
 }

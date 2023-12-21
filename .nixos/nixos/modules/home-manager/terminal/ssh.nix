@@ -10,10 +10,7 @@
     compression = true;
     controlMaster = "auto";
 
-    extraOptionOverrides = {
-      # IdentityFile = toString (inputs.keys + "/home/marts/.ssh/github.pub");
-      IdentityFile = "/home/marts/.ssh/github.pub";
-    };
+    extraOptionOverrides = { IdentityFile = "/home/marts/.ssh/github.pub"; };
 
     extraConfig = "IdentitiesOnly yes";
 

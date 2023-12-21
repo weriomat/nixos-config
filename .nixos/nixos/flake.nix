@@ -30,27 +30,29 @@
       loadPkgs = (system: import nixpkgs { inherit system; });
       pkgs = loadPkgs system;
       # specialArgs = {
-      # inherit inputs;
+      # inherit inputs outputs;
       # martsPackages = self.packages.${system};
-      # martsOverlays = (import ./pkgs {inherit pkgs inputs;}).overlays;
+      # martsOverlays = (import ./overlays { inherit pkgs inputs; });
       # };
     in {
-      packages = import ./pkgs nixpkgs.legacyPackages.${system};
-      overlays = import ./overlays { inherit inputs pkgs; };
+      # packages = import ./pkgs nixpkgs.legacyPackages.${system};
+      packages = import ./pkgs { inherit pkgs; };
+      # packages = self.packages.${system};
+      overlays = import ./overlays { inherit inputs pkgs outputs; };
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs outputs; };
         # inherit system specialArgs;
+        specialArgs = { inherit inputs outputs; };
         modules = [
           ./modules/nixos/nix.nix
           ./modules/nixos/configuration.nix
           ./hosts/default/hardware-configuration.nix
-          # ./hosts/default/ssh.nix
-          # inputs.home-manager.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-              #extraSpecialArgs = { inherit inputs outputs; };
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = { inherit inputs outputs; };
+              # extraSpecialArgs = { inherit inputs; };
+              # extraSpecialArgs = { inherit specialArgs; };
+              # extraSpecialArgs.inputs = inputs;
               useUserPackages = true;
               useGlobalPkgs = true;
               users = { "marts" = import ./modules/home-manager/home.nix; };
@@ -58,12 +60,5 @@
           }
         ];
       };
-      #homeConfigurations.default = {
-      #"marts@nixos" = home-manager.lib.homeManagerConfiguration {
-      #pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      #extraSpecialArgs = { inherit inputs outputs; };
-      #modules = [ ./modules/home-manager/home.nix ];
-      #};
-      #};
     };
 }
