@@ -29,6 +29,7 @@
 https://nix.dev/tutorials/nix-language
 https://nix.dev/manual/nix/2.18/language/builtins
 https://nix.dev/manual/nix/2.18/command-ref/nix-instantiate
+https://nixos.wiki/wiki/Configuration_Collection
 
 # Configs to take a look at
 https://github.com/vimjoyer/nixconf

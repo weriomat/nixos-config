@@ -23,6 +23,13 @@
           keyword = "nixos";
           url = "https://nixos.org/manual/nix/stable/introduction";
         }
+        {
+          name = "NixOS - Book";
+          tags = [ "Books" ];
+          url =
+            "https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration";
+        }
+
       ];
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
         ublock-origin
