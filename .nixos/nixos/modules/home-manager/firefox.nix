@@ -26,8 +26,16 @@
         {
           name = "NixOS - Book";
           tags = [ "Books" ];
+          keyword = "nixbook";
           url =
             "https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration";
+        }
+        {
+          name = "Install guide of steam";
+          tags = [ "wiki" ];
+          keyword = "steam";
+          url =
+            "https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html";
         }
 
       ];
