@@ -20,6 +20,15 @@
 - configure rust
 - configure nix-colors
 - de-bloat
+- Better-discord
+- configure gpg
+- configure vscode for latex
+- configure gtk
+
+# links to take a look at
+https://nix.dev/tutorials/nix-language
+https://nix.dev/manual/nix/2.18/language/builtins
+https://nix.dev/manual/nix/2.18/command-ref/nix-instantiate
 
 # Configs to take a look at
 https://github.com/vimjoyer/nixconf
@@ -39,3 +48,4 @@ https://github.com/dragonblade316/dotfiles
 https://github.com/arclight443/config
 https://github.com/kinzoku-dev/neovim
 https://github.com/kinzoku-dev/nebula
+https://github.com/NobbZ/nixos-config/blob/main/flake.nix

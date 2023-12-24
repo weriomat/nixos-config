@@ -1,0 +1,36 @@
+{ pkgs, ... }: {
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      # pretty 
+      pkief.material-product-icons
+      pkief.material-icon-theme
+      zhuangtongfa.material-theme
+      esbenp.prettier-vscode
+      gruntfuggly.todo-tree
+      oderwat.indent-rainbow
+
+      xaver.clang-format
+      vscodevim.vim
+      tamasfe.even-better-toml
+      # tabnine.tabnine-vscode
+      svelte.svelte-vscode
+      rust-lang.rust-analyzer
+      roman.ayu-next
+      ms-python.python
+      wholroyd.jinja
+      ms-pyright.pyright
+
+      # latex
+      james-yu.latex-workshop
+      valentjn.vscode-ltex
+    ];
+    # haskell -> TODO: configure
+    # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.vscode.haskell.hie.executablePath
+    # haskell = {
+    #   enable = true;
+    #   hie.enable = true;
+    # };
+  };
+}

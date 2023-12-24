@@ -2,7 +2,7 @@
 
 { config, pkgs, ... }: {
 
-  imports = [ ./firefox.nix ./terminal/terminal.nix ];
+  imports = [ ./firefox.nix ./terminal/terminal.nix ./vscode.nix ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "marts";

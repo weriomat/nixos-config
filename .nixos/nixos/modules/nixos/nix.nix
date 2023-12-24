@@ -2,6 +2,10 @@
   nix.nixPath =
     [ "nixpkgs=${inputs.nixpkgs}" "unstable=${inputs.nixpkgs-unstable}" ];
 
+  # enable local registry for better search
+  # https://discourse.nixos.org/t/local-flake-based-nix-search-nix-run-and-nix-shell/13433/12
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+
   nix.settings = {
     sandbox = true;
     # Enable flakes and new 'nix' command
