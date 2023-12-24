@@ -3,16 +3,18 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    nixos-rebuild
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+
+    # nix 
     nixfmt
     nixpkgs-fmt
     nixpkgs-lint
     statix
-    neofetch
+    # nix-indent
 
-    # TODO: maybe use an overlay to get latest version
-    discord
+    neofetch
 
     (haskellPackages.ghcWithPackages (pkgs:
       with pkgs; [
@@ -23,8 +25,33 @@
         haskell-language-server
       ]))
 
+    # build tools
     autoconf
     gnumake
+
+    # -- Dev tools --
+    ansible
+    nodejs
+    # nodePackages.neovim
+    go
+    openjdk
+    (pkgs.python3.withPackages (p:
+      with p; [
+        pandas
+        isort
+        python-lsp-server
+        black
+        pygments
+        requests
+        keyring
+        numpy
+        dnslib
+        pytest
+        scipy
+        git-filter-repo
+        yt-dlp
+      ]))
+    python3
 
     gcc
     llvm
