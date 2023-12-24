@@ -5,9 +5,7 @@
 { config, pkgs, inputs, ouputs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    # inputs.home-manager.nixosModules.default
-  ];
+  imports = [ ./packages.nix ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -21,8 +19,6 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -78,9 +74,6 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.marts = {
     isNormalUser = true;
@@ -88,56 +81,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };
-
-  # Allow unfree packages
-  # nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    nixfmt
-    nixpkgs-fmt
-    nixpkgs-lint
-    statix
-    # nix-indent
-    # helix
-    neofetch
-
-    (haskellPackages.ghcWithPackages (pkgs:
-      with pkgs; [
-        stack
-        cabal-install
-        MonadRandom
-        multiset-comb
-        haskell-language-server
-      ]))
-
-    autoconf
-    gnumake
-
-    gcc
-    llvm
-    clang_15
-    clang-tools_15
-    # cmake
-    extra-cmake-modules
-    llvmPackages_latest.lldb
-    plasma5Packages.extra-cmake-modules
-    mold
-    valgrind
-    rustup
-    unstable.llvm
-    unstable.clang_15
-    unstable.clang-tools_15
-    unstable.cmake
-    unstable.extra-cmake-modules
-    # unstable.llvmPackages_latest.lldb
-    unstable.plasma5Packages.extra-cmake-modules
-    unstable.mold
-    unstable.valgrind
-  ];
 
   programs.zsh.enable = true;
 

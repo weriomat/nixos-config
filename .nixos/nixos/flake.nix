@@ -26,21 +26,12 @@
     let
       inherit (self) outputs;
       system = "x86_64-linux";
-      # pkgs = nixpkgs.legacyPackages.${system};
       loadPkgs = (system: import nixpkgs { inherit system; });
       pkgs = loadPkgs system;
-      # specialArgs = {
-      # inherit inputs outputs;
-      # martsPackages = self.packages.${system};
-      # martsOverlays = (import ./overlays { inherit pkgs inputs; });
-      # };
     in {
-      # packages = import ./pkgs nixpkgs.legacyPackages.${system};
       packages = import ./pkgs { inherit pkgs; };
-      # packages = self.packages.${system};
       overlays = import ./overlays { inherit inputs pkgs outputs; };
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        # inherit system specialArgs;
         specialArgs = { inherit inputs outputs; };
         modules = [
           ./modules/nixos/nix.nix
@@ -50,9 +41,6 @@
           {
             home-manager = {
               extraSpecialArgs = { inherit inputs outputs; };
-              # extraSpecialArgs = { inherit inputs; };
-              # extraSpecialArgs = { inherit specialArgs; };
-              # extraSpecialArgs.inputs = inputs;
               useUserPackages = true;
               useGlobalPkgs = true;
               users = { "marts" = import ./modules/home-manager/home.nix; };

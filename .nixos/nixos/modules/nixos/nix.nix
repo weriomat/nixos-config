@@ -10,6 +10,7 @@
     auto-optimise-store = true;
   };
   # TODO: set trusted public keys, trusted-subsituters
+
   # Nix shouldn't build in /tmp since it might compete for RAM for large builds and will quickly exhaust the 5 G limit
   # systemd.services.nix-daemon.environment.TMPDIR = "/nix/tmp";
   # systemd.tmpfiles.rules = [ "d /nix/tmp 0755 root root 1d" ];

@@ -17,7 +17,7 @@
         "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
 
       # janked from cobalts config
-      strip_trailing_space = "smart";
+      # strip_trailing_space = "smart";
       cursor_shape = "beam";
       cursor_blink_interval = "1.0";
       cursor_stop_blinking_after = "15.0";
@@ -30,12 +30,12 @@
     };
     font = {
       # IBM Plex mono with nerd font addons
-      # name = "'BlexMono Nerd Font'";
+      name = "'BlexMono Nerd Font'";
       # name = "'Iosevka Comfy'";
-      name = "'Iosevka Comfy'";
+      # name = "'Iosevka Comfy'";
       size = 16;
-      package = pkgs.iosevka-comfy.comfy;
-      # package = (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; });
+      # package = pkgs.iosevka-comfy.comfy;
+      package = (pkgs.nerdfonts.override { fonts = [ "IBMPlexMono" ]; });
     };
 
   };
