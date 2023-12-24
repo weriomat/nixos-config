@@ -37,6 +37,8 @@
           ./modules/nixos/nix.nix
           ./modules/nixos/configuration.nix
           ./hosts/default/hardware-configuration.nix
+          ./hosts/default/hardware-config-add.nix
+          ./steam.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {

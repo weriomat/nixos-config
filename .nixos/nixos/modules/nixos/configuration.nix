@@ -5,14 +5,13 @@
 { config, pkgs, inputs, ouputs, ... }:
 
 {
-  imports = [ ./packages.nix ./audio.nix ./dictionaries.nix ./graphical.nix ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.initrd.luks.devices."luks-e21fd631-a002-472c-a43c-bd984147f9a2".device =
-    "/dev/disk/by-uuid/e21fd631-a002-472c-a43c-bd984147f9a2";
+  imports = [
+    ./packages.nix
+    ./audio.nix
+    ./dictionaries.nix
+    ./graphical.nix
+    ./flatpack.nix
+  ];
 
   # Enable manpages
   documentation.man = { enable = true; };
@@ -47,11 +46,13 @@
       # Configure keymap in X11
       layout = "us";
       xkbVariant = "";
+      # videoDrivers = [ "amdgpu" ];
     };
     printing = {
       # Enable CUPS to print documents.
       enable = true;
     };
+    # flatpack.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
