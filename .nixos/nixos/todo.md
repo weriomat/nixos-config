@@ -5,10 +5,10 @@
 - Hyperland
 - configure bootloader -> https://github.com/vimjoyer/nixconf/blob/main/hosts/laptop/configuration.nix
 - configure virtualization
-- configure gpu
+// - configure gpu
 - configure bloototh
-- configure flatpack
-- configure steam -> games
+// - configure flatpack
+// - configure steam -> games
 - configure monitors
 - configure rofi
 - set fonts -> maybe buy comic code
@@ -16,13 +16,13 @@
 - configure fzf
 - configure tmux
 - configure neovim -> logamaster
-- factor out audio stuff
+// - factor out audio stuff
 - configure rust
 - configure nix-colors
 - de-bloat
 - Better-discord
 - configure gpg
-- configure vscode for latex
+// - configure vscode for latex
 - configure gtk
 
 # links to take a look at
