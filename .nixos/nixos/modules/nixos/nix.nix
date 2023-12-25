@@ -46,6 +46,7 @@
         "electron-15.5.2"
         "electron-24.8.6"
         "electron-25.9.0"
+        "python-2.7.18.7"
       ];
       allowUnfree = true;
       # allowUnfreePredicate = (pkg: true);

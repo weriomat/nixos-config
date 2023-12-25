@@ -68,7 +68,18 @@
   users.users.marts = {
     isNormalUser = true;
     description = "marts";
-    extraGroups = [ "networkmanager" "wheel" "libvirtd" "audio" "video" ];
+    # https://christitus.com/vm-setup-in-linux/
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "libvirtd"
+      "audio"
+      "video"
+      "disk"
+      "input"
+      "kvm"
+      "libvirt-qemu"
+    ];
     shell = pkgs.zsh;
   };
 
