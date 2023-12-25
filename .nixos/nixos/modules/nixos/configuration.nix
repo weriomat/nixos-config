@@ -10,11 +10,20 @@
     ./audio.nix
     ./dictionaries.nix
     ./graphical.nix
-    ./flatpack.nix
+    ./flatpak.nix
+    ./virtualisation.nix
   ];
 
   # Enable manpages
-  documentation.man = { enable = true; };
+  documentation = {
+    enable = true;
+    man.enable = true;
+    dev.enable = true;
+    doc.enable = true;
+    nixos.enable = true;
+    info.enable = true;
+  };
+  # services.hoogle.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -59,7 +68,7 @@
   users.users.marts = {
     isNormalUser = true;
     description = "marts";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" "audio" "video" ];
     shell = pkgs.zsh;
   };
 
