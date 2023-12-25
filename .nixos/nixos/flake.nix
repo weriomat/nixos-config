@@ -19,10 +19,12 @@
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay";
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware
-    , utils, home-manager, firefox-addons, rust-overlay, ... }@inputs:
+    , utils, home-manager, firefox-addons, rust-overlay, hyprland, ... }@inputs:
     let
       inherit (self) outputs;
       system = "x86_64-linux";

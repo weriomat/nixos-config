@@ -52,21 +52,5 @@
       # allowBroken = true;
     };
   };
-  # overlays = [
-  # inputs.rust-overlay.overlays.default
-  # (self: super: rec {
-  # kitty-themes = unstable.kitty-themes;
-  # See and https://nixos.wiki/wiki/Overlays
-  # inherit inputs cobaltPackages;
-
-  # See https://nixos.wiki/wiki/Cheatsheet#Customizing_Packages
-  # unstable = (import inputs.nixpkgs-unstable {
-  # config = config.nixpkgs.config;
-  # system = "x86_64-linux";
-  # });
-
-  # })
-  # ];
-  # };
 
 }

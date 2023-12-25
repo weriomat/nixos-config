@@ -36,6 +36,7 @@
     };
   };
 
+  # TODO: gnome -> hyperland
   services = {
     xserver = {
       # Enable the X11 windowing system.
@@ -52,7 +53,6 @@
       # Enable CUPS to print documents.
       enable = true;
     };
-    # flatpack.enable = true;
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
