@@ -19,7 +19,7 @@
     nodePackages.vscode-css-languageserver-bin # css + scss
     nodePackages.bash-language-server # bash
     nodePackages.vls # vuejs
-    haskell-language-server # haskell
+    # haskell-language-server # haskell
     rust-analyzer # rust
     nil # nix
 

@@ -25,7 +25,8 @@
       gss = "git status -sb";
       gpp = "git push";
       gpu = "git pull";
-
+      # lazygit
+      gl = "lazygit";
       # ssh = "TERM=xterm-256color /usr/bin/env ssh";
       test-update =
         "sudo nixos-rebuild test --flake /home/marts/.nixos/nixos#default";

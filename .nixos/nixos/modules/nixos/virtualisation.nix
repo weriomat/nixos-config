@@ -35,7 +35,7 @@
       # win-virtio
       # win-spice
 
-      unstable.quickemu
+      # unstable.quickemu
       # quickgui
     ];
 }
