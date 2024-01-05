@@ -11,7 +11,7 @@
     ./dictionaries.nix
     ./graphical.nix
     ./flatpak.nix
-    ./virtualisation.nix
+    # ./virtualisation.nix
   ];
 
   # Enable manpages
