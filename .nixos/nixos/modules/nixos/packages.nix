@@ -39,8 +39,8 @@
       with p; [
         pandas
         isort
-        python-lsp-server
-        black
+        # python-lsp-server
+        # black
         pygments
         requests
         keyring
@@ -50,6 +50,7 @@
         scipy
         git-filter-repo
         yt-dlp
+        matplotlib
       ]))
     python3
 
@@ -63,7 +64,7 @@
     plasma5Packages.extra-cmake-modules
     mold
     valgrind
-    rustup
+    # rustup
     unstable.llvm
     unstable.clang_15
     unstable.clang-tools_15

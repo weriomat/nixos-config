@@ -15,6 +15,11 @@
       config =
         "/etc/profiles/per-user/marts/bin/git --git-dir=$HOME/.nixos/ --work-tree=$HOME";
 
+      diff = "diff --color";
+
+      # for c dev # TODO: delete this
+      ctest = "nix develop .#dev -c make && pytest test/test_praxis2.py -vvv";
+
       # grep
       grep = "grep --color=auto";
       ga = "git add";

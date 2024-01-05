@@ -37,6 +37,48 @@
           url =
             "https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html";
         }
+        {
+          name = "rust flake";
+          tags = [ "rust" ];
+          url = "https://www.tweag.io/blog/2022-09-22-rust-nix/";
+        }
+        {
+          name = "rust flake with hercules ci";
+          tags = [ "rust" ];
+          url = "https://github.com/cpu/rust-flake/blob/main/README.md";
+        }
+        {
+          name = "Rust";
+          toolbar = true;
+          bookmarks = [{
+            name = "rust programming lang book";
+            url = "https://doc.rust-lang.org/stable/book/";
+          }];
+        }
+        {
+          name = "Category Theory";
+          toolbar = true;
+          bookmarks = [
+            {
+              name = "Stanford summary";
+              url = "https://plato.stanford.edu/entries/category-theory/";
+            }
+            {
+              name = "auburn summary";
+              url =
+                "https://web.auburn.edu/holmerr/8970/Textbook/CategoryTheory.pdf";
+            }
+            {
+              name = "ucsb script";
+              url = "https://web.math.ucsb.edu/~atrisal/category%20theory.pdf";
+            }
+            {
+              name = "Standford book recommendations";
+              url =
+                "https://plato.stanford.edu/entries/category-theory/bib.html";
+            }
+          ];
+        }
 
       ];
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [

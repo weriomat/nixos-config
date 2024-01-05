@@ -23,6 +23,11 @@
     rust-analyzer # rust
     nil # nix
 
+    # python
+    ruff-lsp
+    black
+    nodePackages_latest.pyright
+    # (pkgs.python3.withPackages (p: with p; [ python-lsp-server ]))
   ];
 
   programs.helix = {
@@ -54,6 +59,13 @@
             "%f"
           ];
         };
+        language-server.ruff = {
+          command = "ruff-lsp";
+          config.settings = { args = [ "--ignore" "E501" ]; };
+        };
+        langugage-server.pyright.config.analysis = {
+          typeCheckingMode = "basic";
+        };
       };
 
       language = [
@@ -73,6 +85,15 @@
         {
           name = "go";
           auto-format = true;
+        }
+        {
+          name = "python";
+          language-servers = [ "ruff" "pyright" ];
+          auto-format = true;
+          formatter = {
+            command = "black";
+            args = [ "--line-length" "88" "--quiet" "-" ];
+          };
         }
       ];
     };
