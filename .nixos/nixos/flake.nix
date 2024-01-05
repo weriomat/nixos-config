@@ -52,5 +52,22 @@
           }
         ];
       };
+      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs outputs;};
+        modules = [
+          ./modules/nixos/nix.nix
+          ./modules/nixos/configuration.nix
+          ./hosts/laptop/hardware-configuration.nix
+          ./hosts/laptop/hardware-configuration-add.nix
+          home-manager.nixosModules.home-manager{
+            home-manager = {
+              extraSpecialArgs = { inherit inputs outputs;};
+              useUserPackages = true;
+              useGlobalPkgs = true;
+              users = {"marts"= import ./modules/home-manager/home.nix;};
+            };
+          }
+        ];
+      };
     };
 }

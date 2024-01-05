@@ -19,7 +19,7 @@
 
     # office
     libreoffice
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
     pandoc
     keepassxc
   ];
