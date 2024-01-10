@@ -59,6 +59,7 @@
           ./modules/nixos/config-laptop.nix
           ./hosts/laptop/hardware-configuration.nix
           ./hosts/laptop/hardware-configuration-add.nix
+          nixos-hardware.nixosModules.lenovo-thinkpad-l13
           home-manager.nixosModules.home-manager
           {
             home-manager = {
