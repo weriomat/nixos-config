@@ -4,7 +4,10 @@
   # hardware.pulseaudio.support32Bit = true;
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware.pulseaudio = {
+    enable = false;
+    package = pkgs.pulseaudioFull;
+  };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -22,10 +25,14 @@
   # Enable bluetooth with blueman
   # The blueman applet is defined as part of sway/home.nix
   # see https://nixos.wiki/wiki/Bluetooth
-  # services.blueman.enable = true;
-  # hardware.bluetooth = {
-  # enable = true;
-  # settings.General = { Enable = "Source,Sink,Media,Socket"; };
-  # };
+  services.blueman.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings.General = {
+      Enable = "Source,Sink,Media,Socket";
+      Experimental = true;
+    };
+  };
 
 }

@@ -3,6 +3,7 @@
     # TODO: maybe use an overlay to get latest version
     discord
     obsidian
+    cider
 
     # graphical
     gnome.gnome-todo
