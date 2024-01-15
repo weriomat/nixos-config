@@ -10,6 +10,8 @@
       esbenp.prettier-vscode
       gruntfuggly.todo-tree
       oderwat.indent-rainbow
+      catppuccin.catppuccin-vsc
+      catppuccin.catppuccin-vsc-icons
 
       xaver.clang-format
       vscodevim.vim
