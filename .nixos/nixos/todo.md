@@ -1,4 +1,5 @@
 # TODOS
+https://github.com/kinzoku-dev/neovim
 
 - Refactor user management
 - Use Homemanger bundles for config

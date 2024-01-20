@@ -1,1 +1,1 @@
-{ pkgs, config, ... }: { imports = [ ./firefox ./vscodium ]; }
+{ pkgs, config, ... }: { imports = [ ./firefox ./vscodium ./kitty ]; }

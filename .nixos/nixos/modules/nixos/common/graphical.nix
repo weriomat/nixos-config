@@ -9,6 +9,7 @@
     gnome.gnome-todo
     gnome.gnome-calendar
     gnome.gnome-control-center
+    xfce.thunar
 
     # media
     pavucontrol

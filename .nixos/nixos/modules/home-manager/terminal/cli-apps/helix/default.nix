@@ -114,6 +114,8 @@
       keys.normal = {
         space.w = ":w";
         space.q = ":q";
+        "{" = "goto_prev_paragraph";
+        "}" = "goto_next_paragraph";
       };
     };
   };
