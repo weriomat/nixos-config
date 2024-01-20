@@ -6,7 +6,7 @@
     ./dictionaries.nix
     ./graphical.nix
     ./documentation.nix
-    # ./flatpak.nix
+    ./keyboard.nix
     # ./virtualisation.nix
   ];
 }

@@ -1,8 +1,4 @@
-{ pkgs, ... }:
-# { config, pkgs, inputs, ouputs, ... }:
-# let unstable = import <nixpkgs-unstable> { };
-# in {
-{
+{ pkgs, ... }: {
   programs.kitty = {
     enable = true;
     package = pkgs.unstable.kitty;

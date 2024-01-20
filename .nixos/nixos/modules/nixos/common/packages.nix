@@ -4,7 +4,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     nixos-rebuild
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
 
     # nix 
@@ -12,7 +12,6 @@
     nixpkgs-fmt
     nixpkgs-lint
     statix
-    # nix-indent
 
     neofetch
 
@@ -58,19 +57,16 @@
     llvm
     clang_15
     clang-tools_15
-    # cmake
     extra-cmake-modules
     llvmPackages_latest.lldb
     plasma5Packages.extra-cmake-modules
     mold
     valgrind
-    # rustup
     unstable.llvm
     unstable.clang_15
     unstable.clang-tools_15
     unstable.cmake
     unstable.extra-cmake-modules
-    # unstable.llvmPackages_latest.lldb
     unstable.plasma5Packages.extra-cmake-modules
     unstable.mold
     unstable.valgrind
