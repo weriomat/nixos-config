@@ -5,6 +5,7 @@
     [ ./common/default.nix ./common/flatpak.nix ./user.nix ]; # ./wayland.nix ];
 
   programs = {
+    wireshark.enable = true;
     hyprland.enable = true;
     xwayland.enable = true;
     # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -35,8 +36,10 @@
     };
     dbus.enable = true;
     gvfs.enable = true;
+    gnome.gnome-keyring.enable = true;
   };
 
+  systemd.extraConfig = "DefaultTimeoutStopSec=10s";
   # security.pam.services.swaylock = { };
 
   programs.steam = {

@@ -5,6 +5,8 @@
   environment.systemPackages = with pkgs; [
     # lets see if that fixes hyrpland
     unstable.libdrm
+    wireshark
+    libnotify
 
     nixos-rebuild
     vim

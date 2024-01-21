@@ -71,7 +71,9 @@
               extraSpecialArgs = { inherit inputs outputs; };
               useUserPackages = true;
               useGlobalPkgs = true;
-              users = { "marts" = import ./modules/home-manager/home.nix; };
+              users = {
+                "marts" = import ./modules/home-manager/home_laptop.nix;
+              };
             };
           }
         ];
