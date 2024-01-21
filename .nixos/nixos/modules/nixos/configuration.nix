@@ -23,7 +23,7 @@
         wayland = true;
       };
       # # Enable the GNOME Desktop Environment.
-      # desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable = true;
       libinput = {
         enable = true;
         # mouse = { accelProfile = "flat"; };

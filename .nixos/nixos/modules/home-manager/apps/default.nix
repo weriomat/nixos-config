@@ -3,11 +3,11 @@
     ./firefox
     ./vscodium
     ./kitty
-    # ./mako
-    # ./waybar
-    # ./hyprland
-    # ./wofi
-    # ./gtk
+    ./mako
+    ./waybar
+    ./hyprland
+    ./wofi
+    ./gtk
     # ./swaylock
   ];
 }
