@@ -204,15 +204,15 @@ in {
       bind = $mainMod ALT, down, moveactive, 0 80
 
       # media and volume controls
-      bind = ,XF86AudioRaiseVolume,exec, pamixer -i 2
-      bind = ,XF86AudioLowerVolume,exec, pamixer -d 2
-      bind = ,XF86AudioMute,exec, pamixer -t
-      bind = ,XF86AudioPlay,exec, playerctl play-pause
-      bind = ,XF86AudioNext,exec, playerctl next
-      bind = ,XF86AudioPrev,exec, playerctl previous
-      bind = , XF86AudioStop, exec, playerctl stop
-      bind = $mainMod, mouse_down, workspace, e-1
-      bind = $mainMod, mouse_up, workspace, e+1
+      # bind = ,XF86AudioRaiseVolume,exec, pamixer -i 2
+      # bind = ,XF86AudioLowerVolume,exec, pamixer -d 2
+      # bind = ,XF86AudioMute,exec, pamixer -t
+      # bind = ,XF86AudioPlay,exec, playerctl play-pause
+      # bind = ,XF86AudioNext,exec, playerctl next
+      # bind = ,XF86AudioPrev,exec, playerctl previous
+      # bind = , XF86AudioStop, exec, playerctl stop
+      # bind = $mainMod, mouse_down, workspace, e-1
+      # bind = $mainMod, mouse_up, workspace, e+1
 
       # mouse binding
       bindm = $mainMod, mouse:272, movewindow

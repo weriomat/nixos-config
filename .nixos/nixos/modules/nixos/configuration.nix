@@ -1,9 +1,14 @@
-{ config, pkgs, inputs, ouputs, ... }:
+{ inputs, config, pkgs, ouputs, ... }:
 
 {
   imports =
-    [ ./common/default.nix ./common/flatpak.nix ./user.nix ./wayland.nix ];
+    [ ./common/default.nix ./common/flatpak.nix ./user.nix ]; # ./wayland.nix ];
 
+  programs = {
+    hyprland.enable = true;
+    xwayland.enable = true;
+    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
   # TODO: gnome -> hyperland
   services = {
     xserver = {
@@ -13,7 +18,10 @@
       layout = "us";
       # xkbVariant = "";
       # videoDrivers = [ "amdgpu" ];
-      # displayManager.gdm.enable = true;
+      displayManager.gdm = {
+        enable = true;
+        wayland = true;
+      };
       # # Enable the GNOME Desktop Environment.
       # desktopManager.gnome.enable = true;
       libinput = {
@@ -29,7 +37,7 @@
     gvfs.enable = true;
   };
 
-  security.pam.services.swaylock = { };
+  # security.pam.services.swaylock = { };
 
   programs.steam = {
     enable = true;

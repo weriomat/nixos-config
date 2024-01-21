@@ -3,6 +3,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # lets see if that fixes hyrpland
+    unstable.libdrm
+
     nixos-rebuild
     vim
     wget
