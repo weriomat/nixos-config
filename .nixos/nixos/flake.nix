@@ -20,7 +20,13 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hypr-contrib.url = "github:hyprwm/contrib";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware
