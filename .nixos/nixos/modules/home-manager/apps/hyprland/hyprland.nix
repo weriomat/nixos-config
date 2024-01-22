@@ -1,5 +1,6 @@
 { inputs, pkgs, ... }: {
   home.packages = with pkgs; [
+    mpv-unwrapped
     playerctl
     pamixer
     networkmanagerapplet

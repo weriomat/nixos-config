@@ -69,6 +69,9 @@ in {
         "$mainMod, W, exec, wallpaper-picker"
         "$mainMod SHIFT, W, exec, wallpaper-random"
 
+        # toggle for lofi music
+        "$mainMod, L, exec, lofi"
+
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
