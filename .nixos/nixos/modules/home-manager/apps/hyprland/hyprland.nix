@@ -1,6 +1,7 @@
 { inputs, pkgs, ... }: {
   home.packages = with pkgs; [
     playerctl
+    pamixer
     # swww
     swaybg
     # hyprpaper

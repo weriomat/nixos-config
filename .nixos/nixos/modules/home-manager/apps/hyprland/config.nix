@@ -84,6 +84,9 @@ in {
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
+        # media and volume control
+        ",XF86AudioRaiseVolume,exec, pamixer -i 2"
+        ",XF86AudioLowerVolume,exec, pamixer -d 2"
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioNext, exec, playerctl next"
         ",XF86AudioPrev, exec, playerctl previous"
