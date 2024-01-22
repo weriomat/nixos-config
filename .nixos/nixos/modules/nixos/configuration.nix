@@ -10,6 +10,17 @@
     xwayland.enable = true;
     # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
+
+  # portal for sharing (file pickers)
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      # pkgs.xdg-desktop-portal-gtk
+    ];
+  };
   # TODO: gnome -> hyperland
   services = {
     xserver = {
