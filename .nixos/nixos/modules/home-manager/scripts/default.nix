@@ -1,8 +1,10 @@
 { pkgs, ... }:
 let
   wall-change = pkgs.writeShellScriptBin "wall-change" "swaybg -m fill -i $1";
-  wallpaper-picker = pkgs.writeShellScriptBin "wallpaper-picker"
-    (builtins.readFile ./scripts/wallpaper-picker.sh);
+  # wallpaper-picker = pkgs.writeShellScriptBin "wallpaper-picker"
+  #   (builtins.readFile ./scripts/wallpaper-picker.sh);
+  # wallpaper-random = pkgs.writeShellScriptBin "wallpaper-random"
+  #   (builtins.readFile ./scripts/wallpaper-random.sh);
 
   # runbg =
   #   pkgs.writeShellScriptBin "runbg" (builtins.readFile ./scripts/runbg.sh);
@@ -29,24 +31,26 @@ let
   # show-keybinds = pkgs.writeScriptBin "show-keybinds"
   #   (builtins.readFile ./scripts/keybinds.sh);
 in {
-  home.packages = with pkgs; [
-    wall-change
-    wallpaper-picker
+  home.packages = with pkgs;
+    [
+      wall-change
+      # wallpaper-picker
+      # wallpaper-random
 
-    # runbg
-    # music
-    # lofi
+      # runbg
+      # music
+      # lofi
 
-    # toggle_blur
-    # toggle_oppacity
+      # toggle_blur
+      # toggle_oppacity
 
-    # maxfetch
+      # maxfetch
 
-    # compress
-    # extract
+      # compress
+      # extract
 
-    # shutdown-script
+      # shutdown-script
 
-    # show-keybinds
-  ];
+      # show-keybinds
+    ];
 }

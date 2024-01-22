@@ -67,6 +67,7 @@ in {
         # TODO: make wallpapers change peridically https://sylvaindurand.org/dynamic-wallpapers-with-sway/
         # wallpaper picker
         "$mainMod, W, exec, wallpaper-picker"
+        "$mainMod SHIFT, W, exec, wallpaper-random"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
