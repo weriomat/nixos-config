@@ -15,6 +15,7 @@
     QT_QPA_PLATFORM = "xcb";
     QT_QPA_PLATFORMTHEME = "qt5ct";
     QT_STYLE_OVERRIDE = "kvantum";
+    # FIREFOX -> https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
     MOZ_ENABLE_WAYLAND = "1";
     WLR_BACKEND = "vulkan";
     WLR_RENDERER = "vulkan";

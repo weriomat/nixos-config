@@ -2,6 +2,9 @@
   home.packages = with pkgs; [
     playerctl
     pamixer
+
+    # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
+    xwaylandvideobridge
     # swww
     swaybg
     # hyprpaper

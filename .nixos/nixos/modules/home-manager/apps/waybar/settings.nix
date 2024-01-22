@@ -33,6 +33,8 @@
         <tt><small>{calendar}</small></tt>'';
       format-alt = " {:%d/%m}";
     };
+
+    # TODO: here
     "wlr/workspaces" = {
       active-only = false;
       all-outputs = false;

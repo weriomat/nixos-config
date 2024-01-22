@@ -11,10 +11,12 @@
     # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
+  # TODO: here https://wiki.hyprland.org/Useful-Utilities/Hyprland-desktop-portal/
   # portal for sharing (file pickers)
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    # TODO: here
+    # wlr.enable = true;
     xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland

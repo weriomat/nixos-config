@@ -19,7 +19,7 @@ in {
         # Execute your favorite apps at launch
         "systemctl --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
-        "dbus-update-activation-environment --systemd &"
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
         "gnome-keyring-daemon --start &"
         "nm-applet &"
         # "swaybg -m fill -i $(find ~/.nixos/nixos/wallpapers/wallpaper.png -maxdepth 1 -type f) &"
@@ -101,6 +101,14 @@ in {
         # "# Move/resize windows with mainMod + LMB/RMB and dragging"
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
+      ];
+      # TODO: fix this -> https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
+      windowrulev2 = [
+        "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
+        "noanim,class:^(xwaylandvideobridge)$"
+        "noinitialfocus,class:^(xwaylandvideobridge)$"
+        "maxsize 1 1,class:^(xwaylandvideobridge)$"
+        "noblur,class:^(xwaylandvideobridge)$"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/

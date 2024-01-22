@@ -152,7 +152,7 @@
           }
         ];
         # settings for hardening firefox
-        "media.peerconnection.enabled" = false;
+        # "media.peerconnection.enabled" = false;
         "privacy.resistFingerprinting" = true;
         "security.ssl3.rsa_des_ede3_sha" = false;
         "security.ssl.require_safe_negotiation" = true;
@@ -184,6 +184,9 @@
         "webgl.disabled" = true;
         "privacy.firstparty.isolate" = true;
         "security.ssl.enable_false_start" = false;
+
+        # wayland
+        "media.peerconnection.enabled" = true;
       };
     };
   };
