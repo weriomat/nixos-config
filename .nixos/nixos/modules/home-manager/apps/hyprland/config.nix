@@ -11,6 +11,23 @@ in {
         "DP-3, 1920x1080@240, 0x0, 1"
         "HDMI-A-1,  1920x1080@60, 4480x0, 1"
       ];
+      workspace = [
+        "1, monitor: DP-1, default:true, on-created-empty:kitty"
+        "2, monitor: DP-1"
+        "3, monitor: DP-1"
+        "4, monitor: DP-1"
+        "5, monitor: DP-1"
+        "6, monitor: DP-3, default:true, on-created-empty:firefox"
+        "7, monitor: DP-3"
+        "8, monitor: DP-3"
+        "9, monitor: DP-3"
+        "10, monitor: DP-3"
+        "11, monitor: HDMI-A-1, default:true, on-created-empty:cider"
+        "12, monitor: HDMI-A-1"
+        "13, monitor: HDMI-A-1"
+        "14, monitor: HDMI-A-1"
+        "15, monitor: HDMI-A-1"
+      ];
       env = [
         # Some default env vars.
         "XCURSOR_SIZE,24"
@@ -27,12 +44,13 @@ in {
         "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
         "hyprctl setcursor Nordzy-cursors 22 &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
+        "sleep 1; hyprctl dispatch workspace 1&"
         "waybar &"
         "mako &"
-        "cider &"
-        "firefox &"
+        "udiskie &"
         "discord &"
       ];
+
       "$mainMod" = "SUPER";
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
@@ -44,6 +62,9 @@ in {
         "$mainMod, R, exec, wofi --show drun"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
+
+        # kill waybar
+        "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
         # "$mainMod, Z, exec, "
         # TODO: make wallpapers change peridically https://sylvaindurand.org/dynamic-wallpapers-with-sway/
 

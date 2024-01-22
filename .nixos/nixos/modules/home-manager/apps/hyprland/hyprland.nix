@@ -2,7 +2,8 @@
   home.packages = with pkgs; [
     playerctl
     pamixer
-
+    networkmanagerapplet
+    udiskie
     # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
     xwaylandvideobridge
     # swww

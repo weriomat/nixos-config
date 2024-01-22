@@ -35,7 +35,7 @@
     };
 
     # TODO: here
-    "wlr/workspaces" = {
+    "hyprland/workspaces" = {
       active-only = false;
       all-outputs = false;
       disable-scroll = false;
@@ -49,7 +49,46 @@
         default = "";
         sort-by-number = true;
       };
+      persistent-workspaces = {
+        "*" = 5;
+        # "DP-1" = [ 1 ];
+        # "DP-3" = [ 6 ];
+        # "HDMI-A-1" = [ 11 ];
+      };
     };
+    # "wlr/workspaces" = {
+    #   # active-only = false;
+    #   # all-outputs = false;
+    #   # disable-scroll = false;
+    #   # on-scroll-up = "hyprctl dispatch workspace e-1";
+    #   # on-scroll-down = "hyprctl dispatch workspace e+1";
+    #   # format = "{name}";
+    #   # on-click = "activate";
+    #   # format-icons = {
+    #   #   urgent = "";
+    #   #   active = "";
+    #   #   default = "";
+    #   #   sort-by-number = true;
+    #   # };
+    #   persistent-workspaces = {
+
+    #     "1" = [ "DP-1" ];
+    #     "2" = [ "DP-1" ];
+    #     "3" = [ "DP-1" ];
+    #     "4" = [ "DP-1" ];
+    #     "5" = [ "DP-1" ];
+    #     #   "6" = [ "DP-3" ];
+    #     #   "7" = [ "DP-3" ];
+    #     #   "8" = [ "DP-3" ];
+    #     #   "9" = [ "DP-3" ];
+    #     #   "10" = [ "HDMI-A-1" ];
+    #     #   "11" = [ "HDMI-A-1" ];
+    #     #   "12" = [ "HDMI-A-1" ];
+    #     #   "13" = [ "HDMI-A-1" ];
+    #     #   "14" = [ "HDMI-A-1" ];
+    #     #   "15" = [ "HDMI-A-1" ];
+    #   };
+    # };
     "custom/playerctl#backward" = {
       format = "󰙣 ";
       on-click = "playerctl previous";
@@ -97,6 +136,7 @@
       tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)";
       format-disconnected = "󰖪 ";
+      on-click = "nm-connection-editor";
     };
     tray = {
       icon-size = 20;

@@ -100,7 +100,7 @@
     #network {
         color: #${custom.tertiary_accent};
         border-radius: 0px 24px 10px 0px;      
-        padding-left: 9px;
+       padding-left: 9px;
         padding-right: 15px;
     }
 
