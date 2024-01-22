@@ -3,6 +3,7 @@
     ./firefox
     ./vscodium
     ./kitty
+    ./discord
     ./mako
     ./waybar
     ./hyprland

@@ -1,7 +1,9 @@
 { inputs, pkgs, ... }: {
   home.packages = with pkgs; [
+    playerctl
     # swww
     swaybg
+    # hyprpaper
     inputs.hypr-contrib.packages.${pkgs.system}.grimblast
     hyprpicker
     wofi

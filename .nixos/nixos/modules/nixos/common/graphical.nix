@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     # TODO: maybe use an overlay to get latest version
-    discord
+    # discord
     obsidian
     cider
 

@@ -22,9 +22,14 @@ in {
         "dbus-update-activation-environment --systemd &"
         "gnome-keyring-daemon --start &"
         "nm-applet &"
+        # "swaybg -m fill -i $(find ~/.nixos/nixos/wallpapers/wallpaper.png -maxdepth 1 -type f) &"
+        # "waybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
+        "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
         "hyprctl setcursor Nordzy-cursors 22 &"
+        "wl-paste --primary --watch wl-copy --primary --clear &"
         "waybar &"
         "mako &"
+        "cider &"
         "firefox &"
         "discord &"
       ];
@@ -39,13 +44,15 @@ in {
         "$mainMod, R, exec, wofi --show drun"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
+        # "$mainMod, Z, exec, "
+        # TODO: make wallpapers change peridically https://sylvaindurand.org/dynamic-wallpapers-with-sway/
 
-        # "# Move focus with mainMod + arrow keys"
+        # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
-        #Switch workspaces with mainMod + [0-9]""
+        #Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
         "$mainMod, 3, workspace, 3"
@@ -57,7 +64,7 @@ in {
         "$mainMod, 9, workspace, 9"
         "$mainMod, 0, workspace, 10"
 
-        # "# Move active window to a workspace with mainMod + SHIFT + [0-9]""
+        # Move active window to a workspace with mainMod + SHIFT + [0-9]
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
         "$mainMod SHIFT, 3, movetoworkspace, 3"
@@ -73,14 +80,24 @@ in {
         "$mainMod, S, togglespecialworkspace, magic"
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
-        # "# Scroll through existing workspaces with mainMod + scroll"
+        # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+
+        ",XF86AudioPlay, exec, playerctl play-pause"
+        ",XF86AudioNext, exec, playerctl next"
+        ",XF86AudioPrev, exec, playerctl previous"
+        ",XF86AudioStop, exec, playerctl stop"
+
+        # screenshot
+        # screenshot
+        "$mainMod SHIFT, 4, exec, grimblast --notify --cursor copysave area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+        # ",Print, exec, grimblast --notify --cursor  copy area"
       ];
       bindm = [
         # "# Move/resize windows with mainMod + LMB/RMB and dragging"
         "$mainMod, mouse:272, movewindow"
-        "$mainMod, mouse:273, resizewindow     "
+        "$mainMod, mouse:273, resizewindow"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -103,8 +120,11 @@ in {
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        # "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
+        "col.inactive_border" = "0x00000000";
+        border_part_of_window = false;
         layout = "dwindle";
 
         # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
@@ -113,48 +133,108 @@ in {
 
       decoration = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
+        rounding = 12;
 
-        rounding = 10;
+        active_opacity = 0.9;
+        inactive_opacity = 0.9;
+        fullscreen_opacity = 1.0;
 
         blur = {
           enabled = true;
+
           size = 3;
-          passes = 1;
+          passes = 3;
+
+          brightness = 1;
+          contrast = "1.300000";
+          ignore_opacity = true;
+          noise = "0.011700";
+
+          new_optimizations = true;
+
+          xray = true;
         };
+        # rounding = 10;
+
+        # blur = {
+        #   enabled = true;
+        #   size = 3;
+        #   passes = 1;
+        # };
+
+        # drop_shadow = true;
+        # shadow_range = 4;
+        # shadow_render_power = 3;
+        # "col.shadow" = "rgba(1a1a1aee)";
+        # };
 
         drop_shadow = true;
-        shadow_range = 4;
+
+        shadow_ignore_window = true;
+        shadow_offset = "0 2";
+        shadow_range = 20;
         shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        "col.shadow" = "rgba(00000055)";
       };
 
       animations = {
         enabled = true;
-
-        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
+        bezier = [
+          "fluent_decel, 0, 0.2, 0.4, 1"
+          "easeOutCirc, 0, 0.55, 0.45, 1"
+          "easeOutCubic, 0.33, 1, 0.68, 1"
+          "easeinoutsine, 0.37, 0, 0.63, 1"
         ];
+        # Windows
+        animation = [
+          "windowsIn, 1, 3, easeOutCubic, popin 30%" # window open
+          "windowsOut, 1, 3, fluent_decel, popin 70%" # window close.
+          "windowsMove, 1, 2, easeinoutsine, slide" # everything in between, moving, dragging, resizing.
+
+          # Fade
+          "fadeIn, 1, 3, easeOutCubic" # fade in (open) -> layers and windows
+          "fadeOut, 1, 2, easeOutCubic" # fade out (close) -> layers and windows
+          "fadeSwitch, 0, 1, easeOutCirc" # fade on changing activewindow and its opacity
+          "fadeShadow, 1, 10, easeOutCirc" # fade on changing activewindow for shadows
+          "fadeDim, 1, 4, fluent_decel" # the easing of the dimming of inactive windows
+          "border, 1, 2.7, easeOutCirc" # for animating the border's color switch speed
+          "borderangle, 1, 30, fluent_decel, once" # for animating the border's gradient angle - styles: once (default), loop
+          "workspaces, 1, 4, easeOutCubic, fade" # styles: slide, slidevert, fade, slidefade, slidefadevert
+        ];
+        # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+        # bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+
+        # animation = [
+        #   "windows, 1, 7, myBezier"
+        #   "windowsOut, 1, 7, default, popin 80%"
+        #   "border, 1, 10, default"
+        #   "borderangle, 1, 8, default"
+        #   "fade, 1, 7, default"
+        #   "workspaces, 1, 6, default"
+        # ];
       };
+      xwayland = { force_zero_scaling = true; };
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        pseudotile =
-          true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-        preserve_split = true; # you probably want this
+        no_gaps_when_only = false;
+        force_split = 0;
+        special_scale_factor = 1.0;
+        split_width_multiplier = 1.0;
+        use_active_for_splits = true;
+        pseudotile = true;
+        preserve_split = true;
+        # pseudotile =
+        #   true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        # preserve_split = true; # you probably want this
       };
 
       master = {
         # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
         new_is_master = true;
+        special_scale_factor = 1;
+        no_gaps_when_only = false;
       };
 
       gestures = {
@@ -166,6 +246,7 @@ in {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         force_default_wallpaper =
           0; # Set to 0 to disable the anime mascot wallpapers
+        disable_hyprland_logo = true;
       };
     };
     extraConfig = ''
