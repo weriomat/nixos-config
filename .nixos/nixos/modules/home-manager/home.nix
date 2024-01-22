@@ -2,7 +2,7 @@
 
 { config, pkgs, ... }: {
 
-  imports = [ ./apps ./terminal ];
+  imports = [ ./apps ./terminal ./scripts ];
   home.username = "marts";
   home.homeDirectory = "/home/marts";
 

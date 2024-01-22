@@ -39,8 +39,6 @@ in {
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
         "gnome-keyring-daemon --start &"
         "nm-applet &"
-        # "swaybg -m fill -i $(find ~/.nixos/nixos/wallpapers/wallpaper.png -maxdepth 1 -type f) &"
-        # "waybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
         "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
         "hyprctl setcursor Nordzy-cursors 22 &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
@@ -65,8 +63,10 @@ in {
 
         # kill waybar
         "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
-        # "$mainMod, Z, exec, "
+
         # TODO: make wallpapers change peridically https://sylvaindurand.org/dynamic-wallpapers-with-sway/
+        # wallpaper picker
+        "$mainMod, W, exec, wallpaper-picker"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
