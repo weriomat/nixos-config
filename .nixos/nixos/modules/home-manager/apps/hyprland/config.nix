@@ -6,7 +6,6 @@ in {
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [
-        # monitor=,preferred,auto,auto
         "DP-1, 2560x1440@144, 1920x0, 1"
         "DP-3, 1920x1080@240, 0x0, 1"
         "HDMI-A-1,  1920x1080@60, 4480x0, 1"
@@ -18,11 +17,13 @@ in {
         "4, monitor: DP-1"
         "5, monitor: DP-1"
         "6, monitor: DP-3, default:true, on-created-empty:firefox"
+        # "6, monitor: DP-3"
         "7, monitor: DP-3"
         "8, monitor: DP-3"
         "9, monitor: DP-3"
         "10, monitor: DP-3"
         "11, monitor: HDMI-A-1, default:true, on-created-empty:cider"
+        # "11, monitor: HDMI-A-1"
         "12, monitor: HDMI-A-1"
         "13, monitor: HDMI-A-1"
         "14, monitor: HDMI-A-1"
@@ -39,10 +40,12 @@ in {
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
         "gnome-keyring-daemon --start &"
         "nm-applet &"
-        "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
-        "hyprctl setcursor Nordzy-cursors 22 &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
+        "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
+        "sleep 1 && swaylock"
+        "hyprctl setcursor Nordzy-cursors 22 &"
         "sleep 1; hyprctl dispatch workspace 1&"
+        # "hyprctl dispatch exec cider & hyprctl dispatch exec discord; sleep 1; hyprctl dispatch movetoworkspacesilent 11"
         "waybar &"
         "mako &"
         "udiskie &"
@@ -77,7 +80,8 @@ in {
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
-        #Switch workspaces with mainMod + [0-9]
+
+        # Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
         "$mainMod, 3, workspace, 3"
@@ -87,7 +91,7 @@ in {
         "$mainMod, 7, workspace, 7"
         "$mainMod, 8, workspace, 8"
         "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 10"
+        "$mainMod, 0, workspace, 11"
 
         # Move active window to a workspace with mainMod + SHIFT + [0-9]
         "$mainMod SHIFT, 1, movetoworkspace, 1"
@@ -112,14 +116,14 @@ in {
         # media and volume control
         ",XF86AudioRaiseVolume,exec, pamixer -i 2"
         ",XF86AudioLowerVolume,exec, pamixer -d 2"
+        ",XF86AudioMute,exec, pamixer -t"
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioNext, exec, playerctl next"
         ",XF86AudioPrev, exec, playerctl previous"
         ",XF86AudioStop, exec, playerctl stop"
 
         # screenshot
-        # screenshot
-        "$mainMod SHIFT, 4, exec, grimblast --notify --cursor copysave area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+        "$mainMod SHIFT, 4, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
         # ",Print, exec, grimblast --notify --cursor  copy area"
       ];
       bindm = [
@@ -299,22 +303,9 @@ in {
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
     '';
     # extraConfig = ''
-    #   $mainMod = SUPER
 
-    #   monitor=,preferred,auto,auto
-    #   monitor=,1920x1200,auto,auto
-
-    #   # autostart
-    #   exec-once = systemctl --user import-environment &
-    #   exec-once = hash dbus-update-activation-environment 2>/dev/null &
-    #   exec-once = dbus-update-activation-environment --systemd &
-    #   exec-once = nm-applet &
-    #   exec-once = wl-paste --primary --watch wl-copy --primary --clear
     #   exec-once = swaybg -m fill -i $(find ~/Pictures/wallpapers/ -maxdepth 1 -type f) &
     #   exec-once = sleep 1 && swaylock
-    #   exec-once = hyprctl setcursor Nordzy-cursors 22 &
-    #   exec-once = waybar &
-    #   exec-once = mako &
 
     #   input {
     #     kb_layout = us
@@ -343,10 +334,6 @@ in {
     #     col.active_border = rgb(cba6f7) rgb(94e2d5) 45deg
     #     col.inactive_border = 0x00000000
     #     border_part_of_window = false
-    #   }
-
-    #   xwayland {
-    #     force_zero_scaling = true
     #   }
 
     #   dwindle {
@@ -397,30 +384,6 @@ in {
     #     col.shadow = rgba(00000055)
     #   }
 
-    #   animations {
-    #     enabled = true
-
-    #     bezier = fluent_decel, 0, 0.2, 0.4, 1
-    #     bezier = easeOutCirc, 0, 0.55, 0.45, 1
-    #     bezier = easeOutCubic, 0.33, 1, 0.68, 1
-    #     bezier = easeinoutsine, 0.37, 0, 0.63, 1
-
-    #     # Windows
-    #     animation = windowsIn, 1, 3, easeOutCubic, popin 30% # window open
-    #     animation = windowsOut, 1, 3, fluent_decel, popin 70% # window close.
-    #     animation = windowsMove, 1, 2, easeinoutsine, slide # everything in between, moving, dragging, resizing.
-
-    #     # Fade
-    #     animation = fadeIn, 1, 3, easeOutCubic  # fade in (open) -> layers and windows
-    #     animation = fadeOut, 1, 2, easeOutCubic # fade out (close) -> layers and windows
-    #     animation = fadeSwitch, 0, 1, easeOutCirc # fade on changing activewindow and its opacity
-    #     animation = fadeShadow, 1, 10, easeOutCirc # fade on changing activewindow for shadows
-    #     animation = fadeDim, 1, 4, fluent_decel # the easing of the dimming of inactive windows
-    #     animation = border, 1, 2.7, easeOutCirc # for animating the border's color switch speed
-    #     animation = borderangle, 1, 30, fluent_decel, once # for animating the border's gradient angle - styles: once (default), loop
-    #     animation = workspaces, 1, 4, easeOutCubic, fade # styles: slide, slidevert, fade, slidefade, slidefadevert
-    #   }
-
     #   # ----------------------------------------------------------------
 
     #   # show keybinds list
@@ -446,41 +409,6 @@ in {
     #   bind = $mainMod, G,exec, $HOME/.local/bin/toggle_layout
     #   bind = $mainMod, W,exec, pkill wofi || wallpaper-picker
 
-    #   # screenshot
-    #   bind = $mainMod, Print, exec, grimblast --notify --cursor save area ~/Pictures/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png
-    #   bind = ,Print, exec, grimblast --notify --cursor  copy area
-
-    #   # switch focus
-    #   bind = $mainMod, left, movefocus, l
-    #   bind = $mainMod, right, movefocus, r
-    #   bind = $mainMod, up, movefocus, u
-    #   bind = $mainMod, down, movefocus, d
-
-    #   # switch workspace
-    #   bind = $mainMod, 1, workspace, 1
-    #   bind = $mainMod, 2, workspace, 2
-    #   bind = $mainMod, 3, workspace, 3
-    #   bind = $mainMod, 4, workspace, 4
-    #   bind = $mainMod, 5, workspace, 5
-    #   bind = $mainMod, 6, workspace, 6
-    #   bind = $mainMod, 7, workspace, 7
-    #   bind = $mainMod, 8, workspace, 8
-    #   bind = $mainMod, 9, workspace, 9
-    #   bind = $mainMod, 0, workspace, 10
-
-    #   # same as above, but switch to the workspace
-    #   bind = $mainMod SHIFT, 1, movetoworkspace, 1     # movetoworkspacesilent
-    #   bind = $mainMod SHIFT, 2, movetoworkspace, 2
-    #   bind = $mainMod SHIFT, 3, movetoworkspace, 3
-    #   bind = $mainMod SHIFT, 4, movetoworkspace, 4
-    #   bind = $mainMod SHIFT, 5, movetoworkspace, 5
-    #   bind = $mainMod SHIFT, 6, movetoworkspace, 6
-    #   bind = $mainMod SHIFT, 7, movetoworkspace, 7
-    #   bind = $mainMod SHIFT, 8, movetoworkspace, 8
-    #   bind = $mainMod SHIFT, 9, movetoworkspace, 9
-    #   bind = $mainMod SHIFT, 0, movetoworkspace, 10
-    #   bind = $mainMod CTRL, c, movetoworkspace, empty
-
     #   # window control
     #   bind = $mainMod SHIFT, left, movewindow, l
     #   bind = $mainMod SHIFT, right, movewindow, r
@@ -494,17 +422,6 @@ in {
     #   bind = $mainMod ALT, right, moveactive, 80 0
     #   bind = $mainMod ALT, up, moveactive, 0 -80
     #   bind = $mainMod ALT, down, moveactive, 0 80
-
-    #   # media and volume controls
-    #   # bind = ,XF86AudioRaiseVolume,exec, pamixer -i 2
-    #   # bind = ,XF86AudioLowerVolume,exec, pamixer -d 2
-    #   # bind = ,XF86AudioMute,exec, pamixer -t
-    #   # bind = ,XF86AudioPlay,exec, playerctl play-pause
-    #   # bind = ,XF86AudioNext,exec, playerctl next
-    #   # bind = ,XF86AudioPrev,exec, playerctl previous
-    #   # bind = , XF86AudioStop, exec, playerctl stop
-    #   # bind = $mainMod, mouse_down, workspace, e-1
-    #   # bind = $mainMod, mouse_up, workspace, e+1
 
     #   # mouse binding
     #   bindm = $mainMod, mouse:272, movewindow

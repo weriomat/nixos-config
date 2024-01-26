@@ -16,7 +16,7 @@
   xdg.portal = {
     enable = true;
     # TODO: here
-    # wlr.enable = true;
+    wlr.enable = true;
     xdgOpenUsePortal = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-hyprland
@@ -32,12 +32,17 @@
       layout = "us";
       # xkbVariant = "";
       # videoDrivers = [ "amdgpu" ];
-      displayManager.gdm = {
+      # displayManager.gdm = {
+      #   enable = true;
+      #   wayland = true;
+      # };
+      displayManager.autoLogin = {
         enable = true;
-        wayland = true;
+        user = "marts";
       };
+      displayManager.sddm.enable = false;
       # # Enable the GNOME Desktop Environment.
-      desktopManager.gnome.enable = true;
+      # desktopManager.gnome.enable = true;
       libinput = {
         enable = true;
         # mouse = { accelProfile = "flat"; };
@@ -53,7 +58,7 @@
   };
 
   systemd.extraConfig = "DefaultTimeoutStopSec=10s";
-  # security.pam.services.swaylock = { };
+  security.pam.services.swaylock = { };
 
   programs.steam = {
     enable = true;
