@@ -2,6 +2,7 @@
 
 { config, pkgs, ... }: {
 
+  # imports = [ ./apps ./terminal ./gaming ];
   imports = [ ./apps ./terminal ];
   home = {
     username = "marts";

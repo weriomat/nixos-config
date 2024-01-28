@@ -1,5 +1,5 @@
 # This file defines overlays
-{ inputs, ... }: {
+{ inputs, pkgs, ... }: {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs { pkgs = final; };
   # additions_packages = final: _prev: {
@@ -11,6 +11,11 @@
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev:
     {
+      # steam = prev.steam.override {
+      #   extraProfile = "export STEAM_EXTRA_COMPAT_TOOLS_PATHS='${
+      #       inputs.nix-gaming.packages.${pkgs.system}.proton-ge
+      #     }'";
+      # };
       # example = prev.example.overrideAttrs (oldAttrs: rec {
       # ...
       # });

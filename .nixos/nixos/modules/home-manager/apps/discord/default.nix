@@ -4,6 +4,10 @@
   home.packages = with pkgs;
     [
       # vesktop
-      (discord.override { withVencord = true; })
+      (discord.override {
+        withOpenASAR = true;
+        withVencord = true;
+      })
+      # discord
     ];
 }

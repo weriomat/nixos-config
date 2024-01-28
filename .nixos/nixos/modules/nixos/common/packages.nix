@@ -8,6 +8,9 @@
     wireshark
     libnotify
 
+    # keyboard
+    qmk
+
     nixos-rebuild
     vim
     wget

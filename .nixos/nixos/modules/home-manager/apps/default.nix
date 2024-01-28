@@ -9,6 +9,6 @@
     ./hyprland
     ./wofi
     ./gtk
-    ./swaylock
+    # ./swaylock
   ];
 }

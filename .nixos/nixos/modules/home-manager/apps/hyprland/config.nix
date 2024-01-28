@@ -42,7 +42,7 @@ in {
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
         "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
-        "sleep 1 && swaylock"
+        # "sleep 1 && swaylock"
         "hyprctl setcursor Nordzy-cursors 22 &"
         "sleep 1; hyprctl dispatch workspace 1&"
         # "hyprctl dispatch exec cider & hyprctl dispatch exec discord; sleep 1; hyprctl dispatch movetoworkspacesilent 11"

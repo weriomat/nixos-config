@@ -30,6 +30,9 @@
     };
     hyprpicker.url = "github:hyprwm/hyprpicker";
 
+    # gaming
+    nix-gaming.url = "github:fufexan/nix-gaming";
+
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware

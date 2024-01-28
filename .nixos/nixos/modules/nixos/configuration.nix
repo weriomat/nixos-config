@@ -32,17 +32,17 @@
       layout = "us";
       # xkbVariant = "";
       # videoDrivers = [ "amdgpu" ];
-      # displayManager.gdm = {
-      #   enable = true;
-      #   wayland = true;
-      # };
-      displayManager.autoLogin = {
+      displayManager.gdm = {
         enable = true;
-        user = "marts";
+        wayland = true;
       };
-      displayManager.sddm.enable = false;
+      # displayManager.autoLogin = {
+      #   enable = true;
+      #   user = "marts";
+      # };
+      # displayManager.sddm.enable = false;
       # # Enable the GNOME Desktop Environment.
-      # desktopManager.gnome.enable = true;
+      desktopManager.gnome.enable = true;
       libinput = {
         enable = true;
         # mouse = { accelProfile = "flat"; };
@@ -60,12 +60,12 @@
   systemd.extraConfig = "DefaultTimeoutStopSec=10s";
   security.pam.services.swaylock = { };
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
-  };
+  # programs.steam = {
+  #   enable = true;
+  #   remotePlay.openFirewall =
+  #     true; # Open ports in the firewall for Steam Remote Play
+  #   dedicatedServer.openFirewall =
+  #     true; # Open ports in the firewall for Source Dedicated Server
+  # };
   system.stateVersion = "23.11";
 }
