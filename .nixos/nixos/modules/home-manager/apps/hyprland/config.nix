@@ -38,11 +38,14 @@ in {
         "systemctl --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
+        # TODO: fix this -> gnone auth agent
         "gnome-keyring-daemon --start &"
+        "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
         "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
-        # "sleep 1 && swaylock"
+        "sleep 1 && swaylock"
+        "sleep 1 && sleepidle &"
         "hyprctl setcursor Nordzy-cursors 22 &"
         "sleep 1; hyprctl dispatch workspace 1&"
         # "hyprctl dispatch exec cider & hyprctl dispatch exec discord; sleep 1; hyprctl dispatch movetoworkspacesilent 11"
@@ -164,7 +167,8 @@ in {
         # "col.inactive_border" = "rgba(595959aa)";
         "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
         "col.inactive_border" = "0x00000000";
-        border_part_of_window = false;
+        # TODO: fix this
+        # border_part_of_window = false;
         layout = "dwindle";
 
         # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on

@@ -1,4 +1,42 @@
 { pkgs, ... }: {
+  sleepidle = pkgs.writeShellApplication {
+    name = "sleepidle";
+    runtimeInputs = with pkgs; [ hyprland swayidle swaylock libnotify ];
+    text = ''
+      swayidle -w timeout 300 'swaylock -f -c 000000' \
+                  timeout 550 'notify-send -u critical --app-name=screenlockwarning "Screen will lock in 30 seconds"' \
+                  timeout 600 'hyprctl dispatch dpms off' \
+                  resume 'hyprctl dispatch dpms on' \
+                  timeout 900 'systemctl suspend' \
+                  before-sleep 'playerctl pause' \
+                  before-sleep 'swaylock -f -c 000000' &
+    '';
+  };
+  # xdg = pkgs.writeShellApplication {
+  #   name = "xdg";
+  #   runtimeInputs = with pkgs; [ killall ];
+  #   text = ''
+  #     sleep 1
+
+  #     # kill all possible running xdg-desktop-portals
+  #     killall xdg-desktop-portal-hyprland
+  #     killall xdg-desktop-portal-gnome
+  #     killall xdg-desktop-portal-kde
+  #     killall xdg-desktop-portal-lxqt
+  #     killall xdg-desktop-portal-wlr
+  #     killall xdg-desktop-portal-gtk
+  #     killall xdg-desktop-portal
+  #     sleep 1
+
+  #     # start xdg-desktop-portal-hyprland
+  #     /usr/lib/xdg-desktop-portal-hyprland &
+  #     sleep 2
+
+  #     # start xdg-desktop-portal
+  #     /usr/lib/xdg-desktop-portal &
+  #     sleep 1
+  #   '';
+  # };
   toggle_toggle_blur = pkgs.writeShellApplication {
     name = "toggle_blur";
     runtimeInputs = with pkgs; [ hyprland ];

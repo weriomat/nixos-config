@@ -4,6 +4,7 @@
     # discord
     obsidian
     cider
+    polkit_gnome
 
     # graphical
     gnome.gnome-todo

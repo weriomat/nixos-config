@@ -1,5 +1,8 @@
 { inputs, pkgs, ... }: {
   home.packages = with pkgs; [
+    # swayidle
+    swayidle
+
     mpv-unwrapped
     playerctl
     pamixer
@@ -33,4 +36,10 @@
     # enableNvidiaPatches = false;
     systemd.enable = true;
   };
+  # Allow for Hyprland start when tty1 is used, this is a fallback in case the DM fails
+  programs.zsh.profileExtra = ''
+    if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+      exec Hyprland
+    fi
+  '';
 }
