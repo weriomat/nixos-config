@@ -32,7 +32,6 @@
 
     # gaming
     nix-gaming.url = "github:fufexan/nix-gaming";
-
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware
@@ -48,7 +47,7 @@
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
         modules = [
-          ./modules/nixos/common/nix.nix
+          # ./modules/nixos/common/nix.nix
           ./modules/nixos/configuration.nix
           ./hosts/default/hardware-configuration.nix
           ./hosts/default/hardware-config-add.nix
@@ -66,7 +65,7 @@
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
         modules = [
-          ./modules/nixos/common/nix.nix
+          # ./modules/nixos/common/nix.nix
           ./modules/nixos/config-laptop.nix
           ./hosts/laptop/hardware-configuration.nix
           ./hosts/laptop/hardware-configuration-add.nix

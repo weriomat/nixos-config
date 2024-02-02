@@ -1,5 +1,6 @@
 { pkgs, config, ... }: {
   imports = [
+    ./nix.nix
     ./packages.nix
     ./networking.nix
     ./audio.nix
