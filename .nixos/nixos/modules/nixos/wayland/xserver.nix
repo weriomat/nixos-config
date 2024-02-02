@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ ... }: {
 
   # TODO: gnome -> hyperland
   services = {
