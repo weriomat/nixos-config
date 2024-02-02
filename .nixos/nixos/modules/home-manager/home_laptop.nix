@@ -1,6 +1,6 @@
 # { config, pkgs, inputs, outputs ... }:
 
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
   imports = [ ./apps/default_laptop.nix ./terminal ];
   home = {

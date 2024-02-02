@@ -1,4 +1,4 @@
-{ pgks, ... }: {
+{ ... }: {
   programs.git = {
     enable = true;
     userName = "weriomat";

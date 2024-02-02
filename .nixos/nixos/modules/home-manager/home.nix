@@ -1,6 +1,6 @@
 # { config, pkgs, inputs, outputs ... }:
 
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
   # imports = [ ./apps ./terminal ./gaming ];
   imports = [ ./apps ./terminal ];
