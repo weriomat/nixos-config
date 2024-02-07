@@ -1,12 +1,15 @@
 # { config, pkgs, inputs, outputs ... }:
 
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
   imports = [ ./apps/default_laptop.nix ./terminal ];
-  home.username = "marts";
-  home.homeDirectory = "/home/marts";
-
-  home.stateVersion = "23.11";
+  home = {
+    username = "marts";
+    homeDirectory = "/home/marts";
+    stateVersion = "23.11";
+    packages =
+      builtins.attrValues (import ./scripts/scripts.nix { inherit pkgs; });
+  };
 
   # # It is sometimes useful to fine-tune packages, for example, by applying
   # # overrides. You can do that directly here, just don't forget the

@@ -1,4 +1,6 @@
 { inputs, config, pkgs, ouputs, ... }:
+# TODO: nixcolors
+# TODO: make everthing a module
 # TODO: swayidle setup in home-manager -> screen goes dark, movie watching do not disturbe https://gist.github.com/johanwiden/900723175c1717a72442f00b49b5060c
 # TODO: wlogout
 # TODO: gnome polkit
@@ -120,6 +122,8 @@
   systemd.extraConfig = "DefaultTimeoutStopSec=10s";
   security.pam.services.swaylock = { };
 
+  # imports = [ ./common ./common/flatpak.nix ./user.nix ./wayland ];
+
   # programs.steam = {
   #   enable = true;
   #   remotePlay.openFirewall =
@@ -127,5 +131,5 @@
   #   dedicatedServer.openFirewall =
   #     true; # Open ports in the firewall for Source Dedicated Server
   # };
-  system.stateVersion = "23.11";
+  # system.stateVersion = "23.11";
 }

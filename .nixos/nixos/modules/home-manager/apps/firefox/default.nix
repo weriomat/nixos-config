@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }: {
+{ pkgs, inputs, ... }: {
   # TODO: add arkenfox/user.js to config
   # firefox config -> vimjoyer video
   programs.firefox = {

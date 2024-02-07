@@ -1,5 +1,5 @@
 # stolen from https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/mako/default.nix
-{ config, pkgs, ... }: {
+{ ... }: {
   services = {
     mako = {
       enable = true;

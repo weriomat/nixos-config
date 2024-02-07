@@ -1,4 +1,4 @@
-{ pkgs, ... }: { # Git helper
+{ ... }: { # Git helper
   programs.lazygit = {
     enable = true;
     settings = {

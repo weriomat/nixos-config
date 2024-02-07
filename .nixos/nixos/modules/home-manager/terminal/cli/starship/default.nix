@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, outputs, ... }: {
+{ pkgs, ... }: {
 
   # TODO: rebuild this shit -> looks bad -> improve
   programs.starship = {
