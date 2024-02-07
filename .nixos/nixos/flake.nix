@@ -46,27 +46,7 @@
       overlays = import ./overlays { inherit inputs pkgs outputs; };
       nixosConfigurations = {
         default = import ./hosts/default { inherit inputs outputs; };
-        laptop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # ./modules/nixos/common/nix.nix
-            ./modules/nixos/config-laptop.nix
-            ./hosts/laptop/hardware-configuration.nix
-            ./hosts/laptop/hardware-configuration-add.nix
-            nixos-hardware.nixosModules.lenovo-thinkpad-l13
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                extraSpecialArgs = { inherit inputs outputs; };
-                useUserPackages = true;
-                useGlobalPkgs = true;
-                users = {
-                  "marts" = import ./modules/home-manager/home_laptop.nix;
-                };
-              };
-            }
-          ];
-        };
+        laptop = import ./hosts/laptop { inherit inputs outputs; };
       };
     };
 }
