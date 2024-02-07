@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # TODO: enable documentation
   # TODO: merge with nixos conf
   # List packages installed in system profile. To search by name, run:
@@ -41,6 +41,7 @@
     lazygit
 
     nmap
+    # TODO: qmk idk
     # qmk
 
     tldr
