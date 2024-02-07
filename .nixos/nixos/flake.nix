@@ -45,24 +45,7 @@
       packages = import ./pkgs { inherit pkgs; };
       overlays = import ./overlays { inherit inputs pkgs outputs; };
       nixosConfigurations = {
-        default = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # ./modules/nixos/common/nix.nix
-            ./modules/nixos/configuration.nix
-            ./hosts/default/hardware-configuration.nix
-            ./hosts/default/hardware-config-add.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager = {
-                extraSpecialArgs = { inherit inputs outputs; };
-                useUserPackages = true;
-                useGlobalPkgs = true;
-                users = { "marts" = import ./modules/home-manager/home.nix; };
-              };
-            }
-          ];
-        };
+        default = import ./hosts/default { inherit inputs outputs; };
         laptop = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
