@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.git = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     userName = "weriomat";
@@ -10,13 +14,14 @@
     compression = true;
     controlMaster = "auto";
 
-    extraOptionOverrides = { IdentityFile = "/home/marts/.ssh/github.pub"; };
+    extraOptionOverrides = {IdentityFile = "/home/marts/.ssh/github.pub";};
 
     extraConfig = "IdentitiesOnly yes";
 
-    matchBlocks = let tu_key = "/home/marts/.ssh/tu-gitlab.pub";
+    matchBlocks = let
+      tu_key = "/home/marts/.ssh/tu-gitlab.pub";
     in {
-      "github.com" = { user = "git"; };
+      "github.com" = {user = "git";};
       "git.tu-berlin.de" = {
         user = "git";
         identityFile = tu_key;

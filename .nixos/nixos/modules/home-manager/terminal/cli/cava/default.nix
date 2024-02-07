@@ -1,6 +1,10 @@
 # stolen from https://github.com/redyf/nixdots/blob/main/home/desktop/cli/rice/cava/default.nix
-{ pkgs, lib, ... }: {
-  home.packages = lib.mkIf pkgs.stdenv.isLinux [ pkgs.cava ];
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  home.packages = lib.mkIf pkgs.stdenv.isLinux [pkgs.cava];
 
   xdg = lib.mkIf pkgs.stdenv.isLinux {
     configFile = {

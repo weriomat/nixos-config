@@ -1,7 +1,10 @@
 # TODO: make one file
-
-{ config, pkgs, ... }: {
-  imports = [ ./terminal ./apps/darwin.nix ];
+{
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./terminal ./apps/darwin.nix];
   home = {
     stateVersion = "23.11";
 

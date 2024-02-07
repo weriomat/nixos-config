@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # janked from cobalt
   # Zsh packages
   home.packages = with pkgs; [

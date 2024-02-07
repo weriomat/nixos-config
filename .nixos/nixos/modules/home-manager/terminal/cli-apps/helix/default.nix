@@ -7,7 +7,8 @@
     marksman # markdown
     lua-language-server # lua
     texlab # LaTeX
-    unstable.perlnavigator # perl
+    # TODO: fix this cuz of darwin
+    # unstable.perlnavigator # perl
     metals # scala
     taplo # toml
     delve # go debugger

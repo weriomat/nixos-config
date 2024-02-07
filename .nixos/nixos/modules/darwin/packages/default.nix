@@ -41,7 +41,7 @@
     lazygit
 
     nmap
-    qmk
+    # qmk
 
     tldr
     ripgrep

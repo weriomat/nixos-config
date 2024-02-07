@@ -1,3 +1,10 @@
+# TODO: nix-colors
+# TODO: make everything a module and enable them in hosts and inport hosts than
+# TODO: use numtide falke helpers
+# TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix
+# TODO: https://github.com/cachix/pre-commit-hooks.nix?tab=readme-ov-file
+# TODO: zsh for desktop
+# TODO: https://github.com/Gerschtli/nix-formatter-pack?tab=readme-ov-file
 {
   description = "Marts - Nixos config flake";
   inputs = {
@@ -36,48 +43,59 @@
     # darwin
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-app-util.url = "github:hraban/mac-app-util";
     nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware
-    , utils, home-manager, firefox-addons, rust-overlay, hyprland, ... }@inputs:
-    let
-      inherit (self) outputs;
-      system = "x86_64-linux";
-      loadPkgs = (system: import nixpkgs { inherit system; });
-      pkgs = loadPkgs system;
-    in {
-      packages = import ./pkgs { inherit pkgs; };
-      overlays = import ./overlays { inherit inputs pkgs outputs; };
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-unstable,
+    nixpkgs-master,
+    nixos-hardware,
+    utils,
+    home-manager,
+    firefox-addons,
+    rust-overlay,
+    hyprland,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    system = "x86_64-linux";
+    loadPkgs = system: import nixpkgs {inherit system;};
+    pkgs = loadPkgs system;
+  in {
+    packages = import ./pkgs {inherit pkgs;};
+    overlays = import ./overlays {inherit inputs pkgs outputs;};
 
-      # Full system build for x86
-      nixosConfigurations = {
-        default = import ./hosts/default { inherit inputs outputs; };
-        laptop = import ./hosts/laptop { inherit inputs outputs; };
-      };
-
-      # Full hm build for aarch64
-      darwinConfigurations = {
-        Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs; };
-      };
-
-      # homeConfigurations = {
-      #   Eliass-MacBook-Pro-4 =
-      #     darwinConfigurations.Eliass-MacBook-Pro-4.config.home-manager.users."eliasengel".home;
-      # };
-
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
-
-      # Formatter for x86 -> nix fmt
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
-
-      # Formatter for darwin -> nix fmt
-      formatter.aarch64-darwin =
-        nixpkgs.legacyPackages.aarch64-darwin.alejandra;
-
+    # Full system build for x86
+    nixosConfigurations = {
+      default = import ./hosts/default {inherit inputs outputs;};
+      laptop = import ./hosts/laptop {inherit inputs outputs;};
     };
+
+    # Full hm build for aarch64
+    darwinConfigurations = {
+      Eliass-MacBook-Pro-4 = import ./hosts/darwina {inherit inputs;};
+    };
+
+    # homeConfigurations = {
+    #   Eliass-MacBook-Pro-4 =
+    #     darwinConfigurations.Eliass-MacBook-Pro-4.config.home-manager.users."eliasengel".home;
+    # };
+
+    # Expose the package set, including overlays, for convenience.
+    darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
+    # darwinPackages = import ./pkgs { inherit pkgs; };
+
+    # Formatter for x86 -> nix fmt
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+
+    # Formatter for darwin -> nix fmt
+    formatter.aarch64-darwin =
+      nixpkgs.legacyPackages.aarch64-darwin.alejandra;
+  };
 }

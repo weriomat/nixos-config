@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./cli ./cli-apps ./nix-index ./packages ]; }
+{...}: {imports = [./cli ./cli-apps ./nix-index ./packages];}

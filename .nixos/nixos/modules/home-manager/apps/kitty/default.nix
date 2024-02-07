@@ -1,7 +1,11 @@
 {pkgs, ...}: {
   programs.kitty = {
     enable = true;
-    package = pkgs.unstable.kitty;
+    # TODO: fix use overlay for macos
+    package =
+      if pkgs.stdenv.isDarwin
+      then pkgs.kitty
+      else pkgs.unstable.kitty;
     theme = "Catppuccin-Mocha";
     settings = {
       # tab bar janked from https://github.com/catppuccin/kitty
