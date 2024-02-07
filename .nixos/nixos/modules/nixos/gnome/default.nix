@@ -1,1 +1,1 @@
-{ ... }: { imports = [ ./xserver.nix ]; }
+{...}: {imports = [./xserver.nix];}

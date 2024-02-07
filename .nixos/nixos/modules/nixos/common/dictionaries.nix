@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # dictonaries
   environment.systemPackages = with pkgs; [
     aspell
@@ -8,5 +8,4 @@
     hunspell
     hunspellDicts.en-us
   ];
-
 }

@@ -32,6 +32,14 @@
 
     # gaming
     nix-gaming.url = "github:fufexan/nix-gaming";
+
+    # darwin
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    mac-app-util.url = "github:hraban/mac-app-util";
+    nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-master, nixos-hardware
@@ -51,7 +59,25 @@
         laptop = import ./hosts/laptop { inherit inputs outputs; };
       };
 
+      # Full hm build for aarch64
+      darwinConfigurations = {
+        Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs; };
+      };
+
+      # homeConfigurations = {
+      #   Eliass-MacBook-Pro-4 =
+      #     darwinConfigurations.Eliass-MacBook-Pro-4.config.home-manager.users."eliasengel".home;
+      # };
+
+      # Expose the package set, including overlays, for convenience.
+      darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
+
       # Formatter for x86 -> nix fmt
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+
+      # Formatter for darwin -> nix fmt
+      formatter.aarch64-darwin =
+        nixpkgs.legacyPackages.aarch64-darwin.alejandra;
+
     };
 }

@@ -1,8 +1,8 @@
 # stolen from https://github.com/redyf/nixdots/blob/main/home/desktop/cli/rice/cava/default.nix
-{ pkgs, ... }: {
-  home.packages = with pkgs; [ cava ];
+{ pkgs, lib, ... }: {
+  home.packages = lib.mkIf pkgs.stdenv.isLinux [ pkgs.cava ];
 
-  xdg = {
+  xdg = lib.mkIf pkgs.stdenv.isLinux {
     configFile = {
       "cava/config".text = ''
         ## Configuration file for CAVA. Default values are commented out. Use either ';' or '#' for commenting.

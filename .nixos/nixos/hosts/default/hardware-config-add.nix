@@ -1,16 +1,14 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # followed guide from https://nixos.wiki/wiki/AMD_GPU
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = ["amdgpu"];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-e21fd631-a002-472c-a43c-bd984147f9a2".device =
-    "/dev/disk/by-uuid/e21fd631-a002-472c-a43c-bd984147f9a2";
+  boot.initrd.luks.devices."luks-e21fd631-a002-472c-a43c-bd984147f9a2".device = "/dev/disk/by-uuid/e21fd631-a002-472c-a43c-bd984147f9a2";
 
-  systemd.tmpfiles.rules =
-    [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
+  systemd.tmpfiles.rules = ["L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"];
 
   # GPU Support - See https://nixos.wiki/wiki/AMD_GPU
   hardware.opengl = {
@@ -36,6 +34,5 @@
     ];
   };
   # environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
-  services.xserver.videoDrivers = [ "amdgpu" ];
-
+  services.xserver.videoDrivers = ["amdgpu"];
 }

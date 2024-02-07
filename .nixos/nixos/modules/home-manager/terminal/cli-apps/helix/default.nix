@@ -1,5 +1,5 @@
 # to get helix runnin in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
-{ pkgs, ... }: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     helix
 
@@ -41,7 +41,7 @@
         };
         forwardSearch = {
           executable = "okular";
-          args = [ "--unique" "file:%p#src:%l%f" ];
+          args = ["--unique" "file:%p#src:%l%f"];
         };
 
         build = {
@@ -60,7 +60,7 @@
         };
         language-server.ruff = {
           command = "ruff-lsp";
-          config.settings = { args = [ "--ignore" "E501" ]; };
+          config.settings = {args = ["--ignore" "E501"];};
         };
         langugage-server.pyright.config.analysis = {
           typeCheckingMode = "basic";
@@ -79,7 +79,7 @@
         {
           name = "nix";
           auto-format = true;
-          formatter = { command = "nixfmt"; };
+          formatter = {command = "nixfmt";};
         }
         {
           name = "go";
@@ -87,11 +87,11 @@
         }
         {
           name = "python";
-          language-servers = [ "ruff" "pyright" ];
+          language-servers = ["ruff" "pyright"];
           auto-format = true;
           formatter = {
             command = "black";
-            args = [ "--line-length" "88" "--quiet" "-" ];
+            args = ["--line-length" "88" "--quiet" "-"];
           };
         }
       ];
@@ -105,7 +105,7 @@
         true-color = true;
       };
 
-      editor.lsp = { display-messages = true; };
+      editor.lsp = {display-messages = true;};
       editor.cursor-shape = {
         insert = "bar";
         normal = "block";

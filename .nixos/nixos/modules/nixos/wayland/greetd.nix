@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # display manager
   services.greetd = {
     enable = true;
@@ -17,5 +17,4 @@
       default_session = initial_session;
     };
   };
-
 }

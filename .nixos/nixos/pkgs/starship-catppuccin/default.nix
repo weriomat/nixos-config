@@ -1,5 +1,9 @@
 # janked from https://gitlab.cobalt.rocks/shared-configs/nixos-ng/-/tree/main/pkgs?ref_type=heads
-{ stdenv, fetchFromGitHub, flavor ? "mocha" }:
+{
+  stdenv,
+  fetchFromGitHub,
+  flavor ? "mocha",
+}:
 stdenv.mkDerivation {
   pname = "starship-catppuccin";
   version = "2023-06-13";

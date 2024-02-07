@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   # TODO: add arkenfox/user.js to config
   # firefox config -> vimjoyer video
   programs.firefox = {
@@ -7,53 +11,53 @@
       bookmarks = [
         {
           name = "Home-Manager Wiki";
-          tags = [ "wiki" ];
+          tags = ["wiki"];
           keyword = "homemanager";
           url = "https://nix-community.github.io/home-manager/options.xhtml";
         }
         {
           name = "Nix - A One Pager -> Nix Language";
-          tags = [ "wiki" ];
+          tags = ["wiki"];
           keyword = "nix";
           url = "https://github.com/tazjin/nix-1p";
         }
         {
           name = "nixos-manual";
-          tags = [ "wiki" ];
+          tags = ["wiki"];
           keyword = "nixos";
           url = "https://nixos.org/manual/nix/stable/introduction";
         }
         {
           name = "NixOS - Book";
-          tags = [ "Books" ];
+          tags = ["Books"];
           keyword = "nixbook";
-          url =
-            "https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration";
+          url = "https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration";
         }
         {
           name = "Install guide of steam";
-          tags = [ "wiki" ];
+          tags = ["wiki"];
           keyword = "steam";
-          url =
-            "https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html";
+          url = "https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html";
         }
         {
           name = "rust flake";
-          tags = [ "rust" ];
+          tags = ["rust"];
           url = "https://www.tweag.io/blog/2022-09-22-rust-nix/";
         }
         {
           name = "rust flake with hercules ci";
-          tags = [ "rust" ];
+          tags = ["rust"];
           url = "https://github.com/cpu/rust-flake/blob/main/README.md";
         }
         {
           name = "Rust";
           toolbar = true;
-          bookmarks = [{
-            name = "rust programming lang book";
-            url = "https://doc.rust-lang.org/stable/book/";
-          }];
+          bookmarks = [
+            {
+              name = "rust programming lang book";
+              url = "https://doc.rust-lang.org/stable/book/";
+            }
+          ];
         }
         {
           name = "Category Theory";
@@ -65,8 +69,7 @@
             }
             {
               name = "auburn summary";
-              url =
-                "https://web.auburn.edu/holmerr/8970/Textbook/CategoryTheory.pdf";
+              url = "https://web.auburn.edu/holmerr/8970/Textbook/CategoryTheory.pdf";
             }
             {
               name = "ucsb script";
@@ -74,12 +77,10 @@
             }
             {
               name = "Standford book recommendations";
-              url =
-                "https://plato.stanford.edu/entries/category-theory/bib.html";
+              url = "https://plato.stanford.edu/entries/category-theory/bib.html";
             }
           ];
         }
-
       ];
       extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
         ublock-origin
@@ -100,36 +101,41 @@
         default = "DuckDuckGo";
         engines = {
           "Nix Packages" = {
-            urls = [{
-              template = "https://search.nixos.org/packages";
-              params = [
-                {
-                  name = "type";
-                  value = "packages";
-                }
-                {
-                  name = "query";
-                  value = "{searchTerms}";
-                }
-              ];
-            }];
-            icon =
-              "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = [ "@np" ];
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@np"];
           };
           "NixOS Wiki" = {
-            urls = [{
-              template = "https://nixos.wiki/index.php?search={searchTerms}";
-            }];
+            urls = [
+              {
+                template = "https://nixos.wiki/index.php?search={searchTerms}";
+              }
+            ];
             iconUpdateURL = "https://nixos.wiki/favicon.png";
             updateInterval = 24 * 60 * 60 * 1000; # every day
-            definedAliases = [ "@nw" ];
+            definedAliases = ["@nw"];
           };
           "Home Manager Options" = {
-            urls = [{
-              template = "https://mipmip.github.io/home-manager-option-search/";
-            }];
-            definedAliases = [ "@hm" ];
+            urls = [
+              {
+                template = "https://mipmip.github.io/home-manager-option-search/";
+              }
+            ];
+            definedAliases = ["@hm"];
           };
         };
         force = true;
@@ -161,7 +167,7 @@
         "security.tls.enable_0rtt_data" = false;
         "browser.formfil.enable" = false;
         # -> no history
-        # browser.cache.disk.enable = false 
+        # browser.cache.disk.enable = false
         # browser.cache.disk_cache_ssl = false;
         # browser.cache.memory.enable = false;
         # browser.cache.offline.enable = false
@@ -190,5 +196,4 @@
       };
     };
   };
-
 }

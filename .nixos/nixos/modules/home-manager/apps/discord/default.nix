@@ -1,13 +1,12 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # TODO: fix this
-  imports = [ (import ./theme-template.nix) ];
-  home.packages = with pkgs;
-    [
-      # vesktop
-      (discord.override {
-        withOpenASAR = true;
-        withVencord = true;
-      })
-      # discord
-    ];
+  imports = [(import ./theme-template.nix)];
+  home.packages = with pkgs; [
+    # vesktop
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
+    # discord
+  ];
 }

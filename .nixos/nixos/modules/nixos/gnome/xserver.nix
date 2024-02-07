@@ -1,5 +1,4 @@
-{ ... }: {
-
+{...}: {
   # TODO: gnome -> hyperland
   services = {
     xserver = {

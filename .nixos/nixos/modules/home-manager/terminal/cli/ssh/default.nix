@@ -1,11 +1,11 @@
-{ ... }: {
-  programs.git = {
+{ pkgs, lib, ... }: {
+  programs.git = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     userName = "weriomat";
     userEmail = "eliasaengel@gmail.com";
     lfs.enable = true;
   };
-  programs.ssh = {
+  programs.ssh = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     compression = true;
     controlMaster = "auto";

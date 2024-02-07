@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # TODO: rework this
 
   # hardware.pulseaudio.support32Bit = true;
@@ -35,5 +35,4 @@
       Experimental = true;
     };
   };
-
 }

@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   # programs = {
   #   hyprland.enable = true;
   #   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -18,15 +22,14 @@
     # TODO: here
     wlr.enable = true;
     xdgOpenUsePortal = true;
-    extraPortals =
-      [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
   };
 
   # Bind wlr-portal to systemd unit from home-manager
   systemd.user.services.xdg-desktop-portal-wlr = {
-    partOf = [ "graphical-session.target" ];
+    partOf = ["graphical-session.target"];
     description = "wlroots desktop portal";
-    unitConfig = { ConditionUser = "!@system"; };
+    unitConfig = {ConditionUser = "!@system";};
   };
 
   # Enable polkit
@@ -34,7 +37,7 @@
 
   # home.packages = with pkgs; [ polkit_gnome ];
 
-  # Enable polkit for system wide autz, required as part of gnome-compat 
+  # Enable polkit for system wide autz, required as part of gnome-compat
   # systemd.user.services.polkit-gnome-authentication-agent-1 = {
   #   partOf = [ "graphical-session.target" ];
   #   description = "Gnome polkit agent";
@@ -43,6 +46,5 @@
   # };
 
   systemd.extraConfig = "DefaultTimeoutStopSec=10s";
-  security.pam.services.swaylock = { };
-
+  security.pam.services.swaylock = {};
 }

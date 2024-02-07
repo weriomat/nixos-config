@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ pkgs, lib, config, ... }: {
+  # imports = [ ./config_git.nix ];
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -14,15 +15,16 @@
       bindkey -v
       export KEYTIMEOUT=1
 
-      # vi 
-      bindkey -M menuselect 'h' vi-backward-char
-      bindkey -M menuselect 'k' vi-up-line-or-history
-      bindkey -M menuselect 'l' vi-forward-char
-      bindkey -M menuselect 'j' vi-down-line-or-history
+      # vi
+      # TODO: fix
+      # bindkey -M menuselect 'h' vi-backward-char
+      # bindkey -M menuselect 'k' vi-up-line-or-history
+      # bindkey -M menuselect 'l' vi-forward-char
+      # bindkey -M menuselect 'j' vi-down-line-or-history
 
       # change cursor shape for different vi modes
       function zle-keymap-select() {
-        case $KEYMAP in 
+        case $KEYMAP in
           vimcd) echo -ne '\e[1 q';; # block
           viins|main) echo -ne '\e[5 q';; # beam
         esac
@@ -40,13 +42,12 @@
     '';
 
     shellAliases = {
-      config =
+      config = if pkgs.stdenv.isDarwin then
+        "/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+      else
         "/etc/profiles/per-user/marts/bin/git --git-dir=$HOME/.nixos/ --work-tree=$HOME";
 
       diff = "diff --color";
-
-      # for c dev # TODO: delete this
-      ctest = "nix develop .#dev -c make && pytest test/test_praxis2.py -vvv";
 
       # grep
       grep = "grep --color=auto";
@@ -68,10 +69,14 @@
       updatelap =
         "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop";
       rebuildlap =
-        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop";
-      rebuild =
-        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default";
+        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop && cd $HOME/.nixos/nixos && nix fmt && cd -";
+      rebuild = if pkgs.stdenv.isDarwin then
+        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && cd $HOME/.nixos/nixos && nix fmt && cd -"
+      else
+        "darwin-rebuild switch --flake ~/.config/nix-darwin && cd $HOME/.config/nix-darwin && nix fmt && cd -";
 
+      # prettyping to ping default
+      ping = "prettyping";
     };
     history = {
       size = 1000000;
@@ -81,6 +86,5 @@
       share = true;
     };
     historySubstringSearch.enable = true;
-
   };
 }

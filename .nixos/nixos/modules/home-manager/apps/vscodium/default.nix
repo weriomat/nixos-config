@@ -1,9 +1,9 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
-      # pretty 
+      # pretty
       pkief.material-product-icons
       pkief.material-icon-theme
       zhuangtongfa.material-theme

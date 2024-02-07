@@ -1,6 +1,9 @@
-{ inputs, outputs, ... }: {
-  nix.nixPath =
-    [ "nixpkgs=${inputs.nixpkgs}" "unstable=${inputs.nixpkgs-unstable}" ];
+{
+  inputs,
+  outputs,
+  ...
+}: {
+  nix.nixPath = ["nixpkgs=${inputs.nixpkgs}" "unstable=${inputs.nixpkgs-unstable}"];
 
   # enable local registry for better search
   # https://discourse.nixos.org/t/local-flake-based-nix-search-nix-run-and-nix-shell/13433/12
@@ -12,9 +15,8 @@
     experimental-features = "nix-command flakes";
     # Deduplicate and optimize nix store
     auto-optimise-store = true;
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys =
-      [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
   # TODO: set trusted public keys, trusted-subsituters
 
@@ -56,5 +58,4 @@
       # allowBroken = true;
     };
   };
-
 }

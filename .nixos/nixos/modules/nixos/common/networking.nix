@@ -1,5 +1,4 @@
-{ ... }: {
-
+{...}: {
   # networking stuff
   networking = {
     # Enable networking

@@ -1,5 +1,4 @@
-{ ... }: {
-
+{...}: {
   # Enable manpages
   documentation = {
     enable = true;

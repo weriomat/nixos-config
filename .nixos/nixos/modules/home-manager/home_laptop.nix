@@ -1,14 +1,12 @@
 # { config, pkgs, inputs, outputs ... }:
-
-{ pkgs, ... }: {
-
-  imports = [ ./apps/default_laptop.nix ./terminal ];
+{pkgs, ...}: {
+  imports = [./apps/default_laptop.nix ./terminal];
   home = {
     username = "marts";
     homeDirectory = "/home/marts";
     stateVersion = "23.11";
     packages =
-      builtins.attrValues (import ./scripts/scripts.nix { inherit pkgs; });
+      builtins.attrValues (import ./scripts/scripts.nix {inherit pkgs;});
   };
 
   # # It is sometimes useful to fine-tune packages, for example, by applying

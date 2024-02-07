@@ -1,6 +1,10 @@
-{ inputs, outputs, ... }:
+{
+  inputs,
+  outputs,
+  ...
+}:
 inputs.nixpkgs.lib.nixosSystem {
-  specialArgs = { inherit inputs outputs; };
+  specialArgs = {inherit inputs outputs;};
   modules = [
     ../../modules/nixos/config-laptop.nix
     ./hardware-configuration.nix
@@ -9,7 +13,7 @@ inputs.nixpkgs.lib.nixosSystem {
     inputs.home-manager.nixosModules.home-manager
     {
       home-manager = {
-        extraSpecialArgs = { inherit inputs outputs; };
+        extraSpecialArgs = {inherit inputs outputs;};
         useUserPackages = true;
         useGlobalPkgs = true;
         users = {
@@ -19,4 +23,3 @@ inputs.nixpkgs.lib.nixosSystem {
     }
   ];
 }
-

@@ -29,17 +29,10 @@
 
     # -- system level utils
     man
-    mlocate
-    parted
     killall
     file
     moreutils
     coreutils
-
-    # -- system information
-    usbutils
-    linuxPackages.cpupower
-    pciutils
 
     # -- bash scripting
     shfmt
@@ -56,8 +49,6 @@
     nmap # A utility for network discovery and security auditing
     ipcalc # it is a calculator for the IPv4/v6 addresses
     nload
-    nethogs
-    traceroute
     minio-client
   ];
 }
