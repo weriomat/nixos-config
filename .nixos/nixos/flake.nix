@@ -44,9 +44,14 @@
     in {
       packages = import ./pkgs { inherit pkgs; };
       overlays = import ./overlays { inherit inputs pkgs outputs; };
+
+      # Full system build for x86
       nixosConfigurations = {
         default = import ./hosts/default { inherit inputs outputs; };
         laptop = import ./hosts/laptop { inherit inputs outputs; };
       };
+
+      # Formatter for x86 -> nix fmt
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
     };
 }
