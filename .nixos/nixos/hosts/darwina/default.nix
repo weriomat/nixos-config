@@ -13,7 +13,7 @@ with inputs;
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.users.eliasengel.imports = [
-          ../../modules/home-manager/home_darwin.nix
+          ../../modules/home-manager/home.nix
           mac-app-util.homeManagerModules.default
         ];
       }
