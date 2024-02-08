@@ -1,5 +1,4 @@
-{ ... }:
-let
+{...}: let
   color = import ../../variables/colors.nix;
   window_manager = import ../../variables/window_manager.nix;
 in {
@@ -153,7 +152,7 @@ in {
 
         follow_mouse = 1;
 
-        touchpad = { natural_scroll = "no"; };
+        touchpad = {natural_scroll = "no";};
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
@@ -257,7 +256,7 @@ in {
         #   "workspaces, 1, 6, default"
         # ];
       };
-      xwayland = { force_zero_scaling = true; };
+      xwayland = {force_zero_scaling = true;};
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       dwindle = {
