@@ -16,9 +16,10 @@ inputs.nixpkgs.lib.nixosSystem {
         extraSpecialArgs = {inherit inputs outputs;};
         useUserPackages = true;
         useGlobalPkgs = true;
-        users = {
-          "marts" = import ../../modules/home-manager/home_laptop.nix;
-        };
+        users.marts.imports = [
+          ../../modules/home-manager/nixos/home_laptop.nix
+          ../../modules/home-manager/common
+        ];
       };
     }
   ];
