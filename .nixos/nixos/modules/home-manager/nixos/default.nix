@@ -1,18 +1,23 @@
 {
   pkgs,
   inputs,
+  config,
+  globals,
   ...
 }: {
   discord.enable = true;
   firefox.enable = true;
-  hyprland.enable = true;
+  hyprland.enable =
+    if globals.isLaptop
+    then false
+    else true;
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
-  home = {
+  home = rec {
     username = "marts";
-    homeDirectory = "/home/marts";
-    stateVersion = "23.11";
+    homeDirectory = "/home/${username}";
+    stateVersion = "23.11"; # Has not to be changed
     packages = builtins.attrValues (import ../config/scripts {inherit pkgs;});
   };
 
