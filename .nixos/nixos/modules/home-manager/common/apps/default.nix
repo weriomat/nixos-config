@@ -1,0 +1,1 @@
+{...}: {imports = [./discord ./kitty ./vscodium];}
