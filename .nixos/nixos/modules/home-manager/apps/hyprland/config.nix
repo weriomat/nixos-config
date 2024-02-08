@@ -1,4 +1,5 @@
-{...}: let
+{ ... }:
+let
   color = import ../../variables/colors.nix;
   window_manager = import ../../variables/window_manager.nix;
 in {
@@ -38,7 +39,7 @@ in {
         "hash dbus-update-activation-environment 2>/dev/null &"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
         # # TODO: fix this -> gnone auth agent
-        # "gnome-keyring-daemon --start &"
+        "gnome-keyring-daemon --start &"
         "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
@@ -152,7 +153,7 @@ in {
 
         follow_mouse = 1;
 
-        touchpad = {natural_scroll = "no";};
+        touchpad = { natural_scroll = "no"; };
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
@@ -256,7 +257,7 @@ in {
         #   "workspaces, 1, 6, default"
         # ];
       };
-      xwayland = {force_zero_scaling = true;};
+      xwayland = { force_zero_scaling = true; };
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       dwindle = {

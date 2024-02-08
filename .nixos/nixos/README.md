@@ -1,5 +1,5 @@
-# nixos-config
-My NixOS Config
+# Nixos-config
+My NixOS Config/ NixDarwin Config
 
 ## Thank you notice
 
