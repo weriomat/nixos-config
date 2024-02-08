@@ -6,6 +6,7 @@
   users.users.marts = {
     isNormalUser = true;
     description = "marts";
+
     # https://christitus.com/vm-setup-in-linux/
     extraGroups = [
       "networkmanager"
@@ -22,6 +23,9 @@
       # "kvm"
       # "libvirt-qemu"
     ];
+
+    # set to 1000 to be save
+    uid = 1000;
     shell = pkgs.zsh;
   };
 

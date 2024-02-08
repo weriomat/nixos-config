@@ -6,6 +6,8 @@
       clock = true;
       datestr = "";
       screenshots = true;
+      # font = "";
+      show-failed-attempts = true;
 
       indicator = true;
       indicator-radius = 100;

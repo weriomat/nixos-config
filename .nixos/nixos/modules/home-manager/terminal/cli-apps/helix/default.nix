@@ -104,14 +104,17 @@
         bufferline = "always";
         line-number = "relative";
         true-color = true;
+
+        # idle timeout
+        idle-timeout = 5;
+        lsp = {display-messages = true;};
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
       };
 
-      editor.lsp = {display-messages = true;};
-      editor.cursor-shape = {
-        insert = "bar";
-        normal = "block";
-        select = "underline";
-      };
       keys.normal = {
         space.w = ":w";
         space.q = ":q";
