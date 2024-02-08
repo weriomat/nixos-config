@@ -8,5 +8,9 @@
     ./gtk
     ./swaylock
     ./hypr_bundle
+
+    ./discord
+    ./kitty
+    ./vscodium
   ];
 }

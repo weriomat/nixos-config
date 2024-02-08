@@ -1,5 +1,8 @@
 {...}: {
   imports = [
+    ./discord
+    ./kitty
+    ./vscodium
     ./firefox
     # ./mako
     # ./waybar

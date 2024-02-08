@@ -19,7 +19,7 @@ inputs.nixpkgs.lib.nixosSystem {
         useGlobalPkgs = true;
         users.marts.imports = [
           ../../modules/home-manager/nixos/home_laptop.nix
-          ../../modules/home-manager/common
+          ../../modules/home-manager
           nix-colors.homeManagerModules.default
         ];
       };

@@ -3,9 +3,6 @@
   inputs,
   ...
 }: {
-  # imports = [ ./apps ./terminal ./gaming ];
-  # imports = [ ./apps ./terminal ];
-  imports = [./apps];
   discord.enable = true;
   firefox.enable = true;
   hyprland.enable = true;
@@ -16,8 +13,7 @@
     username = "marts";
     homeDirectory = "/home/marts";
     stateVersion = "23.11";
-    packages =
-      builtins.attrValues (import ./scripts/scripts.nix {inherit pkgs;});
+    packages = builtins.attrValues (import ../config/scripts {inherit pkgs;});
   };
 
   # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
