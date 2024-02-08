@@ -4,11 +4,6 @@
   imports = [./apps];
   discord.enable = true;
   firefox.enable = true;
-  my_gtk.enable = true;
-  my_mako.enable = true;
-  swaylock.enable = true;
-  wofi.enable = true;
-  waybar.enable = true;
   hyprland.enable = true;
 
   home = {

@@ -1,5 +1,4 @@
 {...}: {
-  # imports = [ ./apps ./terminal ];
   home = {
     stateVersion = "23.11";
     sessionVariables = {

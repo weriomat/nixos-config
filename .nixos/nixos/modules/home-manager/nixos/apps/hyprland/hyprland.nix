@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  options.hyprland = {
+  options.my_hyprland = {
     enable = lib.mkOption {
       type = lib.type.bool;
       default = false;
