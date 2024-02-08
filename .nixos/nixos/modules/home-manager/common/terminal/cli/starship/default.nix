@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   # TODO: rebuild this shit -> looks bad -> improve
+  # NOTE: does not support nix-colors
   programs.starship = let
     flavour = "mocha"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
   in {
@@ -41,18 +42,12 @@
         git_status.style = "bright-white";
         # git_status.format = "\\[ $all_status$ahead_behind\\]";
       }
-      # // builtins.fromTOML
-      # (builtins.readFile "${pkgs.starship-catppuccin}/themes/theme.toml");
       // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub {
           owner = "catppuccin";
           repo = "starship";
           rev = "5629d23";
-          # sha256 = "5629d2356f62a9f2f8efad3ff37476c19969bd4f";
           sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=";
         }
         + /palettes/${flavour}.toml));
   };
-  # "${pkgs.packages.starship-catppuccin}/themes/theme.toml");
-  # pkgs.additions.callPackage ./starship-catppuccin { }
-  # "${pkgs.callPackagestarship-catppuccin.override { flavor = "mocca"; }}");
 }

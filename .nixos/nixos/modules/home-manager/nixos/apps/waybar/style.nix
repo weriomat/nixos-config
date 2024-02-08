@@ -1,16 +1,13 @@
-{
-  custom ? {
-    font = "JetBrainsMono Nerd Font";
-    fontsize = "12";
-    primary_accent = "cba6f7";
-    secondary_accent = "89b4fa";
-    tertiary_accent = "cdd6f4";
-    background = "11111B";
-    opacity = ".98";
-    cursor = "Numix-Cursor";
-  },
-  ...
-}: {
+{ config, custom ? {
+  font = "JetBrainsMono Nerd Font";
+  fontsize = "12";
+  primary_accent = "${config.colorScheme.palette.base0E}";
+  secondary_accent = "${config.colorScheme.palette.base0D}";
+  tertiary_accent = "${config.colorScheme.palette.base05}";
+  background = "11111B";
+  opacity = ".98";
+  cursor = "Numix-Cursor";
+}, ... }: {
   programs.waybar.style = ''
     * {
         border: none;

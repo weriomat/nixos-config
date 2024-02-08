@@ -1,19 +1,18 @@
-{...}: {
+{config, ...}: {
   # Git helper
   programs.lazygit = {
     enable = true;
     settings = {
-      # use the mocha catppuccin theme
       gui.theme = {
         lightTheme = false;
-        activeBorderColor = ["#a6e3a1" "bold"]; # Green
-        inactiveBorderColor = ["#cdd6f4"]; # Text
-        optionsTextColor = ["#89b4fa"]; # Blue
-        selectedLineBgColor = ["#313244"]; # Surface0
-        selectedRangeBgColor = ["#313244"]; # Surface0
-        cherryPickedCommitBgColor = ["#94e2d5"]; # Teal
-        cherryPickedCommitFgColor = ["#89b4fa"]; # Blue
-        unstagedChangesColor = ["red"]; # Red
+        activeBorderColor = ["#${config.colorScheme.palette.base0B}" "bold"]; # Green
+        inactiveBorderColor = ["#${config.colorScheme.palette.base05}"]; # Text
+        optionsTextColor = ["#${config.colorScheme.palette.base0D}"]; # Blue
+        selectedLineBgColor = ["#${config.colorScheme.palette.base01}"]; # Surface0
+        selectedRangeBgColor = ["#${config.colorScheme.palette.base01}"]; # Surface0
+        cherryPickedCommitBgColor = ["#${config.colorScheme.palette.base0C}"]; # Teal
+        cherryPickedCommitFgColor = ["#${config.colorScheme.palette.base0D}"]; # Blue
+        unstagedChangesColor = ["${config.colorScheme.palette.base08}"]; # Red
       };
     };
   };

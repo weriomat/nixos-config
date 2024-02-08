@@ -10,7 +10,6 @@
       if pkgs.stdenv.isDarwin
       then pkgs.kitty
       else pkgs.unstable.kitty;
-    # theme = "Catppuccin-Mocha";
     theme = "${lib.strings.concatStringsSep "-"
       (lib.strings.splitString " " (config.colorScheme.name))}";
     settings = {
@@ -78,7 +77,6 @@
     font = {
       # IBM Plex mono with nerd font addons
       name = "'BlexMono Nerd Font'";
-      # name = "'Iosevka Comfy'";
       # name = "'Iosevka Comfy'";
       size = 16;
       # package = pkgs.iosevka-comfy.comfy;

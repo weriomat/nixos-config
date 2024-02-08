@@ -1,7 +1,7 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   sleepidle = pkgs.writeShellApplication {
     name = "sleepidle";
-    runtimeInputs = with pkgs; [hyprland swayidle swaylock libnotify];
+    runtimeInputs = with pkgs; [ hyprland swayidle swaylock libnotify ];
     text = ''
       swayidle -w timeout 300 'swaylock -f -c 000000' \
                   timeout 550 'notify-send -u critical --app-name=screenlockwarning "Screen will lock in 30 seconds"' \
@@ -12,6 +12,8 @@
                   before-sleep 'swaylock -f -c 000000' &
     '';
   };
+
+  # TODO: here
   # xdg = pkgs.writeShellApplication {
   #   name = "xdg";
   #   runtimeInputs = with pkgs; [ killall ];
@@ -39,7 +41,7 @@
   # };
   toggle_toggle_blur = pkgs.writeShellApplication {
     name = "toggle_blur";
-    runtimeInputs = with pkgs; [hyprland];
+    runtimeInputs = with pkgs; [ hyprland ];
     text = ''
         #!/usr/bin/env bash
       if hyprctl getoption decoration:blur:enabled | grep "int: 1" >/dev/null ; then
@@ -72,7 +74,7 @@
   };
   lofi = pkgs.writeShellApplication {
     name = "lofi";
-    runtimeInputs = with pkgs; [coreutils mpv-unwrapped mako libnotify];
+    runtimeInputs = with pkgs; [ coreutils mpv-unwrapped mako libnotify ];
     text = ''
       #!/usr/bin/env bash
 
@@ -87,8 +89,9 @@
   };
   wall-change = pkgs.writeShellApplication {
     name = "wall-change";
-    runtimeInputs = with pkgs; [swaybg];
+    runtimeInputs = with pkgs; [ swaybg killall ];
     text = ''
+      killall swaybg;
       swaybg -m fill -i "$1"
     '';
   };
@@ -108,7 +111,6 @@
       wallpaper_path=$HOME/.nixos/nixos/wallpapers
 
       wallpaper_name="$(find "$wallpaper_path" -type f -exec basename {} \; | wofi --show dmenu --sort-order=alphabetical)"
-      # w_name="$(echo "$wallpaper_name" | xargs basename)"
       if [[ -f $wallpaper_path/$wallpaper_name ]]; then
           wall-change "$wallpaper_path"/"$wallpaper_name" &
           notify-send -u normal "Changed Wallpaper to $wallpaper_name" &
@@ -119,7 +121,7 @@
   };
   wallpaper-random = pkgs.writeShellApplication {
     name = "wallpaper-random";
-    runtimeInputs = with pkgs; [swaybg libnotify coreutils mako findutils];
+    runtimeInputs = with pkgs; [ swaybg libnotify coreutils mako findutils ];
     text = ''
       #!/usr/bin/env bash
 
@@ -131,6 +133,26 @@
       else
           exit 1
       fi
+    '';
+  };
+
+  dynwallpaper = pkgs.writeShellApplication {
+    name = "dynwallpaper";
+    runtimeInputs = with pkgs; [ swaybg libnotify coreutils mako findutils ];
+    text = ''
+      #!/usr/bin/env bash
+
+      while true; do
+        wallpaper_name="$(find "$HOME"/.nixos/nixos/wallpapers -type f | shuf -n 1)"
+        w_name="$(echo "$wallpaper_name" | xargs basename)"
+        if [[ -f $wallpaper_name ]]; then
+            wall-change "$wallpaper_name" &
+            notify-send -u normal "Changed Wallpaper to $w_name" &
+        else
+            exit 1
+        fi
+        sleep 108000
+      done
     '';
   };
 }

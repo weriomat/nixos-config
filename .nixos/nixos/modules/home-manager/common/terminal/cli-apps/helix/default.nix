@@ -1,5 +1,10 @@
 # to get helix runnin in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     helix
 
@@ -98,7 +103,8 @@
       ];
     };
     settings = {
-      theme = "catppuccin_mocha";
+      theme = "${lib.strings.concatMapStringsSep "_" (x: lib.toLower x)
+        (lib.strings.splitString " " (config.colorScheme.name))}";
       editor = {
         auto-save = true;
         bufferline = "always";

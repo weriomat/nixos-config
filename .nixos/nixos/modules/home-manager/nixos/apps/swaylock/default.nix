@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
+{ pkgs, lib, config, ... }: {
   options.swaylock = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -19,7 +14,6 @@
         clock = true;
         datestr = "";
         screenshots = true;
-        # font = "";
         show-failed-attempts = true;
 
         indicator = true;
@@ -29,30 +23,30 @@
         effect-blur = "7x5";
         effect-vignette = "0.5:0.5";
 
-        color = "1e1e2e";
-        bs-hl-color = "f5e0dc";
-        caps-lock-bs-hl-color = "f5e0dc";
-        caps-lock-key-hl-color = "a6e3a1";
-        ring-color = "b4befe";
-        ring-clear-color = "f5e0dc";
-        ring-caps-lock-color = "fab387";
-        ring-ver-color = "89b4fa";
-        ring-wrong-color = "eba0ac";
-        text-color = "cdd6f4";
-        text-clear-color = "f5e0dc";
-        text-caps-lock-color = "fab387";
-        text-ver-color = "89b4fa";
-        text-wrong-color = "eba0ac";
+        color = "${config.colorScheme.palette.base00}";
+        bs-hl-color = "${config.colorScheme.palette.base06}";
+        caps-lock-bs-hl-color = "${config.colorScheme.palette.base06}";
+        caps-lock-key-hl-color = "${config.colorScheme.palette.base0B}";
+        ring-color = "${config.colorScheme.palette.base07}";
+        ring-clear-color = "${config.colorScheme.palette.base06}";
+        ring-caps-lock-color = "${config.colorScheme.palette.base09}";
+        ring-ver-color = "${config.colorScheme.palette.base0D}";
+        ring-wrong-color = "${config.colorScheme.palette.base0F}";
+        text-color = "${config.colorScheme.palette.base05}";
+        text-clear-color = "${config.colorScheme.palette.base06}";
+        text-caps-lock-color = "${config.colorScheme.palette.base09}";
+        text-ver-color = "${config.colorScheme.palette.base0D}";
+        text-wrong-color = "${config.colorScheme.palette.base0F}";
 
         inside-color = "00000000";
         inside-clear-color = "00000000";
         inside-caps-lock-color = "00000000";
         inside-ver-color = "00000000";
         inside-wrong-color = "00000000";
-        key-hl-color = "a6e3a1";
+        key-hl-color = "${config.colorScheme.palette.base0B}";
         layout-bg-color = "00000000";
         layout-border-color = "00000000";
-        layout-text-color = "cdd6f4";
+        layout-text-color = "${config.colorScheme.palette.base0D}";
         line-color = "00000000";
         line-clear-color = "00000000";
         line-caps-lock-color = "00000000";

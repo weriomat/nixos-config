@@ -1,7 +1,4 @@
-{...}: let
-  color = import ../../variables/colors.nix;
-  window_manager = import ../../variables/window_manager.nix;
-in {
+{ config, ... }: {
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [
@@ -33,16 +30,16 @@ in {
         "XCURSOR_SIZE,24"
       ];
       exec-once = [
-        # Execute your favorite apps at launch
         "systemctl --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
-        # # TODO: fix this -> gnone auth agent
+        # TODO: fix this -> gnone auth agent
         "gnome-keyring-daemon --start &"
         "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
-        "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
+        # "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
+        "dynwallpaper &"
         "sleep 1 && swaylock"
         "sleep 1 && sleepidle &"
         "hyprctl setcursor Nordzy-cursors 22 &"
@@ -69,7 +66,6 @@ in {
         # kill waybar
         "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
 
-        # TODO: make wallpapers change peridically https://sylvaindurand.org/dynamic-wallpapers-with-sway/
         # wallpaper picker
         "$mainMod, W, exec, wallpaper-picker"
         "$mainMod SHIFT, W, exec, wallpaper-random"
@@ -152,7 +148,7 @@ in {
 
         follow_mouse = 1;
 
-        touchpad = {natural_scroll = "no";};
+        touchpad = { natural_scroll = "no"; };
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
@@ -164,7 +160,8 @@ in {
         border_size = 2;
         # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         # "col.inactive_border" = "rgba(595959aa)";
-        "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
+        "col.active_border" =
+          "rgb(${config.colorScheme.palette.base0E}) rgb(${config.colorScheme.palette.base0C}) 45deg";
         "col.inactive_border" = "0x00000000";
         # TODO: fix this
         # border_part_of_window = false;
@@ -256,7 +253,7 @@ in {
         #   "workspaces, 1, 6, default"
         # ];
       };
-      xwayland = {force_zero_scaling = true;};
+      xwayland = { force_zero_scaling = true; };
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       dwindle = {
