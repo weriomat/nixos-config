@@ -1,10 +1,16 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   # imports = [ ./apps ./terminal ./gaming ];
   # imports = [ ./apps ./terminal ];
   imports = [./apps];
   discord.enable = true;
   firefox.enable = true;
   hyprland.enable = true;
+
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home = {
     username = "marts";

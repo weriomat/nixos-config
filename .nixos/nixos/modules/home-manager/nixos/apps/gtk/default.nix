@@ -1,16 +1,17 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   options.my_gtk = {
     enable = lib.mkOption {
-      type = lib.type.bool;
+      type = lib.types.bool;
       default = false;
       description = "Enable gtk settings";
     };
   };
-  config = {
+  config = lib.mkIf (config.my_gtk.enable) {
     fonts.fontconfig.enable = true;
     home.packages = [
       pkgs.nerdfonts

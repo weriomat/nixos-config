@@ -2,16 +2,17 @@
   pkgs,
   inputs,
   lib,
+  config,
   ...
 }: {
   options.firefox = {
     enable = lib.mkOption {
-      type = lib.type.bool;
+      type = lib.types.bool;
       default = false;
       description = "Enable firefox config";
     };
   };
-  config = {
+  config = lib.mkIf (config.firefox.enable) {
     # TODO: add arkenfox/user.js to config
     # firefox config -> vimjoyer video
     programs.firefox = {

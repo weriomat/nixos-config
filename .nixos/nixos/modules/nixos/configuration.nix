@@ -5,7 +5,6 @@
   ouputs,
   ...
 }:
-# TODO: nixcolors
 # TODO: make everthing a module
 # TODO: swayidle setup in home-manager -> screen goes dark, movie watching do not disturbe https://gist.github.com/johanwiden/900723175c1717a72442f00b49b5060c
 # TODO: wlogout

@@ -1,13 +1,17 @@
 # stolen from https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/mako/default.nix
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   options.my_mako = {
     enable = lib.mkOption {
-      type = lib.type.bool;
+      type = lib.types.bool;
       default = false;
       description = "Enable mako notifications";
     };
   };
-  config = {
+  config = lib.mkIf (config.my_mako.enable) {
     services = {
       mako = {
         enable = true;
@@ -16,10 +20,10 @@
         defaultTimeout = 5000;
         borderSize = 2;
         borderRadius = 5;
-        backgroundColor = "#1e1e2e";
-        borderColor = "#b4befe";
-        progressColor = "over #313244";
-        textColor = "#cdd6f4";
+        backgroundColor = "#${config.colorScheme.palette.base00}";
+        borderColor = "#${config.colorScheme.palette.base07}";
+        progressColor = "over #${config.colorScheme.palette.base02}";
+        textColor = "#${config.colorScheme.palette.base05}";
         icons = true;
         actions = true;
         extraConfig = ''

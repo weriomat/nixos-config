@@ -1,16 +1,17 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   options.waybar = {
     enable = lib.mkOption {
-      type = lib.type.bool;
+      type = lib.types.bool;
       default = false;
       description = "Enable waybar config";
     };
   };
-  config = {
+  config = lib.mkIf (config.waybar.enable) {
     programs.waybar = {enable = true;};
     programs.waybar.package = pkgs.waybar.overrideAttrs (oa: {
       mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];

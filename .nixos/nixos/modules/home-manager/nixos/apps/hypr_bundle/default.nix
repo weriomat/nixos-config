@@ -1,13 +1,17 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [../gtk ../hyprland ../mako ../swaylock ../waybar ../wofi];
   options.hyprland = {
     enable = lib.mkOption {
-      type = lib.type.bool;
+      type = lib.types.bool;
       default = false;
       description = "Enable hyrpland config";
     };
   };
-  config = {
+  config = lib.mkIf (config.hyprland.enable) {
     my_gtk.enable = true;
     my_mako.enable = true;
     swaylock.enable = true;

@@ -2,16 +2,17 @@
   inputs,
   pkgs,
   lib,
+  config,
   ...
 }: {
   options.my_hyprland = {
     enable = lib.mkOption {
-      type = lib.type.bool;
+      type = lib.types.bool;
       default = false;
       description = "Enable hyrpland config";
     };
   };
-  config = {
+  config = lib.mkIf (config.my_hyprland.enable) {
     home.packages = with pkgs; [
       # swayidle
       swayidle

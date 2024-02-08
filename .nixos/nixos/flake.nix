@@ -1,4 +1,3 @@
-# TODO: nix-colors
 # TODO: make everything a module and enable them in hosts and inport hosts than
 # TODO: use numtide falke helpers
 # TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix
@@ -27,15 +26,13 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland = {url = "github:hyprwm/Hyprland";};
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpicker.url = "github:hyprwm/hyprpicker";
+    nix-colors.url = "github:misterio77/nix-colors";
 
     # gaming
     nix-gaming.url = "github:fufexan/nix-gaming";
@@ -43,7 +40,6 @@
     # darwin
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
-      # inputs.nixpkgs.follows = "nixpkgs-unstable";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-app-util.url = "github:hraban/mac-app-util";
@@ -54,6 +50,7 @@
     self,
     nixpkgs,
     home-manager,
+    nix-colors,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -66,13 +63,14 @@
 
     # Full system build for x86
     nixosConfigurations = {
-      default = import ./hosts/default {inherit inputs outputs;};
-      laptop = import ./hosts/laptop {inherit inputs outputs;};
+      default = import ./hosts/default {inherit inputs outputs nix-colors;};
+      laptop = import ./hosts/laptop {inherit inputs outputs nix-colors;};
     };
 
     # Full hm build for aarch64
     darwinConfigurations = {
-      Eliass-MacBook-Pro-4 = import ./hosts/darwina {inherit inputs;};
+      Eliass-MacBook-Pro-4 =
+        import ./hosts/darwina {inherit inputs nix-colors;};
     };
 
     # homeConfigurations = {

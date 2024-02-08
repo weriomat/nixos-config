@@ -1,16 +1,17 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: {
   options.swaylock = {
     enable = lib.mkOption {
-      type = lib.type.bool;
+      type = lib.types.bool;
       default = false;
       description = "Enable swaylock";
     };
   };
-  config = {
+  config = lib.mkIf (config.swaylock.enable) {
     programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;
