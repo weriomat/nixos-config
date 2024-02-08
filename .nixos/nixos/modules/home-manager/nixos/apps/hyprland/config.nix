@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [
@@ -148,7 +148,7 @@
 
         follow_mouse = 1;
 
-        touchpad = { natural_scroll = "no"; };
+        touchpad = {natural_scroll = "no";};
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
@@ -160,8 +160,7 @@
         border_size = 2;
         # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         # "col.inactive_border" = "rgba(595959aa)";
-        "col.active_border" =
-          "rgb(${config.colorScheme.palette.base0E}) rgb(${config.colorScheme.palette.base0C}) 45deg";
+        "col.active_border" = "rgb(${config.colorScheme.palette.base0E}) rgb(${config.colorScheme.palette.base0C}) 45deg";
         "col.inactive_border" = "0x00000000";
         # TODO: fix this
         # border_part_of_window = false;
@@ -253,7 +252,7 @@
         #   "workspaces, 1, 6, default"
         # ];
       };
-      xwayland = { force_zero_scaling = true; };
+      xwayland = {force_zero_scaling = true;};
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       dwindle = {

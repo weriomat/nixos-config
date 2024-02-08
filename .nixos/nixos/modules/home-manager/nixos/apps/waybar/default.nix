@@ -1,5 +1,4 @@
-{ config, ... }:
-let
+{config, ...}: let
   custom = {
     font = "JetBrainsMono Nerd Font";
     fontsize = "12";
@@ -28,7 +27,9 @@ let
     };
   };
 in {
-  _module.args = { inherit custom; };
-  imports = [ (import ./waybar.nix) ] ++ [ (import ./settings.nix) ]
-    ++ [ (import ./style.nix) ];
+  _module.args = {inherit custom;};
+  imports =
+    [(import ./waybar.nix)]
+    ++ [(import ./settings.nix)]
+    ++ [(import ./style.nix)];
 }

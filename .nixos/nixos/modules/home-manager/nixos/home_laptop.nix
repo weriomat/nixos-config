@@ -1,9 +1,15 @@
 # { config, pkgs, inputs, outputs ... }:
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [./apps/default_laptop.nix];
 
   discord.enable = true;
   firefox.enable = true;
+
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
   home = {
     username = "marts";
     homeDirectory = "/home/marts";

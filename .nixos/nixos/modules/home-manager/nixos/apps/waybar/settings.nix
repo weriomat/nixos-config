@@ -1,13 +1,17 @@
-{ config, custom ? {
-  font = "JetBrainsMono Nerd Font";
-  fontsize = "12";
-  primary_accent = "${config.colorScheme.palette.base0E}";
-  secondary_accent = "${config.colorScheme.palette.base0D}";
-  tertiary_accent = "${config.colorScheme.palette.base05}";
-  background = "11111B";
-  opacity = ".85";
-  cursor = "Numix-Cursor";
-}, ... }: {
+{
+  config,
+  custom ? {
+    font = "JetBrainsMono Nerd Font";
+    fontsize = "12";
+    primary_accent = "${config.colorScheme.palette.base0E}";
+    secondary_accent = "${config.colorScheme.palette.base0D}";
+    tertiary_accent = "${config.colorScheme.palette.base05}";
+    background = "11111B";
+    opacity = ".85";
+    cursor = "Numix-Cursor";
+  },
+  ...
+}: {
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";
@@ -22,9 +26,8 @@
       "custom/playerctl#play"
       "custom/playerctl#foward"
     ];
-    modules-center = [ "hyprland/workspaces" ];
-    modules-right =
-      [ "tray" "cpu" "memory" "disk" "pulseaudio" "network" "clock" ];
+    modules-center = ["hyprland/workspaces"];
+    modules-right = ["tray" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
     clock = {
       format = " {:%H:%M}";
       tooltip = "true";
@@ -145,7 +148,7 @@
     pulseaudio = {
       format = "{icon} {volume}%";
       format-muted = "󰖁 ";
-      format-icons = { default = [ " " ]; };
+      format-icons = {default = [" "];};
       scroll-step = 5;
       on-click = "pamixer -t";
     };

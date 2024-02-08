@@ -1,4 +1,5 @@
-{...}: {
+{inputs, ...}: {
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
   home = {
     stateVersion = "23.11";
     sessionVariables = {
