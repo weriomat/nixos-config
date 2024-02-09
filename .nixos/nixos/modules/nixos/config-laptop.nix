@@ -1,5 +1,5 @@
-{ ... }: {
-  imports = [ ./common ./user ./gnome ];
+{...}: {
+  imports = [./common ./user ./gnome];
   audio.enable = true;
   doc.enable = true;
   graphical.enable = true;
