@@ -14,9 +14,11 @@
   };
   config = lib.mkIf (config.my_hyprland.enable) {
     home.packages = with pkgs; [
-      # swayidle
       swayidle
       libnotify
+
+      # TODO: sedtup
+      brightnessctl
 
       mpv-unwrapped
       playerctl
@@ -25,16 +27,12 @@
       udiskie
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
       xwaylandvideobridge
-      # swww
       swaybg
-      # hyprpaper
       inputs.hypr-contrib.packages.${pkgs.system}.grimblast
-      # hyprpicker
       wofi
       grim
       slurp
       wl-clipboard
-      # cliphist
       wf-recorder
       glib
       wayland
@@ -47,9 +45,18 @@
         enable = true;
         # hidpi = true;
       };
-      # enableNvidiaPatches = false;
       systemd.enable = true;
     };
+
+    # Support for a redlight filter
+    services.wlsunset = {
+      enable = true;
+      package = pkgs.wlsunset;
+      latitude = "52.5";
+      longitude = "13.4";
+      systemdTarget = "sway-session.target";
+    };
+
     # Allow for Hyprland start when tty1 is used, this is a fallback in case the DM fails
     programs.zsh.profileExtra = ''
       if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then

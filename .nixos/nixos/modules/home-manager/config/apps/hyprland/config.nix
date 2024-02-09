@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     settings = {
       monitor = [
@@ -35,7 +39,6 @@
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
         # TODO: fix this -> gnone auth agent
         "gnome-keyring-daemon --start &"
-        # TODO: fix this
         "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
@@ -114,9 +117,9 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # media and volume control
-        ",XF86AudioRaiseVolume,exec, pamixer -i 2"
-        ",XF86AudioLowerVolume,exec, pamixer -d 2"
-        ",XF86AudioMute,exec, pamixer -t"
+        ",XF86AudioRaiseVolume, exec, pamixer -i 2"
+        ",XF86AudioLowerVolume, exec, pamixer -d 2"
+        ",XF86AudioMute, exec, pamixer -t"
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioNext, exec, playerctl next"
         ",XF86AudioPrev, exec, playerctl previous"
@@ -290,19 +293,48 @@
         disable_hyprland_logo = true;
       };
     };
-    extraConfig = ''
-      # Example per-device config
-      # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-      device:epic-mouse-v1 {
-          sensitivity = -0.5
-      }
+    # extraConfig = if (config.globals.isLaptop) then ''
+    #   # TODO: fix this -> not for desktop -> just need for laptop
+    #   bind = ,XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl -c backlight set +5%
+    #   bind = ,XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl -c backlight set 5%-
+    #   # Example per-device config
+    #   # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
+    #   device:epic-mouse-v1 {
+    #       sensitivity = -0.5
+    #   }
 
-      # Example windowrule v1
-      # windowrule = float, ^(kitty)$
-      # Example windowrule v2
-      # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-      # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-    '';
+    #   # Example windowrule v1
+    #   # windowrule = float, ^(kitty)$
+    #   # Example windowrule v2
+    #   # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
+    #   # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+    # '' else ''
+    #   # Example per-device config
+    #   # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
+    #   device:epic-mouse-v1 {
+    #       sensitivity = -0.5
+    #   }
+
+    #   # Example windowrule v1
+    #   # windowrule = float, ^(kitty)$
+    #   # Example windowrule v2
+    #   # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
+    #   # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+    # '';
+    # TODO: fix
+    extraConfig = ''
+        # Example per-device config
+        # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
+        device:epic-mouse-v1 {
+            sensitivity = -0.5
+        }
+
+        # Example windowrule v1
+        # windowrule = float, ^(kitty)$
+        # Example windowrule v2
+        # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
+        # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+      # '';
     # extraConfig = ''
 
     #   exec-once = swaybg -m fill -i $(find ~/Pictures/wallpapers/ -maxdepth 1 -type f) &
