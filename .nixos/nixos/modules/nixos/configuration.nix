@@ -23,7 +23,18 @@
 # TODO: cleanup
 # TODO: fix laptop setup
 {
-  imports = [./common ./common/flatpak.nix ./user.nix ./wayland];
+  imports = [./user ./wayland ./common];
+
+  audio.enable = true;
+  doc.enable = true;
+  graphical.enable = true;
+  keyboard.enable = true;
+  networking.enable = true;
+  nix-settings.enable = true;
+  packages.enable = true;
+
+  virt.enable = false;
+  flatpack.enable = true;
 
   system.stateVersion = "23.11";
 }

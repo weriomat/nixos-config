@@ -1,13 +1,14 @@
 {...}: {
   imports = [
-    ./nix.nix
-    ./packages.nix
-    ./networking.nix
     ./audio.nix
     ./dictionaries.nix
-    ./graphical.nix
     ./documentation.nix
+    ./flatpak.nix
+    ./graphical.nix
     ./keyboard.nix
-    # ./virtualisation.nix
+    ./networking.nix
+    ./nix.nix
+    ./packages.nix
+    ./virtualisation.nix
   ];
 }

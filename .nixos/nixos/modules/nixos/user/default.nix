@@ -13,15 +13,12 @@
       "wheel"
       "wireshark"
       "network"
-      # "libvirtd"
       "dialout"
       "disk"
       "audio"
       "video"
       "disk"
       "input"
-      # "kvm"
-      # "libvirt-qemu"
     ];
 
     # set to 1000 to be save

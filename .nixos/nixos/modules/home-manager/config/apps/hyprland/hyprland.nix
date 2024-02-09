@@ -16,6 +16,7 @@
     home.packages = with pkgs; [
       # swayidle
       swayidle
+      libnotify
 
       mpv-unwrapped
       playerctl

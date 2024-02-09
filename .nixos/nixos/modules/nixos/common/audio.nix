@@ -1,38 +1,51 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   # TODO: rework this
-
-  # hardware.pulseaudio.support32Bit = true;
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio = {
-    enable = false;
-    package = pkgs.pulseaudioFull;
+  options.audio = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable audio settings";
+    };
   };
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+  config = lib.mkIf (config.audio.enable) {
+    # hardware.pulseaudio.support32Bit = true;
+    # Enable sound with pipewire.
+    sound.enable = true;
+    hardware.pulseaudio = {
+      enable = false;
+      package = pkgs.pulseaudioFull;
+    };
+    security.rtkit.enable = true;
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      wireplumber.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
+      # use the example session manager (no others are packaged yet so this is enabled by default,
+      # no need to redefine it in your config for now)
+      #media-session.enable = true;
+    };
 
-  # Enable bluetooth with blueman
-  # The blueman applet is defined as part of sway/home.nix
-  # see https://nixos.wiki/wiki/Bluetooth
-  services.blueman.enable = true;
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings.General = {
-      Enable = "Source,Sink,Media,Socket";
-      Experimental = true;
+    # Enable bluetooth with blueman
+    # The blueman applet is defined as part of sway/home.nix
+    # see https://nixos.wiki/wiki/Bluetooth
+    services.blueman.enable = true;
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings.General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
+      };
     };
   };
 }

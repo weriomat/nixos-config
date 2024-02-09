@@ -35,6 +35,7 @@
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
         # TODO: fix this -> gnone auth agent
         "gnome-keyring-daemon --start &"
+        # TODO: fix this
         "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
