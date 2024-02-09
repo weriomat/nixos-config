@@ -54,7 +54,7 @@
       "$mainMod" = "SUPER";
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        "$mainMod, Q, exec, kitty"
+        "$mainMod, K, exec, kitty"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit, "
         "$mainMod, E, exec, dolphin"
@@ -62,6 +62,7 @@
         "$mainMod, R, exec, wofi --show drun"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
+        "$mainMod, Q, exec, wlogout"
 
         # kill waybar
         "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"

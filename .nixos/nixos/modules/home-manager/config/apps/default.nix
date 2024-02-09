@@ -7,6 +7,7 @@
     ./wofi
     ./gtk
     ./swaylock
+    ./wlogout
     ./hypr_bundle
 
     ./discord

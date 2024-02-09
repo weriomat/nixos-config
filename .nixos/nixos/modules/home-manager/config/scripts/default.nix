@@ -91,7 +91,7 @@
     name = "wall-change";
     runtimeInputs = with pkgs; [swaybg killall];
     text = ''
-      killall swaybg;
+      killall swaybg || true
       swaybg -m fill -i "$1"
     '';
   };
@@ -104,6 +104,7 @@
       mako
       coreutils
       findutils
+      killall
     ];
     text = ''
       #!/usr/bin/env bash
@@ -112,6 +113,7 @@
 
       wallpaper_name="$(find "$wallpaper_path" -type f -exec basename {} \; | wofi --show dmenu --sort-order=alphabetical)"
       if [[ -f $wallpaper_path/$wallpaper_name ]]; then
+          killall dynwallpaper || true
           wall-change "$wallpaper_path"/"$wallpaper_name" &
           notify-send -u normal "Changed Wallpaper to $wallpaper_name" &
       else
@@ -128,6 +130,7 @@
       wallpaper_name="$(find "$HOME"/.nixos/nixos/wallpapers -type f | shuf -n 1)"
       w_name="$(echo "$wallpaper_name" | xargs basename)"
       if [[ -f $wallpaper_name ]]; then
+          killall dynwallpaper || true
           wall-change "$wallpaper_name" &
           notify-send -u normal "Changed Wallpaper to $w_name" &
       else
@@ -141,7 +144,6 @@
     runtimeInputs = with pkgs; [swaybg libnotify coreutils mako findutils];
     text = ''
       #!/usr/bin/env bash
-
       while true; do
         wallpaper_name="$(find "$HOME"/.nixos/nixos/wallpapers -type f | shuf -n 1)"
         w_name="$(echo "$wallpaper_name" | xargs basename)"
