@@ -9,7 +9,7 @@
     enable = lib.mkOption {
       type = lib.types.bool;
       default = false;
-      description = "Enable discord overlay";
+      description = "Enable wlogout";
     };
   };
   config = lib.mkIf (config.wlogout.enable) {
@@ -56,7 +56,7 @@
       # TODO: fix buttons
       style = ''
         * {
-            font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+          font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
         	background-image: none;
         	transition: 20ms;
         }
@@ -67,9 +67,9 @@
 
         button {
         	color: #FFFFFF;
-            font-size:20px;
+          font-size:20px;
 
-            background-repeat: no-repeat;
+          background-repeat: no-repeat;
         	background-position: center;
         	background-size: 25%;
 
@@ -77,15 +77,15 @@
         	background-color: rgba(12, 12, 12, 0.3);
         	border: 3px solid #FFFFFF;
 
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         }
 
         button:focus,
         button:active,
         button:hover {
-            color: ${config.colorScheme.palette.base06};
+          color: #${config.colorScheme.palette.base06};
         	background-color: rgba(12, 12, 12, 0.5);
-        	border: 3px solid ${config.colorScheme.palette.base06};
+        	border: 3px solid #${config.colorScheme.palette.base06};
         }
 
         #lock {
