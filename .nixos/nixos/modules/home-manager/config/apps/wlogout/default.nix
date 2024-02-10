@@ -90,37 +90,37 @@
         #lock {
         	margin: 10px;
         	border-radius: 20px;
-        	background-image: image(url("~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/lock.png"));
+        	# background-image: image(url("~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/lock.png"));
         }
 
         #logout {
         	margin: 10px;
         	border-radius: 20px;
-        	background-image: image(url("~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/logout.png"));
+        	# background-image: image(url("~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/logout.png"));
         }
 
         #suspend {
         	margin: 10px;
         	border-radius: 20px;
-        	background-image: image(url("~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/suspend.png"));
+        	# background-image: image(url("icons/suspend.png"));
         }
 
         #hibernate {
         	margin: 10px;
         	border-radius: 20px;
-        	# background-image: image(url("~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/hibernate.png"));
+        	# background-image: image(url(~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/hibernate.png));
         }
 
         #shutdown {
         	margin: 10px;
         	border-radius: 20px;
-        	# background-image: image(url("~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/shutdown.png"));
+        	# background-image: image(url("$HOME/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/shutdown.png"));
         }
 
         #reboot {
         	margin: 10px;
         	border-radius: 20px;
-        	background-image: image(~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/reboot.png);
+        	# background-image: image(~/.nixos/nixos/modules/home-manager/config/apps/wlogout/icons/reboot.png);
         }
 
       '';
