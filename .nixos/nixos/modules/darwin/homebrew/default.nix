@@ -32,6 +32,8 @@
       "pinentry-mac"
       "qmk/qmk/hid_bootloader_cli"
       "qmk/qmk/mdloader"
+      "qmk/qmk/qmk"
+      "avrdude"
       "screenresolution"
     ];
     casks = [
@@ -45,6 +47,7 @@
       "qmk-toolbox"
       "skim"
       "wireshark-chmodbpf"
+      # "qmk-toolbox"
     ];
   };
 }
