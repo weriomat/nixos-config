@@ -15,6 +15,7 @@
     environment.systemPackages = with pkgs; [
       unstable.libdrm
       wireshark
+      ffmpeg
 
       # keyboard
       qmk
@@ -52,6 +53,7 @@
       (pkgs.python3.withPackages (p:
         with p; [
           pandas
+          ffmpeg-python
           isort
           pygments
           requests
