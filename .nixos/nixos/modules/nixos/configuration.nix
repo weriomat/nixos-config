@@ -1,4 +1,4 @@
-{ lib, ... }:
+{lib, ...}:
 # TODO: swayidle setup in home-manager -> screen goes dark, movie watching do not disturbe https://gist.github.com/johanwiden/900723175c1717a72442f00b49b5060c
 # TODO: gnome polkit
 # TODO: gnome agendt ssh idk shit
@@ -11,7 +11,7 @@
 # TODO: hyprland fix hyprland setup -> vimjoyer video
 # TODO: cloudflare dns
 {
-  imports = [ ./user ./wayland ./common ./steam ];
+  imports = [./user ./wayland ./common ./steam];
 
   audio.enable = true;
   doc.enable = true;
@@ -172,7 +172,6 @@
 }
 # exec-once = "xwaylandvideobridge"
 #  pkgs, config, lib, ... }:
-
 # let
 #   palette = config.colorScheme.palette;
 #   inherit (import ../../options.nix) slickbar simplebar clock24h;
@@ -184,14 +183,12 @@
 #     settings = [{
 #       layer = "top";
 #       position = "top";
-
-#       modules-center = if simplebar == true then [ "hyprland/window" ] 
+#       modules-center = if simplebar == true then [ "hyprland/window" ]
 #       else [ "network" "pulseaudio" "cpu" "hyprland/workspaces" "memory" "disk" "clock" ];
 #       modules-left = if simplebar == true then ["custom/startmenu" "hyprland/workspaces" "cpu" "memory" "network"  ]
 #       else [ "custom/startmenu" "hyprland/window" ];
 #       modules-right = if simplebar == true then [ "idle_inhibitor" "custom/themeselector" "custom/notification" "pulseaudio" "clock"  "tray" ]
 #       else [ "idle_inhibitor" "custom/themeselector" "custom/notification" "battery" "tray" ];
-
 #       "hyprland/workspaces" = {
 #       	format = if simplebar == true then "{name}" else "{icon}";
 #       	format-icons = {
@@ -203,7 +200,7 @@
 #       	on-scroll-down = "hyprctl dispatch workspace e-1";
 #       };
 #       "clock" = {
-# 	format = if clock24h == true then ''{: %H:%M}'' 
+# 	format = if clock24h == true then ''{: %H:%M}''
 # 	else ''{: %I:%M %p}'';
 #       	tooltip = true;
 # 	tooltip-format = "<big>{:%A, %d.%B %Y }</big><tt><small>{calendar}</small></tt>";

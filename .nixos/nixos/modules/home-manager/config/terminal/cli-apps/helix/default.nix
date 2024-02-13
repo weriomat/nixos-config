@@ -82,10 +82,12 @@
           name = "haskell";
           auto-format = true;
         }
+        # TODO: use nil and alejandra -> no differnece when using nix fmt
         {
           name = "nix";
           auto-format = true;
           formatter = {command = "nixfmt";};
+          language-servers = ["nil"];
         }
         {
           name = "go";
@@ -102,6 +104,7 @@
         }
       ];
     };
+    # catppuccin.enable = true;
     settings = {
       theme = "${lib.strings.concatMapStringsSep "_" (x: lib.toLower x)
         (lib.strings.splitString " " (config.colorScheme.name))}";

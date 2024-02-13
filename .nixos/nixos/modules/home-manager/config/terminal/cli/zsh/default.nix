@@ -12,12 +12,29 @@
     enableAutosuggestions = true;
     syntaxHighlighting.enable = true;
     # TODO: fix vi keysbindings
+    # Improved vim bindings.
+    # Man without options will use fzf to select a page
+    # zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+    # function fzf-man(){
+    #   MAN="/usr/bin/man"
+    #   if [ -n "$1" ]; then
+    #     $MAN "$@"
+    #     return $?
+    #   else
+    #     $MAN -k . | fzf --reverse --preview="echo {1,2} | sed 's/ (/./' | sed -E 's/\)\s*$//' | xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | xargs -r $MAN
+    #     return $?
+    #   fi
+    # }
+    # # set list-colors to enable filename colorizing
+    # zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
     envExtra = ''
       # Enable Ctrl+arrow key bindings for word jumping
       bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
       bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
 
       bindkey -v
+      # set -o vi
       export KEYTIMEOUT=1
 
       # vi
@@ -97,3 +114,160 @@
     historySubstringSearch.enable = true;
   };
 }
+# { options, config, lib, pkgs, ... }:
+# with lib;
+# with lib.custom;
+# let cfg = config.system.shell;
+# in {
+#   options.system.shell = with types; {
+#     shell = mkOpt (enum [ "nushell" "fish" ]) "nushell" "What shell to use";
+#   };
+#   config = {
+#     environment.systemPackages = with pkgs; [ eza bat nitch zoxide starship ];
+#       home.configFile."colors.conf" = {
+#         target = "hexchat/colors.conf";
+#         source = pkgs.fetchurl {
+#           url = "https://raw.githubusercontent.com/catppuccin/hexchat/main/mocha/colors.conf";
+#           sha256 = "sha256-EEJGpq+9okNP3kk6d17FEkxf2HlWkP082s5dfF1Dwwc=";
+#         };
+#     };
+#     home.programs.hexchat = {
+#       enable = true;
+#       #theme = pkgs.fetchzip {
+#       #url = "https://dl.hexchat.net/themes/Monokai.hct#Monokai.zip";
+#       #sha256 = "sha256-WCdgEr8PwKSZvBMs0fN7E2gOjNM0c2DscZGSKSmdID0=";
+#       #stripRoot = false;
+#       #        source = pkgs.fetchurl {
+#       #          url = "https://github.com/catppuccin/hexchat/archive/main/mocha/colors.conf.tar.gz";
+#       #          sha256 = "sha256:1jia66vzy99izcwwqjcr54h6r3x0m675xmyfc0lgijqjlahiq5fv";
+#       #        };
+#       #source = pkgs.fetchFromGitHub {
+#       #  owner = "catppuccin";
+#       #  repo = "hexchat";
+#       #  rev = "f84284c9d8363066d04c262717750cad623c1e8c";
+#       #  sha256 = "sha256-2xUcoaISy/goYM7XXo6poI9sICmZScw5+zEl/7cxKso=";
+#       #};
+#     };
+#     #users.defaultUserShell = pkgs.${cfg.shell};
+#     users.defaultUserShell = pkgs.zsh;
+#     users.users.root.shell = pkgs.bashInteractive;
+#     home.programs.starship = {
+#       enable = true;
+#       enableFishIntegration = true;
+#       enableNushellIntegration = true;
+#     };
+#     home.configFile."starship.toml".source = ./starship.toml;
+#     environment.shellAliases = {
+#       ".." = "cd ..";
+#       neofetch = "nitch";
+#     };
+#     home.programs.zoxide = {
+#       enable = true;
+#       enableNushellIntegration = true;
+#     };
+#     home.programs.eza = {
+#       enable = true;
+#       enableAliases = true;
+#       git = true;
+#       icons = true;
+#     };
+#     home.extraOptions.programs.atuin = {
+#       enable = false;
+#       enableZshIntegration = true;
+#     };
+#     home.programs.fzf.enable = true;
+#     # Actual Shell Configurations
+#     home.programs.fish = mkIf (cfg.shell == "fish") {
+#       enable = true;
+#       shellAliases = {
+#         ls = "eza -la --icons --no-user --no-time --git -s type";
+#         cat = "bat";
+#       };
+#       shellInit = ''
+#         ${mkIf apps.tools.direnv.enable ''
+#           direnv hook fish | source
+#         ''}
+#         zoxide init fish | source
+#         function , --description 'add software to shell session'
+#               nix shell nixpkgs#$argv[1..-1]
+#         end
+#       '';
+#     };
+#     programs.zsh.enable = true;
+#     home.programs.zsh = {
+#       enable = true;
+#       autocd = true;
+#       enableAutosuggestions = true;
+#       enableCompletion = true;
+#       defaultKeymap = "emacs";
+#       syntaxHighlighting.enable = true;
+#       history.size = 10000;
+#       history.save = 10000;
+#       historySubstringSearch.enable = true;
+#       shellAliases = { refresh = "source /home/${config.user.name}/.zshrc"; };
+#       initExtraBeforeCompInit = ''
+#         export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-mocha)"
+#       '';
+#       initExtra = # bash
+#         ''
+#           # Fix an issue with tmux.
+#           export KEYTIMEOUT=1
+#           # Use vim bindings.
+#           set -o vi
+#           # Improved vim bindings.
+#           # Man without options will use fzf to select a page
+#           zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+#           function fzf-man(){
+#             MAN="/usr/bin/man"
+#             if [ -n "$1" ]; then
+#               $MAN "$@"
+#               return $?
+#             else
+#               $MAN -k . | fzf --reverse --preview="echo {1,2} | sed 's/ (/./' | sed -E 's/\)\s*$//' | xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | xargs -r $MAN
+#               return $?
+#             fi
+#           }
+#           # set list-colors to enable filename colorizing
+#           zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
+#         '';
+#       plugins = [
+#         {
+#           name = "zsh-vi-mode";
+#           src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+#         }
+#         {
+#           name = "fzf-tab";
+#           src = pkgs.fetchFromGitHub {
+#             owner = "Aloxaf";
+#             repo = "fzf-tab";
+#             rev = "b06e7574577cd729c629419a62029d31d0565a7a";
+#             sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
+#           };
+#         }
+#         {
+#           name = "fast-syntax-highlighting";
+#           src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+#         }
+#         {
+#           name = "zsh-nix-shell";
+#           file = "nix-shell.plugin.zsh";
+#           src = pkgs.fetchFromGitHub {
+#             owner = "chisui";
+#             repo = "zsh-nix-shell";
+#             rev = "v0.8.0";
+#             sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+#           };
+#         }
+#       ];
+#     };
+#     # Enable all if nushell
+#     home.programs.nushell = mkIf (cfg.shell == "nushell") {
+#       enable = true;
+#       #shellAliases = config.environment.shellAliases // {ls = "ls";};
+#       envFile.text = "";
+#       extraConfig = # nu
+#         "";
+#     };
+#   };
+# }
+
