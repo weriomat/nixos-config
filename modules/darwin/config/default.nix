@@ -15,7 +15,7 @@
     settings.experimental-features = "nix-command flakes";
     # checks config for data type mismatches
     checkConfig = true;
-    # is the default -> all users are allowed -> priveleged users always are allowed
+    # is the default -> all users are allowed -> privileged users always are allowed
     settings = {
       allowed-users = ["*"];
       auto-optimise-store = true;

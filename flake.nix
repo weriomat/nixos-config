@@ -1,4 +1,4 @@
-# TODO: make everything a module and enable them in hosts and inport hosts than
+# TODO: make everything a module and enable them in hosts and import hosts than
 # TODO: add prism.nix -> iogamaster
 # TODO: use numtide falke helpers
 # TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix

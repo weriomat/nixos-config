@@ -11,7 +11,7 @@ _: {
       "custom/launcher"
       "custom/playerctl#backward"
       "custom/playerctl#play"
-      "custom/playerctl#foward"
+      "custom/playerctl#forward"
     ];
     modules-center = ["hyprland/workspaces"];
     modules-right = ["tray" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
@@ -99,7 +99,7 @@ _: {
         Stopped = "<span> </span>";
       };
     };
-    "custom/playerctl#foward" = {
+    "custom/playerctl#forward" = {
       format = "󰙡 ";
       on-click = "playerctl next";
       on-scroll-up = "playerctl volume .05+";

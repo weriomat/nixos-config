@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  # dictonaries
+  # dictionaries
   environment.systemPackages = with pkgs; [
     aspell
     aspellDicts.en
