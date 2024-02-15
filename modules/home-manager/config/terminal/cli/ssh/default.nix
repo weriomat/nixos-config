@@ -8,12 +8,12 @@
     userName = "weriomat";
     userEmail = "eliasaengel@gmail.com";
     lfs.enable = true;
+    extraConfig = {init = {defaultBranch = "main";};};
   };
   programs.ssh = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     compression = true;
     controlMaster = "auto";
-
     extraOptionOverrides = {
       IdentityFile = "/home/marts/.ssh/id_ed25519.pub";
     };
