@@ -4,7 +4,6 @@ name: Dead code analysis
 
 jobs:
   deadnix:
-    name: Deadnix
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v2
