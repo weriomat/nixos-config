@@ -13,22 +13,24 @@
     };
   };
   config = lib.mkIf config.nix-settings.enable {
-    nix.nixPath = ["nixpkgs=${inputs.nixpkgs}" "unstable=${inputs.nixpkgs-unstable}"];
+    nix = {
+      nixPath = ["nixpkgs=${inputs.nixpkgs}" "unstable=${inputs.nixpkgs-unstable}"];
 
-    # enable local registry for better search
-    # https://discourse.nixos.org/t/local-flake-based-nix-search-nix-run-and-nix-shell/13433/12
-    nix.registry.nixpkgs.flake = inputs.nixpkgs;
+      # enable local registry for better search
+      # https://discourse.nixos.org/t/local-flake-based-nix-search-nix-run-and-nix-shell/13433/12
+      registry.nixpkgs.flake = inputs.nixpkgs;
 
-    nix.settings = {
-      sandbox = true;
-      # Enable flakes and new 'nix' command
-      experimental-features = "nix-command flakes";
-      # Deduplicate and optimize nix store
-      auto-optimise-store = true;
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      ];
+      settings = {
+        sandbox = true;
+        # Enable flakes and new 'nix' command
+        experimental-features = "nix-command flakes";
+        # Deduplicate and optimize nix store
+        auto-optimise-store = true;
+        substituters = ["https://hyprland.cachix.org"];
+        trusted-public-keys = [
+          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        ];
+      };
     };
     # TODO: set trusted public keys, trusted-subsituters
 
@@ -66,8 +68,6 @@
           "python-2.7.18.7"
         ];
         allowUnfree = true;
-        # allowUnfreePredicate = (pkg: true);
-        # allowBroken = true;
       };
     };
   };

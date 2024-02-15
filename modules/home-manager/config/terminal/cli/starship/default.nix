@@ -20,27 +20,29 @@
         rust.symbol = " ";
         cmake.symbol = "$symbol";
 
-        git_status.conflicted = "⚔️ ";
-        git_status.ahead = "💨$count ";
-        git_status.behind = "🐢$count ";
-        git_status.diverged = "🔱 💨$ahead_count 🐢$behind_count ";
-        git_status.untracked = "🛤️ $count";
-        git_status.stashed = "📦 ";
-        git_status.modified = "📝$count ";
-        git_status.staged = "🗃️ $count ";
-        git_status.renamed = "📛$count ";
-        git_status.deleted = "🗑️ $count ";
-        # git_status.ahead = "💨 ";
-        # git_status.behind = "🐢 ";
-        # git_status.diverged = "🔱 ";
-        # git_status.untracked = "🛤️  ";
-        # git_status.stashed = "📦 ";
-        # git_status.modified = "📝 ";
-        # git_status.staged = "🗃️  ";
-        # git_status.renamed = "📛 ";
-        # git_status.deleted = "🗑️  ";
-        git_status.style = "bright-white";
-        # git_status.format = "\\[ $all_status$ahead_behind\\]";
+        git_status = {
+          conflicted = "⚔️ ";
+          ahead = "💨$count ";
+          behind = "🐢$count ";
+          diverged = "🔱 💨$ahead_count 🐢$behind_count ";
+          untracked = "🛤️ $count";
+          stashed = "📦 ";
+          modified = "📝$count ";
+          staged = "🗃️ $count ";
+          renamed = "📛$count ";
+          deleted = "🗑️ $count ";
+          # ahead = "💨 ";
+          # behind = "🐢 ";
+          # diverged = "🔱 ";
+          # untracked = "🛤️  ";
+          # stashed = "📦 ";
+          # modified = "📝 ";
+          # staged = "🗃️  ";
+          # renamed = "📛 ";
+          # deleted = "🗑️  ";
+          style = "bright-white";
+          # format = "\\[ $all_status$ahead_behind\\]";
+        };
       }
       // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub {
           owner = "catppuccin";
