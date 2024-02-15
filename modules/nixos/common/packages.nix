@@ -13,6 +13,7 @@
   };
   config = lib.mkIf (config.packages.enable) {
     environment.systemPackages = with pkgs; [
+      prettyping
       unstable.libdrm
       wireshark
       ffmpeg
