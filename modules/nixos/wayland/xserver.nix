@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # TODO: gnome -> hyperland
   services = {
     xserver = {
@@ -19,9 +19,9 @@
           user = "marts";
         };
         sddm.enable = false;
-        # Enable the GNOME Desktop Environment.
-        gnome.enable = true;
       };
+      # Enable the GNOME Desktop Environment.
+      desktopManager.gnome.enable = true;
 
       # trackpad
       # libinput = {

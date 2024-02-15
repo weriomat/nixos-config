@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # TODO: gnome -> hyperland
   services = {
     xserver = {
@@ -6,9 +6,9 @@
       enable = true;
       displayManager = {
         gdm.enable = true;
-        # Enable the GNOME Desktop Environment.
-        gnome.enable = true;
       };
+      # Enable the GNOME Desktop Environment.
+      desktopManager.gnome.enable = true;
       # Configure keymap in X11
       layout = "us";
       xkbVariant = "";

@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # TODO: configure more -> tmux and things
   programs.fzf = {
     enable = true;

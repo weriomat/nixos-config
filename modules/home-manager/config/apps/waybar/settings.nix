@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";
