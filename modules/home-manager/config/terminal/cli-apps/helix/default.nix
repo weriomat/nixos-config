@@ -28,6 +28,7 @@
     rust-analyzer # rust
     nil # nix
 
+    yaml-language-server # yaml
     # python
     ruff-lsp
     black
@@ -110,7 +111,7 @@
     # catppuccin.enable = true;
     settings = {
       theme = "${lib.strings.concatMapStringsSep "_" (x: lib.toLower x)
-        (lib.strings.splitString " " (config.colorScheme.name))}";
+        (lib.strings.splitString " " config.colorScheme.name)}";
       editor = {
         auto-save = true;
         bufferline = "always";

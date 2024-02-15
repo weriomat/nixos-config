@@ -8,18 +8,20 @@
       layout = "us";
       # xkbVariant = "";
       # videoDrivers = [ "amdgpu" ];
-      displayManager.gdm = {
-        # enable = true;
-        enable = false;
-        #   wayland = true;
+      displayManager = {
+        gdm = {
+          # enable = true;
+          enable = false;
+          #   wayland = true;
+        };
+        autoLogin = {
+          enable = true;
+          user = "marts";
+        };
+        sddm.enable = false;
+        # Enable the GNOME Desktop Environment.
+        gnome.enable = true;
       };
-      displayManager.autoLogin = {
-        enable = true;
-        user = "marts";
-      };
-      displayManager.sddm.enable = false;
-      # Enable the GNOME Desktop Environment.
-      desktopManager.gnome.enable = true;
 
       # trackpad
       # libinput = {

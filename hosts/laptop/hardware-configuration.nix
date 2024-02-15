@@ -12,24 +12,25 @@
   ];
 
   boot = {
-    initrd.availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-
-    initrd.kernelModules = [];
+    initrd = {
+      availableKernelModules = ["xhci_pci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
+      kernelModules = [];
+      luks.devices."luks-5128d97a-0e1d-4b52-a214-55dfbdd6f07d".device = "/dev/disk/by-uuid/5128d97a-0e1d-4b52-a214-55dfbdd6f07d";
+    };
 
     kernelModules = [];
     extraModulePackages = [];
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/5f7d9dbb-c1cc-49b5-b7f9-b81e2d801aa4";
-    fsType = "ext4";
-  };
-
-  boot.initrd.luks.devices."luks-5128d97a-0e1d-4b52-a214-55dfbdd6f07d".device = "/dev/disk/by-uuid/5128d97a-0e1d-4b52-a214-55dfbdd6f07d";
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/BDDD-8650";
-    fsType = "vfat";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/5f7d9dbb-c1cc-49b5-b7f9-b81e2d801aa4";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/BDDD-8650";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [
