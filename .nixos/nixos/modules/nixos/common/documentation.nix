@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   options.doc = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -15,7 +20,8 @@
       nixos.enable = lib.mkIf (pkgs.stdenv.isLinux) true;
       info.enable = true;
     };
-    services.hoogle.enable = lib.mkIf (pkgs.stdenv.isLinux)
+    services.hoogle.enable =
+      lib.mkIf (pkgs.stdenv.isLinux)
       true; # -> on 127.0.0.1/8080, only works on linux
   };
 }

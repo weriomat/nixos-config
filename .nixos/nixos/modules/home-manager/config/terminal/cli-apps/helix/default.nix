@@ -86,7 +86,10 @@
         {
           name = "nix";
           auto-format = true;
-          formatter = {command = "nixfmt";};
+          formatter = {
+            command = "alejandra";
+            args = ["-q"];
+          };
           language-servers = ["nil"];
         }
         {

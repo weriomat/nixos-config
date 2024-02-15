@@ -1,6 +1,15 @@
 {inputs, ...}: {
   # inputs.self, inputs.nix-darwin, and inputs.nixpkgs can be accessed here
 
+  documentation = {
+    enable = true;
+    man.enable = true;
+    # dev.enable = true;
+    doc.enable = true;
+    # nixos.enable = true;
+    info.enable = true;
+  };
+
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
