@@ -14,7 +14,9 @@
     compression = true;
     controlMaster = "auto";
 
-    extraOptionOverrides = {IdentityFile = "/home/marts/.ssh/github.pub";};
+    extraOptionOverrides = {
+      IdentityFile = "/home/marts/.ssh/id_ed25519.pub";
+    };
 
     extraConfig = "IdentitiesOnly yes";
 
