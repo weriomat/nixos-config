@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   # imports = [ ./config_git.nix ];
   programs.zsh = {
     enable = true;
@@ -59,11 +64,12 @@
     '';
 
     shellAliases = {
-      config = if pkgs.stdenv.isDarwin then
-      # "/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
-        "/usr/bin/git --git-dir=$HOME/.nixos/ --work-tree=$HOME"
-      else
-        "/etc/profiles/per-user/marts/bin/git --git-dir=$HOME/.nixos/ --work-tree=$HOME";
+      config =
+        if pkgs.stdenv.isDarwin
+        then
+          # "/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+          "/usr/bin/git --git-dir=$HOME/.nixos/ --work-tree=$HOME"
+        else "/etc/profiles/per-user/marts/bin/git --git-dir=$HOME/.nixos/ --work-tree=$HOME";
 
       diff = "diff --color";
 
@@ -84,19 +90,16 @@
       # format nix flake
       format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
 
-      test-update =
-        "sudo nixos-rebuild test --flake /home/marts/.nixos/nixos#default";
-      update =
-        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default";
-      updatelap =
-        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop";
-      rebuildlap =
-        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop && format-flake";
-      rebuild = if pkgs.stdenv.isDarwin then
-        "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
-      else
-      # "darwin-rebuild switch --flake ~/.config/nix-darwin && cd $HOME/.config/nix-darwin && nix fmt && cd -";
-        "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && format-flake";
+      test-update = "sudo nixos-rebuild test --flake /home/marts/.nixos/nixos#default";
+      update = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default";
+      updatelap = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop";
+      rebuildlap = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop && format-flake";
+      rebuild =
+        if pkgs.stdenv.isDarwin
+        then "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
+        else
+          # "darwin-rebuild switch --flake ~/.config/nix-darwin && cd $HOME/.config/nix-darwin && nix fmt && cd -";
+          "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && format-flake";
 
       # prettyping to ping default
       ping = "prettyping";

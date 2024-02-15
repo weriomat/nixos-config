@@ -3,6 +3,7 @@
 # TODO: use numtide falke helpers
 # TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix
 # TODO: https://github.com/cachix/pre-commit-hooks.nix?tab=readme-ov-file
+# -> we dont need a bare repo anymore
 # TODO: zsh for desktop
 # TODO: https://github.com/Gerschtli/nix-formatter-pack?tab=readme-ov-file
 {
@@ -35,6 +36,11 @@
     hyprpicker.url = "github:hyprwm/hyprpicker";
     nix-colors.url = "github:misterio77/nix-colors";
 
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # gaming
     nix-gaming.url = "github:fufexan/nix-gaming";
 
@@ -52,6 +58,7 @@
     nixpkgs,
     home-manager,
     nix-colors,
+    pre-commit-hooks,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -88,5 +95,26 @@
     # Formatter for darwin -> nix fmt
     formatter.aarch64-darwin =
       nixpkgs.legacyPackages.aarch64-darwin.alejandra;
+
+    checks.x86_64-linux = {
+      pre-commit-check = pre-commit-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          alejandra.enable = true;
+          deadnix.enable = true;
+          statix.enable = true;
+        };
+      };
+    };
+    checks.aarch64-darwin = {
+      pre-commit-check = pre-commit-hooks.lib.aarch64-darwin.run {
+        src = ./.;
+        hooks = {
+          alejandra.enable = true;
+          deadnix.enable = true;
+          statix.enable = true;
+        };
+      };
+    };
   };
 }
