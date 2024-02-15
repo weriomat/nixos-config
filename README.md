@@ -6,6 +6,9 @@ apps not supported are: btop, starship, firefox, gtk
 might be buggy: kitty, helix, waybar
 todo: wofi
 
+# NOTES
+-> clone into .nixos/nixos since this path is hardcoded into e.g. wallpapers...
+
 ## Thank you notice
 
 Special thanks to cobalt for letting me copy his config :)

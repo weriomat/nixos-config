@@ -12,7 +12,7 @@
       description = "Enable firefox config";
     };
   };
-  config = lib.mkIf (config.firefox.enable) {
+  config = lib.mkIf config.firefox.enable {
     # TODO: add arkenfox/user.js to config
     # firefox config -> vimjoyer video
     programs.firefox = {

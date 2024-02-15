@@ -11,7 +11,7 @@
       description = "Enable virtualisation";
     };
   };
-  config = lib.mkIf (config.virt.enable) {
+  config = lib.mkIf config.virt.enable {
     users.users.marts.extraGroups = [
       "libvirtd"
       #   # "audio"

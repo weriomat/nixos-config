@@ -13,7 +13,7 @@
       description = "Enable discord overlay";
     };
   };
-  config = lib.mkIf (config.discord.enable) {
+  config = lib.mkIf config.discord.enable {
     home.packages = with pkgs; [
       # vesktop
       (discord.override {

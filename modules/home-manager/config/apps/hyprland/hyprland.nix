@@ -12,7 +12,7 @@
       description = "Enable hyrpland config";
     };
   };
-  config = lib.mkIf (config.my_hyprland.enable) {
+  config = lib.mkIf config.my_hyprland.enable {
     home.packages = with pkgs; [
       swayidle
       libnotify

@@ -11,7 +11,7 @@
       description = "Enable swaylock";
     };
   };
-  config = lib.mkIf (config.swaylock.enable) {
+  config = lib.mkIf config.swaylock.enable {
     programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;

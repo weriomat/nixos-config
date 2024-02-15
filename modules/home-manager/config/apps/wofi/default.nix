@@ -10,7 +10,7 @@
       description = "Enable wofi";
     };
   };
-  config = lib.mkIf (config.wofi.enable) {
+  config = lib.mkIf config.wofi.enable {
     # https://github.com/prtce/wofi
     xdg.configFile."wofi".source = ./config;
   };

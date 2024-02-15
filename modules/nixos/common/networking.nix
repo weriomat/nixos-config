@@ -10,7 +10,7 @@
       description = "Enable networking settings";
     };
   };
-  config = lib.mkIf (config.networking.enable) {
+  config = lib.mkIf config.networking.enable {
     networking = {
       networkmanager.enable = true;
       hostName = "nixos";

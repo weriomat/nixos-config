@@ -11,7 +11,7 @@
       description = "Enable mako notifications";
     };
   };
-  config = lib.mkIf (config.my_mako.enable) {
+  config = lib.mkIf config.my_mako.enable {
     services = {
       mako = {
         enable = true;

@@ -11,7 +11,7 @@
       description = "Enable gtk settings";
     };
   };
-  config = lib.mkIf (config.my_gtk.enable) {
+  config = lib.mkIf config.my_gtk.enable {
     fonts.fontconfig.enable = true;
     home.packages = [
       pkgs.nerdfonts

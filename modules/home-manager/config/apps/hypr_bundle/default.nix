@@ -11,7 +11,7 @@
       description = "Enable hyrpland config";
     };
   };
-  config = lib.mkIf (config.hyprland.enable) {
+  config = lib.mkIf config.hyprland.enable {
     my_gtk.enable = true;
     my_mako.enable = true;
     swaylock.enable = true;

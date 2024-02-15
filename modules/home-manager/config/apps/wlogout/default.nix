@@ -12,7 +12,7 @@
       description = "Enable wlogout";
     };
   };
-  config = lib.mkIf (config.wlogout.enable) {
+  config = lib.mkIf config.wlogout.enable {
     programs.wlogout = {
       enable = true;
       layout = [

@@ -1,17 +1,4 @@
-{
-  config,
-  custom ? {
-    font = "JetBrainsMono Nerd Font";
-    fontsize = "12";
-    primary_accent = "${config.colorScheme.palette.base0E}";
-    secondary_accent = "${config.colorScheme.palette.base0D}";
-    tertiary_accent = "${config.colorScheme.palette.base05}";
-    background = "11111B";
-    opacity = ".85";
-    cursor = "Numix-Cursor";
-  },
-  ...
-}: {
+{...}: {
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";

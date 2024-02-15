@@ -12,7 +12,7 @@
       description = "Enable audio settings";
     };
   };
-  config = lib.mkIf (config.audio.enable) {
+  config = lib.mkIf config.audio.enable {
     # hardware.pulseaudio.support32Bit = true;
     # Enable sound with pipewire.
     sound.enable = true;

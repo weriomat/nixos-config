@@ -12,7 +12,7 @@
       description = "Enable nix settings";
     };
   };
-  config = lib.mkIf (config.nix-settings.enable) {
+  config = lib.mkIf config.nix-settings.enable {
     nix.nixPath = ["nixpkgs=${inputs.nixpkgs}" "unstable=${inputs.nixpkgs-unstable}"];
 
     # enable local registry for better search
@@ -42,7 +42,7 @@
         # Add overlays your own flake exports (from overlays and pkgs dir):
         outputs.overlays.additions
         # outputs.overlays.additions_packages
-        outputs.overlays.modifications
+        # outputs.overlays.modifications
         outputs.overlays.unstable-packages
 
         # You can also add overlays exported from other flakes:

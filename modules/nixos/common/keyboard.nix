@@ -10,7 +10,7 @@
       description = "Enable keyboard properties";
     };
   };
-  config = lib.mkIf (config.keyboard.enable) {
+  config = lib.mkIf config.keyboard.enable {
     i18n = {
       defaultLocale = "en_US.UTF-8";
 
