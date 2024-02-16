@@ -20,6 +20,7 @@
   networking.enable = true;
   nix-settings.enable = true;
   packages.enable = true;
+  virt.enable = true;
   # environment.variables = {
   #   POLKIT_BIN = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
   # };
@@ -166,7 +167,6 @@
   # ssd thingie
   services.fstrim.enable = lib.mkDefault true;
 
-  virt.enable = false;
   flatpack.enable = true;
   system.stateVersion = "23.11";
 }
