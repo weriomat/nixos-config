@@ -63,20 +63,12 @@
     '';
 
     shellAliases = {
-      config =
-        if pkgs.stdenv.isDarwin
-        then
-          # "/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
-          "/usr/bin/git --git-dir=$HOME/.nixos/ --work-tree=$HOME"
-        else "/etc/profiles/per-user/marts/bin/git --git-dir=$HOME/.nixos/ --work-tree=$HOME";
-
       diff = "diff --color";
 
       # grep
       grep = "grep --color=auto";
       ga = "git add";
       gb = "git branch";
-      # alias gc="git clone"
       gc = "git commit -m";
       gco = "git checkout";
       gss = "git status -sb";
@@ -102,6 +94,8 @@
 
       # prettyping to ping default
       ping = "prettyping";
+      # manix fzf
+      ma = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
     };
     history = {
       size = 1000000;

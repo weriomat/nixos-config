@@ -1,5 +1,4 @@
 _: {
-  # TODO: gnome -> hyperland
   services = {
     xserver = {
       # Enable the X11 windowing system.

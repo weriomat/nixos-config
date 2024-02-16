@@ -1,8 +1,8 @@
 # TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix
-# TODO: https://github.com/cachix/pre-commit-hooks.nix?tab=readme-ov-file
-# -> we dont need a bare repo anymore
 # TODO: zsh for desktop
-# TODO: https://github.com/Gerschtli/nix-formatter-pack?tab=readme-ov-file
+# TODO: move /home to other disk
+# TODO: use zsh
+# TODO: use vms, windows for gaming lul
 {
   description = "Marts - Nixos config flake";
   inputs = {
