@@ -19,6 +19,6 @@
     waybar.enable = true;
     my_hyprland.enable = true;
     wlogout.enable = true;
-    prism.enable = true;
+    my_prism.enable = true;
   };
 }

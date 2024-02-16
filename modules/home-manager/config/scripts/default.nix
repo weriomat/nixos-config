@@ -111,7 +111,7 @@
 
       wallpaper_path=$HOME/.nixos/nixos/wallpapers
 
-      wallpaper_name="$(find "$wallpaper_path" -type f -exec basename {} \; | wofi --show dmenu --sort-order=alphabetical)"
+      wallpaper_name="$(find "$wallpaper_path" -exec basename {} \; | wofi --show dmenu --sort-order=alphabetical)"
       if [[ -f $wallpaper_path/$wallpaper_name ]]; then
           killall dynwallpaper || true
           wall-change "$wallpaper_path"/"$wallpaper_name" &
@@ -127,7 +127,7 @@
     text = ''
       #!/usr/bin/env bash
 
-      wallpaper_name="$(find "$HOME"/.nixos/nixos/wallpapers -type f | shuf -n 1)"
+      wallpaper_name="$(find "$HOME"/.nixos/nixos/wallpapers | shuf -n 1)"
       w_name="$(echo "$wallpaper_name" | xargs basename)"
       if [[ -f $wallpaper_name ]]; then
           killall dynwallpaper || true
@@ -145,7 +145,7 @@
     text = ''
       #!/usr/bin/env bash
       while true; do
-        wallpaper_name="$(find "$HOME"/.nixos/nixos/wallpapers -type f | shuf -n 1)"
+        wallpaper_name="$(find "$HOME"/.nixos/nixos/wallpapers | shuf -n 1)"
         w_name="$(echo "$wallpaper_name" | xargs basename)"
         if [[ -f $wallpaper_name ]]; then
             wall-change "$wallpaper_name" &
@@ -153,7 +153,7 @@
         else
             exit 1
         fi
-        sleep 108000
+        sleep 1800
       done
     '';
   };
