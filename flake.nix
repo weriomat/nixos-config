@@ -1,6 +1,3 @@
-# TODO: make everything a module and enable them in hosts and import hosts than
-# TODO: add prism.nix -> iogamaster
-# TODO: use numtide falke helpers
 # TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix
 # TODO: https://github.com/cachix/pre-commit-hooks.nix?tab=readme-ov-file
 # -> we dont need a bare repo anymore
@@ -35,6 +32,7 @@
     };
     hyprpicker.url = "github:hyprwm/hyprpicker";
     nix-colors.url = "github:misterio77/nix-colors";
+    prism.url = "github:IogaMaster/prism";
 
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
@@ -57,6 +55,7 @@
     self,
     nixpkgs,
     nix-colors,
+    prism,
     pre-commit-hooks,
     ...
   } @ inputs: let
@@ -70,8 +69,8 @@
 
     # Full system build for x86
     nixosConfigurations = {
-      default = import ./hosts/default {inherit inputs outputs nix-colors;};
-      laptop = import ./hosts/laptop {inherit inputs outputs nix-colors;};
+      default = import ./hosts/default {inherit inputs outputs nix-colors prism;};
+      laptop = import ./hosts/laptop {inherit inputs outputs nix-colors prism;};
     };
 
     # Full hm build for aarch64
@@ -79,11 +78,6 @@
       Eliass-MacBook-Pro-4 =
         import ./hosts/darwina {inherit inputs nix-colors;};
     };
-
-    # homeConfigurations = {
-    #   Eliass-MacBook-Pro-4 =
-    #     darwinConfigurations.Eliass-MacBook-Pro-4.config.home-manager.users."eliasengel".home;
-    # };
 
     # Expose the package set, including overlays, for convenience.
     darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;

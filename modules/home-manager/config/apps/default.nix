@@ -8,6 +8,7 @@
     ./gtk
     ./swaylock
     ./wlogout
+    ./prism
     ./hypr_bundle
 
     ./discord

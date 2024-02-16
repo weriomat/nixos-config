@@ -2,6 +2,7 @@
   inputs,
   outputs,
   nix-colors,
+  prism,
   ...
 }: let
   globals.isLaptop =
@@ -22,6 +23,7 @@ in
           users.marts.imports = [
             ../../modules/home-manager/nixos
             ../../modules/home-manager
+            prism.homeModules.prism
             nix-colors.homeManagerModules.default
           ];
         };

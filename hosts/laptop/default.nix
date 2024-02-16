@@ -2,6 +2,7 @@
   inputs,
   outputs,
   nix-colors,
+  prism,
   ...
 }: let
   globals.isLaptop = true; # global for specifying if hyprland should be enabled
@@ -23,6 +24,7 @@ in
             ../../modules/home-manager/nixos
             ../../modules/home-manager
             nix-colors.homeManagerModules.default
+            prism.homeModules.prism
           ];
         };
       }
