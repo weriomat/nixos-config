@@ -2,7 +2,6 @@
 # TODO: zsh for desktop
 # TODO: move /home to other disk
 # TODO: use zsh
-# TODO: use vms, windows for gaming lul
 {
   description = "Marts - Nixos config flake";
   inputs = {
@@ -12,32 +11,32 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     utils.url = "github:numtide/flake-utils";
 
+    # hm
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # firefox addons from nur
+    nix-colors.url = "github:misterio77/nix-colors";
+    prism.url = "github:IogaMaster/prism";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    rust-overlay.url = "github:oxalica/rust-overlay";
-
-    hyprland = {url = "github:hyprwm/Hyprland";};
+    # hyprland
+    hyprland.url = "github:hyprwm/Hyprland";
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpicker.url = "github:hyprwm/hyprpicker";
-    nix-colors.url = "github:misterio77/nix-colors";
-    prism.url = "github:IogaMaster/prism";
 
+    # dev
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    rust-overlay.url = "github:oxalica/rust-overlay";
 
     # gaming
     nix-gaming.url = "github:fufexan/nix-gaming";
