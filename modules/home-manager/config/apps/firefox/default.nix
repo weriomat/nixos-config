@@ -129,6 +129,14 @@
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["@np"];
             };
+            "ProtonDB" = {
+              urls = [
+                {
+                  template = "https://www.protondb.com/search?q={searchTerms}";
+                }
+              ];
+              definedAliases = ["@pd"];
+            };
             "NixOS Wiki" = {
               urls = [
                 {
