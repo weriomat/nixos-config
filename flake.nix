@@ -2,6 +2,7 @@
 # TODO: zsh for desktop
 # TODO: move /home to other disk
 # TODO: use zsh
+# TODO: nix-update
 {
   description = "Marts - Nixos config flake";
   inputs = {
