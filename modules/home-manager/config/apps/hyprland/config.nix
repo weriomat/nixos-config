@@ -138,6 +138,10 @@
         "noinitialfocus,class:^(xwaylandvideobridge)$"
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
+
+        # idleinhibit
+        "idleinhibit fullscreen, class:^(firefox)$"
+        "idleinhibit focus, class:^(firefox)$"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -488,7 +492,7 @@
     #   windowrulev2 = opacity 1.0 override 1.0 override, class:(Unity)
     #   windowrule = size 1200 725,mpv
     #   windowrulev2 = idleinhibit focus, class:^(mpv)$
-    #   windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
+    # windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
 
     #   windowrule = float,title:^(float_kitty)$
     #   windowrule = center,title:^(float_kitty)$
