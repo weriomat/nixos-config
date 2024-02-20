@@ -142,6 +142,7 @@
         # idleinhibit
         "idleinhibit fullscreen, class:^(firefox)$"
         "idleinhibit focus, class:^(firefox)$"
+        "idleinhibit fullscreen, fullscreen:1"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
