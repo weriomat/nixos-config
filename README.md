@@ -28,3 +28,8 @@ https://github.com/johnk1917/nixrland
 cobalt
 https://github.com/Frost-Phoenix/nixos-config/tree/main
 for "letting" me steal wallpapers
+
+sources i yanked wallpapers from:
+https://github.com/D3Ext/aesthetic-wallpapers
+https://github.com/42Willow/wallpapers/tree/main
+the cattpuccin-discord
