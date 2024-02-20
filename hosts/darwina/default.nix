@@ -2,6 +2,7 @@
 {
   inputs,
   nix-colors,
+  prism,
   ...
 }:
 with inputs;
@@ -19,6 +20,7 @@ with inputs;
           users.eliasengel.imports = [
             ../../modules/home-manager/darwin
             ../../modules/home-manager
+            prism.homeModules.prism # for compatability
             nix-colors.homeManagerModules.default
             mac-app-util.homeManagerModules.default
           ];

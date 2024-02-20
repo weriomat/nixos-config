@@ -76,7 +76,7 @@
     # Full hm build for aarch64
     darwinConfigurations = {
       Eliass-MacBook-Pro-4 =
-        import ./hosts/darwina {inherit inputs nix-colors;};
+        import ./hosts/darwina {inherit inputs nix-colors prism;};
     };
 
     # Expose the package set, including overlays, for convenience.
