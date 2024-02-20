@@ -18,7 +18,7 @@
     lsof
     imagemagick
     jq
-    ncdu
+    # ncdu
     ripgrep
     zip
     neofetch
