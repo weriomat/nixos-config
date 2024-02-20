@@ -13,6 +13,8 @@
   };
   config = lib.mkIf config.packages.enable {
     environment.systemPackages = with pkgs; [
+      # learning git game
+      oh-my-git
       prettyping
       unstable.libdrm
       wireshark
