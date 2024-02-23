@@ -5,32 +5,36 @@ https://github.com/kinzoku-dev/neovim
 - Use Homemanger bundles for config
 - Hyperland
 - configure bootloader -> https://github.com/vimjoyer/nixconf/blob/main/hosts/laptop/configuration.nix
-- configure virtualization
-// - configure gpu
-- configure bloototh
-// - configure flatpack
-// - configure steam -> games
 - configure monitors
-- configure rofi
 - set fonts -> maybe buy comic code
-- take a look at archwiki/ sddm -> https://wiki.archlinux.org/title/SDDM
 - configure fzf
 - configure tmux
 - configure neovim -> logamaster
-// - factor out audio stuff
 - configure rust
-- configure nix-colors
-- de-bloat
-- Better-discord
 - configure gpg
-// - configure vscode for latex
-- configure gtk
 
 # links to take a look at
 https://nix.dev/tutorials/nix-language
 https://nix.dev/manual/nix/2.18/language/builtins
 https://nix.dev/manual/nix/2.18/command-ref/nix-instantiate
 https://nixos.wiki/wiki/Configuration_Collection
+
+# hyprland configs
+
+https://github.com/sioodmy/dotfiles/tree/main/home/rice/hyprland
+
+https://github.com/redyf/nixdots/tree/main/home/desktop/desktop/hyprland
+https://github.com/dedSyn4ps3/nixos_desktop_configs/tree/main/waybar
+https://github.com/aliyss/dotfiles/tree/master/hypr
+https://github.com/IogaMaster/dotfiles/blob/main/modules/nixos/desktop/hyprland/default.nix
+https://github.com/sioodmy/dotfiles/tree/main/home/rice/hyprland
+
+https://github.com/sioodmy/dotfiles/tree/main/system/wayland
+
+
+https://gitlab.com/stephan-raabe/dotfiles/-/blob/main/swaylock/config?ref_type=heads
+https://github.com/iancleary/nixos-config
+https://gist.github.com/johanwiden/900723175c1717a72442f00b49b5060c
 
 # Configs to take a look at
 https://github.com/vimjoyer/nixconf
