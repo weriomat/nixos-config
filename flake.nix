@@ -1,8 +1,5 @@
 # TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix
-# TODO: zsh for desktop
 # TODO: move /home to other disk
-# TODO: use zsh
-# TODO: nix-update
 {
   description = "Marts - Nixos config flake";
   inputs = {
@@ -21,6 +18,10 @@
     prism.url = "github:IogaMaster/prism";
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -57,6 +58,7 @@
     nix-colors,
     prism,
     pre-commit-hooks,
+    nix-index-database,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -69,14 +71,14 @@
 
     # Full system build for x86
     nixosConfigurations = {
-      default = import ./hosts/default {inherit inputs outputs nix-colors prism;};
-      laptop = import ./hosts/laptop {inherit inputs outputs nix-colors prism;};
+      default = import ./hosts/default {inherit inputs outputs nix-colors prism nix-index-database;};
+      laptop = import ./hosts/laptop {inherit inputs outputs nix-colors prism nix-index-database;};
     };
 
     # Full hm build for aarch64
     darwinConfigurations = {
       Eliass-MacBook-Pro-4 =
-        import ./hosts/darwina {inherit inputs nix-colors prism;};
+        import ./hosts/darwina {inherit inputs nix-colors prism nix-index-database;};
     };
 
     # Expose the package set, including overlays, for convenience.

@@ -3,6 +3,7 @@
   inputs,
   nix-colors,
   prism,
+  nix-index-database,
   ...
 }:
 with inputs;
@@ -23,6 +24,7 @@ with inputs;
             prism.homeModules.prism # for compatability
             nix-colors.homeManagerModules.default
             mac-app-util.homeManagerModules.default
+            nix-index-database.hmModules.nix-index
           ];
         };
       }

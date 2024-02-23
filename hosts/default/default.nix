@@ -3,6 +3,7 @@
   outputs,
   nix-colors,
   prism,
+  nix-index-database,
   ...
 }: let
   globals.isLaptop =
@@ -25,6 +26,8 @@ in
             ../../modules/home-manager
             prism.homeModules.prism
             nix-colors.homeManagerModules.default
+
+            nix-index-database.hmModules.nix-index
           ];
         };
       }
