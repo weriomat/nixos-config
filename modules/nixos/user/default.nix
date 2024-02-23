@@ -7,7 +7,6 @@
     isNormalUser = true;
     description = "marts";
 
-    # https://christitus.com/vm-setup-in-linux/
     extraGroups = [
       "networkmanager"
       "wheel"

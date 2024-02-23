@@ -1,14 +1,8 @@
 {pkgs, ...}: {
-  # programs = {
-  #   hyprland.enable = true;
-  #   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  # };
-
   programs = {
     wireshark.enable = true;
     hyprland.enable = true;
     xwayland.enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
   };
 
   # TODO: here https://wiki.hyprland.org/Useful-Utilities/Hyprland-desktop-portal/

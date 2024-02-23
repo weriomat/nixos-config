@@ -4,7 +4,6 @@
   config,
   ...
 }: {
-  # TODO: rework this
   options.audio = {
     enable = lib.mkOption {
       type = lib.types.bool;
@@ -13,7 +12,6 @@
     };
   };
   config = lib.mkIf config.audio.enable {
-    # hardware.pulseaudio.support32Bit = true;
     # Enable sound with pipewire.
     sound.enable = true;
     hardware.pulseaudio = {
@@ -36,7 +34,6 @@
     };
 
     # Enable bluetooth with blueman
-    # The blueman applet is defined as part of sway/home.nix
     # see https://nixos.wiki/wiki/Bluetooth
     services.blueman.enable = true;
     hardware.bluetooth = {

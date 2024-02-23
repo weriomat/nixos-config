@@ -7,7 +7,6 @@
 # TODO: laptop power management
 # TODO: brightnessctl
 # TODO: waybar status -> corectl etc
-# TODO: fix discord links -> https://lemmy.ml/post/1557630
 # TODO: hyprland fix hyprland setup -> vimjoyer video
 # TODO: cloudflare dns
 {
