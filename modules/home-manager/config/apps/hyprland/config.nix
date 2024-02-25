@@ -13,20 +13,17 @@
         "4, monitor: DP-1"
         "5, monitor: DP-1"
         "6, monitor: DP-3, default:true, on-created-empty:firefox"
-        # "6, monitor: DP-3"
         "7, monitor: DP-3"
         "8, monitor: DP-3"
         "9, monitor: DP-3"
         "10, monitor: DP-3"
         "11, monitor: HDMI-A-1, default:true, on-created-empty:cider"
-        # "11, monitor: HDMI-A-1"
         "12, monitor: HDMI-A-1"
         "13, monitor: HDMI-A-1"
         "14, monitor: HDMI-A-1"
         "15, monitor: HDMI-A-1"
       ];
       env = [
-        # Some default env vars.
         "XCURSOR_SIZE,24"
       ];
       exec-once = [
@@ -38,13 +35,11 @@
         "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
-        # "swaybg -m fill -i ~/.nixos/nixos/wallpapers/wallpaper.png &"
         "dynwallpaper &"
         "sleep 1 && swaylock"
         "sleep 1 && sleepidle &"
         "hyprctl setcursor Nordzy-cursors 22 &"
         "sleep 1; hyprctl dispatch workspace 1&"
-        # "hyprctl dispatch exec cider & hyprctl dispatch exec discord; sleep 1; hyprctl dispatch movetoworkspacesilent 11"
         "waybar &"
         "mako &"
         "udiskie &"
