@@ -1,4 +1,8 @@
-{lib, ...}:
+{
+  inputs,
+  lib,
+  ...
+}:
 # TODO: gnome polkit
 # TODO: gnome agendt ssh idk shit
 # TODO: portals fix: -> script,
@@ -10,6 +14,19 @@
 # TODO: cloudflare dns
 {
   imports = [./user ./wayland ./common ./steam];
+
+  # automatic system upgrades
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" # print build logs
+    ];
+    dates = "22:00";
+    randomizedDelaySec = "45min";
+  };
 
   audio.enable = true;
   doc.enable = true;
