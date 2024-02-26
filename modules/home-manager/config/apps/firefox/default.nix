@@ -15,6 +15,7 @@
   config = lib.mkIf config.firefox.enable {
     # TODO: add arkenfox/user.js to config
     # firefox config -> vimjoyer video
+    home.sessionVariables.BROWSER = "firefox";
     programs.firefox = {
       enable = true;
       profiles.marts = {
