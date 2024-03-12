@@ -13,7 +13,7 @@
 # TODO: hyprland fix hyprland setup -> vimjoyer video
 # TODO: cloudflare dns
 {
-  imports = [./user ./wayland ./common ./steam];
+  imports = [./user ./wayland ./common ./steam ./nfs];
 
   # automatic system upgrades
   system.autoUpgrade = {
@@ -27,6 +27,21 @@
     dates = "22:00";
     randomizedDelaySec = "45min";
   };
+  # hardware.keyboard.qmk.enable = true;
+  # environment.systemPackages = with pkgs; [
+  #   vial
+  #   via
+  # ];
+
+  #  programs.fzf = {
+  #   enable = true;
+  #   enableFishIntegration = true;
+  #   defaultOptions = [
+  #     "--border"
+  #     "--preview 'bat --color=always {}'"
+  #     "--prompt 'Files> '"
+  #   ];
+  # };
 
   audio.enable = true;
   doc.enable = true;

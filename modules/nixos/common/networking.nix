@@ -21,7 +21,7 @@
       # Or disable the firewall altogether.
       firewall.enable = true;
 
-      # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+      # wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
       # Configure network proxy if necessary
       # networking.proxy.default = "http://user:password@proxy:port/";

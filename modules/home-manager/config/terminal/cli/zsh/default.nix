@@ -80,6 +80,8 @@
 
       # format nix flake
       format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
+      # check nix flake
+      check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
 
       test-update = "sudo nixos-rebuild test --flake /home/marts/.nixos/nixos#default";
       update = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default";
@@ -87,13 +89,14 @@
       rebuildlap = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop && format-flake";
       rebuild =
         if pkgs.stdenv.isDarwin
+        # then "check-flake && darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
+        # else "check-flake && sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && format-flake";
         then "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
-        else
-          # "darwin-rebuild switch --flake ~/.config/nix-darwin && cd $HOME/.config/nix-darwin && nix fmt && cd -";
-          "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && format-flake";
+        else "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && format-flake";
 
       # prettyping to ping default
       ping = "prettyping";
+
       # manix fzf
       ma = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
     };
