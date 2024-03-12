@@ -3,6 +3,10 @@
 # Nixos-config
 My NixOS Config/ NixDarwin Config
 
+# failing rebuild
+due to mounting a nfs share, we can not doublemount it -> remove by 
+sudo umount /home/marts/nfs
+
 # Nix-colors
 apps not supported are: btop, starship, firefox, gtk
 might be buggy: kitty, helix, waybar
