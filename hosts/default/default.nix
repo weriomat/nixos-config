@@ -15,6 +15,8 @@ in
       ../../modules/nixos/configuration.nix
       ./hardware-configuration.nix
       ./hardware-config-add.nix
+
+      ./ssh.nix
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager = {

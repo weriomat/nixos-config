@@ -7,7 +7,7 @@
     };
     dbus.enable = true;
     gvfs.enable = true;
-    gnome.gnome-keyring.enable = true;
+    # gnome.gnome-keyring.enable = true;
   };
-  programs.ssh.startAgent = true;
+  # programs.ssh.startAgent = true;
 }

@@ -15,6 +15,10 @@
 {
   imports = [./user ./wayland ./common ./steam ./nfs];
 
+  # # Enable the OpenSSH daemon.
+  # services.openssh = {
+  #   enable = true;
+  # };
   # automatic system upgrades
   system.autoUpgrade = {
     enable = true;
