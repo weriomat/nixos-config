@@ -13,6 +13,8 @@
   };
   config = lib.mkIf config.packages.enable {
     environment.systemPackages = with pkgs; [
+      etcher
+      deploy-rs
       # learning git game
       oh-my-git
       prettyping

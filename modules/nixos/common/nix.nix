@@ -61,6 +61,7 @@
       config = {
         permittedInsecurePackages = [
           "electron-17.4.1"
+          "electron-19.1.9"
           "electron-21.4.0"
           "electron-15.5.2"
           "electron-24.8.6"
