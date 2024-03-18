@@ -28,6 +28,8 @@
     # # set list-colors to enable filename colorizing
     # zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
     envExtra = ''
+      # # If not running interactively, don't do anything and return early
+      # [[ -o interactive ]] || exit 0
       # Enable Ctrl+arrow key bindings for word jumping
       bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
       bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
@@ -76,7 +78,7 @@
       gpu = "git pull";
       # lazygit
       gl = "lazygit";
-      # ssh = "TERM=xterm-256color /usr/bin/env ssh";
+      ssh = "TERM=xterm-256color /usr/bin/env ssh";
 
       # format nix flake
       format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
