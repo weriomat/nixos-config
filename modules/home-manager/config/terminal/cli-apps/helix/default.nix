@@ -126,6 +126,12 @@
           normal = "block";
           select = "underline";
         };
+
+        file-picker = {
+          hidden = false;
+          ignore = true;
+          git-ignore = true;
+        };
       };
 
       keys.normal = {
