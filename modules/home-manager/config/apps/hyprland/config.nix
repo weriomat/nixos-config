@@ -8,7 +8,7 @@
       ];
       workspace = [
         "1, monitor: DP-1, default:true, on-created-empty:kitty"
-        "2, monitor: DP-1"
+        "2, monitor: DP-1, on-created-empty:keepassxc"
         "3, monitor: DP-1"
         "4, monitor: DP-1"
         "5, monitor: DP-1"
