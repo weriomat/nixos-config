@@ -27,6 +27,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # deploy-rs
+    # deploy-rs = {
+    #   url = "github:serokell/deploy-rs";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
+    };
+
     # hyprland
     hyprland.url = "github:hyprwm/Hyprland";
     hypr-contrib = {

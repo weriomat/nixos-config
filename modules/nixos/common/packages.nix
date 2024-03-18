@@ -13,6 +13,9 @@
   };
   config = lib.mkIf config.packages.enable {
     environment.systemPackages = with pkgs; [
+      # TODO: check
+      sops
+
       etcher
       deploy-rs
       # learning git game

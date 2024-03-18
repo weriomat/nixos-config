@@ -16,6 +16,9 @@ in
       ./hardware-configuration.nix
       ./hardware-config-add.nix
 
+      # sops
+      inputs.sops-nix.nixosModules.sops
+
       ./ssh.nix
       inputs.home-manager.nixosModules.home-manager
       {
