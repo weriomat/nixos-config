@@ -79,7 +79,7 @@
       # lazygit
       gl = "lazygit";
       ssh = "TERM=xterm-256color /usr/bin/env ssh";
-
+      raspi = "ssh -i ~/.ssh/id_ed25519 -p 2077 marts@192.168.178.21";
       # format nix flake
       format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
       # check nix flake

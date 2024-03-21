@@ -7,6 +7,12 @@ My NixOS Config/ NixDarwin Config
 due to mounting a nfs share, we can not doublemount it -> remove by 
 sudo umount /home/marts/nfs
 
+# NOTE
+interernal ips:
+nixos-host: 192.168.178.180
+nas: 192.168.178.199 oder 192.168.178.198
+piserve: 192.168.178.21
+
 # Nix-colors
 apps not supported are: btop, starship, firefox, gtk
 might be buggy: kitty, helix, waybar

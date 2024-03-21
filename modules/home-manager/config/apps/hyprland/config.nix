@@ -18,10 +18,10 @@
         "9, monitor: DP-3"
         "10, monitor: DP-3"
         "11, monitor: HDMI-A-1, default:true, on-created-empty:cider"
-        "12, monitor: HDMI-A-1"
-        "13, monitor: HDMI-A-1"
-        "14, monitor: HDMI-A-1"
-        "15, monitor: HDMI-A-1"
+        # "12, monitor: HDMI-A-1"
+        # "13, monitor: HDMI-A-1"
+        # "14, monitor: HDMI-A-1"
+        # "15, monitor: HDMI-A-1"
       ];
       env = [
         "XCURSOR_SIZE,24"
