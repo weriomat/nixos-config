@@ -15,6 +15,7 @@
     environment.systemPackages = with pkgs; [
       # TODO: check
       sops
+      powertop
 
       # gnome disk
       gnome.gnome-disk-utility
