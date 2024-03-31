@@ -1,8 +1,14 @@
 {pkgs, ...}: {
   # external 5tb hdd
-  fileSystems."/home/marts/Backup" = {
-    device = "/dev/disk/by-uuid/1ac218ec-352a-46dd-a20f-548040ebb383";
-    fsType = "ext4";
+  fileSystems = {
+    "/home/marts/Backup" = {
+      device = "/dev/disk/by-uuid/1ac218ec-352a-46dd-a20f-548040ebb383";
+      fsType = "ext4";
+    };
+    "/home/marts/Backup_3TB" = {
+      device = "/dev/disk/by-uuid/d65d9c4c-544a-42fa-bc0e-05a7be7d11be";
+      fsType = "ext4";
+    };
   };
 
   # followed guide from https://nixos.wiki/wiki/AMD_GPU
