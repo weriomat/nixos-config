@@ -1,8 +1,24 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  globals,
+  ...
+}: {
   programs = {
     wireshark.enable = true;
     hyprland.enable = true;
     xwayland.enable = true;
+  };
+  services = {
+    printing = {
+      enable = true;
+      drivers = with pkgs; [brlaser brgenml1lpr brgenml1cupswrapper gutenprint gutenprintBin];
+      clientConf =
+        if globals.isWork
+        then "ServerName print.zib.de"
+        else "";
+    };
+    dbus.enable = true;
+    gvfs.enable = true;
   };
 
   # TODO: here https://wiki.hyprland.org/Useful-Utilities/Hyprland-desktop-portal/

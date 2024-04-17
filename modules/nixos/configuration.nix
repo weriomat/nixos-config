@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  globals,
   ...
 }:
 # TODO: gnome polkit
@@ -21,7 +22,10 @@
   # };
   # automatic system upgrades
   system.autoUpgrade = {
-    enable = true;
+    enable =
+      if globals.isWork
+      then false
+      else true;
     flake = inputs.self.outPath;
     flags = [
       "--update-input"
@@ -201,7 +205,10 @@
   # ssd thingie
   services.fstrim.enable = lib.mkDefault true;
 
-  flatpack.enable = true;
+  flatpack.enable =
+    if globals.isWork
+    then false
+    else true;
   system.stateVersion = "23.11";
 }
 # exec-once = "xwaylandvideobridge"

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  globals,
   ...
 }: {
   options.doc = {
@@ -21,7 +22,10 @@
       info.enable = true;
     };
     services.hoogle.enable =
-      lib.mkIf pkgs.stdenv.isLinux
-      true; # -> on 127.0.0.1/8080, only works on linux
+      if globals.isWork
+      then false
+      else
+        (lib.mkIf pkgs.stdenv.isLinux
+          true); # -> on 127.0.0.1/8080, only works on linux
   };
 }

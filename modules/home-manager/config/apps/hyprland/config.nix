@@ -1,19 +1,30 @@
-{config, ...}: {
+{
+  config,
+  globals,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     settings = {
-      monitor = [
-        "DP-1, 2560x1440@144, 1920x0, 1"
-        "DP-3, 1920x1080@240, 0x0, 1"
-        "HDMI-A-1,  1920x1080@60, 4480x0, 1"
-      ];
+      monitor =
+        if globals.isWork
+        then [
+          "eDP-1, 1920x1080@60, 0x0, 1"
+          "DP-3, 1920x1080@60, 1920x0, 1"
+          "DP-4, 1920x1080@60, 3840x0, 1, transform, 3"
+        ]
+        else [
+          "DP-1, 2560x1440@144, 1920x0, 1"
+          "DP-3, 1920x1080@240, 0x0, 1"
+          "HDMI-A-1,  1920x1080@60, 4480x0, 1"
+        ];
       workspace = [
         "1, monitor: DP-1, default:true, on-created-empty:kitty"
         "2, monitor: DP-1, on-created-empty:keepassxc"
-        "3, monitor: DP-1"
-        "4, monitor: DP-1"
+        "3, monitor: DP-1, on-created-empty: pulseaudio"
+        "4, monitor: DP-1, on-created-empty: thunar"
         "5, monitor: DP-1"
         "6, monitor: DP-3, default:true, on-created-empty:firefox"
-        "7, monitor: DP-3"
+        "7, monitor: DP-3, on-created-empty: libreoffice"
         "8, monitor: DP-3"
         "9, monitor: DP-3"
         "10, monitor: DP-3"

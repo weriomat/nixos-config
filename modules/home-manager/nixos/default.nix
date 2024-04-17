@@ -4,7 +4,10 @@
   globals,
   ...
 }: {
-  discord.enable = true;
+  discord.enable =
+    if globals.isWork
+    then true
+    else true;
   firefox.enable = true;
   hyprland.enable =
     if globals.isLaptop
@@ -14,7 +17,10 @@
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home = rec {
-    username = "marts";
+    username =
+      if globals.isWork
+      then "eliasengel"
+      else "marts";
     homeDirectory = "/home/${username}";
     stateVersion = "23.11"; # Has not to be changed
     packages = builtins.attrValues (import ../config/scripts {inherit pkgs;});
