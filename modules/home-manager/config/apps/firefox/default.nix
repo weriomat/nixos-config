@@ -3,6 +3,7 @@
   inputs,
   lib,
   config,
+  globals,
   ...
 }: {
   options.firefox = {
@@ -18,7 +19,7 @@
     home.sessionVariables.BROWSER = "firefox";
     programs.firefox = {
       enable = true;
-      profiles.marts = {
+      profiles.${globals.username} = {
         bookmarks = [
           {
             name = "Home-Manager Wiki";

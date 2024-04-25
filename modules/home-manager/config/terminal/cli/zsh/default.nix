@@ -104,16 +104,14 @@
           # check nix flake
           check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
 
-          test-update = "sudo nixos-rebuild test --flake /home/marts/.nixos/nixos#default";
-          update = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default";
-          updatelap = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop";
-          rebuildlap = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop && format-flake";
+          test-update = "sudo nixos-rebuild test --flake /home/${globals.username}/.nixos/nixos#default";
+          update = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default";
+          updatelap = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#laptop";
+          rebuildlap = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#laptop && format-flake";
           rebuild =
             if pkgs.stdenv.isDarwin
-            # then "check-flake && darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
-            # else "check-flake && sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && format-flake";
             then "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
-            else "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && format-flake";
+            else "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default && format-flake";
         }
       );
     history = {

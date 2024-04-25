@@ -6,11 +6,15 @@
   nix-index-database,
   ...
 }: let
-  globals.isLaptop =
-    false; # global for specifying if hyprland should be enabled
+  globals = {
+    isLaptop =
+      false; # global for specifying if hyprland should be enabled
+    isWork = false;
+    username = "marts";
+  };
 in
   inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs outputs nix-colors;};
+    specialArgs = {inherit inputs outputs nix-colors globals;};
     modules = [
       ../../modules/nixos/configuration.nix
       ./hardware-configuration.nix
@@ -26,12 +30,11 @@ in
           extraSpecialArgs = {inherit inputs outputs nix-colors globals;};
           useUserPackages = true;
           useGlobalPkgs = true;
-          users.marts.imports = [
+          users.${globals.username}.imports = [
             ../../modules/home-manager/nixos
             ../../modules/home-manager
             prism.homeModules.prism
             nix-colors.homeManagerModules.default
-
             nix-index-database.hmModules.nix-index
           ];
         };
