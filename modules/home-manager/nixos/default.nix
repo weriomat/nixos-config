@@ -4,10 +4,7 @@
   globals,
   ...
 }: {
-  discord.enable =
-    if globals.isWork
-    then true
-    else true;
+  discord.enable = true;
   firefox.enable = true;
   hyprland.enable =
     if globals.isLaptop

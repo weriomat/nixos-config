@@ -65,55 +65,43 @@
       }
     '';
 
-    shellAliases =
-      {
-        diff = "diff --color";
+    shellAliases = {
+      diff = "diff --color";
 
-        # grep
-        grep = "grep --color=auto";
-        ga = "git add";
-        gb = "git branch";
-        gc = "git commit -m";
-        gco = "git checkout";
-        gss = "git status -sb";
-        gpp = "git push";
-        gpu = "git pull";
-        # lazygit
-        gl = "lazygit";
-        ssh = "TERM=xterm-256color /usr/bin/env ssh";
+      # grep
+      grep = "grep --color=auto";
+      ga = "git add";
+      gb = "git branch";
+      gc = "git commit -m";
+      gco = "git checkout";
+      gss = "git status -sb";
+      gpp = "git push";
+      gpu = "git pull";
+      # lazygit
+      gl = "lazygit";
+      ssh = "TERM=xterm-256color /usr/bin/env ssh";
 
-        # format nix flake
-        format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
+      # format nix flake
+      format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
 
-        # prettyping to ping default
-        ping = "prettyping";
+      # prettyping to ping default
+      ping = "prettyping";
 
-        # manix fzf
-        ma = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
-      }
-      // (
-        if globals.isWork
-        then {
-          vpn-up = "nmcli c up eaengel@gwvpn01.zib.de";
-          vpn-down = "nmcli c down eaengel@gwvpn01.zib.de";
-          clean-shell = "env -i bash --noprofile";
-          rebuild = "sudo nixos-rebuild switch --flake /home/eliasengel/.nixos/nixos#nixos-engel && format-flake";
-        }
-        else {
-          raspi = "ssh -i ~/.ssh/id_ed25519 -p 2077 marts@192.168.178.21";
-          # check nix flake
-          check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
+      # manix fzf
+      ma = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
+      raspi = "ssh -i ~/.ssh/id_ed25519 -p 2077 marts@192.168.178.21";
+      # check nix flake
+      check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
 
-          test-update = "sudo nixos-rebuild test --flake /home/${globals.username}/.nixos/nixos#default";
-          update = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default";
-          updatelap = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#laptop";
-          rebuildlap = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#laptop && format-flake";
-          rebuild =
-            if pkgs.stdenv.isDarwin
-            then "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
-            else "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default && format-flake";
-        }
-      );
+      test-update = "sudo nixos-rebuild test --flake /home/${globals.username}/.nixos/nixos#default";
+      update = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default";
+      updatelap = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#laptop";
+      rebuildlap = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#laptop && format-flake";
+      rebuild =
+        if pkgs.stdenv.isDarwin
+        then "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
+        else "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default && format-flake";
+    };
     history = {
       size = 1000000;
       path = "${config.xdg.dataHome}/zsh/history";
