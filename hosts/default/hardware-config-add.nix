@@ -13,6 +13,10 @@
       device = "/dev/disk/by-uuid/d65d9c4c-544a-42fa-bc0e-05a7be7d11be";
       fsType = "ext4";
     };
+    "/home/${globals.username}/Backup_1TB" = {
+      device = "/dev/disk/by-uuid/01342007-77d0-4fe5-8804-f8c8f06a2bd7";
+      fsType = "ext4";
+    };
   };
 
   # followed guide from https://nixos.wiki/wiki/AMD_GPU

@@ -17,6 +17,9 @@
       sops
       powertop
       pdfarranger
+      ethtools
+      lm_sensors
+      fanctl
 
       # gnome disk
       gnome.gnome-disk-utility

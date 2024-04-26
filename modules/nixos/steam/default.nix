@@ -1,4 +1,4 @@
-_: {
+{pkgs, ...}: {
   programs.steam = {
     enable = true;
     remotePlay.openFirewall =
@@ -6,4 +6,5 @@ _: {
     dedicatedServer.openFirewall =
       true; # Open ports in the firewall for Source Dedicated Server
   };
+  environment.systemPackages = with pkgs; [lunar-client];
 }

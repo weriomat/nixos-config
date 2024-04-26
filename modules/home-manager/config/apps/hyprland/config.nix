@@ -59,6 +59,8 @@
         "$mainMod, J, togglesplit, # dwindle"
         "$mainMod, Q, exec, wlogout"
 
+        "$mainMod, F, fullscreen, 1"
+        "$mainMod SHIFT, F, fullscreen, 0"
         # kill waybar
         "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
 

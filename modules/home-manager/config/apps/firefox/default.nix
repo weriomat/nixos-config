@@ -62,6 +62,16 @@
             url = "https://github.com/cpu/rust-flake/blob/main/README.md";
           }
           {
+            name = "Grafana - Dashboard";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "dashboard raspi doc";
+                url = "https://github.com/rfmoz/grafana-dashboards";
+              }
+            ];
+          }
+          {
             name = "Rust";
             toolbar = true;
             bookmarks = [
