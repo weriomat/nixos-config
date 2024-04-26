@@ -17,7 +17,7 @@
       sops
       powertop
       pdfarranger
-      ethtools
+      ethtool
       lm_sensors
       fanctl
 
