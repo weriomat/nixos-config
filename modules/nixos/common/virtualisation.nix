@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  globals,
   ...
 }: {
   options.virt = {
@@ -17,7 +18,7 @@
     virtualisation.libvirtd = {
       enable = true;
     };
-    users.users.marts = {
+    users.users.${globals.username} = {
       extraGroups = ["libvirtd"];
     };
   };

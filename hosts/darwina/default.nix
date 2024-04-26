@@ -5,28 +5,30 @@
   prism,
   nix-index-database,
   ...
-}:
-with inputs;
-  nix-darwin.lib.darwinSystem {
-    specialArgs = {inherit inputs nix-colors;};
-    modules = [
-      ../../modules/darwin
-      mac-app-util.darwinModules.default
-      home-manager.darwinModules.home-manager
-      {
-        home-manager = {
-          extraSpecialArgs = {inherit inputs nix-colors;};
-          useGlobalPkgs = true;
-          useUserPackages = true;
-          users.eliasengel.imports = [
-            ../../modules/home-manager/darwin
-            ../../modules/home-manager
-            prism.homeModules.prism # for compatability
-            nix-colors.homeManagerModules.default
-            mac-app-util.homeManagerModules.default
-            nix-index-database.hmModules.nix-index
-          ];
-        };
-      }
-    ];
-  }
+}: let
+  globals.isWork = false;
+in
+  with inputs;
+    nix-darwin.lib.darwinSystem {
+      specialArgs = {inherit inputs nix-colors globals;};
+      modules = [
+        ../../modules/darwin
+        mac-app-util.darwinModules.default
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            extraSpecialArgs = {inherit inputs nix-colors globals;};
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.eliasengel.imports = [
+              ../../modules/home-manager/darwin
+              ../../modules/home-manager
+              prism.homeModules.prism # for compatability
+              nix-colors.homeManagerModules.default
+              mac-app-util.homeManagerModules.default
+              nix-index-database.hmModules.nix-index
+            ];
+          };
+        }
+      ];
+    }

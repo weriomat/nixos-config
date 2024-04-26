@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+_: {
   # programs.git = lib.mkIf pkgs.stdenv.isLinux {
   #   enable = true;
   #   userName = "weriomat";

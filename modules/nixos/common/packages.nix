@@ -16,6 +16,7 @@
       # TODO: check
       sops
       powertop
+      pdfarranger
 
       # gnome disk
       gnome.gnome-disk-utility

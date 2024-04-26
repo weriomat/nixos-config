@@ -1,11 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  globals,
+  ...
+}: {
   # external 5tb hdd
   fileSystems = {
-    "/home/marts/Backup" = {
+    fileSystems."/home/${globals.username}/Backup" = {
       device = "/dev/disk/by-uuid/1ac218ec-352a-46dd-a20f-548040ebb383";
       fsType = "ext4";
     };
-    "/home/marts/Backup_3TB" = {
+    "/home/${globals.username}/Backup_3TB" = {
       device = "/dev/disk/by-uuid/d65d9c4c-544a-42fa-bc0e-05a7be7d11be";
       fsType = "ext4";
     };

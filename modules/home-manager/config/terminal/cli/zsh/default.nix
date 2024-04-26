@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  globals,
   ...
 }: {
   # imports = [ ./config_git.nix ];
@@ -79,28 +80,27 @@
       # lazygit
       gl = "lazygit";
       ssh = "TERM=xterm-256color /usr/bin/env ssh";
-      raspi = "ssh -i ~/.ssh/id_ed25519 -p 2077 marts@192.168.178.21";
+
       # format nix flake
       format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
-      # check nix flake
-      check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
-
-      test-update = "sudo nixos-rebuild test --flake /home/marts/.nixos/nixos#default";
-      update = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default";
-      updatelap = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop";
-      rebuildlap = "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#laptop && format-flake";
-      rebuild =
-        if pkgs.stdenv.isDarwin
-        # then "check-flake && darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
-        # else "check-flake && sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && format-flake";
-        then "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
-        else "sudo nixos-rebuild switch --flake /home/marts/.nixos/nixos#default && format-flake";
 
       # prettyping to ping default
       ping = "prettyping";
 
       # manix fzf
       ma = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
+      raspi = "ssh -i ~/.ssh/id_ed25519 -p 2077 marts@192.168.178.21";
+      # check nix flake
+      check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
+
+      test-update = "sudo nixos-rebuild test --flake /home/${globals.username}/.nixos/nixos#default";
+      update = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default";
+      updatelap = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#laptop";
+      rebuildlap = "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#laptop && format-flake";
+      rebuild =
+        if pkgs.stdenv.isDarwin
+        then "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
+        else "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default && format-flake";
     };
     history = {
       size = 1000000;

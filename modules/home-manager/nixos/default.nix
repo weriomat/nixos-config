@@ -14,10 +14,11 @@
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home = rec {
-    username = "marts";
+    # username = inherit globals.username;
+    inherit (globals) username;
     homeDirectory = "/home/${username}";
     stateVersion = "23.11"; # Has not to be changed
-    packages = builtins.attrValues (import ../config/scripts {inherit pkgs;});
+    packages = builtins.attrValues (import ../config/scripts {inherit pkgs globals;});
   };
 
   # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })

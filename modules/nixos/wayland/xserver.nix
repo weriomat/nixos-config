@@ -1,4 +1,4 @@
-_: {
+{globals, ...}: {
   services = {
     xserver = {
       # Enable the X11 windowing system.
@@ -13,7 +13,7 @@ _: {
         };
         autoLogin = {
           enable = true;
-          user = "marts";
+          user = "${globals.username}";
         };
         sddm.enable = false;
       };
@@ -28,6 +28,5 @@ _: {
 
     dbus.enable = true;
     gvfs.enable = true;
-    # gnome.gnome-keyring.enable = true;
   };
 }

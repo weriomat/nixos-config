@@ -2,6 +2,7 @@
   # janked from cobalt
   # Zsh packages
   home.packages = with pkgs; [
+    cmatrix # -> hacker style
     alejandra
     # -- terminal emulator utils
     tmux
