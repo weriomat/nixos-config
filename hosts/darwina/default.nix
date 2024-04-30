@@ -6,7 +6,10 @@
   nix-index-database,
   ...
 }: let
-  globals.isWork = false;
+  globals = {
+    isWork = false;
+    username = "eliasengel";
+  };
 in
   with inputs;
     nix-darwin.lib.darwinSystem {
