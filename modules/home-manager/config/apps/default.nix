@@ -10,6 +10,7 @@
     ./wlogout
     ./prism
     ./hypr_bundle
+    ./thunderbird
 
     ./discord
     ./kitty
