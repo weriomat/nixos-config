@@ -1013,6 +1013,21 @@
         "type": "gitlab"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1715078704,
+        "narHash": "sha256-7tdLdqmov1ISpjqJo5fs+XThb7+UY5eu+GRWMsEJ4Q8=",
+        "owner": "nix-community",
+        "repo": "nur",
+        "rev": "60f67c69a8af718ba07a88114c3d3b420eb9fdcd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nur",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1075,6 +1090,7 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixpkgs-wayland": "nixpkgs-wayland",
+        "nur": "nur",
         "pre-commit-hooks": "pre-commit-hooks",
         "prism": "prism",
         "rust-overlay": "rust-overlay",
