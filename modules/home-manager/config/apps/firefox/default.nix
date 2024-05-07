@@ -118,6 +118,22 @@
           keepassxc-browser
           return-youtube-dislikes
           user-agent-string-switcher
+
+          # new
+          censor-tracker # https://censortracker.org/en.html
+          consent-o-matic # https://consentomatic.au.dk/
+          dearrow # https://dearrow.ajay.app/
+          deutsch-de-language-pack
+          dictionary-german
+
+          enhanced-github # https://github.com/softvar/enhanced-github
+          foxytab # https://github.com/erosman/support
+          h264ify
+          native-mathml # https://github.com/fred-wang/webextension-native-mathml
+          sponsorblock # https://sponsor.ajay.app/
+          web-archives # https://github.com/dessant/web-archives#readme
+
+          languagetool # https://languagetool.org/
         ];
         search = {
           default = "DuckDuckGo";
