@@ -38,12 +38,21 @@
     };
 
     # hyprland
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      # url = "github:hyprwm/Hyprland";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    };
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprpicker.url = "github:hyprwm/hyprpicker";
+
+    nixpkgs-wayland = {
+      url = "github:nix-community/nixpkgs-wayland";
+      # only needed if you use as a package set:
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # dev
     pre-commit-hooks = {
@@ -75,7 +84,8 @@
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
-    loadPkgs = system: import nixpkgs {inherit system;};
+    loadPkgs = system:
+      import nixpkgs {inherit system;};
     pkgs = loadPkgs system;
   in {
     packages = import ./pkgs {inherit pkgs;};
