@@ -104,7 +104,8 @@
             ];
           }
         ];
-        extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           darkreader
           auto-tab-discard
