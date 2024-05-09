@@ -11,3 +11,6 @@
 10. take a look at https://github.com/hercules-ci/gitignore.nix
 11. take a look at btop gpu options
 12. osx gpg config
+13. 
+
+14. gitlab runner on osx
