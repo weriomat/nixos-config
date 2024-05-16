@@ -11,3 +11,5 @@
 10. take a look at https://github.com/hercules-ci/gitignore.nix
 11. take a look at btop gpu options
 12. osx gpg config
+13. monitors setup https://github.com/Guekka/nixos-server/blob/main/modules/home-manager/monitors.nix
+14. harden nixos https://xeiaso.net/blog/paranoid-nixos-2021-07-18/
