@@ -13,3 +13,4 @@
 12. osx gpg config
 13. monitors setup https://github.com/Guekka/nixos-server/blob/main/modules/home-manager/monitors.nix
 14. harden nixos https://xeiaso.net/blog/paranoid-nixos-2021-07-18/
+15. gitlab runner on osx
