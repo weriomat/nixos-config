@@ -19,7 +19,10 @@
       # networking.firewall.allowedTCPPorts = [ ... ];
       # networking.firewall.allowedUDPPorts = [ ... ];
       # Or disable the firewall altogether.
-      firewall.enable = true;
+      firewall = {
+        enable = true;
+        checkReversePath = "loose";
+      };
 
       # wireless.enable = true; # Enables wireless support via wpa_supplicant.
 

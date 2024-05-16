@@ -1,9 +1,10 @@
-{...}: {
+_: {
   services.languagetool = {
+    # dont forget to swtich to local server in firefox
     enable = true;
     port = 8081;
     public = false;
-    allowOrigin = null;
+    allowOrigin = "*";
     settings = {
       # fasttextModel
       # fasttextBinary
