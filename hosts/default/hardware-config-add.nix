@@ -3,8 +3,8 @@
   globals,
   ...
 }: {
-  # external 5tb hdd
   fileSystems = {
+    # external 5tb hdd
     "/home/${globals.username}/Backup" = {
       device = "/dev/disk/by-uuid/1ac218ec-352a-46dd-a20f-548040ebb383";
       fsType = "ext4";
@@ -15,6 +15,10 @@
     };
     "/home/${globals.username}/Backup_1TB" = {
       device = "/dev/disk/by-uuid/01342007-77d0-4fe5-8804-f8c8f06a2bd7";
+      fsType = "ext4";
+    };
+    "/home/${globals.username}/Backup_1TB_SSD" = {
+      device = "/dev/disk/by-uuid/f839677a-a943-45a6-9cf9-49ae971975e5";
       fsType = "ext4";
     };
   };
