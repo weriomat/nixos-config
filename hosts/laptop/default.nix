@@ -20,6 +20,7 @@ in
       ./hardware-configuration-add.nix
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-l13
       inputs.home-manager.nixosModules.home-manager
+      inputs.sops-nix.nixosModules.sops
       {
         home-manager = {
           extraSpecialArgs = {inherit inputs outputs nix-colors globals;};

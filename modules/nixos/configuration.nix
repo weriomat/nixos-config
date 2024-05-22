@@ -13,7 +13,15 @@
 # TODO: hyprland fix hyprland setup -> vimjoyer video
 # TODO: cloudflare dns
 {
-  imports = [./user ./wayland ./common ./steam ./nfs];
+  imports = [
+    ./user
+    ./wayland
+    ./common
+    ./steam
+    ./nfs
+    # ./borg.nix
+    ./sops.nix
+  ];
 
   # # Enable the OpenSSH daemon.
   # services.openssh = {
