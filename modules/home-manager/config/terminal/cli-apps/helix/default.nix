@@ -25,7 +25,8 @@
     nodePackages.bash-language-server # bash
     nodePackages.vls # vuejs
     # haskell-language-server # haskell
-    rust-analyzer # rust
+    # rust-analyzer # rust
+    clippy
     nil # nix
 
     yaml-language-server # yaml
@@ -40,37 +41,82 @@
     enable = true;
     defaultEditor = true;
     languages = {
-      language-server.texlab = {
-        auxDirectory = "auz";
-        chktex = {
-          onOpenAndSave = true;
-          onEdit = true;
-        };
-        forwardSearch = {
-          executable = "okular";
-          args = ["--unique" "file:%p#src:%l%f"];
-        };
+      language-server = {
+        rust-analyzer = {
+          # stolen from https://github.com/poliorcetics/dotfiles/blob/main/home/helix/languages.nix
+          # assist.importGranularity = "module";
+          # cargo.extraEnv."CARGO_TARGET_DIR" = "${config.xdg.cacheHome}/rust-analyzer-target-dir";
+          check.command = "clippy";
+          completion.fullFunctionSignatures.enable = true;
+          hover.actions.references.enable = true;
+          # lens.references = {
+          #   adt.enable = true;
+          #   enumVariant.enable = true;
+          #   method.enable = true;
+          #   trait.enable = true;
+          # };
 
-        build = {
-          forwardSearchAfter = true;
-          onSave = true;
+          inlayHints = {
+            closingBraceHints.minLines = 10;
+            closureReturnTypeHints.enable = "with_block";
+            discriminantHints.enable = "fieldless";
+            lifetimeElisionHints.enable = "skip_trivial";
+            # typeHints.hideClosureInitialization = false;
+            # Reborrows and such
+            expressionAdjustmentHints = {
+              enable = "never";
+              hideOutsideUnsafe = false;
+              mode = "prefer_prefix";
+            };
+          };
 
-          executable = "latexmk";
-          args = [
-            "-pdf"
-            "-interaction=nonstopmode"
-            "-synctex=1"
-            "-shell-escape"
-            "-output-directory=build"
-            "%f"
-          ];
+          # I have beefy machines, let's use them
+          lruCapacity = 256;
+          workspace.symbol.search = {
+            limit = 128;
+            kind = "all_symbols";
+            scope = "workspace";
+          };
+
+          # diagnostics.disabled = [
+          #   "inactive-code"
+          #   "inactive_code"
+          #   "unresolved-proc-macro"
+          #   "unresolved_proc_macro"
+          # ];
         };
-        language-server.ruff = {
+        ruff = {
           command = "ruff-lsp";
           config.settings = {args = ["--ignore" "E501"];};
         };
-        langugage-server.pyright.config.analysis = {
+        pyright.config.analysis = {
           typeCheckingMode = "basic";
+        };
+        texlab = {
+          auxDirectory = "auz";
+          chktex = {
+            onOpenAndSave = true;
+            onEdit = true;
+          };
+          forwardSearch = {
+            executable = "okular";
+            args = ["--unique" "file:%p#src:%l%f"];
+          };
+
+          build = {
+            forwardSearchAfter = true;
+            onSave = true;
+
+            executable = "latexmk";
+            args = [
+              "-pdf"
+              "-interaction=nonstopmode"
+              "-synctex=1"
+              "-shell-escape"
+              "-output-directory=build"
+              "%f"
+            ];
+          };
         };
       };
 
@@ -120,7 +166,10 @@
 
         # idle timeout
         idle-timeout = 5;
-        lsp = {display-messages = true;};
+        lsp = {
+          display-messages = true;
+          display-inlay-hints = true;
+        };
         cursor-shape = {
           insert = "bar";
           normal = "block";
@@ -141,5 +190,11 @@
         "}" = "goto_next_paragraph";
       };
     };
+    # themes.catppuccin_mocha = {
+    #   "ui.virtual.inlay-hint" = {
+    #     fg = "#bac2de";
+    #     bg = "#cba6f7";
+    #   };
+    # };
   };
 }
