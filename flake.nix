@@ -122,10 +122,6 @@
           deadnix.enable = true;
           statix.enable = true;
           nil.enable = true;
-          flake-checker = {
-            enable = true;
-            pass_filenames = true;
-          };
         };
       };
     };
