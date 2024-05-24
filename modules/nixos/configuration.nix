@@ -19,7 +19,7 @@
     ./common
     ./steam
     ./nfs
-    # ./borg.nix
+    ./borg.nix
     ./sops.nix
   ];
 

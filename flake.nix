@@ -78,6 +78,7 @@
     nixpkgs,
     nix-colors,
     prism,
+    sops-nix,
     pre-commit-hooks,
     nix-index-database,
     ...

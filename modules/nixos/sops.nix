@@ -6,7 +6,7 @@
     age.keyFile = "/home/marts/.config/sops/age/keys.txt";
 
     secrets.borg-key = {
-      owner = "marts";
+      # owner = "marts";
     };
   };
 }
