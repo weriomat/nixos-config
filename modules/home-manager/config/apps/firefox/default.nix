@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   lib,
   config,
   globals,
@@ -15,7 +14,7 @@
   };
   config = lib.mkIf config.firefox.enable {
     # TODO: add arkenfox/user.js to config
-    # firefox config -> vimjoyer video
+    # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
     home.sessionVariables.BROWSER = "firefox";
     programs.firefox = {
       enable = true;
@@ -134,7 +133,11 @@
           sponsorblock # https://sponsor.ajay.app/
           web-archives # https://github.com/dessant/web-archives#readme
 
-          languagetool # https://languagetool.org/
+          buster-captcha-solver # https://github.com/dessant/buster#readme
+          # bypass-paywalls-clean # https://twitter.com/Magnolia1234B
+          vimium # https://github.com/philc/vimium
+
+          languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
         ];
         search = {
           default = "DuckDuckGo";

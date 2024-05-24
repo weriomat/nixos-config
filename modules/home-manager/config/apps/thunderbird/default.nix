@@ -26,11 +26,11 @@
           useStartTls = true;
         };
       };
-      gpg = {
-        encryptByDefault = true;
-        key = "0x008F5FA7F0C2803D";
-        signByDefault = true;
-      };
+      # gpg = {
+      #   encryptByDefault = true;
+      #   key = "0x008F5FA7F0C2803D";
+      #   signByDefault = true;
+      # };
       thunderbird = {
         enable = true;
         # perIdentitySettings = {};
