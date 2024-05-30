@@ -18,6 +18,7 @@ _: {
       "osx-cross/arm"
       "osx-cross/avr"
       "qmk/qmk"
+      "borgbackup/tap"
     ];
     brews = [
       "trash" # Delete files and folders to trash instead of rm
@@ -35,6 +36,7 @@ _: {
       "qmk/qmk/qmk"
       "avrdude"
       "screenresolution"
+      "borgbackup/tap/borgbackup-fuse"
     ];
     casks = [
       # "scroll-reverser" # Different scroll style for mouse vs. trackpad
@@ -47,6 +49,8 @@ _: {
       "qmk-toolbox"
       "skim"
       "wireshark-chmodbpf"
+      # "vorta"
+      "macfuse"
       # "qmk-toolbox"
     ];
   };
