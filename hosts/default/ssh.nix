@@ -34,7 +34,7 @@
       git = {
         enable = true;
         userName = "weriomat";
-        userEmail = "eliasaengel@gmail.com";
+        userEmail = "engel@weriomat.com";
         lfs.enable = true;
         extraConfig = {
           safe.directory = "*";
@@ -61,6 +61,7 @@
         matchBlocks = let
           tu_key = "/home/${globals.username}/.ssh/tu-gitlab.pub";
           raspi_key = "/home/${globals.username}/.ssh/id_ed25519.pub";
+          hetzner_key = "/home/${globals.username}/.ssh/deploy_hetzner";
         in {
           "github.com" = {user = "git";};
           "git.tu-berlin.de" = {
@@ -70,6 +71,18 @@
           "192.168.178.21" = {
             user = "marts";
             identityFile = raspi_key;
+          };
+          storage = {
+            user = "u406968";
+            hostname = "u406968.your-storagebox.de";
+            port = 23;
+            identityFile = hetzner_key;
+          };
+          server = {
+            user = "root";
+            hostname = "49.13.52.45";
+            port = 2077;
+            identityFile = hetzner_key;
           };
         };
       };
