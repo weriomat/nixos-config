@@ -16,6 +16,7 @@ in
       specialArgs = {inherit inputs nix-colors globals;};
       modules = [
         ../../modules/darwin
+        ./ssh.nix
         mac-app-util.darwinModules.default
         home-manager.darwinModules.home-manager
         {
