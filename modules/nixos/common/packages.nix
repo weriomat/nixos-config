@@ -25,7 +25,6 @@
       gnome.gnome-disk-utility
 
       etcher
-      deploy-rs
       # learning git game
       oh-my-git
       prettyping
