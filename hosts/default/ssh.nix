@@ -60,7 +60,7 @@
 
         matchBlocks = let
           tu_key = "/home/${globals.username}/.ssh/tu-gitlab.pub";
-          raspi_key = "/home/${globals.username}/.ssh/id_ed25519.pub";
+          raspi_key = "/home/${globals.username}/.ssh/id_ed25519";
           hetzner_key = "/home/${globals.username}/.ssh/deploy_hetzner";
         in {
           "github.com" = {user = "git";};
@@ -68,9 +68,11 @@
             user = "git";
             identityFile = tu_key;
           };
-          "192.168.178.21" = {
+          raspi = {
+            hostname = "192.168.178.21";
             user = "marts";
             identityFile = raspi_key;
+            port = 2077;
           };
           storage = {
             user = "u406968";
