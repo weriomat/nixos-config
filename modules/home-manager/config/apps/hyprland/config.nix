@@ -9,7 +9,7 @@
       workspace = [
         "1, monitor: DP-1, default:true, on-created-empty:kitty"
         "2, monitor: DP-1, on-created-empty:keepassxc"
-        "3, monitor: DP-1, on-created-empty: pulseaudio"
+        "3, monitor: DP-1, on-created-empty: vorta"
         "4, monitor: DP-1, on-created-empty: thunar"
         "5, monitor: DP-1"
         "6, monitor: DP-3, default:true, on-created-empty:firefox"
