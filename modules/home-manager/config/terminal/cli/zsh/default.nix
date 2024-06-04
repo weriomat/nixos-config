@@ -9,7 +9,8 @@
     enable = true;
     autocd = true;
     enableCompletion = true;
-    enableAutosuggestions = true;
+    # enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     # TODO: fix vi keysbindings
     # Improved vim bindings.

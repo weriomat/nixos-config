@@ -20,7 +20,7 @@
       polkit_gnome
 
       # graphical
-      gnome.gnome-todo
+      endeavour
       gnome.gnome-calendar
       gnome.gnome-control-center
       xfce.thunar

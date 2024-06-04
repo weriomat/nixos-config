@@ -24,7 +24,9 @@
       # gnome disk
       gnome.gnome-disk-utility
 
-      etcher
+      # unsave version of electron
+      # etcher
+
       # learning git game
       oh-my-git
       prettyping
@@ -40,7 +42,7 @@
       wget
 
       # nix
-      nixfmt
+      nixfmt-classic
       nixpkgs-fmt
       nixpkgs-lint
       statix
