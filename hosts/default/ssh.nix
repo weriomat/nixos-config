@@ -81,7 +81,7 @@
             identityFile = hetzner_key;
           };
           server = {
-            user = "root";
+            user = "marts";
             hostname = "49.13.52.45";
             port = 2077;
             identityFile = hetzner_key;
