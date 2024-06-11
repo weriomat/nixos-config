@@ -1,6 +1,7 @@
 {
   inputs,
   lib,
+  pkgs,
   ...
 }:
 # TODO: gnome polkit
@@ -23,10 +24,11 @@
     ./sops.nix
   ];
 
-  # # Enable the OpenSSH daemon.
-  # services.openssh = {
-  #   enable = true;
-  # };
+  environment = {
+    systemPackages = with pkgs; [nh];
+    sessionVariables = {FLAKE = "/home/marts/.nixos/nixos";};
+  };
+
   # automatic system upgrades
   system.autoUpgrade = {
     enable = true;
