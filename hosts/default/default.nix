@@ -21,11 +21,11 @@ in
       ../../modules/nixos/configuration.nix
       ./hardware-configuration.nix
       ./config.nix
+      ./ssh.nix
 
       # sops
       inputs.sops-nix.nixosModules.sops
 
-      ./ssh.nix
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager = {
