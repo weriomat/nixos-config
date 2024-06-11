@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  globals,
   ...
 }: {
   options.networking = {
@@ -13,7 +14,7 @@
   config = lib.mkIf config.networking.enable {
     networking = {
       networkmanager.enable = true;
-      hostName = "nixos";
+      hostName = "${globals.hostname}";
 
       # Open ports in the firewall.
       # networking.firewall.allowedTCPPorts = [ ... ];

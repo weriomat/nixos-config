@@ -11,6 +11,8 @@
       false; # global for specifying if hyprland should be enabled
     isWork = false;
     username = "marts";
+    host = "desktop";
+    hostname = "nixos";
   };
 in
   inputs.nixpkgs.lib.nixosSystem {
