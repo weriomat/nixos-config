@@ -1,5 +1,6 @@
 {
   config,
+  globals,
   custom ? {
     font = "JetBrainsMono Nerd Font";
     fontsize = "12";
@@ -60,11 +61,26 @@
         background-size: 200% 200%;
     }
 
-    #tray, #pulseaudio, #network, #cpu, #memory, #disk,
+    #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk,
     #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward{
         background: #${custom.palette.tertiary_background_hex};
         font-weight: bold;
         margin: 5px 0px;
+    }
+
+    #battery {
+        color:#${custom.tertiary_accent};
+        border-radius: 0px 0 0px 0px;
+        padding-left: 9px;
+        padding-right: 9px;
+    }
+
+    #battery.critical:not(.charging) {
+        animation-name: blink;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
     }
 
     #cpu {

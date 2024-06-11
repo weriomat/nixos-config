@@ -13,6 +13,7 @@
     username = "marts";
     host = "desktop";
     hostname = "nixos";
+    laptop = false;
   };
 in
   inputs.nixpkgs.lib.nixosSystem {

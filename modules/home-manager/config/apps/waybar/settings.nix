@@ -1,4 +1,4 @@
-_: {
+{globals, ...}: {
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";
@@ -14,7 +14,10 @@ _: {
       "custom/playerctl#forward"
     ];
     modules-center = ["hyprland/workspaces"];
-    modules-right = ["tray" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
+    modules-right =
+      if globals.laptop
+      then ["tray" "cpu" "battery" "memory" "disk" "pulseaudio" "network" "clock"]
+      else ["tray" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
     clock = {
       format = " {:%H:%M}";
       tooltip = "true";
@@ -22,6 +25,45 @@ _: {
         <big>{:%Y %B}</big>
         <tt><small>{calendar}</small></tt>'';
       format-alt = " {:%d/%m}";
+    };
+
+    battery = {
+      states = {
+        warning = 30;
+        critical = 15;
+      };
+      format = ''<span color="#fab387">{icon}</span> {capacity}%'';
+      format-charging = ''<span color="#a6e3a1">{icon}/span> {capacity}%'';
+      format-warning = ''<span color="#a6e3a1"></span> {capacity}%'';
+      format-full = "Charged ";
+      format-icons = {
+        "charging" = [
+          "󰢜"
+          "󰂆"
+          "󰂇"
+          "󰂈"
+          "󰢝"
+          "󰂉"
+          "󰢞"
+          "󰂊"
+          "󰂋"
+          "󰂅"
+        ];
+        "default" = [
+          "󰁺"
+          "󰁻"
+          "󰁼"
+          "󰁽"
+          "󰁾"
+          "󰁿"
+          "󰂀"
+          "󰂁"
+          "󰂂"
+          "󰁹"
+        ];
+      };
+      # max-length = 25;
+      tooltip = false;
     };
 
     # TODO: here
@@ -116,7 +158,10 @@ _: {
       interval = 2;
     };
     disk = {
-      # path = "/";
+      path =
+        if globals.laptop
+        then "/home"
+        else "/";
       format = "󰋊 {percentage_used}%";
       interval = 60;
     };
