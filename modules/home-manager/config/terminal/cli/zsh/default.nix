@@ -104,7 +104,7 @@
         else "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default && format-flake";
     };
     history = {
-      size = 1000000;
+      size = 10000000;
       path = "${config.xdg.dataHome}/zsh/history";
       ignoreDups = true;
       ignoreSpace = true;

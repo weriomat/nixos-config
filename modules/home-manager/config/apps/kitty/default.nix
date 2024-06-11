@@ -26,7 +26,7 @@
       cursor_blink_interval = "1.0";
       cursor_stop_blinking_after = "15.0";
 
-      scrollback_lines = 5000;
+      scrollback_lines = 500000;
       # Colors (adapted from: https://github.com/kdrag0n/base16-kitty/blob/master/templates/default-256.mustache)
       # background = "#${config.colorScheme.palette.base00}";
       # foreground = "#${config.colorScheme.palette.base05}";
