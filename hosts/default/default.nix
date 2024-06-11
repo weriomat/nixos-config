@@ -20,7 +20,7 @@ in
     modules = [
       ../../modules/nixos/configuration.nix
       ./hardware-configuration.nix
-      ./hardware-config-add.nix
+      ./config.nix
 
       # sops
       inputs.sops-nix.nixosModules.sops

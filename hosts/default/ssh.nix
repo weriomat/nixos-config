@@ -12,8 +12,6 @@
   };
 
   programs.ssh = {
-    # enableAskPassword = true;
-    # askPassword = "${pkgs.plasma5Packages.ksshaskpass}/bin/ksshaskpass";
     startAgent = false;
   };
 
