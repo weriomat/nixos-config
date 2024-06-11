@@ -1,4 +1,5 @@
 {lib, ...}: {
+  # TODO: zfs mail
   services = {
     zfs = {
       trim.enable = true;
@@ -12,4 +13,14 @@
     };
   };
   networking.hostId = "fb363d05";
+  # home-manager.users.${globals.username}.monitors = [
+  #   {
+  #     name = "eDP-1";
+  #     width = 1929;
+  #     height = 1200;
+  #     x = 0;
+  #     workspace = "1";
+  #     primary = true;
+  #   }
+  # ];
 }

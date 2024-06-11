@@ -62,12 +62,19 @@
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/eef07fd7-9b9d-436a-bd0c-ccc19050a396";
-    fsType = "ext4";
-  };
-
   fileSystems = {
+    # nvme
+    "/" = {
+      device = "/dev/disk/by-uuid/eef07fd7-9b9d-436a-bd0c-ccc19050a396";
+      fsType = "ext4";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/1AD7-2778";
+      fsType = "vfat";
+    };
+
+    # other
+
     # external 5tb hdd
     "/home/${globals.username}/Backup" = {
       device = "/dev/disk/by-uuid/1ac218ec-352a-46dd-a20f-548040ebb383";
@@ -85,11 +92,6 @@
       device = "/dev/disk/by-uuid/f839677a-a943-45a6-9cf9-49ae971975e5";
       fsType = "ext4";
     };
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/1AD7-2778";
-    fsType = "vfat";
   };
 
   swapDevices = [{device = "/dev/disk/by-uuid/1631adfb-0d13-4a18-8ee5-ae0697077df4";}];

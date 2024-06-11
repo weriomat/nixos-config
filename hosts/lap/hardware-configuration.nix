@@ -12,17 +12,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  # home-manager.users.${globals.username}.monitors = [
-  #   {
-  #     name = "eDP-1";
-  #     width = 1929;
-  #     height = 1200;
-  #     x = 0;
-  #     workspace = "1";
-  #     primary = true;
-  #   }
-  # ];
-
   boot = {
     # Bootloader.
     loader = {
@@ -43,29 +32,27 @@
     binfmt.emulatedSystems = ["aarch64-linux"];
   };
 
-  fileSystems."/" = {
-    device = "rpool/root";
-    fsType = "zfs";
-  };
-
-  fileSystems."/home" = {
-    device = "rpool/home";
-    fsType = "zfs";
-  };
-
-  fileSystems."/nix" = {
-    device = "rpool/nix";
-    fsType = "zfs";
-  };
-
-  fileSystems."/var" = {
-    device = "rpool/var";
-    fsType = "zfs";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/9152-FBB4";
-    fsType = "vfat";
+  fileSystems = {
+    "/" = {
+      device = "rpool/root";
+      fsType = "zfs";
+    };
+    "/home" = {
+      device = "rpool/home";
+      fsType = "zfs";
+    };
+    "/nix" = {
+      device = "rpool/nix";
+      fsType = "zfs";
+    };
+    "/var" = {
+      device = "rpool/var";
+      fsType = "zfs";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/9152-FBB4";
+      fsType = "vfat";
+    };
   };
 
   swapDevices = [

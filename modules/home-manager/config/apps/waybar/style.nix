@@ -1,6 +1,5 @@
 {
   config,
-  globals,
   custom ? {
     font = "JetBrainsMono Nerd Font";
     fontsize = "12";
