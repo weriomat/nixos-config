@@ -26,12 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # deploy-rs
-    # deploy-rs = {
-    #   url = "github:serokell/deploy-rs";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs-stable.follows = "nixpkgs";
@@ -94,7 +88,7 @@
     # Full system build for x86
     nixosConfigurations = {
       default = import ./hosts/default {inherit inputs outputs nix-colors prism nix-index-database;};
-      laptop = import ./hosts/laptop {inherit inputs outputs nix-colors prism nix-index-database;};
+      nixos-laptop = import ./hosts/lap {inherit inputs outputs nix-colors prism nix-index-database;};
     };
 
     # Full hm build for aarch64
