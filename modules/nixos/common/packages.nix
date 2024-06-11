@@ -21,6 +21,8 @@
       lm_sensors
       fanctl
 
+      pdfarranger
+
       # gnome disk
       gnome.gnome-disk-utility
 
