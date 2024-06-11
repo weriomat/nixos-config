@@ -22,8 +22,9 @@
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod"];
       kernelModules = [];
-      luks.devices = {
-        "luks-rpool-nvme-Samsung_SSD_990_PRO_2TB_S7DNNU0X417249D-part2".device = "/dev/disk/by-id/nvme-Samsung_SSD_990_PRO_2TB_S7DNNU0X417249D-part2";
+      luks = {
+        devices."luks-rpool-nvme-Samsung_SSD_990_PRO_2TB_S7DNNU0X417249D-part2".device = "/dev/disk/by-uuid/47848e3e-66c6-43e6-a878-096b608c098d";
+        devices."swapDevice".device = "/dev/disk/by-uuid/de8dd340-6c95-471a-9394-db5bef325386";
       };
     };
     kernelModules = ["kvm-amd"];
@@ -56,7 +57,7 @@
   };
 
   swapDevices = [
-    {device = "/dev/disk/by-uuid/bd1a51f1-5159-4d0a-a128-1d22211c16ff";}
+    {device = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8";}
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
