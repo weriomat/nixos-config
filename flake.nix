@@ -87,7 +87,7 @@
 
     # Full system build for x86
     nixosConfigurations = {
-      default = import ./hosts/default {inherit inputs outputs nix-colors prism nix-index-database;};
+      nixos = import ./hosts/default {inherit inputs outputs nix-colors prism nix-index-database;};
       nixos-laptop = import ./hosts/lap {inherit inputs outputs nix-colors prism nix-index-database;};
     };
 
