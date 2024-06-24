@@ -56,6 +56,7 @@
         "/home/marts/Backup_1TB"
         "/home/marts/Backup_local"
         "/home/marts/Serien_Teil8"
+        "/home/marts/Backup_1TB_SSD/not_borg"
         "/var/lib/systemd/pstore"
         "/var/lib/machines"
         "/var/lib/portables"
