@@ -275,7 +275,7 @@
 
       master = {
         # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-        new_is_master = true;
+        # new_is_master = true;
         special_scale_factor = 1;
         no_gaps_when_only = false;
       };
