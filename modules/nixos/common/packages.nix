@@ -13,6 +13,7 @@
   };
   config = lib.mkIf config.packages.enable {
     environment.systemPackages = with pkgs; [
+      mermaid-cli
       # TODO: check
       sops
       powertop
