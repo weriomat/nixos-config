@@ -62,6 +62,11 @@
           hetzner_key = "/home/${globals.username}/.ssh/deploy_hetzner";
         in {
           "github.com" = {user = "git";};
+          "gitlab.cobalt.rocks" = {
+            port = 3724;
+            user = "git";
+            identityFile = raspi_key;
+          };
           "git.tu-berlin.de" = {
             user = "git";
             identityFile = tu_key;
