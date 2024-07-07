@@ -142,6 +142,14 @@
         search = {
           default = "DuckDuckGo";
           engines = {
+            "Crates" = {
+              urls = [
+                {
+                  template = "https://crates.io/";
+                }
+              ];
+              definedAliases = ["@c"];
+            };
             "Nix Packages" = {
               urls = [
                 {
