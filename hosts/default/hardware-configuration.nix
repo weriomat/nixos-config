@@ -55,7 +55,7 @@
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-      systemd-boot.configurationLimit = 100;
+      systemd-boot.configurationLimit = 50;
     };
 
     # support for building nix packages for rp4
