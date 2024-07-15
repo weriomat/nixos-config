@@ -2,7 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  # globals,
+  pkgs,
   config,
   lib,
   modulesPath,
@@ -29,8 +29,12 @@
     };
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
+
     # support for building nix packages for rp4
     binfmt.emulatedSystems = ["aarch64-linux"];
+
+    # newer kernel cuz wlan driver crashes cuz of aspm
+    kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
   };
 
   fileSystems = {
