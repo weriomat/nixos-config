@@ -3,6 +3,7 @@
     doInit = lib.mkForce false;
 
     exclude = lib.mkForce [
+      "/home/marts/Backup_1TB_SSD/not_borg"
       "/home/marts/Backup_1TB_SSD/lost+found"
       "/home/marts/test/tee"
       "/home/marts/test/Schule/.journal"
