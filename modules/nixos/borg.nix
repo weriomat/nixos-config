@@ -22,6 +22,7 @@
       compression = "lz4";
       startAt = "daily";
       archiveBaseName = "${config.networking.hostName}-hetzner";
+
       paths = [
         "/var/lib"
         "/home/${globals.username}"

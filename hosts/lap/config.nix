@@ -10,7 +10,7 @@
 
     borgbackup.jobs."hetzner" = {
       doInit = lib.mkForce false;
-      exclude = [];
+      # exclude = [];
     };
   };
   networking.hostId = "fb363d05";
