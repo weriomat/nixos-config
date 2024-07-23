@@ -2,6 +2,7 @@
   services.borgbackup.jobs."hetzner" = {
     doInit = lib.mkForce false;
 
+    # TODO: learn how to update the attrset
     exclude = lib.mkForce [
       "/home/marts/Backup_1TB_SSD/not_borg"
       "/home/marts/Backup_1TB_SSD/lost+found"

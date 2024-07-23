@@ -7,8 +7,9 @@
     };
     # i think hardened kernel bug
     logrotate.checkConfig = false;
+
     borgbackup.jobs."hetzner" = {
-      doInit = lib.mkForce true;
+      doInit = lib.mkForce false;
       exclude = [];
     };
   };
