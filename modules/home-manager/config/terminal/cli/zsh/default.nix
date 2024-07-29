@@ -102,6 +102,9 @@
         if pkgs.stdenv.isDarwin
         then "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4 && format-flake"
         else "sudo nixos-rebuild switch --flake /home/${globals.username}/.nixos/nixos#default && format-flake";
+
+      # nix shell
+      nd = "nix develop -c zsh";
     };
     history = {
       size = 10000000;
