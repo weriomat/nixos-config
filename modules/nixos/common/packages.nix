@@ -13,6 +13,7 @@
   };
   config = lib.mkIf config.packages.enable {
     environment.systemPackages = with pkgs; [
+      bc
       mermaid-cli
       # TODO: check
       sops
