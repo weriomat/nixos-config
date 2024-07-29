@@ -1,15 +1,12 @@
 {
-  pkgs,
   config,
   globals,
   ...
 }: {
-  # imports = [ ./config_git.nix ];
   programs.zsh = {
     enable = true;
     autocd = true;
     enableCompletion = true;
-    # enableAutosuggestions = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     # TODO: fix vi keysbindings
