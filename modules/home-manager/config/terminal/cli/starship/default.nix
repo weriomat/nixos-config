@@ -20,7 +20,9 @@
           then ''
             $cmd_duration$hostname$memory_usage$jobs$status$os$container$battery$time
           ''
-          else "";
+          else ''
+            $cmd_duration$hostname$memory_usage$jobs$status$os$container$time
+          '';
 
         cmd_duration =
           if globals.laptop
