@@ -27,6 +27,7 @@
   environment = {
     systemPackages = with pkgs; [nh];
     sessionVariables = {FLAKE = "/home/marts/.nixos/nixos";};
+    pathsToLink = ["/share/zsh"]; # for zsh.enableCompletion
   };
 
   # automatic system upgrades
