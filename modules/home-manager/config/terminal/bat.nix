@@ -2,8 +2,7 @@
   programs.bat = {
     enable = true;
     config = {
-      # TODO: here
-      # theme = "";
+      theme = "catppuccin";
     };
     # TODO: here use them
     extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch prettybat]; # missing batpipe
@@ -11,12 +10,12 @@
     # see: https://packagecontrol.io
     syntaxes = {};
     themes = {
-      cattpuccin = {
+      catppuccin = {
         src = pkgs.fetchFromGitHub {
           owner = "catppuccin";
           repo = "bat";
           rev = "d3feec47b16a8e99eabb34cdfbaa115541d374fc";
-          sha256 = "";
+          sha256 = "sha256-s0CHTihXlBMCKmbBBb8dUhfgOOQu9PBCQ+uviy7o47w=";
         };
         file = "themes/Catppuccin Mocha.tmTheme";
       };
@@ -25,19 +24,21 @@
 
   # aliases
   programs.zsh = {
-    # bat as man previewer
-    # TODO: set batman as man pagae wieverw
-    # TODO: set color theme
-    # envExtra = ''
-    #   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-    # '';
     shellAliases = {
       cat = "bat";
+      man = "batman";
       # seach for files with preview
       # fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 
       # diff for git
       gdiff = "git diff --name-only --relative --diff-filter=d | xargs bat --diff";
+
+      # open file in helix
+      ho = "hx $(fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')";
+
+      # kill a process
+      # kp = "kill -9 **";
+      kp = "ps aux | fzf | awk '{print$2}' | xargs kill PID";
     };
   };
 }
