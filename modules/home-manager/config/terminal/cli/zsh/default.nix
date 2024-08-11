@@ -26,8 +26,6 @@
       # set list-colors to enable filename colorizing
       zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
 
-
-
       # Man without options will use fzf to select a page
       zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
