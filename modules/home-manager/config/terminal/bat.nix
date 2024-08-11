@@ -4,11 +4,13 @@
     config = {
       theme = "catppuccin";
     };
-    # TODO: here use them
+
     extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch prettybat]; # missing batpipe
+
     # for highliting if something fales
     # see: https://packagecontrol.io
     syntaxes = {};
+
     themes = {
       catppuccin = {
         src = pkgs.fetchFromGitHub {
