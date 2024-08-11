@@ -18,6 +18,34 @@
     '';
   };
 
+  fh = pkgs.writeShellApplication {
+    name = "fh";
+    runtimeInputs = with pkgs; [sqlite coreutils fzf gnugrep gawkInteractive gnused];
+    text = ''
+      #!/usr/bin/env bash
+      # query all of your firefox history by visit date, title or url
+      # idea from https://junegunn.kr/2015/04/browsing-chrome-history-with-fzf/
+      # from https://github.com/Aloxaf/fzf-tab/tree/7fed01afba9392b6392408b9a0cf888522ed7a10/modules
+
+      sep='{::}'
+
+      cp ~/.mozilla/firefox/*/places.sqlite /tmp
+
+      sqlite3 -separator $sep /tmp/places.sqlite \
+        '
+        SELECT datetime(v.visit_date/1000000), p.title, p.url FROM moz_places p
+        JOIN moz_historyvisits v ON p.id = v.place_id
+        GROUP BY p.url
+        ORDER BY last_visit_date DESC
+        ' |
+      awk -F $sep '{printf "%s  \x1b[36m%s  \x1b[m%s\n", $1, $2, $3}' |
+      sed -E 's/\x1b\[[0-9;]+m  //g' |
+      fzf --ansi --multi |
+      grep -oP 'https?://.*$' |
+      xargs firefox
+    '';
+  };
+
   # TODO: here
   # xdg = pkgs.writeShellApplication {
   #   name = "xdg";
