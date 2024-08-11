@@ -1,7 +1,7 @@
 {
   config,
-  globals,
   pkgs,
+  lib,
   ...
 }: {
   programs.zsh = {
@@ -101,6 +101,7 @@
       # nix shell
       nd = "nix develop -c zsh";
     };
+
     history = {
       size = 10000000;
       path = "${config.xdg.dataHome}/zsh/history";
@@ -108,7 +109,12 @@
       ignoreSpace = true;
       share = true;
     };
+
     historySubstringSearch.enable = true;
+
+    initExtraBeforeCompInit = ''
+      export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-mocha)"
+    '';
 
     # plugins = [
     #   {
@@ -142,16 +148,8 @@
   };
 }
 #     home.programs.zsh = {
-#       enable = true;
-#       autocd = true;
-#       enableAutosuggestions = true;
 #       enableCompletion = true;
 #       defaultKeymap = "emacs";
-#       syntaxHighlighting.enable = true;
-#       shellAliases = { refresh = "source /home/${config.user.name}/.zshrc"; };
-#       initExtraBeforeCompInit = ''
-#         export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-mocha)"
-#       '';
 #       initExtra = # bash
 #         ''
 #           # Fix an issue with tmux.
