@@ -28,7 +28,7 @@
 
 
 
-      Man without options will use fzf to select a page
+      # Man without options will use fzf to select a page
       zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
       function fzf-man(){
