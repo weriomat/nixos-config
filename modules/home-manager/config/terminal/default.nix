@@ -7,6 +7,6 @@
     ./manix
     # ./tmux.nix
     ./bat.nix
-    ./navi.nix
+    # ./navi.nix # TODO: take a look at
   ];
 }
