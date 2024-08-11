@@ -2,13 +2,13 @@
   # janked from cobalt
   # Zsh packages
   home.packages = with pkgs; [
+    bc # calc
     cmatrix # -> hacker style
     alejandra
     # -- terminal emulator utils
     tmux
 
     # -- general utils
-    bat
     curl
     delta
     screen
