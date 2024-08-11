@@ -1,4 +1,4 @@
-_: {
+{globals, ...}: {
   services.languagetool = {
     # dont forget to swtich to local server in firefox
     enable = true;
@@ -9,7 +9,10 @@ _: {
       # fasttextModel
       # fasttextBinary
       # languageModel
-      cacheSize = 2500;
+      cacheSize =
+        if globals.laptop
+        then 10000
+        else 2500;
     };
   };
 }

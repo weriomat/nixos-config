@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  globals,
+  ...
+}: {
   # TODO: rebuild this shit -> looks bad -> improve
   # NOTE: does not support nix-colors
   programs.starship = let
@@ -11,6 +15,51 @@
         palette = "catppuccin_mocha";
         add_newline = false;
         format = "$all";
+        right_format =
+          if globals.laptop
+          then ''
+            $cmd_duration$hostname$memory_usage$jobs$status$os$container$battery$time
+          ''
+          else "";
+
+        cmd_duration =
+          if globals.laptop
+          then {
+            min_time = 500;
+            format = "[$duration ](italic bright-yellow)";
+          }
+          else {};
+
+        time = {
+          disabled = false;
+          format = "[ $time]($style)";
+          time_format = "%R";
+          utc_time_offset = "local";
+          style = "dimmed white";
+        };
+
+        battery =
+          if globals.laptop
+          then {
+            format = "[ $percentage $symbol]($style)";
+            full_symbol = "[█](italic green)";
+            charging_symbol = "[↑](italic green)";
+            discharging_symbol = "[↓](italic)";
+            unknown_symbol = "[░](italic)";
+            empty_symbol = "[▃](italic red)";
+            display = [
+              {
+                threshold = 40;
+                style = "dimmed yellow";
+              }
+              {
+                threshold = 70;
+                style = "dimmed white";
+              }
+            ];
+          }
+          else {};
+
         c.symbol = " ";
         lua.symbol = " ";
         nix_shell.symbol = " ";
