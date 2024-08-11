@@ -116,35 +116,35 @@
       export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-mocha)"
     '';
 
-    # plugins = [
-    #   {
-    #     name = "zsh-vi-mode";
-    #     src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-    #   }
-    #   {
-    #     name = "fzf-tab";
-    #     src = pkgs.fetchFromGitHub {
-    #       owner = "Aloxaf";
-    #       repo = "fzf-tab";
-    #       rev = "b06e7574577cd729c629419a62029d31d0565a7a";
-    #       sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
-    #     };
-    #   }
-    #   {
-    #     name = "fast-syntax-highlighting";
-    #     src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-    #   }
-    #   {
-    #     name = "zsh-nix-shell";
-    #     file = "nix-shell.plugin.zsh";
-    #     src = pkgs.fetchFromGitHub {
-    #       owner = "chisui";
-    #       repo = "zsh-nix-shell";
-    #       rev = "v0.8.0";
-    #       sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
-    #     };
-    #   }
-    # ];
+    plugins = [
+      #   {
+      #     name = "zsh-vi-mode";
+      #     src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      #   }
+      {
+        name = "fzf-tab";
+        src = pkgs.fetchFromGitHub {
+          owner = "Aloxaf";
+          repo = "fzf-tab";
+          rev = "7fed01afba9392b6392408b9a0cf888522ed7a10";
+          sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
+        };
+      }
+      #   {
+      #     name = "fast-syntax-highlighting";
+      #     src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+      #   }
+      #   {
+      #     name = "zsh-nix-shell";
+      #     file = "nix-shell.plugin.zsh";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "chisui";
+      #       repo = "zsh-nix-shell";
+      #       rev = "v0.8.0";
+      #       sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+      #     };
+      #   }
+    ];
   };
 }
 #     home.programs.zsh = {
