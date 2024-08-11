@@ -13,8 +13,12 @@
   };
   config = lib.mkIf config.packages.enable {
     environment.systemPackages = with pkgs; [
+      duf # df alternative
+      ncdu # du alternative
+      dogdns # dig alternative
+      dust
+
       mermaid-cli
-      # TODO: check
       sops
       powertop
       pdfarranger
