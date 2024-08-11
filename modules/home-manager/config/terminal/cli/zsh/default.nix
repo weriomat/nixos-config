@@ -4,7 +4,6 @@
   globals,
   ...
 }: {
-  # imports = [ ./config_git.nix ];
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -88,6 +87,10 @@
       # prettyping to ping default
       ping = "prettyping";
 
+      df = "duf --all --theme dark";
+      # alternative
+      dig = "dog";
+
       # manix fzf
       ma = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
       raspi = "ssh -i ~/.ssh/id_ed25519 -p 2077 marts@192.168.178.21";
@@ -111,17 +114,42 @@
       share = true;
     };
     historySubstringSearch.enable = true;
+
+    plugins = [
+      {
+        name = "zsh-vi-mode";
+        src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+      {
+        name = "fzf-tab";
+        src = pkgs.fetchFromGitHub {
+          owner = "Aloxaf";
+          repo = "fzf-tab";
+          rev = "b06e7574577cd729c629419a62029d31d0565a7a";
+          sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
+        };
+      }
+      {
+        name = "fast-syntax-highlighting";
+        src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+      }
+      {
+        name = "zsh-nix-shell";
+        file = "nix-shell.plugin.zsh";
+        src = pkgs.fetchFromGitHub {
+          owner = "chisui";
+          repo = "zsh-nix-shell";
+          rev = "v0.8.0";
+          sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+        };
+      }
+    ];
   };
 }
-# { options, config, lib, pkgs, ... }:
-# with lib;
-# with lib.custom;
 # let cfg = config.system.shell;
-# in {
 #   options.system.shell = with types; {
 #     shell = mkOpt (enum [ "nushell" "fish" ]) "nushell" "What shell to use";
 #   };
-#   config = {
 #     environment.systemPackages = with pkgs; [ eza bat nitch zoxide starship ];
 #       home.configFile."colors.conf" = {
 #         target = "hexchat/colors.conf";
@@ -147,52 +175,14 @@
 #       #  sha256 = "sha256-2xUcoaISy/goYM7XXo6poI9sICmZScw5+zEl/7cxKso=";
 #       #};
 #     };
-#     #users.defaultUserShell = pkgs.${cfg.shell};
-#     users.defaultUserShell = pkgs.zsh;
-#     users.users.root.shell = pkgs.bashInteractive;
-#     home.programs.starship = {
-#       enable = true;
-#       enableFishIntegration = true;
-#       enableNushellIntegration = true;
-#     };
-#     home.configFile."starship.toml".source = ./starship.toml;
-#     environment.shellAliases = {
-#       ".." = "cd ..";
-#       neofetch = "nitch";
-#     };
 #     home.programs.zoxide = {
 #       enable = true;
 #       enableNushellIntegration = true;
-#     };
-#     home.programs.eza = {
-#       enable = true;
-#       enableAliases = true;
-#       git = true;
-#       icons = true;
 #     };
 #     home.extraOptions.programs.atuin = {
 #       enable = false;
 #       enableZshIntegration = true;
 #     };
-#     home.programs.fzf.enable = true;
-#     # Actual Shell Configurations
-#     home.programs.fish = mkIf (cfg.shell == "fish") {
-#       enable = true;
-#       shellAliases = {
-#         ls = "eza -la --icons --no-user --no-time --git -s type";
-#         cat = "bat";
-#       };
-#       shellInit = ''
-#         ${mkIf apps.tools.direnv.enable ''
-#           direnv hook fish | source
-#         ''}
-#         zoxide init fish | source
-#         function , --description 'add software to shell session'
-#               nix shell nixpkgs#$argv[1..-1]
-#         end
-#       '';
-#     };
-#     programs.zsh.enable = true;
 #     home.programs.zsh = {
 #       enable = true;
 #       autocd = true;
@@ -200,9 +190,6 @@
 #       enableCompletion = true;
 #       defaultKeymap = "emacs";
 #       syntaxHighlighting.enable = true;
-#       history.size = 10000;
-#       history.save = 10000;
-#       historySubstringSearch.enable = true;
 #       shellAliases = { refresh = "source /home/${config.user.name}/.zshrc"; };
 #       initExtraBeforeCompInit = ''
 #         export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-mocha)"
@@ -229,44 +216,5 @@
 #           # set list-colors to enable filename colorizing
 #           zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
 #         '';
-#       plugins = [
-#         {
-#           name = "zsh-vi-mode";
-#           src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-#         }
-#         {
-#           name = "fzf-tab";
-#           src = pkgs.fetchFromGitHub {
-#             owner = "Aloxaf";
-#             repo = "fzf-tab";
-#             rev = "b06e7574577cd729c629419a62029d31d0565a7a";
-#             sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
-#           };
-#         }
-#         {
-#           name = "fast-syntax-highlighting";
-#           src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-#         }
-#         {
-#           name = "zsh-nix-shell";
-#           file = "nix-shell.plugin.zsh";
-#           src = pkgs.fetchFromGitHub {
-#             owner = "chisui";
-#             repo = "zsh-nix-shell";
-#             rev = "v0.8.0";
-#             sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
-#           };
-#         }
-#       ];
 #     };
-#     # Enable all if nushell
-#     home.programs.nushell = mkIf (cfg.shell == "nushell") {
-#       enable = true;
-#       #shellAliases = config.environment.shellAliases // {ls = "ls";};
-#       envFile.text = "";
-#       extraConfig = # nu
-#         "";
-#     };
-#   };
-# }
 
