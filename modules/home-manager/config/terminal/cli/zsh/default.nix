@@ -10,23 +10,7 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    # TODO: fix vi keysbindings
-    # Improved vim bindings.
-    # Man without options will use fzf to select a page
-    # zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
-    # function fzf-man(){
-    #   MAN="/usr/bin/man"
-    #   if [ -n "$1" ]; then
-    #     $MAN "$@"
-    #     return $?
-    #   else
-    #     $MAN -k . | fzf --reverse --preview="echo {1,2} | sed 's/ (/./' | sed -E 's/\)\s*$//' | xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | xargs -r $MAN
-    #     return $?
-    #   fi
-    # }
-    # # set list-colors to enable filename colorizing
-    # zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
     envExtra = ''
       # # If not running interactively, don't do anything and return early
       # [[ -o interactive ]] || exit 0
@@ -34,33 +18,28 @@
       bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
       bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
 
-      bindkey -v
-      # set -o vi
+      # Fix an issue with tmux.
       export KEYTIMEOUT=1
+      # Use vim bindings.
+      set -o vi
 
-      # vi
-      # TODO: fix
-      # bindkey -M menuselect 'h' vi-backward-char
-      # bindkey -M menuselect 'k' vi-up-line-or-history
-      # bindkey -M menuselect 'l' vi-forward-char
-      # bindkey -M menuselect 'j' vi-down-line-or-history
+      # set list-colors to enable filename colorizing
+      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
 
-      # change cursor shape for different vi modes
-      function zle-keymap-select() {
-        case $KEYMAP in
-          vimcd) echo -ne '\e[1 q';; # block
-          viins|main) echo -ne '\e[5 q';; # beam
-        esac
-      }
-      zle -N zle-keymap-select
-      zle-line-init(){
-        zle -K viins # init vi ins as keymap
-        echo -ne "\e[5 q"
-      }
-      zle -N zle-line-init
-      echo -ne '\e[5 q' # use beam at startup
-      preexec(){
-        echo -ne '\e[5 q' ; # use beam for each new prompt
+
+
+      Man without options will use fzf to select a page
+      zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+
+      function fzf-man(){
+        MAN="/etc/profiles/per-user/marts/bin/batman"
+        if [ -n "$1" ]; then
+          $MAN "$@"
+          return $?
+        else
+          $MAN -k . | fzf --reverse --preview="echo {1,2} | sed 's/ (/./' | sed -E 's/\)\s*$//' | xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | xargs -r $MAN
+          return $?
+        fi
       }
     '';
 
@@ -117,10 +96,10 @@
     '';
 
     plugins = [
-      #   {
-      #     name = "zsh-vi-mode";
-      #     src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-      #   }
+      {
+        name = "zsh-vi-mode";
+        src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
       {
         name = "fzf-tab";
         src = pkgs.fetchFromGitHub {
@@ -130,10 +109,10 @@
           sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
         };
       }
-      #   {
-      #     name = "fast-syntax-highlighting";
-      #     src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-      #   }
+      {
+        name = "fast-syntax-highlighting";
+        src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+      }
       #   {
       #     name = "zsh-nix-shell";
       #     file = "nix-shell.plugin.zsh";
@@ -147,30 +126,3 @@
     ];
   };
 }
-#     home.programs.zsh = {
-#       enableCompletion = true;
-#       defaultKeymap = "emacs";
-#       initExtra = # bash
-#         ''
-#           # Fix an issue with tmux.
-#           export KEYTIMEOUT=1
-#           # Use vim bindings.
-#           set -o vi
-#           # Improved vim bindings.
-#           # Man without options will use fzf to select a page
-#           zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-#           function fzf-man(){
-#             MAN="/usr/bin/man"
-#             if [ -n "$1" ]; then
-#               $MAN "$@"
-#               return $?
-#             else
-#               $MAN -k . | fzf --reverse --preview="echo {1,2} | sed 's/ (/./' | sed -E 's/\)\s*$//' | xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | xargs -r $MAN
-#               return $?
-#             fi
-#           }
-#           # set list-colors to enable filename colorizing
-#           zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-#         '';
-#     };
-
