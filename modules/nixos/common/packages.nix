@@ -18,6 +18,13 @@
       dogdns # dig alternative
       dust
 
+      sysz # systemctl thingie
+      clerk # mpd client
+
+      buku # private db manager
+
+      emojify # emoji on shell
+
       mermaid-cli
       sops
       powertop
