@@ -27,12 +27,19 @@ in
       # sops
       inputs.sops-nix.nixosModules.sops
 
+      # arkenfox
+      inputs.arkenfox.hmModules.default
+
       inputs.home-manager.nixosModules.home-manager
+
       {
         home-manager = {
           extraSpecialArgs = {inherit inputs outputs nix-colors globals;};
           useUserPackages = true;
           useGlobalPkgs = true;
+          sharedModules = [
+            inputs.arkenfox.hmModules.default
+          ];
           users.${globals.username}.imports = [
             ../../modules/home-manager/nixos
             ../../modules/home-manager

@@ -13,12 +13,63 @@
     };
   };
   config = lib.mkIf config.firefox.enable {
-    # TODO: add arkenfox/user.js to config
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
     home.sessionVariables.BROWSER = "firefox";
     programs.firefox = {
       enable = true;
+
+      arkenfox = {
+        enable = true;
+        version = "master";
+      };
+
       profiles.${globals.username} = {
+        # potentially problematic: 0703, 0820 (color visited links)
+        # see: nix build "github:dwarfmaster/arkenfox-nixos#arkenfox-v103_0-doc-static" && firefox result
+        arkenfox = {
+          # TODO: here
+          enable = true;
+          "0000".enable = true;
+          "0100".enable = true;
+          "0200".enable = true;
+          "0300".enable = true;
+          "0600".enable = true;
+          "0700".enable = true;
+          "0800" = {
+            enable = true;
+            # "0804"."browser.search.suggest.enabled".value = true;
+            # "0804"."urlbar.suggest.searches".value = true;
+          };
+          "0900".enable = true;
+          "1200".enable = true;
+          # "1400".enable = true;
+          "1600".enable = true;
+          "1700".enable = true;
+          "2000".enable = true;
+          "2400".enable = true;
+          # "2600" = {
+          # "2601".enable = true;
+          #   "2602".enable = true;
+          #   "2607".enable = true;
+          #   "2608".enable = true;
+          #   "2615".enable = true;
+          #   "2616".enable = true;
+          #   "2619".enable = true;
+          #   "2623".enable = true;
+          #   "2651".enable = true;
+          #   "2652".enable = true;
+          #   "2654".enable = true;
+          #   "2661".enable = true;
+          #   "2662".enable = true;
+          # };
+          "2700".enable = true;
+          "4500".enable = true;
+          "5000"."5003".enable = true;
+          "6000".enable = true;
+          "7000".enable = true;
+          "8000".enable = true;
+        };
+
         bookmarks = [
           {
             name = "Home-Manager Wiki";
@@ -200,7 +251,6 @@
         };
 
         settings = {
-          "browser.startup.homepage" = "https://duckduckgo.com";
           "browser.search.region" = "US";
           "browser.search.isUS" = true;
           "distribution.searchplugins.defaultLocale" = "en-US";
@@ -246,11 +296,17 @@
           "toolkit.telemetry.updatePing.enabled" = false;
           "toolkit.telemetry.shutdownPingSender.enabled" = false;
           "webgl.disabled" = true;
-          "privacy.firstparty.isolate" = true;
           "security.ssl.enable_false_start" = false;
 
           # wayland
           "media.peerconnection.enabled" = true;
+
+          # pocket
+          "extensions.pocket.enabled" = false;
+
+          # arkenfox conflikt
+          # "privacy.firstparty.isolate" = true; # WHY
+          # "browser.startup.homepage" = "https://duckduckgo.com";
         };
       };
     };
