@@ -21,6 +21,7 @@ _: {
 
       "--height 40%"
       "--border"
+      "--bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'"
     ];
 
     fileWidgetCommand = "fd --type f"; # <ctrl> + t
