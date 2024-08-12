@@ -116,10 +116,38 @@
           sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
         };
       }
+      # {
+      #   name = "emoji-cli";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "babarot";
+      #     repo = "emoji-cli";
+      #     rev = "0fbb2e48e07218c5a2776100a4c708b21cb06688";
+      #     sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
+      #   };
+      #   file = "emoji-cli.plugin.zsh";
+      # }
       {
         name = "fast-syntax-highlighting";
         src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
       }
+      # {
+      #   name = "zsh-completion";
+      #   src = "${pkgs.zsh-completions}/zsh-completions.plugin.zsh";
+      # }
+      # {
+      #   name = "forgit";
+      #   src = "${pkgs.zsh-forgit}/forgit.plugin.zsh";
+      # }
+      # {
+      #   name = "enhancd";
+      #   file = "init.sh";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "b4b4r07";
+      #     repo = "enhancd";
+      #     rev = "v2.2.1";
+      #     sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
+      #   };
+      # }
       #   {
       #     name = "zsh-nix-shell";
       #     file = "nix-shell.plugin.zsh";
