@@ -77,6 +77,15 @@
 
       # nix shell
       nd = "nix develop -c zsh";
+
+      # fho
+      fho = "fh | xargs firefox";
+      fhc = "fh | wl-copy";
+    };
+
+    shellGlobalAliases = {
+      UUID = "$(uuidgen | tr -d \\n)";
+      G = "| grep";
     };
 
     history = {
