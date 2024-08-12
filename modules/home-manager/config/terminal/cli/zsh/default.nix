@@ -39,6 +39,20 @@
           return $?
         fi
       }
+
+      # better cd
+      cdd() {
+          DIR=`fd * -maxdepth 0 -type d -print 2> /dev/null | fzf-tmux` \
+          && cd "$DIR"
+      }
+
+      # cd into dir of file
+      cdf() {
+         local file
+         local dir
+         file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+      }
+
     '';
 
     shellAliases = {
