@@ -20,6 +20,10 @@
     prism.url = "github:IogaMaster/prism";
 
     nur.url = "github:nix-community/nur";
+    arkenfox = {
+      url = "github:dwarfmaster/arkenfox-nixos";
+      inputs.arkenfox.inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
