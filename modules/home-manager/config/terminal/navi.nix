@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # like tldr
   programs.navi = {
     enable = true;
