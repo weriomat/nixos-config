@@ -9,6 +9,8 @@
     autocd = true;
     enableCompletion = true;
     autosuggestion.enable = true;
+
+    # adds 0.15 sek to startup time
     syntaxHighlighting.enable = true;
 
     envExtra = ''
@@ -52,7 +54,6 @@
          local dir
          file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
       }
-
     '';
 
     shellAliases = {
@@ -103,7 +104,7 @@
     };
 
     history = {
-      size = 10000000;
+      size = 100000; # this probably slows down shell history opening
       path = "${config.xdg.dataHome}/zsh/history";
       ignoreDups = true;
       ignoreSpace = true;
@@ -117,6 +118,7 @@
     '';
 
     plugins = [
+      # vi mode and fzf tab add 0.007 to startup time
       {
         name = "zsh-vi-mode";
         src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
@@ -130,6 +132,7 @@
           sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
         };
       }
+
       # {
       #   name = "emoji-cli";
       #   src = pkgs.fetchFromGitHub {
@@ -140,10 +143,13 @@
       #   };
       #   file = "emoji-cli.plugin.zsh";
       # }
-      {
-        name = "fast-syntax-highlighting";
-        src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-      }
+
+      # This plugin is mega slow -> slows down startup by 1.4sek
+      # {
+      #   name = "fast-syntax-highlighting";
+      #   src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+      # }
+
       # {
       #   name = "zsh-completion";
       #   src = "${pkgs.zsh-completions}/zsh-completions.plugin.zsh";
