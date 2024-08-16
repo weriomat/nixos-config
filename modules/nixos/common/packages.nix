@@ -18,6 +18,8 @@
       dogdns # dig alternative
       dust
 
+      glow # view markdown on cli
+
       sysz # systemctl thingie
       clerk # mpd client
 
