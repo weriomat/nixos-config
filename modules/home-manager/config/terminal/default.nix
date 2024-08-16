@@ -5,7 +5,7 @@
     ./nix-index
     ./packages
     ./manix
-    # ./tmux.nix
+    ./tmux.nix
     ./bat.nix
     # ./navi.nix # TODO: take a look at
   ];
