@@ -15,7 +15,6 @@
     yubikey-manager
     yubikey-personalization
     # texinfo
-    # tmux
     lua
     gdbm
     avrdude
