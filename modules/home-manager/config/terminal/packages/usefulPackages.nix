@@ -6,7 +6,7 @@
     cmatrix # -> hacker style
     alejandra
     # -- terminal emulator utils
-    tmux
+    # tmux
 
     # -- general utils
     curl
