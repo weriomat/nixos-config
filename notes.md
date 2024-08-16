@@ -14,17 +14,40 @@ fzf picks up `**` ->
 `cd **<TAB>`
 `cd ~/.nixos/nixos/**<TAB>`
 
+# glow -> view md in cli
+
 # ma -> seach local comments for nix attrs
 # batgrep 
 # batdiff
 # nd
 # check-flake
 # format-flake
+
 # ho
 fzf -> hx
+
 # gdiff
+
 # kp
 -> kill a process
+
+# fh
+-> fho, fhc
+
+# sysz
+
+# ytfzf -> watch yt with fzf
+# clerk mpd client
+
+# bookmark manager
+buku
+`https://github.com/jarun/Buku`
+-> `fb` opens, `fbu` update, `fbw` write
+
+# better cd
+`cdd`, `cdf`
+
+# search fif
 
 # command
 `command <cmd>` executes the command and not any aliases -> `command ls` -> executes `ls` instead of `eza` 
