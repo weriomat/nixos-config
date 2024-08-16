@@ -43,3 +43,5 @@ sources i yanked wallpapers from:
 https://github.com/D3Ext/aesthetic-wallpapers
 https://github.com/42Willow/wallpapers/tree/main
 the cattpuccin-discord
+
+A Special Thanks goes out to the maker of fzf for providing a awesome tool as well a good examples
