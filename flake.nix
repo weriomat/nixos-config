@@ -25,6 +25,9 @@
     nix-colors.url = "github:misterio77/nix-colors";
     prism.url = "github:IogaMaster/prism";
 
+    # catppuccin nix
+    catppuccin.url = "github:catppuccin/nix";
+
     nur.url = "github:nix-community/nur";
     arkenfox = {
       url = "github:dwarfmaster/arkenfox-nixos";

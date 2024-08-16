@@ -1,8 +1,9 @@
 {pkgs, ...}: {
   programs.bat = {
     enable = true;
-    config = {
-      theme = "catppuccin";
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
     };
 
     extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch prettybat]; # missing batpipe

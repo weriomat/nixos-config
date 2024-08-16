@@ -10,8 +10,12 @@
       if pkgs.stdenv.isDarwin
       then pkgs.kitty
       else pkgs.unstable.kitty;
-    theme = "${lib.strings.concatStringsSep "-"
-      (lib.strings.splitString " " config.colorScheme.name)}";
+
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+    };
+
     settings = {
       # tab bar janked from https://github.com/catppuccin/kitty
       tab_bar_min_tabs = 1;

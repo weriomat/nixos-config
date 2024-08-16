@@ -32,6 +32,9 @@ in
       # arkenfox
       inputs.arkenfox.hmModules.default
 
+      # catppuccin nix
+      inputs.catppuccin.nixosModules.catppuccin
+
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager = {
@@ -47,6 +50,7 @@ in
             prism.homeModules.prism
             nix-colors.homeManagerModules.default
             nix-index-database.hmModules.nix-index
+            inputs.catppuccin.homeManagerModules.catppuccin
           ];
         };
       }

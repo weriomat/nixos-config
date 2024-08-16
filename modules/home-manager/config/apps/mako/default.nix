@@ -15,15 +15,17 @@
     services = {
       mako = {
         enable = true;
+
+        catppuccin = {
+          enable = true;
+          flavor = "mocha";
+        };
+
         font = "JetBrainsMono Nerd Font 12";
         padding = "15";
         defaultTimeout = 5000;
         borderSize = 2;
         borderRadius = 5;
-        backgroundColor = "#${config.colorScheme.palette.base00}";
-        borderColor = "#${config.colorScheme.palette.base07}";
-        progressColor = "over #${config.colorScheme.palette.base02}";
-        textColor = "#${config.colorScheme.palette.base05}";
         icons = true;
         actions = true;
         extraConfig = ''
