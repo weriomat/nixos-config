@@ -15,6 +15,12 @@
     programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;
+
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+      };
+
       settings = {
         clock = true;
         datestr = "";
@@ -28,30 +34,13 @@
         effect-blur = "7x5";
         effect-vignette = "0.5:0.5";
 
-        color = "${config.colorScheme.palette.base00}";
-        bs-hl-color = "${config.colorScheme.palette.base06}";
-        caps-lock-bs-hl-color = "${config.colorScheme.palette.base06}";
-        caps-lock-key-hl-color = "${config.colorScheme.palette.base0B}";
-        ring-color = "${config.colorScheme.palette.base07}";
-        ring-clear-color = "${config.colorScheme.palette.base06}";
-        ring-caps-lock-color = "${config.colorScheme.palette.base09}";
-        ring-ver-color = "${config.colorScheme.palette.base0D}";
-        ring-wrong-color = "${config.colorScheme.palette.base0F}";
-        text-color = "${config.colorScheme.palette.base05}";
-        text-clear-color = "${config.colorScheme.palette.base06}";
-        text-caps-lock-color = "${config.colorScheme.palette.base09}";
-        text-ver-color = "${config.colorScheme.palette.base0D}";
-        text-wrong-color = "${config.colorScheme.palette.base0F}";
-
         inside-color = "00000000";
         inside-clear-color = "00000000";
         inside-caps-lock-color = "00000000";
         inside-ver-color = "00000000";
         inside-wrong-color = "00000000";
-        key-hl-color = "${config.colorScheme.palette.base0B}";
         layout-bg-color = "00000000";
         layout-border-color = "00000000";
-        layout-text-color = "${config.colorScheme.palette.base0D}";
         line-color = "00000000";
         line-clear-color = "00000000";
         line-caps-lock-color = "00000000";

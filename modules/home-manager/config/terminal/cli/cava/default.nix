@@ -5,6 +5,11 @@
   ...
 }: {
   home.packages = lib.mkIf pkgs.stdenv.isLinux [pkgs.cava];
+  programs.cava.catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    transparent = false;
+  };
 
   xdg = lib.mkIf pkgs.stdenv.isLinux {
     configFile = {

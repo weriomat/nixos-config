@@ -11,6 +11,13 @@
     then false
     else true;
 
+  # TODO: gtk, hyprland, waybar
+  catppuccin = {
+    enable = true;
+    accent = "mauve";
+    flavor = "mocha";
+  };
+
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home = rec {

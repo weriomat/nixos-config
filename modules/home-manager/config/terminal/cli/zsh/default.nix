@@ -11,7 +11,13 @@
     autosuggestion.enable = true;
 
     # adds 0.15 sek to startup time
-    syntaxHighlighting.enable = true;
+    syntaxHighlighting = {
+      enable = true;
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+      };
+    };
 
     envExtra = ''
       # # If not running interactively, don't do anything and return early

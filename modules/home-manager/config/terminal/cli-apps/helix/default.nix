@@ -1,10 +1,5 @@
 # to get helix runnin in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     helix
 
@@ -12,8 +7,6 @@
     marksman # markdown
     lua-language-server # lua
     texlab # LaTeX
-    # TODO: fix this cuz of darwin
-    # unstable.perlnavigator # perl
     metals # scala
     taplo # toml
     delve # go debugger
@@ -24,17 +17,12 @@
     nodePackages.vscode-css-languageserver-bin # css + scss
     nodePackages.bash-language-server # bash
     nodePackages.vls # vuejs
-    # haskell-language-server # haskell
-    # rust-analyzer # rust
-    clippy
     nil # nix
 
     yaml-language-server # yaml
-    # python
     ruff-lsp
     black
     nodePackages_latest.pyright
-    # (pkgs.python3.withPackages (p: with p; [ python-lsp-server ]))
   ];
 
   programs.helix = {
@@ -129,7 +117,6 @@
           name = "haskell";
           auto-format = true;
         }
-        # TODO: use nil and alejandra -> no differnece when using nix fmt
         {
           name = "nix";
           auto-format = true;
@@ -154,17 +141,20 @@
         }
       ];
     };
-    # catppuccin.enable = true;
+
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      useItalics = true;
+    };
+
     settings = {
-      theme = "${lib.strings.concatMapStringsSep "_" (x: lib.toLower x)
-        (lib.strings.splitString " " config.colorScheme.name)}";
       editor = {
         auto-save = true;
         bufferline = "always";
         line-number = "relative";
         true-color = true;
 
-        # idle timeout
         idle-timeout = 5;
         lsp = {
           display-messages = true;
@@ -190,11 +180,5 @@
         "}" = "goto_next_paragraph";
       };
     };
-    # themes.catppuccin_mocha = {
-    #   "ui.virtual.inlay-hint" = {
-    #     fg = "#bac2de";
-    #     bg = "#cba6f7";
-    #   };
-    # };
   };
 }
