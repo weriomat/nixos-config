@@ -96,6 +96,9 @@
       # fho
       fho = "fh | xargs firefox";
       fhc = "fh | wl-copy";
+
+      # no
+      no = "nh os switch";
     };
 
     shellGlobalAliases = {
