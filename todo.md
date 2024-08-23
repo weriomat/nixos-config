@@ -7,8 +7,6 @@ https://github.com/kinzoku-dev/neovim
 - configure bootloader -> https://github.com/vimjoyer/nixconf/blob/main/hosts/laptop/configuration.nix
 - configure monitors
 - set fonts -> maybe buy comic code
-- configure fzf
-- configure tmux
 - configure neovim -> logamaster
 - configure rust
 - configure gpg
