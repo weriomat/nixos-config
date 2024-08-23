@@ -87,7 +87,6 @@
           set -g @catppuccin_status_connect_separator "no"
           set -g @catppuccin_directory_text "#{b:pane_current_path}"
           set -g @catppuccin_date_time_text "%H:%M"
-
           set -g @catppuccin_pane_border_style "fg=#{thm_gray}" # Use a value compatible with the standard tmux 'pane-border-style'
           set -g @catppuccin_pane_active_border_style "fg=#{thm_orange}" # Use a value compatible with the standard tmux 'pane-border-active-style'
         '';
