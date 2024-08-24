@@ -104,7 +104,7 @@
       fhc = "fh | wl-copy";
 
       # no
-      no = "nh os switch";
+      no = "nh os switch -u";
     };
 
     shellGlobalAliases = {
