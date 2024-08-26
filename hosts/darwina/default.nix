@@ -24,6 +24,9 @@ in
             extraSpecialArgs = {inherit inputs nix-colors globals;};
             useGlobalPkgs = true;
             useUserPackages = true;
+            sharedModules = [
+              inputs.arkenfox.hmModules.default
+            ];
             users.eliasengel.imports = [
               ../../modules/home-manager/darwin
               ../../modules/home-manager
@@ -31,6 +34,7 @@ in
               nix-colors.homeManagerModules.default
               mac-app-util.homeManagerModules.default
               nix-index-database.hmModules.nix-index
+              inputs.catppuccin.homeManagerModules.catppuccin
             ];
           };
         }
