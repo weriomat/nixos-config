@@ -60,3 +60,9 @@ ps aux
 # ip a
 # ifconfig
 # ethtool
+
+# add sth to a list 
+networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
+-> adding to attr set ist just adding a item ig in another location
+-> updating attr set -> just set value with lib.mkForce ...
+
