@@ -2,6 +2,7 @@
   inputs,
   lib,
   pkgs,
+  globals,
   ...
 }:
 # TODO: gnome polkit
@@ -26,7 +27,7 @@
 
   environment = {
     systemPackages = with pkgs; [nh];
-    sessionVariables = {FLAKE = "/home/marts/.nixos/nixos";};
+    sessionVariables = {FLAKE = "/home/${globals.username}/.nixos/nixos";};
     pathsToLink = ["/share/zsh"]; # for zsh.enableCompletion
   };
 
