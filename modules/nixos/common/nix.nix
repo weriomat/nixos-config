@@ -53,10 +53,6 @@
         # outputs.overlays.modifications
         outputs.overlays.unstable-packages
 
-        # You can also add overlays exported from other flakes:
-        # neovim-nightly-overlay.overlays.default
-        inputs.rust-overlay.overlays.default
-
         # inputs.nixpkgs-wayland.overlay
         inputs.nur.overlay
 

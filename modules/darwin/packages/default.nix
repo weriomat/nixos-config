@@ -29,7 +29,6 @@
     pyenv
     teensy-loader-cli
     gnupg
-    # rustup
 
     # now other packages
     kitty

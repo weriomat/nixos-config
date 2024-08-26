@@ -66,7 +66,6 @@
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    rust-overlay.url = "github:oxalica/rust-overlay";
 
     # gaming
     nix-gaming.url = "github:fufexan/nix-gaming";
