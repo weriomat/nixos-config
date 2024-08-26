@@ -50,14 +50,6 @@
   programs = {
     info.enable = true;
     man.enable = true;
-    tmux = {
-      enable = true;
-      enableFzf = true;
-      enableMouse = true;
-      enableSensible = true;
-      enableVim = true;
-      # extraConfig = '''';
-    };
   };
 
   services = {
