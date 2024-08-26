@@ -84,9 +84,7 @@
     self,
     nixpkgs,
     nix-colors,
-    prism,
     pre-commit-hooks,
-    nix-index-database,
     ...
   } @ inputs: let
     inherit (self) outputs;
