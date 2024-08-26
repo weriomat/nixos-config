@@ -5,6 +5,7 @@
       trim.enable = true;
       autoScrub.enable = true;
     };
+
     # i think hardened kernel bug
     logrotate.checkConfig = false;
 
@@ -14,6 +15,8 @@
     };
   };
   networking.hostId = "fb363d05";
+
+  # TODO: kanashi
   # home-manager.users.${globals.username}.monitors = [
   #   {
   #     name = "eDP-1";
