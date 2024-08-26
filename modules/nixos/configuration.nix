@@ -60,6 +60,7 @@
   nix-settings.enable = true;
   packages.enable = true;
   virt.enable = true;
+
   # environment.variables = {
   #   POLKIT_BIN = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
   # };
@@ -134,30 +135,12 @@
   #  hardware.logitech.wireless.enable = true;
   # hardware.logitech.wireless.enableGraphical = true;
   #  services.xserver.enable = true;
-  # services.xserver.videoDrivers = [ "amdgpu" ];
-  # services.xserver = {
-  #   enable = true;
-  #   xkb = {
-  #     variant = "";
-  #     layout = "${theKBDLayout}";
-  #   };
-  #   libinput.enable = true;
-  #   displayManager.sddm = {
-  #     enable = true;
-  #     autoNumlock = true;
-  #     wayland.enable = true;
-  #     theme = "tokyo-night-sddm";
-  #   };
-  # };
-  # Bootloader
-  # boot.loader.systemd-boot.enable = true;
+
   # boot.loader.efi.canTouchEfiVariables = true;
   #   lib.mkIf ("${gpuType}" == "amd") {
   #   systemd.tmpfiles.rules = [
   #     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   #   ];
-  #   services.xserver.enable = true;
-  #   services.xserver.videoDrivers = [ "amdgpu" ];
   #   # OpenGL
   #   hardware.opengl = {
   #     ## amdvlk: an open-source Vulkan driver from AMD
