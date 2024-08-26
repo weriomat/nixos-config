@@ -49,16 +49,6 @@
   #   via
   # ];
 
-  #  programs.fzf = {
-  #   enable = true;
-  #   enableFishIntegration = true;
-  #   defaultOptions = [
-  #     "--border"
-  #     "--preview 'bat --color=always {}'"
-  #     "--prompt 'Files> '"
-  #   ];
-  # };
-
   audio.enable = true;
   doc.enable = true;
   graphical.enable = true;
