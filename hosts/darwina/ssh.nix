@@ -10,8 +10,10 @@
   home-manager.users.${globals.username} = {
     # home.packages = with pkgs; [yubikey-manager-qt];
     home.packages = with pkgs; [
-      yubikey-manager4
+      # yubikey-manager4
+      yubikey-manager
       yubikey-personalization
+      git
     ];
     programs = {
       gpg = {
