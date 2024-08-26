@@ -26,6 +26,8 @@
   ];
 
   borg.enable = true;
+  sops.enable = true;
+
   environment = {
     systemPackages = with pkgs; [nh];
     sessionVariables = {FLAKE = "/home/${globals.username}/.nixos/nixos";};
