@@ -26,7 +26,6 @@
     nodePackages.vls # vuejs
     # haskell-language-server # haskell
     # rust-analyzer # rust
-    clippy
     nil # nix
 
     yaml-language-server # yaml
