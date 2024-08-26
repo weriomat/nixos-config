@@ -2,8 +2,6 @@
   inputs,
   outputs,
   nix-colors,
-  prism,
-  nix-index-database,
   ...
 }: let
   globals = {
@@ -29,9 +27,9 @@ in
           users.${globals.username}.imports = [
             ../../modules/home-manager/nixos
             ../../modules/home-manager
-            nix-colors.homeManagerModules.default
-            nix-index-database.hmModules.nix-index
-            prism.homeModules.prism
+            inputs.nix-colors.homeManagerModules.default
+            inputs.nix-index-database.hmModules.nix-index
+            inputs.prism.homeModules.prism
           ];
         };
       }

@@ -2,8 +2,6 @@
 {
   inputs,
   nix-colors,
-  prism,
-  nix-index-database,
   ...
 }: let
   globals = {
@@ -19,8 +17,8 @@ in
       modules = [
         ../../modules/darwin
         ./ssh.nix
-        mac-app-util.darwinModules.default
-        home-manager.darwinModules.home-manager
+        inputs.mac-app-util.darwinModules.default
+        inputs.home-manager.darwinModules.home-manager
         {
           home-manager = {
             extraSpecialArgs = {inherit inputs nix-colors globals;};
@@ -32,10 +30,10 @@ in
             users.eliasengel.imports = [
               ../../modules/home-manager/darwin
               ../../modules/home-manager
-              prism.homeModules.prism # for compatability
-              nix-colors.homeManagerModules.default
-              mac-app-util.homeManagerModules.default
-              nix-index-database.hmModules.nix-index
+              inputs.prism.homeModules.prism # for compatability
+              inputs.nix-colors.homeManagerModules.default
+              inputs.mac-app-util.homeManagerModules.default
+              inputs.nix-index-database.hmModules.nix-index
               inputs.catppuccin.homeManagerModules.catppuccin
             ];
           };

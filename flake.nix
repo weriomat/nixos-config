@@ -100,46 +100,50 @@
 
     # Full system build for x86
     nixosConfigurations = {
-      nixos = import ./hosts/default {inherit inputs outputs nix-colors prism nix-index-database;};
-      nixos-laptop = import ./hosts/lap {inherit inputs outputs nix-colors prism nix-index-database;};
+      nixos = import ./hosts/default {inherit inputs outputs nix-colors;};
+      nixos-laptop = import ./hosts/lap {inherit inputs outputs nix-colors;};
     };
 
     # Full hm build for aarch64
     darwinConfigurations = {
       Eliass-MacBook-Pro-4 =
-        import ./hosts/darwina {inherit inputs nix-colors prism nix-index-database;};
+        import ./hosts/darwina {inherit inputs nix-colors;};
     };
 
     # Expose the package set, including overlays, for convenience.
     darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
 
-    # Formatter for x86 -> nix fmt
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+    formatter = {
+      # Formatter for x86 -> nix fmt
+      x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
-    # Formatter for darwin -> nix fmt
-    formatter.aarch64-darwin =
-      nixpkgs.legacyPackages.aarch64-darwin.alejandra;
+      # Formatter for darwin -> nix fmt
+      aarch64-darwin =
+        nixpkgs.legacyPackages.aarch64-darwin.alejandra;
+    };
 
-    checks.x86_64-linux = {
-      pre-commit-check = pre-commit-hooks.lib.${system}.run {
-        src = ./.;
-        hooks = {
-          alejandra.enable = true;
-          deadnix.enable = true;
-          statix.enable = true;
-          nil.enable = true;
+    checks = {
+      x86_64-linux = {
+        pre-commit-check = pre-commit-hooks.lib.${system}.run {
+          src = ./.;
+          hooks = {
+            alejandra.enable = true;
+            deadnix.enable = true;
+            statix.enable = true;
+            nil.enable = true;
+          };
         };
       };
-    };
-    checks.aarch64-darwin = {
-      pre-commit-check = pre-commit-hooks.lib.aarch64-darwin.run {
-        src = ./.;
-        hooks = {
-          alejandra.enable = true;
-          deadnix.enable = true;
-          statix.enable = true;
-          nil.enable = true;
-          flake-checker.enable = true;
+      aarch64-darwin = {
+        pre-commit-check = pre-commit-hooks.lib.aarch64-darwin.run {
+          src = ./.;
+          hooks = {
+            alejandra.enable = true;
+            deadnix.enable = true;
+            statix.enable = true;
+            nil.enable = true;
+            flake-checker.enable = true;
+          };
         };
       };
     };
