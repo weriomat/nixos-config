@@ -105,6 +105,8 @@
 
       # no
       no = "nh os switch -u";
+
+      rebuild = lib.mkIf pkgs.stdenv.isDarwin "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4";
     };
 
     shellGlobalAliases = {
