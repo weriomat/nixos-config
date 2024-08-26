@@ -9,6 +9,8 @@
   globals = {
     isWork = false;
     username = "eliasengel";
+    architekture = "aarch64-darwin";
+    laptop = true;
   };
 in
   with inputs;
