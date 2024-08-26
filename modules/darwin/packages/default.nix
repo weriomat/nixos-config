@@ -61,6 +61,6 @@
     mold
     #valgrind
 
-    nixfmt
+    nixfmt-classic
   ];
 }

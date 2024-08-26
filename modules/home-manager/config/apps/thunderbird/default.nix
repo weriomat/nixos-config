@@ -1,6 +1,7 @@
 {
   globals,
   pkgs,
+  lib,
   ...
 }: {
   # dont forget to launch proton-mail bridge with `protonmail-bridge -n`
@@ -160,7 +161,9 @@
     # maildirBasePath = "";
   };
   programs.thunderbird = {
-    enable = true;
+    enable =
+      lib.mkIf pkgs.stdenv.isLinux
+      true;
     profiles = {
       ${globals.username} = {
         # name = "${globals.username}";
