@@ -12,7 +12,6 @@
     };
   };
   config = lib.mkIf config.audio.enable {
-    # Enable sound with pipewire.
     sound.enable = true;
     hardware.pulseaudio = {
       enable = false;
@@ -25,16 +24,8 @@
       alsa.support32Bit = true;
       pulse.enable = true;
       wireplumber.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
     };
 
-    # Enable bluetooth with blueman
-    # see https://nixos.wiki/wiki/Bluetooth
     services.blueman.enable = true;
     hardware.bluetooth = {
       enable = true;
