@@ -1,8 +1,11 @@
 {
   pkgs,
   globals,
+  inputs,
   ...
-}: {
+}: let
+  wallpaper_path = "${inputs.wallpapers}/lut_wallpapers";
+in {
   sleepidle = pkgs.writeShellApplication {
     name = "sleepidle";
     runtimeInputs = with pkgs; [hyprland swayidle swaylock libnotify];
@@ -251,8 +254,7 @@
     ];
     text = ''
       #!/usr/bin/env bash
-
-      wallpaper_path=$HOME/.nixos/nixos/wallpapers
+      wallpaper_path=${wallpaper_path}
 
       wallpaper_name="$(find "$wallpaper_path" -exec basename {} \; | wofi --show dmenu --sort-order=alphabetical)"
       if [[ -f $wallpaper_path/$wallpaper_name ]]; then
@@ -269,8 +271,7 @@
     runtimeInputs = with pkgs; [swaybg libnotify coreutils mako findutils];
     text = ''
       #!/usr/bin/env bash
-
-      wallpaper_name="$(find "$HOME"/.nixos/nixos/wallpapers | shuf -n 1)"
+      wallpaper_name="$(find ${wallpaper_path} | shuf -n 1)"
       w_name="$(echo "$wallpaper_name" | xargs basename)"
       if [[ -f $wallpaper_name ]]; then
           killall dynwallpaper || true
@@ -288,7 +289,7 @@
     text = ''
       #!/usr/bin/env bash
       while true; do
-        wallpaper_name="$(find "$HOME"/.nixos/nixos/wallpapers | shuf -n 1)"
+        wallpaper_name="$(find ${wallpaper_path} | shuf -n 1)"
         w_name="$(echo "$wallpaper_name" | xargs basename)"
         if [[ -f $wallpaper_name ]]; then
             wall-change "$wallpaper_name" &
