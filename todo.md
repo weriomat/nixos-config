@@ -1,6 +1,10 @@
 # TODOS
 https://github.com/kinzoku-dev/neovim
 
+-> laptop hibernate
+-> laptop borg 
+-> vaultwarden
+
 - Refactor user management
 - Use Homemanger bundles for config
 - Hyperland
