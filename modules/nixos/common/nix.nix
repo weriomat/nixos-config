@@ -45,15 +45,11 @@
     # systemd.tmpfiles.rules = [ "d /nix/tmp 0755 root root 1d" ];
     # Allow some unfree packages
     nixpkgs = {
-      # You can add overlays here
       overlays = [
-        # Add overlays your own flake exports (from overlays and pkgs dir):
         outputs.overlays.additions
-        # outputs.overlays.additions_packages
-        # outputs.overlays.modifications
+
         outputs.overlays.unstable-packages
 
-        # inputs.nixpkgs-wayland.overlay
         inputs.nur.overlay
 
         # Or define it inline, for example:
