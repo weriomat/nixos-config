@@ -1,10 +1,9 @@
 {
   pkgs,
   globals,
-  inputs,
   ...
 }: let
-  wallpaper_path = "${inputs.wallpapers}/lut_wallpapers";
+  wallpaper_path = "${pkgs.weriomat-wallpapers}";
 in {
   sleepidle = pkgs.writeShellApplication {
     name = "sleepidle";

@@ -44,12 +44,6 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
-    # wallpapers
-    wallpapers = {
-      url = "github:weriomat/wallpapers";
-      flake = false;
-    };
-
     # hyprland
     hyprland = {
       # url = "github:hyprwm/Hyprland";
