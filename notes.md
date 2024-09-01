@@ -1,3 +1,7 @@
+# Package
+just import the thingies you need
+prefetch url -> `nix shell nixpkgs#nurl` `nurl "https://github.com/weriomat/wallpapers"`
+
 # Kill a process
 <ctrl + z> moves it to backgroun -> like & at end
 -> kill %1 -> to kill background process
