@@ -25,7 +25,6 @@
     nix-colors.url = "github:misterio77/nix-colors";
     prism.url = "github:IogaMaster/prism";
 
-    # catppuccin nix
     catppuccin.url = "github:catppuccin/nix";
 
     nur.url = "github:nix-community/nur";
@@ -57,7 +56,6 @@
 
     nixpkgs-wayland = {
       url = "github:nix-community/nixpkgs-wayland";
-      # only needed if you use as a package set:
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
