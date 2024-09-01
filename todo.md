@@ -1,6 +1,7 @@
 # TODOS
 https://github.com/kinzoku-dev/neovim
 
+-> cleanup pkgs thingie, idk why pkgs.callPackage is not here
 -> laptop hibernate
 -> laptop borg 
 -> vaultwarden
