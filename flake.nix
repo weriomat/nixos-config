@@ -1,7 +1,4 @@
 # TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix
-# TODO: move /home to other disk
-# TODO: ripgrep
-# TODO: cleanup
 {
   description = "Marts - Nixos config flake";
   inputs = {

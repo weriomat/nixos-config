@@ -28,11 +28,5 @@
       james-yu.latex-workshop
       valentjn.vscode-ltex
     ];
-    # haskell -> TODO: configure
-    # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.vscode.haskell.hie.executablePath
-    # haskell = {
-    #   enable = true;
-    #   hie.enable = true;
-    # };
   };
 }
