@@ -1,5 +1,5 @@
-# Custom packages, that can be defined similarly to ones from nixpkgs
-# You can build them using 'nix build .#example'
-{pkgs}: rec {
+{pkgs, ...}: {
   starship-catppuccin = pkgs.callPackage ./starship-catppuccin {};
+  # TODO: switch to pkgs.callPackage
+  weriomat-wallpapers = import ./weriomat-wallpapers {inherit pkgs;};
 }

@@ -1,6 +1,11 @@
 # TODOS
 https://github.com/kinzoku-dev/neovim
 
+-> cleanup pkgs thingie, idk why pkgs.callPackage is not here
+-> laptop hibernate
+-> laptop borg 
+-> vaultwarden
+
 - Refactor user management
 - Use Homemanger bundles for config
 - Hyperland

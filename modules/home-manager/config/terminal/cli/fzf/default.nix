@@ -1,5 +1,4 @@
 _: {
-  # TODO: configure more -> tmux and things
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
@@ -16,10 +15,8 @@ _: {
     ];
 
     defaultCommand = "fd --type f"; # fzf
-    # catppuccin mocha
     defaultOptions = [
       "--multi"
-
       "--height 40%"
       "--border"
       "--bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'"

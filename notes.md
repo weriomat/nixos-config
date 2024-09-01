@@ -1,3 +1,8 @@
+# Package
+just import the thingies you need
+prefetch url -> `nix shell nixpkgs#nurl` `nurl "https://github.com/weriomat/wallpapers"`
+# MA -> local search for attrs
+
 # Kill a process
 <ctrl + z> moves it to backgroun -> like & at end
 -> kill %1 -> to kill background process
@@ -65,4 +70,4 @@ ps aux
 networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 -> adding to attr set ist just adding a item ig in another location
 -> updating attr set -> just set value with lib.mkForce ...
-
+-> update attr set with //

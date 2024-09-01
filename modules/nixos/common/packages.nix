@@ -13,6 +13,7 @@
   };
   config = lib.mkIf config.packages.enable {
     environment.systemPackages = with pkgs; [
+      nurl # simple nix prefetch
       duf # df alternative
       ncdu # du alternative
       dogdns # dig alternative

@@ -2,9 +2,6 @@
 {inputs, ...}: {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs {pkgs = final;};
-  # additions_packages = final: _prev: {
-  # addition = import ../pkgs { pkgs = final; };
-  # };
 
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
@@ -26,7 +23,6 @@
     unstable = import inputs.nixpkgs-unstable {
       inherit (final) system;
       config.allowUnfree = true;
-      # config = config.nixpkgs.config;
     };
   };
 }
