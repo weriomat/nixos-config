@@ -45,7 +45,6 @@
     tldr
     ripgrep
     cloc
-    neofetch
     gnumake
     cmake
     cmake-format

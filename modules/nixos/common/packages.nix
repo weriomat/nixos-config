@@ -63,8 +63,6 @@
       nixpkgs-lint
       statix
 
-      neofetch
-
       (haskellPackages.ghcWithPackages (pkgs:
         with pkgs; [
           stack
