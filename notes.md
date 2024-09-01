@@ -1,6 +1,7 @@
 # Package
 just import the thingies you need
 prefetch url -> `nix shell nixpkgs#nurl` `nurl "https://github.com/weriomat/wallpapers"`
+# MA -> local search for attrs
 
 # Kill a process
 <ctrl + z> moves it to backgroun -> like & at end

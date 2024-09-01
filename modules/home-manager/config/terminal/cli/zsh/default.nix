@@ -65,8 +65,6 @@
     shellAliases = {
       diff = "diff --color";
 
-      # grep
-      grep = "grep --color=auto";
       ga = "git add";
       gb = "git branch";
       gc = "git commit -m";
@@ -87,9 +85,7 @@
       df = "duf --all --theme dark";
       dig = "dog";
       du = "dust";
-
-      # manix fzf
-      ma = ''manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
+      grep = "rg--color=auto";
 
       raspi = "ssh -i ~/.ssh/id_ed25519 -p 2077 marts@192.168.178.21";
 
