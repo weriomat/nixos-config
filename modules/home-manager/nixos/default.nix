@@ -25,6 +25,11 @@
     homeDirectory = "/home/${username}";
     stateVersion = "23.11"; # Has not to be changed
     packages = builtins.attrValues (import ../config/scripts {inherit pkgs globals inputs;});
+    # Add ./local/bin to $PATH
+    sessionPath = [
+      "$HOME/.cargo/bin"
+      "$HOME/.local/bin"
+    ];
   };
 
   # home.sessionVariables = {
