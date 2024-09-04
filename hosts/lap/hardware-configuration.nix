@@ -60,6 +60,29 @@
     };
   };
 
+  # GPU Support - See https://nixos.wiki/wiki/AMD_GPU
+  hardware.opengl = {
+    enable = true;
+
+    # Support for opencl, vulkan, amdgpu and rocm
+    driSupport = true;
+    # For 32 bit applications
+    driSupport32Bit = true;
+
+    extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-opencl-runtime
+      vaapiVdpau
+      mesa.drivers
+    ];
+    extraPackages32 = with pkgs.driversi686Linux; [
+      vaapiVdpau
+      mesa.drivers
+    ];
+  };
+  environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
+  services.xserver.videoDrivers = ["amdgpu"];
+
   swapDevices = [
     {device = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8";}
   ];
