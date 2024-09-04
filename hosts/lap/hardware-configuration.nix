@@ -21,13 +21,19 @@
     };
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod"];
-      kernelModules = [];
+      kernelModules = [
+        "amdgpu"
+        "cpufreq_ondemand"
+        "cpufreq_powersave"
+      ];
+
       luks = {
         devices."luks-rpool-nvme-Samsung_SSD_990_PRO_2TB_S7DNNU0X417249D-part2".device = "/dev/disk/by-uuid/47848e3e-66c6-43e6-a878-096b608c098d";
         devices."swapDevice".device = "/dev/disk/by-uuid/de8dd340-6c95-471a-9394-db5bef325386";
       };
     };
     kernelModules = ["kvm-amd"];
+
     extraModulePackages = [];
 
     # support for building nix packages for rp4
