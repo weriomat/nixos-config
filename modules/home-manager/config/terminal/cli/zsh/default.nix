@@ -85,7 +85,7 @@
       df = "duf --all --theme dark";
       dig = "dog";
       du = "dust";
-      grep = "rg--color=auto";
+      grep = "rg --color=auto";
 
       raspi = "ssh -i ~/.ssh/id_ed25519 -p 2077 marts@192.168.178.21";
 
