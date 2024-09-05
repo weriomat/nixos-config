@@ -20,8 +20,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
-    prism.url = "github:IogaMaster/prism";
-
     catppuccin.url = "github:catppuccin/nix";
 
     nur.url = "github:nix-community/nur";
