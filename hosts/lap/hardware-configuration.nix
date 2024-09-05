@@ -21,13 +21,19 @@
     };
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod"];
-      kernelModules = [];
+      kernelModules = [
+        "amdgpu"
+        "cpufreq_ondemand"
+        "cpufreq_powersave"
+      ];
+
       luks = {
         devices."luks-rpool-nvme-Samsung_SSD_990_PRO_2TB_S7DNNU0X417249D-part2".device = "/dev/disk/by-uuid/47848e3e-66c6-43e6-a878-096b608c098d";
         devices."swapDevice".device = "/dev/disk/by-uuid/de8dd340-6c95-471a-9394-db5bef325386";
       };
     };
     kernelModules = ["kvm-amd"];
+
     extraModulePackages = [];
 
     # support for building nix packages for rp4
@@ -59,6 +65,29 @@
       fsType = "vfat";
     };
   };
+
+  # GPU Support - See https://nixos.wiki/wiki/AMD_GPU
+  hardware.opengl = {
+    enable = true;
+
+    # Support for opencl, vulkan, amdgpu and rocm
+    driSupport = true;
+    # For 32 bit applications
+    driSupport32Bit = true;
+
+    extraPackages = with pkgs; [
+      rocm-opencl-icd
+      rocm-opencl-runtime
+      vaapiVdpau
+      mesa.drivers
+    ];
+    extraPackages32 = with pkgs.driversi686Linux; [
+      vaapiVdpau
+      mesa.drivers
+    ];
+  };
+  environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
+  services.xserver.videoDrivers = ["amdgpu"];
 
   swapDevices = [
     {device = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8";}

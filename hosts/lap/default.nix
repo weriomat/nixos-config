@@ -33,6 +33,11 @@ in
       # catppuccin nix
       inputs.catppuccin.nixosModules.catppuccin
 
+      # nixos hardware
+      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-amd
+      inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+      inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+
       inputs.home-manager.nixosModules.home-manager
       {
         home-manager = {
