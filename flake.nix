@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     utils.url = "github:numtide/flake-utils";
 
@@ -43,10 +42,12 @@
       # url = "github:hyprwm/Hyprland";
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
+    # TODO: DO i use this?
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # TODO: DO i use this?
     hyprpicker.url = "github:hyprwm/hyprpicker";
 
     nixpkgs-wayland = {
