@@ -13,6 +13,14 @@
   };
   config = lib.mkIf config.my_gtk.enable {
     fonts.fontconfig.enable = true;
+    # TODO: here
+    # fonts.fontconfig.defaultFonts = {
+    #   serif = ["Source Serif" "Noto Color Emoji"];
+    #   sansSerif = ["Fira Sans" "FiraGO" "Noto Color Emoji"];
+    #   monospace = ["MonoLisa Nerd Font" "Noto Color Emoji"];
+    #   emoji = ["Noto Color Emoji"];
+    # };
+
     home.packages = [
       pkgs.nerdfonts
       (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})

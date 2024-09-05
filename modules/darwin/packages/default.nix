@@ -42,8 +42,6 @@
     # TODO: qmk idk
     # qmk
 
-    tldr
-    ripgrep
     cloc
     gnumake
     cmake

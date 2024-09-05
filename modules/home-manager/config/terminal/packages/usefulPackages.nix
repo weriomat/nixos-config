@@ -18,9 +18,7 @@
     fzf
     lsof
     imagemagick
-    jq
     # ncdu
-    ripgrep
     zip
     neofetch
     tree
@@ -42,7 +40,6 @@
 
     # -- network
     # networking tools
-    mtr # A network diagnostic tool
     iperf3
     dnsutils # `dig` + `nslookup`
     ldns # replacement of `dig`, it provide the command `drill`

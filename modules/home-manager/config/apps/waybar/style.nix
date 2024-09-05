@@ -60,7 +60,7 @@
         background-size: 200% 200%;
     }
 
-    #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk,
+    #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk, #backlight, #idle_inhibitor, #custom/audio_idle_inhibitor,
     #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward{
         background: #${custom.palette.tertiary_background_hex};
         font-weight: bold;

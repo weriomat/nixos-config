@@ -1,4 +1,9 @@
 {globals, ...}: {
+  # TODO: systemd
+  programs.waybar.systemd = {
+    enable = true;
+    target = "hyprland-session.target";
+  };
   programs.waybar.settings.mainBar = {
     position = "top";
     layer = "top";
@@ -16,7 +21,7 @@
     modules-center = ["hyprland/workspaces"];
     modules-right =
       if globals.laptop
-      then ["tray" "custom/audio_idle_inhibitor" "cpu" "battery" "memory" "disk" "pulseaudio" "network" "clock"]
+      then ["tray" "custom/audio_idle_inhibitor" "backlight" "cpu" "battery" "memory" "disk" "pulseaudio" "network" "clock"]
       else ["tray" "custom/audio_idle_inhibitor" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
     clock = {
       format = " {:%H:%M}";
@@ -26,6 +31,18 @@
         <tt><small>{calendar}</small></tt>'';
       format-alt = " {:%d/%m}";
     };
+
+    # TODO: here
+    # "idle_inhibitor" = {
+    #   format = "{icon}";
+    #   format-icons = {
+    #     activated = "  ";
+    #     deactivated = "  ";
+    #   };
+    # };
+    # backlight = {
+    #   format = " {percent}%";
+    # };
 
     battery = {
       states = {

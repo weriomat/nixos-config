@@ -14,14 +14,16 @@
   config = lib.mkIf config.audio.enable {
     sound.enable = true;
     hardware.pulseaudio = {
-      enable = false;
+      enable = lib.mkForce false;
       package = pkgs.pulseaudioFull;
     };
     security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
       pulse.enable = true;
       wireplumber.enable = true;
     };
@@ -35,5 +37,17 @@
         Experimental = true;
       };
     };
+    # TODO: here
+    # services.udev.packages = with pkgs; [
+    #   headsetcontrol
+    # ];
+
+    # environment.systemPackages = with pkgs; [
+    #   headsetcontrol
+    #   headset-charge-indicator
+    #   pulsemixer
+    # ];
   };
+  # TODO: take a look at noisetorch
+  # TODO: pulsemixer
 }

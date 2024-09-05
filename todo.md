@@ -1,10 +1,27 @@
 # TODOS
 https://github.com/kinzoku-dev/neovim
 
+-> new fonts: https://gitlab.com/hmajid2301/nixicle/-/tree/main/packages/monolisa/MonoLisa
 -> cleanup pkgs thingie, idk why pkgs.callPackage is not here
 -> laptop hibernate
 -> laptop borg 
 -> vaultwarden
+
+# config files right with boxxy lol 
+`https://github.com/queer/boxxy`
+
+# Email, cant be bothered rn
+- notmuch 
+- programs.alot `https://nix-community.github.io/home-manager/options.xhtml#opt-programs.alot.enable`
+- imapnotify `services.imapnotify.enable`
+- getmail `services.getmail`
+- mu mail indexer `programs.mu`
+- afew -> email tagging
+- liier -> synchronizaiton btewwen notmuch and gmail
+
+- TODO: newsboat -> RSS reader for terminals
+
+- arrpc -> discord rpc
 
 - Refactor user management
 - Use Homemanger bundles for config

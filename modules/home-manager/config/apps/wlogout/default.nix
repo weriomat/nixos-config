@@ -17,38 +17,41 @@
       enable = true;
       layout = [
         {
+          # TODO: here
           label = "lock";
-          action = "sleep 0.25; swaylock";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; swaylock";
           text = "Lock";
           keybind = "l";
         }
         {
           label = "hibernate";
-          action = "sleep 0.25; systemctl hibernate";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl hibernate";
           text = "Hibernate";
           keybind = "h";
         }
         {
           label = "logout";
-          action = "sleep 0.25; hyprctl dispatch exit";
+          # TODO: fix here with inputs
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.hyprland}/bin/hyprctl dispatch exit";
           text = "Exit";
           keybind = "e";
         }
         {
           label = "shutdown";
-          action = "sleep 0.25; systemctl poweroff";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl poweroff";
           text = "Shutdown";
           keybind = "s";
         }
         {
+          # TODO: switch to suspend-then-hibernate
           label = "suspend";
-          action = "sleep 0.25; systemctl suspend";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl suspend";
           text = "Suspend";
           keybind = "u";
         }
         {
           label = "reboot";
-          action = "sleep 0.25; systemctl reboot";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl reboot";
           text = "Reboot";
           keybind = "r";
         }

@@ -50,6 +50,7 @@
       };
     };
 
+    # TODO: refactore to https://gitlab.com/hmajid2301/nixicle/-/blob/main/modules/home/desktops/addons/swaylock/default.nix from sleepidle script
     # services.swayidle = {
     #   enable = true;
     #   events = [

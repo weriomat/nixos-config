@@ -12,9 +12,10 @@
       ${globals.username} = {
         isNormalUser = true;
         description = "${globals.username}";
-
+        homeMode = "755";
         extraGroups = [
           "networkmanager"
+          "tty"
           "wheel"
           "wireshark"
           "network"

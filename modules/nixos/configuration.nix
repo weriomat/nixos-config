@@ -28,10 +28,38 @@
   borg.enable = true;
   sops.enable = true;
 
+  # TODO: here
+  # hardware = {
+  #       logitech.wireless.enable = true;
+  #       logitech.wireless.enableGraphical = true; # Solaar.
+  #     };
+
+  #     environment.systemPackages = with pkgs; [
+  #       solaar
+  #     ];
+
+  #     services.udev.packages = with pkgs; [
+  #       logitech-udev-rules
+  #       solaar
+  #     ];
+
+  # TODO: here
+  # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+  #   programs.coolercontrol.enable = true;
+
+  # TODO: here
+  # services = {
+  #    power-profiles-daemon.enable = true;
+
+  #   # battery info
+  #   upower.enable = true;
+  # };
+
   environment = {
     systemPackages = with pkgs; [nh];
     sessionVariables = {FLAKE = "/home/${globals.username}/.nixos/nixos";};
-    pathsToLink = ["/share/zsh"]; # for zsh.enableCompletion
+    pathsToLink = ["/share/zsh" "/share/xdg-desktop-portal" "/share/applications"]; # for zsh.enableCompletion
   };
 
   # automatic system upgrades
@@ -52,6 +80,70 @@
   #   via
   # ];
 
+  services = {
+    smartd = {
+      enable = true;
+      autodetect = true;
+    };
+    libinput.enable = true; # TODO: here
+    # avahi = {
+    #   enable = true;
+    #   nssmdns4 = true;
+    #   openFirewall = true;
+    # };
+    # ipp-usb.enable = true;
+    rpcbind.enable = false;
+    nfs.server.enable = false;
+  };
+
+  # Security / Polkit
+  # security = {
+  #   rtkit.enable = true;
+  #   polkit = {
+  #     enable = true;
+  #     extraConfig = ''
+  #       polkit.addRule(function(action, subject) {
+  #         if (
+  #           subject.isInGroup("users")
+  #             && (
+  #               action.id == "org.freedesktop.login1.reboot" ||
+  #               action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+  #               action.id == "org.freedesktop.login1.power-off" ||
+  #               action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+  #             )
+  #           )
+  #         {
+  #           return polkit.Result.YES;
+  #         }
+  #       })
+  #     '';
+  #   };
+  #   pam.services.swaylock = {
+  #     text = ''
+  #       auth include login
+  #     '';
+  #   };
+  # };
+
+  programs.dconf.enable = true; # dconf -> edit system preferences
+  programs.mtr.enable = true;
+  # programs.fuse.userAllowOther = true;
+
+  # TODO: here
+  services.udisks2.enable = true;
+
+  hardware = {
+    # logitech.wireless = { # Extra Logitech Support
+    #   enable = true;
+    #   enableGraphical = true;
+    # };
+
+    graphics.enable = true; # for openGL
+
+    # Enable sound with pipewire.
+    pulseaudio.enable = false;
+  };
+
   audio.enable = true;
   doc.enable = true;
   graphical.enable = true;
@@ -61,67 +153,6 @@
   packages.enable = true;
   virt.enable = true;
 
-  # environment.variables = {
-  #   POLKIT_BIN = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  # };
-  # sdl-videodriver = "x11"; # Either x11 or wayland ONLY. Games might require x11 set here
-  # -> take a look at zaynes nixso conf
-  # systemd = {
-  #   user.services.polkit-gnome-authentication-agent-1 = {
-  #     description = "polkit-gnome-authentication-agent-1";
-  #     wantedBy = [ "graphical-session.target" ];
-  #     wants = [ "graphical-session.target" ];
-  #     after = [ "graphical-session.target" ];
-  #     serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  #   };
-  # };
-
-  # security.polkit.enable = true;
-
-  # security.polkit.extraConfig = ''
-  #   polkit.addRule(function(action, subject) {
-  #     if (
-  #       subject.isInGroup("users")
-  #         && (
-  #           action.id == "org.freedesktop.login1.reboot" ||
-  #           action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
-  #           action.id == "org.freedesktop.login1.power-off" ||
-  #           action.id == "org.freedesktop.login1.power-off-multiple-sessions"
-  #         )
-  #       )
-  #     {
-  #       return polkit.Result.YES;
-  #     }
-  #   })
-  # '';
-  #  security.pam.services.swaylock = {
-  #   text = ''
-  #     auth include login
-  #   '';
-  # };
-  #  xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk
-  #     pkgs.xdg-desktop-portal
-  #   ];
-  #   configPackages = [ pkgs.xdg-desktop-portal-gtk
-  #     pkgs.xdg-desktop-portal-hyprland
-  #     pkgs.xdg-desktop-portal
-  #   ];
-  # };
-  # programs.steam.gamescopeSession.enable = true;
-  # programs.dconf.enable = true;
-  # programs.hyprland = {
-  #   enable = true;
-  #   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  #   xwayland.enable = true;
-  # };
   # polkit_gnome lm_sensors meson
   # OpenGL
   # hardware.opengl = {
@@ -129,25 +160,8 @@
   #   driSupport = true;
   #   driSupport32Bit = true;
   # };
-  #   lib.mkIf (ntp == true) {
-  #   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
   # }
-  #  hardware.logitech.wireless.enable = true;
-  # hardware.logitech.wireless.enableGraphical = true;
-  #  services.xserver.enable = true;
 
-  # boot.loader.efi.canTouchEfiVariables = true;
-  #   lib.mkIf ("${gpuType}" == "amd") {
-  #   systemd.tmpfiles.rules = [
-  #     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  #   ];
-  #   # OpenGL
-  #   hardware.opengl = {
-  #     ## amdvlk: an open-source Vulkan driver from AMD
-  #     extraPackages = [ pkgs.amdvlk ];
-  #     extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
-  #   };
-  # }
   #   pkgs.writeShellScriptBin "emopicker9000" ''
   #     # Get user selection via wofi from emoji file.
   #     chosen=$(cat $HOME/.emoji | ${pkgs.rofi-wayland}/bin/rofi -dmenu | awk '{print $1}')
@@ -164,27 +178,6 @@
   # 	    ${pkgs.libnotify}/bin/notify-send "'$chosen' copied to clipboard." &
   #     fi
   # ''
-  # home.file.".config/neofetch/config.conf".text = ''
-  #       print_info() {
-  #           info "$(color 6)  OS " distro
-  #           info underline
-  #           info "$(color 7)  VER" kernel
-  #           info "$(color 2)  UP " uptime
-  #           info "$(color 4)  PKG" packages
-  #           info "$(color 6)  DE " de
-  #           info "$(color 5)  TER" term
-  #           info "$(color 3)  CPU" cpu
-  #           info "$(color 7)  GPU" gpu
-  #           info "$(color 5)  MEM" memory
-  #           prin " "
-  #           prin "$(color 1) $(color 2) $(color 3) $(color 4) $(color 5) $(color 6) $(color 7) $(color 8)"
-  #       }
-  #       distro_shorthand="on"
-  #       memory_unit="gib"
-  #       cpu_temp="C"
-  #       separator=" $(color 4)>"
-  #       stdout="off"
-  #   '';
 
   # ssd thingie
   services.fstrim.enable = lib.mkDefault true;
@@ -192,13 +185,6 @@
   flatpack.enable = true;
   system.stateVersion = "23.11";
 }
-# exec-once = "xwaylandvideobridge"
-#  pkgs, config, lib, ... }:
-# let
-#   palette = config.colorScheme.palette;
-#   inherit (import ../../options.nix) slickbar simplebar clock24h;
-# in with lib; {
-#   # Configure & Theme Waybar
 #   programs.waybar = {
 #     enable = true;
 #     package = pkgs.waybar;

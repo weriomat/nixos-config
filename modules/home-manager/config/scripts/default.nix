@@ -5,6 +5,67 @@
 }: let
   wallpaper_path = "${pkgs.weriomat-wallpapers}";
 in {
+  # TODO: here
+  # stolen from https://haseebmajid.dev/posts/2023-11-15-part-3-hyprland-as-part-of-your-development-workflow/
+  laptop_lid_switch = pkgs.writeShellScriptBin "laptop_lid_switch" ''
+    #!/usr/bin/env bash
+
+    if grep open /proc/acpi/button/lid/LID0/state; then
+        hyprctl keyword monitor "eDP-1, 2256x1504@60, 0x0, 1"
+    else
+        if [[ `hyprctl monitors | grep "Monitor" | wc -l` != 1 ]]; then
+            hyprctl keyword monitor "eDP-1, disable"
+        fi
+    fi
+  '';
+
+  # stolen from https://gitlab.com/Zaney/zaneyos/-/blob/main/scripts/web-search.nix?ref_type=heads
+  web-search = pkgs.writeShellApplication {
+    name = "web-search";
+    runtimeInputs = with pkgs; [hyprland swayidle swaylock libnotify];
+    text = ''
+       declare -A URLS
+
+       URLS=(
+         ["🌎 Search"]="https://duckduckgo.com/?q="
+         ["❄️  Unstable Packages"]="https://search.nixos.org/packages?channel=unstable&from=0&size=50&sort=relevance&type=packages&query="
+         ["🎞️ YouTube"]="https://www.youtube.com/results?search_query="
+         ["🦥 Arch Wiki"]="https://wiki.archlinux.org/title/"
+         ["🐃 Gentoo Wiki"]="https://wiki.gentoo.org/index.php?title="
+       )
+
+       # List for rofi
+       gen_list() {
+         for i in "''${!URLS[@]}"
+         do
+           echo "$i"
+         done
+       }
+
+       main() {
+         # Pass the list to rofi
+         platform=$( (gen_list) | ${pkgs.wofi}/bin/wofi -dmenu )
+
+         if [[ -n "$platform" ]]; then
+           query=$( (echo ) | ${pkgs.wofi}/bin/wofi -dmenu )
+
+           if [[ -n "$query" ]]; then
+      url=''${URLS[$platform]}$query
+      xdg-open "$url"
+           else
+      exit
+           fi
+         else
+           exit
+         fi
+       }
+
+       main
+
+       exit 0
+    '';
+  };
+
   sleepidle = pkgs.writeShellApplication {
     name = "sleepidle";
     runtimeInputs = with pkgs; [hyprland swayidle swaylock libnotify];
@@ -158,7 +219,7 @@ in {
     '';
   };
 
-  # TODO: here
+  # TODO: here, exec at start of hyprland
   # xdg = pkgs.writeShellApplication {
   #   name = "xdg";
   #   runtimeInputs = with pkgs; [ killall ];
