@@ -19,7 +19,6 @@
     ./wayland
     ./common
     ./steam
-    ./nfs
     ./borg.nix
     ./sops.nix
   ];
