@@ -142,9 +142,6 @@
   # TODO: dashboard
   # services.glance = {};
 
-  # TODO: kanashi
-  # services.kanashi={};
-
   # TODO: here
   # services.network-manager-applet.enable = true;
 
@@ -210,10 +207,6 @@
 
   # TODO: here
   # nix.registry = {};
-
-  # home.sessionVariables = {
-  # EDITOR = "emacs";
-  # };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
