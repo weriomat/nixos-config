@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  # TODO: here idk what most of this means
   programs = {
     hyprland.enable = true;
     xwayland.enable = true;
@@ -12,6 +13,7 @@
     gvfs.enable = true;
   };
 
+  # NOTE: maybe move this into hm?
   # TODO: here https://wiki.hyprland.org/Useful-Utilities/Hyprland-desktop-portal/
   # portal for sharing (file pickers)
   xdg.portal = {
@@ -22,22 +24,22 @@
     extraPortals = [pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
   };
 
-  systemd = {
-    # Bind wlr-portal to systemd unit from home-manager
-    user.services.xdg-desktop-portal-wlr = {
-      partOf = ["graphical-session.target"];
-      description = "wlroots desktop portal";
-      unitConfig = {ConditionUser = "!@system";};
-    };
-    # Enable polkit for system wide auth, required as part of gnome-compat
-    user.services.polkit-gnome-authentication-agent-1 = {
-      partOf = ["graphical-session.target"];
-      description = "Gnome polkit agent";
-      script = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      unitConfig = {ConditionUser = "!@system";};
-    };
-    extraConfig = "DefaultTimeoutStopSec=10s";
-  };
+  # systemd = {
+  #   # Bind wlr-portal to systemd unit from home-manager
+  #   user.services.xdg-desktop-portal-wlr = {
+  #     partOf = ["graphical-session.target"];
+  #     description = "wlroots desktop portal";
+  #     unitConfig = {ConditionUser = "!@system";};
+  #   };
+  #   # Enable polkit for system wide auth, required as part of gnome-compat
+  #   user.services.polkit-gnome-authentication-agent-1 = {
+  #     partOf = ["graphical-session.target"];
+  #     description = "Gnome polkit agent";
+  #     script = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #     unitConfig = {ConditionUser = "!@system";};
+  #   };
+  #   extraConfig = "DefaultTimeoutStopSec=10s";
+  # };
 
   # Enable polkit
   security = {

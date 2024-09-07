@@ -19,9 +19,7 @@ with lib; {
 
       settings = {
         sandbox = true;
-        # Enable flakes and new 'nix' command
         experimental-features = "nix-command flakes";
-        # Deduplicate and optimize nix store
         auto-optimise-store = true;
         substituters = [
           "https://hyprland.cachix.org"
@@ -35,12 +33,12 @@ with lib; {
         ];
       };
     };
-    # TODO: set trusted public keys, trusted-subsituters
 
+    # TODO: here
     # Nix shouldn't build in /tmp since it might compete for RAM for large builds and will quickly exhaust the 5 G limit
     # systemd.services.nix-daemon.environment.TMPDIR = "/nix/tmp";
     # systemd.tmpfiles.rules = [ "d /nix/tmp 0755 root root 1d" ];
-    # Allow some unfree packages
+
     nixpkgs = {
       overlays = [
         outputs.overlays.additions
@@ -48,24 +46,8 @@ with lib; {
         outputs.overlays.unstable-packages
 
         inputs.nur.overlay
-
-        # Or define it inline, for example:
-        # (final: prev: {
-        #   hi = final.hello.overrideAttrs (oldAttrs: {
-        #     patches = [ ./change-hello-to-hi.patch ];
-        #   });
-        # })
       ];
       config = {
-        permittedInsecurePackages = [
-          "electron-17.4.1"
-          "electron-19.1.9"
-          "electron-21.4.0"
-          "electron-15.5.2"
-          "electron-24.8.6"
-          "electron-25.9.0"
-          "python-2.7.18.7"
-        ];
         allowUnfree = true;
       };
     };

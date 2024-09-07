@@ -21,6 +21,7 @@
     ./borg.nix
     ./sops.nix
   ];
+  # TODO: make a new name sceme for custom options + incorperate globals
 
   borg.enable = true;
   sops.enable = true;

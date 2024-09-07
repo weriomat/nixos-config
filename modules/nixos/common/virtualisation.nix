@@ -27,10 +27,8 @@ with lib; {
         # Required for containers under podman-compose to be able to talk to each other.
         defaultNetwork.settings.dns_enabled = true;
       };
-      # docker = {
-      #   enable = true;
-      # };
     };
+
     # Useful otherdevelopment tools
     environment.systemPackages = with pkgs; [
       quickemu
@@ -39,7 +37,6 @@ with lib; {
       dive # look into docker image layers
       podman-tui # status of containers in the terminal
       docker-compose # start group of containers for dev
-      #podman-compose # start group of containers for dev
     ];
   };
 }

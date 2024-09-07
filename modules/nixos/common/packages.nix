@@ -8,6 +8,7 @@ with lib; {
   options.packages.enable = mkEnableOption "Enable packages";
 
   config = mkIf config.packages.enable {
+    # TODO: remove ++ unify with hm packages
     environment.systemPackages = with pkgs; [
       nurl # simple nix prefetch
       duf # df alternative
@@ -36,9 +37,6 @@ with lib; {
 
       # gnome disk
       gnome.gnome-disk-utility
-
-      # unsave version of electron
-      # etcher
 
       # learning git game
       oh-my-git

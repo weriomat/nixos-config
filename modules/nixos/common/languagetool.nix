@@ -1,4 +1,5 @@
 {globals, ...}: {
+  # TODO: make this a module with cacheSize
   services.languagetool = {
     # dont forget to swtich to local server in firefox
     enable = true;
@@ -6,6 +7,7 @@
     public = false;
     allowOrigin = "*";
     settings = {
+      # TODO: here
       # fasttextModel
       # fasttextBinary
       # languageModel
