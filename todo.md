@@ -1,6 +1,9 @@
 # TODOS
 https://github.com/kinzoku-dev/neovim
 
+1. fix config imports 
+-> modules to modules, home manager to home...
+
 -> cleanup pkgs thingie, idk why pkgs.callPackage is not here
 -> laptop hibernate
 -> laptop borg 
