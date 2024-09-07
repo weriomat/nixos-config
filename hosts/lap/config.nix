@@ -3,6 +3,9 @@
   globals,
   ...
 }: {
+  # NOTE: disbale virtualiziation
+  virt.enable = lib.mkForce false;
+
   # TODO: zfs mail
   services = {
     zfs = {
