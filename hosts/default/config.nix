@@ -3,6 +3,8 @@
   globals,
   ...
 }: {
+  steam.enable = true;
+
   services.borgbackup.jobs."hetzner" = {
     exclude = lib.mkForce [
       "/home/marts/Backup_1TB_SSD/not_borg"
