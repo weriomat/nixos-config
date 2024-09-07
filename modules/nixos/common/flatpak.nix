@@ -2,15 +2,11 @@
   lib,
   config,
   ...
-}: {
-  options.flatpack = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable flatpack";
-    };
-  };
-  config = lib.mkIf config.flatpack.enable {
+}:
+with lib; {
+  options.flatpack.enable = mkEnableOption "Enable flatpack";
+
+  config = mkIf config.flatpack.enable {
     # https://www.flatpak.org/setup/NixOS
     services.flatpak.enable = true; # added to config.nix
     #  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

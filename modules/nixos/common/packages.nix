@@ -3,15 +3,11 @@
   lib,
   config,
   ...
-}: {
-  options.packages = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable packages";
-    };
-  };
-  config = lib.mkIf config.packages.enable {
+}:
+with lib; {
+  options.packages.enable = mkEnableOption "Enable packages";
+
+  config = mkIf config.packages.enable {
     environment.systemPackages = with pkgs; [
       nurl # simple nix prefetch
       duf # df alternative

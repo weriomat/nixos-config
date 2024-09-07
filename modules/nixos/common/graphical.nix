@@ -3,15 +3,11 @@
   lib,
   config,
   ...
-}: {
-  options.graphical = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable graphical apps";
-    };
-  };
-  config = lib.mkIf config.graphical.enable {
+}:
+with lib; {
+  options.graphical.enable = mkEnableOption "Enable graphical apps";
+
+  config = mkIf config.graphical.enable {
     environment.systemPackages = with pkgs; [
       obsidian
       cider

@@ -2,15 +2,11 @@
   lib,
   config,
   ...
-}: {
-  options.keyboard = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable keyboard properties";
-    };
-  };
-  config = lib.mkIf config.keyboard.enable {
+}:
+with lib; {
+  options.keyboard.enable = mkEnableOption "Enable keyboard properties";
+
+  config = mkIf config.keyboard.enable {
     i18n = {
       defaultLocale = "en_US.UTF-8";
 

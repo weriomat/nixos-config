@@ -3,15 +3,11 @@
   lib,
   config,
   ...
-}: {
-  options.audio = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable audio settings";
-    };
-  };
-  config = lib.mkIf config.audio.enable {
+}:
+with lib; {
+  options.audio.enable = mkEnableOption "Enable audio settings";
+
+  config = mkIf config.audio.enable {
     sound.enable = true;
     hardware.pulseaudio = {
       enable = false;

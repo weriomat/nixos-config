@@ -3,15 +3,11 @@
   config,
   globals,
   ...
-}: {
-  options.networking = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable networking settings";
-    };
-  };
-  config = lib.mkIf config.networking.enable {
+}:
+with lib; {
+  options.networking.enable = mkEnableOption "Enable networking settings";
+
+  config = mkIf config.networking.enable {
     networking = {
       networkmanager.enable = true;
       hostName = "${globals.hostname}";

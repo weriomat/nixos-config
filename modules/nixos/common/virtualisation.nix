@@ -4,15 +4,11 @@
   config,
   globals,
   ...
-}: {
-  options.virt = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable virtualisation";
-    };
-  };
-  config = lib.mkIf config.virt.enable {
+}:
+with lib; {
+  options.virt.enable = mkEnableOption "Enable virtualisation";
+
+  config = mkIf config.virt.enable {
     programs.virt-manager.enable = true;
     virtualisation.libvirtd = {
       enable = true;

@@ -4,15 +4,12 @@
   lib,
   config,
   ...
-}: {
-  options.nix-settings = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable nix settings";
-    };
-  };
-  config = lib.mkIf config.nix-settings.enable {
+}:
+with lib; {
+  options.nix-settings.enable =
+    mkEnableOption "Enable nix settings";
+
+  config = mkIf config.nix-settings.enable {
     nix = {
       nixPath = ["nixpkgs=${inputs.nixpkgs}" "unstable=${inputs.nixpkgs-unstable}"];
 

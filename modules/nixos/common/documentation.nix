@@ -3,15 +3,11 @@
   lib,
   config,
   ...
-}: {
-  options.doc = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable documentation settings";
-    };
-  };
-  config = lib.mkIf config.doc.enable {
+}:
+with lib; {
+  options.doc.enable = mkEnableOption "Enable documentation settings";
+
+  config = mkIf config.doc.enable {
     documentation = {
       enable = true;
       man = {
