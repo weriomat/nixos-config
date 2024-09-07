@@ -30,7 +30,6 @@ in
             users.eliasengel.imports = [
               ../../modules/home-manager/darwin
               ../../modules/home-manager
-              inputs.prism.homeModules.prism # for compatability
               inputs.nix-colors.homeManagerModules.default
               inputs.mac-app-util.homeManagerModules.default
               inputs.nix-index-database.hmModules.nix-index

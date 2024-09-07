@@ -16,8 +16,8 @@
     modules-center = ["hyprland/workspaces"];
     modules-right =
       if globals.laptop
-      then ["tray" "cpu" "battery" "memory" "disk" "pulseaudio" "network" "clock"]
-      else ["tray" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
+      then ["tray" "custom/audio_idle_inhibitor" "cpu" "battery" "memory" "disk" "pulseaudio" "network" "clock"]
+      else ["tray" "custom/audio_idle_inhibitor" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
     clock = {
       format = " {:%H:%M}";
       tooltip = "true";
@@ -64,6 +64,20 @@
       };
       # max-length = 25;
       tooltip = false;
+    };
+
+    # stolen from https://github.com/ErikReider/SwayAudioIdleInhibit
+    "custom/audio_idle_inhibitor" = {
+      format = "{icon}";
+      exec = "sway-audio-idle-inhibit --dry-print-both-waybar";
+      exec-if = "which sway-audio-idle-inhibit";
+      return-type = "json";
+      format-icons = {
+        output = "";
+        input = "";
+        output-input = "  ";
+        none = "";
+      };
     };
 
     # TODO: here

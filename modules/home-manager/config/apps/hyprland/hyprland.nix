@@ -37,6 +37,7 @@
       glib
       wayland
       direnv
+      sway-audio-idle-inhibit # no inhbit if audio playing
     ];
     systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
     wayland.windowManager.hyprland = {

@@ -22,6 +22,7 @@
       env = [
         "XCURSOR_SIZE,24"
       ];
+      # TODO: steal from zayneyos/ cobalt
       exec-once = [
         "systemctl --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
@@ -32,6 +33,7 @@
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
         "dynwallpaper &"
+        "sway-audio-idle-inhibit &"
         "sleep 1 && swaylock"
         "sleep 1 && sleepidle &"
         "hyprctl setcursor Nordzy-cursors 22 &"

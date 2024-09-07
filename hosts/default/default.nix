@@ -45,7 +45,6 @@ in
           users.${globals.username}.imports = [
             ../../modules/home-manager/nixos
             ../../modules/home-manager
-            inputs.prism.homeModules.prism
             inputs.nix-colors.homeManagerModules.default
             inputs.nix-index-database.hmModules.nix-index
             inputs.catppuccin.homeManagerModules.catppuccin
