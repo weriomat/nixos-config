@@ -12,19 +12,17 @@
         createHome = true;
         description = "${globals.username}";
 
-        extraGroups =
-          [
-            "networkmanager"
-            "wheel"
-            "network"
-            "dialout"
-            "disk"
-            "audio"
-            "video"
-            "disk"
-            "input"
-          ]
-          ++ globals.extraGroups;
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "network"
+          "dialout"
+          "disk"
+          "audio"
+          "video"
+          "disk"
+          "input"
+        ];
 
         uid = 1000;
         homeMode = "755";
