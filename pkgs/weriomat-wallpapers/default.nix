@@ -6,8 +6,8 @@ pkgs.stdenv.mkDerivation {
   src = pkgs.fetchFromGitHub {
     owner = "weriomat";
     repo = "wallpapers";
-    rev = "2653162e282bdd876fa1a1b1c1881c2dcdbdbc2f";
-    hash = "sha256-vbRXnm43PEu4r0624OTlBpOuSzepI2KrHRQnewT9VKY=";
+    rev = "b2744db6bd7f509d0c839ebb90f30cc2fc784126";
+    hash = "sha256-dD83T0M2v2L3IQqmwmqiZe52sgUqhNFLZIiqE40v2Vg=";
   };
 
   buildInputs = with pkgs; [lutgen findutils coreutils];
