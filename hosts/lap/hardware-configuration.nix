@@ -41,6 +41,10 @@
 
     # newer kernel cuz wlan driver crashes cuz of aspm
     kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
+
+    # hibernate
+    # TODO: here
+    # resumeDevice = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8";
   };
 
   fileSystems = {
