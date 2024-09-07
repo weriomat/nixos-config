@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  globals,
   ...
 }: {
   options.sops = {
@@ -10,15 +11,16 @@
       description = "Enable sops settings";
     };
   };
+
   config = lib.mkIf config.sops.enable {
     sops = {
       defaultSopsFile = ../../secrets/secrets.yaml;
       defaultSopsFormat = "yaml";
 
-      age.keyFile = "/home/marts/.config/sops/age/keys.txt";
+      age.keyFile = "/home/${globals.username}/.config/sops/age/keys.txt";
 
       secrets.borg-key = {
-        owner = "marts";
+        owner = "${globals.username}";
       };
     };
   };

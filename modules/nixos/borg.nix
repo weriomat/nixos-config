@@ -16,7 +16,7 @@
     environment.systemPackages = with pkgs; [vorta];
     services.borgbackup.jobs."hetzner" = {
       repo = "ssh://u406968@u406968.your-storagebox.de:23/home/backups/${globals.host}";
-      environment.BORG_RSH = "ssh -i /home/marts/.ssh/deploy_hetzner";
+      environment.BORG_RSH = "ssh -i /home/${globals.username}/.ssh/deploy_hetzner";
 
       encryption = {
         mode = "repokey-blake2";
