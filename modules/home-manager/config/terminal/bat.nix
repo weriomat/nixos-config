@@ -30,8 +30,6 @@
     shellAliases = {
       cat = "bat";
       man = "batman";
-      # seach for files with preview
-      # fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"
 
       # diff for git
       gdiff = "git diff --name-only --relative --diff-filter=d | xargs bat --diff";
@@ -40,7 +38,6 @@
       ho = "hx $(fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')";
 
       # kill a process
-      # kp = "kill -9 **";
       kp = "ps aux | fzf | awk '{print$2}' | xargs kill PID";
     };
   };
