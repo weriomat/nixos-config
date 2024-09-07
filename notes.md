@@ -3,6 +3,9 @@ just import the thingies you need
 prefetch url -> `nix shell nixpkgs#nurl` `nurl "https://github.com/weriomat/wallpapers"`
 # MA -> local search for attrs
 
+# comma
+use `comma` or `,` to run a app with help of nix-db without installing
+
 # Kill a process
 <ctrl + z> moves it to backgroun -> like & at end
 -> kill %1 -> to kill background process
@@ -71,3 +74,12 @@ networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.o
 -> adding to attr set ist just adding a item ig in another location
 -> updating attr set -> just set value with lib.mkForce ...
 -> update attr set with //
+
+# gpu test amd
+`nix shell nixpkgs#radeontop`
+`radeontop`
+-> stresstest
+`nix shell nixpkgs#glmark2`
+`glmark2`
+`nix shell nixpkgs#lshw`
+`sudo lshw -C display -short`
