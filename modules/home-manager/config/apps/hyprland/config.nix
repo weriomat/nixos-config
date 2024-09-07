@@ -1,11 +1,7 @@
 {config, ...}: {
   wayland.windowManager.hyprland = {
     settings = {
-      monitor = [
-        "DP-1, 2560x1440@144, 1920x0, 1"
-        "DP-3, 1920x1080@240, 0x0, 1"
-        "HDMI-A-1,  1920x1080@60, 4480x0, 1"
-      ];
+      # TODO: maybe this in per host config as well?
       workspace = [
         "1, monitor: DP-1, default:true, on-created-empty:kitty"
         "2, monitor: DP-1, on-created-empty:keepassxc"
@@ -13,7 +9,7 @@
         "4, monitor: DP-1, on-created-empty: thunar"
         "5, monitor: DP-1"
         "6, monitor: DP-3, default:true, on-created-empty:firefox"
-        "7, monitor: DP-3, on-created-empty: libreoffice"
+        "7, monitor: DP-3"
         "8, monitor: DP-3"
         "9, monitor: DP-3"
         "10, monitor: DP-3"
@@ -40,6 +36,7 @@
         "sleep 1 && sleepidle &"
         "hyprctl setcursor Nordzy-cursors 22 &"
         "sleep 1; hyprctl dispatch workspace 1&"
+        "kanshi &"
         "waybar &"
         "mako &"
         "udiskie &"

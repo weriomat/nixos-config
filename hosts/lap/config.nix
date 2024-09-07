@@ -1,4 +1,8 @@
-{lib, ...}: {
+{
+  lib,
+  globals,
+  ...
+}: {
   # TODO: zfs mail
   services = {
     zfs = {
@@ -16,15 +20,42 @@
   };
   networking.hostId = "fb363d05";
 
-  # TODO: kanashi
-  # home-manager.users.${globals.username}.monitors = [
-  #   {
-  #     name = "eDP-1";
-  #     width = 1929;
-  #     height = 1200;
-  #     x = 0;
-  #     workspace = "1";
-  #     primary = true;
-  #   }
-  # ];
+  # NOTE: kanshi is configured at the host level
+  home-manager.users.${globals.username} = {
+    services.kanshi = {
+      enable = true;
+      systemdTarget = "hyprland-session.target";
+      profiles = {
+        undocked = {
+          outputs = [
+            {
+              criteria = "eDP-1";
+              status = "enable";
+              mode = "1920x1200@60";
+              position = "0,0";
+              scale = 1.0;
+            }
+          ];
+        };
+        home_office = {
+          outputs = [
+            {
+              criteria = "eDP-1";
+              status = "enable";
+              mode = "1920x1200@60";
+              position = "0,0";
+              scale = 1.0;
+            }
+            {
+              criteria = "HDMI-A-2";
+              status = "enable";
+              mode = "1920x1080@120";
+              position = "1920,0";
+              scale = 1.0;
+            }
+          ];
+        };
+      };
+    };
+  };
 }
