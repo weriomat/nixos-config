@@ -12,7 +12,6 @@
     host = "nixos-laptop";
     hostname = host;
     laptop = true;
-    architekture = "x86_64-linux";
   };
 in
   inputs.nixpkgs.lib.nixosSystem {

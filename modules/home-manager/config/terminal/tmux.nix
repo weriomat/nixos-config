@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  globals,
   ...
 }: {
   programs.tmux = {
@@ -38,7 +37,7 @@
     sensibleOnTop = true;
     plugins = with pkgs; [
       {
-        plugin = inputs.sessionx.packages.${globals.architekture}.default;
+        plugin = inputs.sessionx.packages.${pkgs.system}.default;
         extraConfig = ''
           set -g @sessionx-auto-accept 'off'
           set -g @sessionx-window-height '85%'
