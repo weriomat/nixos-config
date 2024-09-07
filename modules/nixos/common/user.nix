@@ -32,7 +32,8 @@
         };
       };
       defaultUserShell = pkgs.zsh;
-      mutableUsers = false;
+      # TODO: make pasword file here
+      # mutableUsers = false;
     };
 
     programs.zsh.enable = true;

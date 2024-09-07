@@ -11,5 +11,6 @@
     ./packages.nix
     ./virtualisation.nix
     ./languagetool.nix
+    ./user.nix
   ];
 }
