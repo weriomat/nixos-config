@@ -1,10 +1,14 @@
 # stolen from cobalt
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    powertop
     linuxPackages.cpupower
   ];
-  powerManagement.cpuFreqGovernor = "schedutil";
+
+  powerManagement = {
+    enable = true; # enable hibernate
+    powertop.enable = true; # enable powertop --auto-tune on startup
+    cpuFreqGovernor = "schedutil";
+  };
 
   # Enable upower for bat management
   # the specific scheduler/ handling will be different on work and rw due to differences
