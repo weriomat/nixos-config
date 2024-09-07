@@ -13,6 +13,7 @@
     hostname = host;
     laptop = true;
     architekture = "x86_64-linux";
+    extraGroups = [];
   };
 in
   inputs.nixpkgs.lib.nixosSystem {

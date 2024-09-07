@@ -14,18 +14,19 @@
           description = "${globals.username}";
 
           # TODO: add etra groups
-          extraGroups = [
-            "networkmanager"
-            "wheel"
-            "wireshark"
-            "network"
-            "dialout"
-            "disk"
-            "audio"
-            "video"
-            "disk"
-            "input"
-          ];
+          extraGroups =
+            [
+              "networkmanager"
+              "wheel"
+              "network"
+              "dialout"
+              "disk"
+              "audio"
+              "video"
+              "disk"
+              "input"
+            ]
+            ++ globals.extraGroups;
 
           uid = 1000;
           homeMode = "755";

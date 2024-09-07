@@ -16,7 +16,6 @@
 # TODO: cloudflare dns
 {
   imports = [
-    ./user
     ./wayland
     ./common
     ./steam
