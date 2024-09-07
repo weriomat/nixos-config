@@ -48,7 +48,6 @@
       oh-my-git
       prettyping
       unstable.libdrm
-      wireshark
       ffmpeg
 
       # keyboard
@@ -63,15 +62,6 @@
       nixpkgs-fmt
       nixpkgs-lint
       statix
-
-      (haskellPackages.ghcWithPackages (pkgs:
-        with pkgs; [
-          stack
-          cabal-install
-          MonadRandom
-          multiset-comb
-          haskell-language-server
-        ]))
 
       # build tools
       autoconf
