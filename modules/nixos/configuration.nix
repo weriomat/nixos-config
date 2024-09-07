@@ -32,18 +32,6 @@
     pathsToLink = ["/share/zsh"]; # for zsh.enableCompletion
   };
 
-  # automatic system upgrades
-  system.autoUpgrade = {
-    enable = true;
-    flake = inputs.self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L" # print build logs
-    ];
-    dates = "22:00";
-    randomizedDelaySec = "45min";
-  };
   # hardware.keyboard.qmk.enable = true;
   # environment.systemPackages = with pkgs; [
   #   vial
