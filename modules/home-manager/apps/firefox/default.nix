@@ -4,15 +4,11 @@
   config,
   globals,
   ...
-}: {
-  options.firefox = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable firefox config";
-    };
-  };
-  config = lib.mkIf config.firefox.enable {
+}:
+with lib; {
+  options.firefox.enable = mkEnableOption "Enable firefox config";
+
+  config = mkIf config.firefox.enable {
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
     home.sessionVariables.BROWSER = "firefox";
     programs.firefox = {
