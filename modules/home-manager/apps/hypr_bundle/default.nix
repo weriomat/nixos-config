@@ -4,7 +4,7 @@
   ...
 }:
 with lib; {
-  options.hyprland.enable = mkEnableOption "Enable hyrpland config";
+  options.hyprland.enable = mkEnableOption "Enable hyprland config";
 
   config = mkIf config.hyprland.enable {
     my_gtk.enable = true;
