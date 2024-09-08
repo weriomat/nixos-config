@@ -38,8 +38,6 @@
         "sleep 1 && sleepidle &"
         "hyprctl setcursor Nordzy-cursors 22 &"
         "sleep 1; hyprctl dispatch workspace 1&"
-        "kanshi &"
-        "waybar &"
         "mako &"
         "udiskie &"
         "discord &"
