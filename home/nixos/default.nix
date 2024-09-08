@@ -70,43 +70,28 @@
   };
 
   # TODO: config
-  services.poweralertd.enable = true;
+  # services.poweralertd.enable = true;
 
   # TODO: battery notifys
-  services.batsignal = {};
+  # services.batsignal = {};
 
   # home.packages = [pkgs.pciutils]; # lspci, setpci
 
   # TODO: tmate
   # # TODO: here
 
-  # TODO: services.swayidle
-
-  services.usdiski = {
-    enable = true;
-    automount = true;
-    notify = true;
-    settings = {
-      program_options = {
-        udisks_version = 2;
-        tray = true;
-      };
-      icon_names.media = ["media-optical"];
-    };
-    tray = "auto";
-  };
-
   # TODO: here
-  xdg = {
-    enable = true;
-  };
+  # xdg = {
+  #   enable = true;
+  # };
 
   # TODO: wlsunset -> i have other services like this enabled -> search for them
   #   programs.texlive = {};
-  services.network-manager-applet.enable = true;
+  # services.network-manager-applet.enable = true;
   # services.redshift.enable = true; # TODO: here wlrsunset is availdbe as well, or use `services.gammastep`
   # TODO: cbatticon for laptop
-  services.blueman-applet.enable = true;
+  # services.blueman-applet.enable = true;
+
   programs.tealdeer = {
     enable = true; # tldr written in rust
     settings = {
@@ -120,6 +105,7 @@
       };
     };
   };
+
   programs.jq = {
     enable = true;
     colors = {
@@ -134,14 +120,14 @@
   };
 
   # css for discord
-  programs.discocss = {
-    enable = true;
-    css = ''
-      @import url("https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css");
-    '';
-    discordAlias = true; # alias discocss to discord
-    discordPackage = pkgs.discord;
-  };
+  # programs.discocss = {
+  #   enable = true;
+  #   css = ''
+  #     @import url("https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css");
+  #   '';
+  #   discordAlias = true; # alias discocss to discord
+  #   discordPackage = pkgs.discord;
+  # };
 
   # TODO: dashboard
   # services.glance = {};
@@ -165,25 +151,25 @@
   # services.easyeffects = {};
 
   # TODO: fusuma
-  services.fusuma = {}; # gestures for trackpad
+  # services.fusuma = {}; # gestures for trackpad
 
   # TODO: yt
-  programs.freetube = {
-    enable = true;
-    settings = {
-      allowDashAv1Formats = true;
-      checkForUpdates = false;
-      defaultQuality = "1080";
-      baseTheme = "catppuccinMocha";
-    };
-  };
+  # programs.freetube = {
+  #   enable = true;
+  #   settings = {
+  #     allowDashAv1Formats = true;
+  #     checkForUpdates = false;
+  #     defaultQuality = "1080";
+  #     baseTheme = "catppuccinMocha";
+  #   };
+  # };
 
   # TODO: here
-  programs.texlive = {
-    enable = true;
-    packageSet =
-      pkgs.texlive.combined.scheme-full;
-  };
+  # programs.texlive = {
+  #   enable = true;
+  #   packageSet =
+  #     pkgs.texlive.combined.scheme-full;
+  # };
 
   # TODO: programs.yt-dlp = {}; # Dowoloader for yt files
 
@@ -206,7 +192,7 @@
       "$HOME/.cargo/bin"
       "$HOME/.local/bin"
     ];
-    preferXdgDirectories = true;
+    # preferXdgDirectories = true;
   };
 
   # TODO: here
