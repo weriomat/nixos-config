@@ -19,9 +19,6 @@ in
     modules = [
       ../../modules/nixos
       ../../system/nixos/configuration.nix
-      ../../modules/home-manager
-      ../../home/nixos
-      ../../home/config # TODO: here
 
       ./hardware-configuration.nix
       ./power.nix
@@ -52,8 +49,9 @@ in
             inputs.arkenfox.hmModules.default
           ];
           users.${globals.username}.imports = [
-            ../../modules/home-manager/nixos
             ../../modules/home-manager
+            ../../home/nixos
+            ../../home/config # TODO: here
             inputs.nix-colors.homeManagerModules.default
             inputs.nix-index-database.hmModules.nix-index
             inputs.catppuccin.homeManagerModules.catppuccin
