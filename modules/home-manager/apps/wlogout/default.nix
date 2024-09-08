@@ -14,7 +14,7 @@ with lib; {
       layout = [
         {
           label = "lock";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.swaylock-effects}/bin/swaylock";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${config.programs.swaylock.package}/bin/swaylock";
           text = "Lock";
           keybind = "l";
         }
@@ -26,7 +26,7 @@ with lib; {
         }
         {
           label = "logout";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.hyprland}/bin/hyprctl dispatch exit";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch exit";
           text = "Exit";
           keybind = "e";
         }
