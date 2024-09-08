@@ -10,14 +10,9 @@ with lib; {
 
   config = mkIf config.my_hyprland.enable {
     home.packages = with pkgs; [
-      swayidle
       libnotify
-
-      # TODO: sedtup
       brightnessctl
 
-      # TODO: here
-      mpv-unwrapped
       playerctl
       pamixer
       networkmanagerapplet
@@ -29,11 +24,12 @@ with lib; {
       slurp
       wl-clipboard
       wf-recorder
-      glib
       wayland
+
       sway-audio-idle-inhibit # no inhbit if audio playing
     ];
-    systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
+
+    # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland = {
