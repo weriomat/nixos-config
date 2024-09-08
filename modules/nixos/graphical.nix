@@ -13,7 +13,6 @@ with lib; {
     environment.systemPackages = with pkgs; [
       obsidian
       cider
-      polkit_gnome
 
       # graphical
       gnome.gnome-calendar
