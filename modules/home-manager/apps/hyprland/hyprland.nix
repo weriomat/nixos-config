@@ -21,7 +21,6 @@ with lib; {
       playerctl
       pamixer
       networkmanagerapplet
-      udiskie
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
       xwaylandvideobridge
       swaybg
@@ -41,6 +40,19 @@ with lib; {
         enable = true;
       };
       systemd.enable = true;
+    };
+
+    # NOTE: automatic mounting of new devices
+    services.udiskie = {
+      enable = true;
+      automount = true;
+      notify = true;
+      tray = "auto";
+      settings = {
+        program_options = {
+          terminal = "${config.programs.kitty.package}/bin/kitty";
+        };
+      };
     };
 
     # Support for a redlight filter

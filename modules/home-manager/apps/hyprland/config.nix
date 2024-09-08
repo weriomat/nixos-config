@@ -38,7 +38,6 @@
         "hyprctl setcursor Nordzy-cursors 22 &"
         "sleep 1; hyprctl dispatch workspace 1&"
         "mako &"
-        "udiskie &"
         "discord &"
       ];
 
