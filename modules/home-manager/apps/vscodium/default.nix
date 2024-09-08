@@ -5,7 +5,7 @@
   ...
 }:
 with lib; {
-  optinos.vscode.enable = mkEnableOption "Enable my vscode config";
+  options.vscode.enable = mkEnableOption "Enable my vscode config";
 
   config = mkIf config.vscode.enable {
     programs.vscode = {
