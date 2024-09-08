@@ -35,7 +35,6 @@
         "dynwallpaper &"
         "sway-audio-idle-inhibit &"
         "sleep 1 && swaylock"
-        "sleep 1 && sleepidle &"
         "hyprctl setcursor Nordzy-cursors 22 &"
         "sleep 1; hyprctl dispatch workspace 1&"
         "mako &"
