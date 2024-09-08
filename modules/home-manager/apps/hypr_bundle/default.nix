@@ -14,5 +14,6 @@ with lib; {
     waybar.enable = true;
     my_hyprland.enable = true;
     wlogout.enable = true;
+    swayidle.enable = true;
   };
 }
