@@ -21,6 +21,7 @@
   ];
 
   # TODO: make a new name sceme for custom options + incorperate globals
+  programs.dconf.enable = true;
 
   borg.enable = true;
   sops.enable = true;
@@ -28,7 +29,7 @@
   environment = {
     systemPackages = with pkgs; [nh];
     sessionVariables = {FLAKE = "/home/${globals.username}/.nixos/nixos";};
-    pathsToLink = ["/share/zsh"]; # for zsh.enableCompletion
+    pathsToLink = ["/share/zsh" "/share/xdg-desktop-portal" "/share/applications"]; # for zsh.enableCompletion
   };
 
   # hardware.keyboard.qmk.enable = true;
@@ -67,8 +68,6 @@
   #   };
   # };
 
-  # security.polkit.enable = true;
-
   # security.polkit.extraConfig = ''
   #   polkit.addRule(function(action, subject) {
   #     if (
@@ -90,23 +89,7 @@
   #     auth include login
   #   '';
   # };
-  #  xdg.portal = {
-  #   enable = true;
-  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk
-  #     pkgs.xdg-desktop-portal
-  #   ];
-  #   configPackages = [ pkgs.xdg-desktop-portal-gtk
-  #     pkgs.xdg-desktop-portal-hyprland
-  #     pkgs.xdg-desktop-portal
-  #   ];
-  # };
-  # programs.steam.gamescopeSession.enable = true;
-  # programs.dconf.enable = true;
-  # programs.hyprland = {
-  #   enable = true;
-  #   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  #   xwayland.enable = true;
-  # };
+
   # polkit_gnome lm_sensors meson
   # OpenGL
   # hardware.opengl = {
@@ -114,9 +97,6 @@
   #   driSupport = true;
   #   driSupport32Bit = true;
   # };
-  #   lib.mkIf (ntp == true) {
-  #   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
-  # }
   #  hardware.logitech.wireless.enable = true;
   # hardware.logitech.wireless.enableGraphical = true;
   #  services.xserver.enable = true;

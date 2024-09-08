@@ -4,6 +4,12 @@
     hyprland.enable = true;
     xwayland.enable = true;
   };
+  # programs.hyprland = {
+  #   enable = true;
+  #   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  #   xwayland.enable = true;
+  # };
+
   services = {
     printing = {
       enable = true;
@@ -23,6 +29,16 @@
     xdgOpenUsePortal = true;
     extraPortals = [pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
   };
+  #  xdg.portal = {
+  #   enable = true;
+  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk
+  #     pkgs.xdg-desktop-portal
+  #   ];
+  #   configPackages = [ pkgs.xdg-desktop-portal-gtk
+  #     pkgs.xdg-desktop-portal-hyprland
+  #     pkgs.xdg-desktop-portal
+  #   ];
+  # };
 
   # systemd = {
   #   # Bind wlr-portal to systemd unit from home-manager
