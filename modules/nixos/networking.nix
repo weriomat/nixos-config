@@ -32,9 +32,18 @@ with lib; {
     #     dnsovertls = "opportunistic";
     #   };
     # };
+
+    # TODO: intrd. has same optino
+    # NOTE: dont wait for network to be online while booting
+    systemd.network = {
+      wait-online.enable = false;
+      enable = true;
+    };
+
     networking = {
       networkmanager.enable = true;
       hostName = "${globals.hostname}";
+      useNetworkd = true;
       # timeServers = options.networking.timeServers.default ++ ["pool.ntp.org"];
 
       firewall = {
