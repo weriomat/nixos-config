@@ -50,7 +50,7 @@
               scale = 1.0;
             }
             {
-              criteria = "HDMI-A-2";
+              criteria = "HDMI-A-1";
               status = "enable";
               mode = "1920x1080@120";
               position = "1920,0";
