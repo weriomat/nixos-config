@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 with lib; {
@@ -16,6 +17,18 @@ with lib; {
       dedicatedServer.openFirewall =
         true; # Open ports in the firewall for Source Dedicated Server
     };
-    environment.systemPackages = with pkgs; [lunar-client];
+    environment.systemPackages = with pkgs;
+      [
+        lunar-client
+
+        # TODO: here
+        gamemode
+        gamescope
+        winetricks
+      ]
+      ++ [
+        inputs.nix-gaming.packages.${pkgs.system}.proton-ge
+        inputs.nix-gaming.packages.${pkgs.system}.wine-ge
+      ];
   };
 }

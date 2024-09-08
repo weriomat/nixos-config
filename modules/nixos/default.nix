@@ -12,5 +12,6 @@
     ./virtualisation.nix
     ./languagetool.nix
     ./user.nix
+    ./steam.nix
   ];
 }

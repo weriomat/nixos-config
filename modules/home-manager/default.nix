@@ -1,1 +1,3 @@
-{...}: {imports = [./config];}
+{...}: {
+  imports = [./apps];
+}

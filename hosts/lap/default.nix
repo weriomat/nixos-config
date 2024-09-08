@@ -17,7 +17,12 @@ in
   inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs outputs nix-colors globals;};
     modules = [
-      ../../modules/nixos/configuration.nix
+      ../../modules/nixos
+      ../../system/nixos/configuration.nix
+      ../../modules/home-manager
+      ../../home/nixos
+      ../../home/config # TODO: here
+
       ./hardware-configuration.nix
       ./power.nix
       ./ssh.nix

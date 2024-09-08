@@ -29,7 +29,6 @@
       xwaylandvideobridge
       swaybg
       inputs.hypr-contrib.packages.${pkgs.system}.grimblast
-      wofi
       grim
       slurp
       wl-clipboard

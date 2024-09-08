@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  # TODO: zusammenfuerhen mit nixos config
   # janked from cobalt
   # Zsh packages
   home.packages = with pkgs; [
