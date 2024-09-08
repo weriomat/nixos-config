@@ -1,3 +1,3 @@
 {...}: {
-  imports = [./wayland.nix ./greetd.nix];
+  imports = [./wayland.nix];
 }

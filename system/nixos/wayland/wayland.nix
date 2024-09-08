@@ -1,14 +1,17 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  globals,
+  ...
+}: {
   # TODO: here idk what most of this means
   programs = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      #   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      #   xwayland.enable = true;
+    };
     xwayland.enable = true;
   };
-  # programs.hyprland = {
-  #   enable = true;
-  #   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  #   xwayland.enable = true;
-  # };
 
   services = {
     printing = {
@@ -17,6 +20,19 @@
     };
     dbus.enable = true;
     gvfs.enable = true;
+
+    # display Manager
+    greetd = {
+      enable = true;
+      settings = rec {
+        initial_session = {
+          # TODO: set hyprland package
+          command = "${pkgs.hyprland}/bin/Hyprland";
+          user = "${globals.username}";
+        };
+        default_session = initial_session;
+      };
+    };
   };
 
   # NOTE: maybe move this into hm?
@@ -29,6 +45,7 @@
     xdgOpenUsePortal = true;
     extraPortals = [pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk];
   };
+
   #  xdg.portal = {
   #   enable = true;
   #   extraPortals = [ pkgs.xdg-desktop-portal-gtk
