@@ -11,6 +11,9 @@
     then false
     else true;
 
+  vscode.enable = true;
+  kitty.enable = true;
+
   # TODO: gtk, hyprland, waybar
   catppuccin = {
     enable = true;
