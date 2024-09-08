@@ -14,10 +14,6 @@
         "9, monitor: DP-3"
         "10, monitor: DP-3"
         "11, monitor: HDMI-A-1, default:true, on-created-empty:cider"
-        # "12, monitor: HDMI-A-1"
-        # "13, monitor: HDMI-A-1"
-        # "14, monitor: HDMI-A-1"
-        # "15, monitor: HDMI-A-1"
       ];
       env = [
         "XCURSOR_SIZE,24"
@@ -56,6 +52,7 @@
 
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"
+
         # kill waybar
         "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
 
@@ -82,7 +79,7 @@
         "$mainMod, 7, workspace, 7"
         "$mainMod, 8, workspace, 8"
         "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 11"
+        "$mainMod, 0, workspace, 10"
 
         # Move active window to a workspace with mainMod + SHIFT + [0-9]
         "$mainMod SHIFT, 1, movetoworkspace, 1"
