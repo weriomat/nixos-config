@@ -7,12 +7,10 @@
     enable = true;
     aggressiveResize = true; # resize window to the smalles session for which is in the current window
     clock24 = true;
-    # customPaneNavigationAndResize
     disableConfirmationPrompt = true;
     historyLimit = 10000;
     keyMode = "vi";
     mouse = true;
-    # nesSession -> create a new session if none is running
 
     prefix = "C-a"; # prefix key
     shortcut = "a";
