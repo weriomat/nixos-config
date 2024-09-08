@@ -21,10 +21,37 @@
   ];
 
   # TODO: make a new name sceme for custom options + incorperate globals
-  programs.dconf.enable = true;
 
   borg.enable = true;
   sops.enable = true;
+
+  # TODO: here
+  # hardware = {
+  #       logitech.wireless.enable = true;
+  #       logitech.wireless.enableGraphical = true; # Solaar.
+  #     };
+
+  #     environment.systemPackages = with pkgs; [
+  #       solaar
+  #     ];
+
+  #     services.udev.packages = with pkgs; [
+  #       logitech-udev-rules
+  #       solaar
+  #     ];
+
+  # TODO: here
+  # systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
+  #   programs.coolercontrol.enable = true;
+
+  # TODO: here
+  # services = {
+  #    power-profiles-daemon.enable = true;
+
+  #   # battery info
+  #   upower.enable = true;
+  # };
 
   environment = {
     systemPackages = with pkgs; [nh];
@@ -37,6 +64,70 @@
   #   vial
   #   via
   # ];
+
+  services = {
+    smartd = {
+      enable = true;
+      autodetect = true;
+    };
+    libinput.enable = true; # TODO: here
+    # avahi = {
+    #   enable = true;
+    #   nssmdns4 = true;
+    #   openFirewall = true;
+    # };
+    # ipp-usb.enable = true;
+    rpcbind.enable = false;
+    nfs.server.enable = false;
+  };
+
+  # Security / Polkit
+  # security = {
+  #   rtkit.enable = true;
+  #   polkit = {
+  #     enable = true;
+  #     extraConfig = ''
+  #       polkit.addRule(function(action, subject) {
+  #         if (
+  #           subject.isInGroup("users")
+  #             && (
+  #               action.id == "org.freedesktop.login1.reboot" ||
+  #               action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+  #               action.id == "org.freedesktop.login1.power-off" ||
+  #               action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+  #             )
+  #           )
+  #         {
+  #           return polkit.Result.YES;
+  #         }
+  #       })
+  #     '';
+  #   };
+  #   pam.services.swaylock = {
+  #     text = ''
+  #       auth include login
+  #     '';
+  #   };
+  # };
+
+  programs.dconf.enable = true; # dconf -> edit system preferences
+  programs.mtr.enable = true;
+  # programs.fuse.userAllowOther = true;
+
+  # TODO: here
+  services.udisks2.enable = true;
+
+  hardware = {
+    # logitech.wireless = { # Extra Logitech Support
+    #   enable = true;
+    #   enableGraphical = true;
+    # };
+
+    graphics.enable = true; # for openGL
+
+    # Enable sound with pipewire.
+    pulseaudio.enable = false;
+  };
 
   audio.enable = true;
   doc.enable = true;
@@ -101,18 +192,6 @@
   # hardware.logitech.wireless.enableGraphical = true;
   #  services.xserver.enable = true;
 
-  # boot.loader.efi.canTouchEfiVariables = true;
-  #   lib.mkIf ("${gpuType}" == "amd") {
-  #   systemd.tmpfiles.rules = [
-  #     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  #   ];
-  #   # OpenGL
-  #   hardware.opengl = {
-  #     ## amdvlk: an open-source Vulkan driver from AMD
-  #     extraPackages = [ pkgs.amdvlk ];
-  #     extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
-  #   };
-  # }
   #   pkgs.writeShellScriptBin "emopicker9000" ''
   #     # Get user selection via wofi from emoji file.
   #     chosen=$(cat $HOME/.emoji | ${pkgs.rofi-wayland}/bin/rofi -dmenu | awk '{print $1}')
@@ -129,27 +208,6 @@
   # 	    ${pkgs.libnotify}/bin/notify-send "'$chosen' copied to clipboard." &
   #     fi
   # ''
-  # home.file.".config/neofetch/config.conf".text = ''
-  #       print_info() {
-  #           info "$(color 6)  OS " distro
-  #           info underline
-  #           info "$(color 7)  VER" kernel
-  #           info "$(color 2)  UP " uptime
-  #           info "$(color 4)  PKG" packages
-  #           info "$(color 6)  DE " de
-  #           info "$(color 5)  TER" term
-  #           info "$(color 3)  CPU" cpu
-  #           info "$(color 7)  GPU" gpu
-  #           info "$(color 5)  MEM" memory
-  #           prin " "
-  #           prin "$(color 1) $(color 2) $(color 3) $(color 4) $(color 5) $(color 6) $(color 7) $(color 8)"
-  #       }
-  #       distro_shorthand="on"
-  #       memory_unit="gib"
-  #       cpu_temp="C"
-  #       separator=" $(color 4)>"
-  #       stdout="off"
-  #   '';
 
   # ssd thingie
   services.fstrim.enable = lib.mkDefault true;
@@ -157,13 +215,6 @@
   flatpack.enable = true;
   system.stateVersion = "23.11";
 }
-# exec-once = "xwaylandvideobridge"
-#  pkgs, config, lib, ... }:
-# let
-#   palette = config.colorScheme.palette;
-#   inherit (import ../../options.nix) slickbar simplebar clock24h;
-# in with lib; {
-#   # Configure & Theme Waybar
 #   programs.waybar = {
 #     enable = true;
 #     package = pkgs.waybar;

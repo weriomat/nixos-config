@@ -11,9 +11,10 @@
         isNormalUser = true;
         createHome = true;
         description = "${globals.username}";
-
+        homeMode = "755";
         extraGroups = [
           "networkmanager"
+          "tty"
           "wheel"
           "network"
           "dialout"

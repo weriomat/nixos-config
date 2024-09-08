@@ -14,6 +14,22 @@
   # followed guide from https://nixos.wiki/wiki/AMD_GPU
   systemd.tmpfiles.rules = ["L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"];
 
+  # TODO: here
+  # hardware.graphics = {
+  #   enable = true;
+
+  #   extraPackages = with pkgs; [
+  #     libva
+  #     vaapiVdpau
+  #     libvdpau-va-gl
+  #   ];
+  #   extraPackages32 = with pkgs.pkgsi686Linux; [
+  #     vaapiVdpau
+  #     libvdpau-va-gl
+  #   ];
+  #enableAllFirmware = true;
+  # };
+
   # GPU Support - See https://nixos.wiki/wiki/AMD_GPU
   hardware.opengl = {
     enable = true;
@@ -41,6 +57,9 @@
   services.xserver.videoDrivers = ["amdgpu"];
 
   boot = {
+    # TODO: here
+    # extraModulePackages = with config.boot.kernelPackages; [acpi_call];
+    #  kernelModules = ["acpi_call"];
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
       kernelModules = ["amdgpu"];

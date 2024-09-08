@@ -12,6 +12,7 @@ with lib; {
     home.packages = with pkgs; [
       libnotify
       brightnessctl
+      # TODO: here
 
       playerctl
       pamixer
@@ -22,7 +23,7 @@ with lib; {
       inputs.hypr-contrib.packages.${pkgs.system}.grimblast
       grim
       slurp
-      wl-clipboard
+      wl-clipboard # TODO: maybe clipman or cliphist?
       wf-recorder
       wayland
 
@@ -35,7 +36,17 @@ with lib; {
       xwayland = {
         enable = true;
       };
-      systemd.enable = true;
+      systemd = {
+        enable = true;
+        enableXdgAutostart = true; # hre
+        # extraCommands = []; # move out of config
+        # variables = ["--all"];
+      };
+
+      # TODO: here
+      # reloadConfig = true;
+      # systemdIntegration = true;
+      # recommendedEnvironment = true;
     };
 
     # NOTE: automatic mounting of new devices
@@ -50,6 +61,8 @@ with lib; {
         };
       };
     };
+    # TODO: here
+    # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
 
     # Support for a redlight filter
     services.wlsunset = {
@@ -57,7 +70,7 @@ with lib; {
       package = pkgs.wlsunset;
       latitude = "52.5";
       longitude = "13.4";
-      systemdTarget = "sway-session.target";
+      systemdTarget = "hyprland-session.target";
     };
 
     # Allow for Hyprland start when tty1 is used, this is a fallback in case the DM fails

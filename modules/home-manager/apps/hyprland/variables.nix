@@ -11,7 +11,6 @@ _: {
     WLR_DRM_NO_ATOMIC = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    QT_QPA_PLATFORM = "xcb";
     QT_QPA_PLATFORMTHEME = "qt5ct";
     QT_STYLE_OVERRIDE = "kvantum";
     # FIREFOX -> https://gist.github.com/PowerBall253/2dea6ddf6974ba4e5d26c3139ffb7580
@@ -19,6 +18,8 @@ _: {
     WLR_BACKEND = "vulkan";
     WLR_RENDERER = "vulkan";
     WLR_NO_HARDWARE_CURSORS = "1";
+    QT_QPA_PLATFORM = "xcb";
+    # QT_QPA_PLATFORM = "wayland";
     XDG_SESSION_TYPE = "wayland";
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";

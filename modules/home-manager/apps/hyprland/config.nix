@@ -1,7 +1,34 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
+  # TODO: here
+  # # Fixes tray icons: https://github.com/nix-community/home-manager/issues/2064#issuecomment-887300055
+  # systemd.user.targets.tray = {
+  #   Unit = {
+  #     Description = "Home Manager System Tray";
+  #     Requires = ["graphical-session-pre.target"];
+  #   };
+  # };
+
+  # TODO: here
   wayland.windowManager.hyprland = {
     settings = {
       # TODO: maybe this in per host config as well?
+      # bindle = [
+      #   # volume
+      #   ", XF86AudioRaiseVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%+"
+      #   ", XF86AudioLowerVolume, exec, wpctl set-volume -l '1.0' @DEFAULT_AUDIO_SINK@ 6%-"
+
+      #   # backlight
+      #   ", XF86MonBrightnessUp, exec, brillo -q -u 300000 -A 5"
+      #   ", XF86MonBrightnessDown, exec, brillo -q -u 300000 -U 5"
+      # ];
+
+      # TODO: here
+      bindl = [",switch:Lid Switch, exec, ${pkgs.laptop_lid_switch}"];
+
       workspace = [
         "1, monitor: DP-1, default:true, on-created-empty:kitty"
         "2, monitor: DP-1, on-created-empty:keepassxc"
@@ -16,19 +43,43 @@
         "11, monitor: HDMI-A-1, default:true, on-created-empty:cider"
       ];
       env = [
+        # TODO: here
+        # env = GDK_SCALE,2
+        # env = XCURSOR_SIZE,32
         "XCURSOR_SIZE,24"
+        "GDK_BACKEND,wayland,x11,*"
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "SDL_VIDEODRIVER,wayland"
+        "CLUTTER_BACKEND,wayland"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+        "GTK_THEME,Catppuccin-Mocha-Compact-Lavender-Dark"
+        # "XCURSOR_THEME"
+        # "XCURSOR_SIZE"
       ];
+      # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#minimize-steam-instead-of-killing
+      # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#toggle-animationsbluretc-hotkey
+
       # TODO: steal from zayneyos/ cobalt
+      # TODO: switch to nixpkgs paths
       exec-once = [
         "systemctl --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
+        # TODO: maybe --all
         # TODO: fix this -> gnone auth agent
         # "gnome-keyring-daemon --start &"
         "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
+        # "xwaylandvideobridge" # TODO: here
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
         "dynwallpaper &"
+        # TODO: add kanshi
         "sway-audio-idle-inhibit &"
         "sleep 1 && swaylock"
         "hyprctl setcursor Nordzy-cursors 22 &"
@@ -38,6 +89,7 @@
       ];
 
       "$mainMod" = "SUPER";
+      # TODO: swithc to nix paths
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mainMod, K, exec, kitty"
@@ -49,6 +101,13 @@
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
         "$mainMod, Q, exec, wlogout"
+
+        # TODO: here
+        # switchching focus with vim keys
+        "$mainMod, h, movefocus, l"
+        "$mainMod, l, movefocus, r"
+        "$mainMod, k, movefocus, u"
+        "$mainMod, j, movefocus, d"
 
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"
@@ -101,6 +160,7 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
+        # TODO: move those to
         # media and volume control
         ",XF86AudioRaiseVolume, exec, pamixer -i 2"
         ",XF86AudioLowerVolume, exec, pamixer -d 2"
@@ -110,11 +170,33 @@
         ",XF86AudioPrev, exec, playerctl previous"
         ",XF86AudioStop, exec, playerctl stop"
 
+        # TODO: here
+        # bind=,XF86AudioMicMute,exec, volume --toggle-mic
+        # bind=ALT,XF86AudioPlay,exec,systemctl --user restart playerctld
+        # bind=,XF86MonBrightnessUp,exec, brightness --inc
+        # bind=,XF86MonBrightnessDown,exec, brightness --dec
+        # ",XF86AudioMicMute" = "exec, ${pkgs.pamixer}/bin/pamixer --default-source --toggle-mute";
+
         # screenshot
         # "$mainMod SHIFT, 4, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
         # ",Print, exec, grimblast --notify --cursor  copy area"
         ",Print, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
       ];
+
+      # TODO: here
+      # bindi = {
+      #   ",XF86MonBrightnessUp" = "exec, ${pkgs.brightnessctl}/bin/brightnessctl +5%";
+      #   ",XF86MonBrightnessDown" = "exec, ${pkgs.brightnessctl}/bin/brightnessctl -5% ";
+      #   ",XF86AudioRaiseVolume" = "exec, ${pkgs.pamixer}/bin/pamixer -i 5";
+      #   ",XF86AudioLowerVolume" = "exec, ${pkgs.pamixer}/bin/pamixer -d 5";
+      #   ",XF86AudioMute" = "exec, ${pkgs.pamixer}/bin/pamixer --toggle-mute";
+      #   ",XF86AudioMicMute" = "exec, ${pkgs.pamixer}/bin/pamixer --default-source --toggle-mute";
+      #   ",XF86AudioNext" = "exec,playerctl next";
+      #   ",XF86AudioPrev" = "exec,playerctl previous";
+      #   ",XF86AudioPlay" = "exec,playerctl play-pause";
+      #   ",XF86AudioStop" = "exec,playerctl stop";
+      # };
+
       bindm = [
         # "# Move/resize windows with mainMod + LMB/RMB and dragging"
         "$mainMod, mouse:272, movewindow"
@@ -132,6 +214,30 @@
         "idleinhibit fullscreen, class:^(firefox)$"
         "idleinhibit focus, class:^(firefox)$"
         "idleinhibit fullscreen, fullscreen:1"
+
+        # Bitwarden extension
+        "float, title:^(.*Bitwarden Password Manager.*)$"
+
+        # throw sharing indicators away
+        # "workspace special silent, title:^(Firefox — Sharing Indicator)$"
+        # "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
+
+        # idle inhibit while watching videos
+        "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
+        "idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$"
+        "idleinhibit fullscreen, class:^(firefox)$"
+
+        # "dimaround, class:^(gcr-prompter)$"
+        # "dimaround, class:^(xdg-desktop-portal-gtk)$"
+        # "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
+
+        # fix xwayland apps
+        "rounding 0, xwayland:1"
+        "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$"
+        "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
+
+        # don't render hyprbars on tiling windows
+        # "plugin:hyprbars:nobar, floating:0"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -248,6 +354,7 @@
         #   "workspaces, 1, 6, default"
         # ];
       };
+
       xwayland = {force_zero_scaling = true;};
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more

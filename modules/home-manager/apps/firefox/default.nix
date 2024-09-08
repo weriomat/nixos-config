@@ -10,6 +10,7 @@ with lib; {
 
   config = mkIf config.firefox.enable {
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
+    # TODO: take a look at https://github.com/fufexan/dotfiles/blob/main/home/programs/browsers/firefox.nix
     home.sessionVariables.BROWSER = "firefox";
     programs.firefox = {
       enable = true;
@@ -18,6 +19,9 @@ with lib; {
         enable = true;
         version = "master";
       };
+
+      # TODO: languagepacks
+      # `https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.languagePacks`
 
       profiles.${globals.username} = {
         # potentially problematic: 0703, 0820 (color visited links)

@@ -1,3 +1,9 @@
+# TODO:
+MTR-Exporter -> this is cool for hosts
+
+# Notes: 
+queue shell commands with pueue
+
 # Package
 just import the thingies you need
 prefetch url -> `nix shell nixpkgs#nurl` `nurl "https://github.com/weriomat/wallpapers"`

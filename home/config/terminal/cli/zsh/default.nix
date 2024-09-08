@@ -27,6 +27,11 @@
       bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
       bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
 
+      # TODO: open commands in $EDITOR with C-e
+      autoload -z edit-command-line
+      zle -N edit-command-line
+      bindkey "^e" edit-command-line
+
       # Fix an issue with tmux.
       export KEYTIMEOUT=1
       # Use vim bindings.

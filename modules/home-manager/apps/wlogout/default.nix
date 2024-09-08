@@ -13,6 +13,7 @@ with lib; {
       enable = true;
       layout = [
         {
+          # TODO: here
           label = "lock";
           action = "${pkgs.coreutils}/bin/sleep 0.25; ${config.programs.swaylock.package}/bin/swaylock";
           text = "Lock";
@@ -37,6 +38,7 @@ with lib; {
           keybind = "s";
         }
         {
+          # TODO: switch to suspend-then-hibernate
           label = "suspend";
           action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl suspend";
           text = "Suspend";
