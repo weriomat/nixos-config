@@ -22,6 +22,7 @@
 
   # TODO: make a new name sceme for custom options + incorperate globals
 
+  flatpack.enable = true;
   borg.enable = true;
   sops.enable = true;
 
@@ -65,21 +66,21 @@
   #   via
   # ];
 
-  services = {
-    smartd = {
-      enable = true;
-      autodetect = true;
-    };
-    libinput.enable = true; # TODO: here
-    # avahi = {
-    #   enable = true;
-    #   nssmdns4 = true;
-    #   openFirewall = true;
-    # };
-    # ipp-usb.enable = true;
-    rpcbind.enable = false;
-    nfs.server.enable = false;
-  };
+  # services = {
+  #   smartd = {
+  #     enable = true;
+  #     autodetect = true;
+  #   };
+  #   libinput.enable = true; # TODO: here
+  #   # avahi = {
+  #   #   enable = true;
+  #   #   nssmdns4 = true;
+  #   #   openFirewall = true;
+  #   # };
+  #   # ipp-usb.enable = true;
+  #   rpcbind.enable = false;
+  #   nfs.server.enable = false;
+  # };
 
   # Security / Polkit
   # security = {
@@ -111,23 +112,23 @@
   # };
 
   programs.dconf.enable = true; # dconf -> edit system preferences
-  programs.mtr.enable = true;
+  # programs.mtr.enable = true;
   # programs.fuse.userAllowOther = true;
 
   # TODO: here
-  services.udisks2.enable = true;
+  # services.udisks2.enable = true;
 
-  hardware = {
-    # logitech.wireless = { # Extra Logitech Support
-    #   enable = true;
-    #   enableGraphical = true;
-    # };
+  # hardware = {
+  #   # logitech.wireless = { # Extra Logitech Support
+  #   #   enable = true;
+  #   #   enableGraphical = true;
+  #   # };
 
-    graphics.enable = true; # for openGL
+  #   graphics.enable = true; # for openGL
 
-    # Enable sound with pipewire.
-    pulseaudio.enable = false;
-  };
+  #   # Enable sound with pipewire.
+  #   pulseaudio.enable = false;
+  # };
 
   audio.enable = true;
   doc.enable = true;
@@ -212,7 +213,6 @@
   # ssd thingie
   services.fstrim.enable = lib.mkDefault true;
 
-  flatpack.enable = true;
   system.stateVersion = "23.11";
 }
 #   programs.waybar = {
