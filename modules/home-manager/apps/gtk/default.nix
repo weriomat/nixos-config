@@ -3,16 +3,13 @@
   lib,
   config,
   ...
-}: {
-  options.my_gtk = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable gtk settings";
-    };
-  };
-  config = lib.mkIf config.my_gtk.enable {
+}:
+with lib; {
+  options.my_gtk.enable = mkEnableOption "Enable gtk settings";
+
+  config = mkIf config.my_gtk.enable {
     fonts.fontconfig.enable = true;
+    # TODO: here
     home.packages = [
       pkgs.nerdfonts
       (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})

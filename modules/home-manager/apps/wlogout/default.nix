@@ -4,15 +4,11 @@
   config,
   lib,
   ...
-}: {
-  options.wlogout = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable wlogout";
-    };
-  };
-  config = lib.mkIf config.wlogout.enable {
+}:
+with lib; {
+  options.wlogout.enable = mkEnableOption "Enable wlogout";
+
+  config = mkIf config.wlogout.enable {
     programs.wlogout = {
       enable = true;
       layout = [

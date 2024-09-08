@@ -3,15 +3,11 @@
   lib,
   config,
   ...
-}: {
-  options.swaylock = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable swaylock";
-    };
-  };
-  config = lib.mkIf config.swaylock.enable {
+}:
+with lib; {
+  options.swaylock.enable = mkEnableOption "Enable swaylock";
+
+  config = mkIf config.swaylock.enable {
     programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;

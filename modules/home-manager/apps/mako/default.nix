@@ -3,37 +3,32 @@
   lib,
   config,
   ...
-}: {
-  options.my_mako = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable mako notifications";
-    };
-  };
-  config = lib.mkIf config.my_mako.enable {
-    services = {
-      mako = {
+}:
+with lib; {
+  options.my_mako.enable = mkEnableOption "Enable mako notifications";
+
+  config = mkIf config.my_mako.enable {
+    services.mako = {
+      enable = true;
+
+      catppuccin = {
         enable = true;
-
-        catppuccin = {
-          enable = true;
-          flavor = "mocha";
-        };
-
-        font = "JetBrainsMono Nerd Font 12";
-        padding = "15";
-        defaultTimeout = 5000;
-        borderSize = 2;
-        borderRadius = 5;
-        icons = true;
-        actions = true;
-        extraConfig = ''
-          text-alignment=center
-          [urgency=high]
-          border-color=#fab387
-        '';
+        flavor = "mocha";
       };
+
+      # TODO: font here
+      font = "JetBrainsMono Nerd Font 12";
+      padding = "15";
+      defaultTimeout = 5000;
+      borderSize = 2;
+      borderRadius = 5;
+      icons = true;
+      actions = true;
+      extraConfig = ''
+        text-alignment=center
+        [urgency=high]
+        border-color=#fab387
+      '';
     };
   };
 }

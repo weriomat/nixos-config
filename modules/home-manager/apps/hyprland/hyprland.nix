@@ -4,15 +4,11 @@
   lib,
   config,
   ...
-}: {
-  options.my_hyprland = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable hyrpland config";
-    };
-  };
-  config = lib.mkIf config.my_hyprland.enable {
+}:
+with lib; {
+  options.my_hyprland.enable = mkEnableOption "Enable hyrpland config";
+
+  config = mkIf config.my_hyprland.enable {
     home.packages = with pkgs; [
       swayidle
       libnotify
@@ -20,6 +16,7 @@
       # TODO: sedtup
       brightnessctl
 
+      # TODO: here
       mpv-unwrapped
       playerctl
       pamixer
@@ -35,7 +32,6 @@
       wf-recorder
       glib
       wayland
-      direnv
       sway-audio-idle-inhibit # no inhbit if audio playing
     ];
     systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
@@ -43,7 +39,6 @@
       enable = true;
       xwayland = {
         enable = true;
-        # hidpi = true;
       };
       systemd.enable = true;
     };
