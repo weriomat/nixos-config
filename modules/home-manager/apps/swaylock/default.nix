@@ -46,36 +46,45 @@ with lib; {
       };
     };
 
-    # services.swayidle = {
-    #   enable = true;
-    #   events = [
-    #     {
-    #       event = "before-sleep";
-    #       command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
-    #     }
-    #     {
-    #       event = "lock";
-    #       command = "${pkgs.swaylock-effects}/bin/swaylock -fF";
-    #     }
-    #   ];
-    #   timeouts = [
-    #     {
-    #       timeout = 90;
-    #       command = "swaylock";
-    #     }
-    #     {
-    #       timeout = 300;
-    #       command = "systemctl suspend";
-    #     }
-    #     {
-    #       timeout = 180;
-    #       command = "systemctl suspend";
-    #       # command = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms off";
-    #       # resumeCommand = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms on";
-    #     }
-    #   ];
-    # };
+    services.swayidle = {
+      enable = true;
+      systemdTarget = "hyprland-session.target";
+      extraArgs = ["-w"];
 
-    # systemd.user.services.swayidle.Install.WantedBy = lib.mkForce ["hyprland-session.target"];
+      events = [
+        {
+          event = "before-sleep";
+          command = "${pkgs.playerctl}/bin/playerctl pause";
+        }
+        {
+          event = "after-resume";
+          command = "${pkgs.playerctl}/bin/playerctl play";
+        }
+        # {
+        #   event = "before-sleep";
+        #   command = "${config.programs.swaylock.package}/bin/swaylock -f -c 000000";
+        # }
+      ];
+
+      timeouts = [
+        {
+          timeout = 550;
+          command = "${pkgs.libnotify}/bin/notify-send -u critical --app-name=screenlockwarning 'Screen will lock in 30 seconds'";
+        }
+        {
+          timeout = 580;
+          command = "${config.programs.swaylock.package}/bin/swaylock -f --grace 20 --fade-in 20";
+        }
+        {
+          timeout = 600;
+          command = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms off";
+          resumeCommand = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms on";
+        }
+        {
+          timeout = 900;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+        }
+      ];
+    };
   };
 }
