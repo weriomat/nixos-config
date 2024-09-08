@@ -2,7 +2,6 @@
   config,
   pkgs,
   lib,
-  globals,
   ...
 }: {
   programs.zsh = {
@@ -44,7 +43,7 @@
       zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
       function fzf-man(){
-        MAN="/etc/profiles/per-user/${globals.username}/bin/batman"
+        MAN="${pkgs.batman}/bin/batman"
         if [ -n "$1" ]; then
           $MAN "$@"
           return $?
