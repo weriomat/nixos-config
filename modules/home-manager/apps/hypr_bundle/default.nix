@@ -4,7 +4,6 @@
   ...
 }:
 with lib; {
-  imports = [../gtk ../hyprland ../mako ../swaylock ../waybar ../wofi];
   options.hyprland.enable = mkEnableOption "Enable hyrpland config";
 
   config = mkIf config.hyprland.enable {

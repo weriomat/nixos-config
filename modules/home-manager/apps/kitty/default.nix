@@ -43,9 +43,7 @@ with lib; {
       font = {
         # IBM Plex mono with nerd font addons
         name = "'BlexMono Nerd Font'";
-        # name = "'Iosevka Comfy'";
         size = 16;
-        # package = pkgs.iosevka-comfy.comfy;
         package = pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];};
       };
     };
