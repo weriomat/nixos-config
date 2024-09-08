@@ -80,19 +80,19 @@
   # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   # xdg.portal.config.common.default = "gtk";
   # Extra Portal Configuration
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal
-    ];
-    configPackages = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
-      pkgs.xdg-desktop-portal
-    ];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-gtk
+  #     pkgs.xdg-desktop-portal
+  #   ];
+  #   configPackages = [
+  #     pkgs.xdg-desktop-portal-gtk
+  #     pkgs.xdg-desktop-portal-hyprland
+  #     pkgs.xdg-desktop-portal
+  #   ];
+  # };
 
   # TODO: here https://wiki.hyprland.org/Useful-Utilities/Hyprland-desktop-portal/
   # portal for sharing (file pickers)
@@ -105,22 +105,22 @@
   };
 
   # TODO: here
-  systemd = {
-    # Bind wlr-portal to systemd unit from home-manager
-    user.services.xdg-desktop-portal-wlr = {
-      partOf = ["graphical-session.target"];
-      description = "wlroots desktop portal";
-      unitConfig = {ConditionUser = "!@system";};
-    };
-    # Enable polkit for system wide auth, required as part of gnome-compat
-    user.services.polkit-gnome-authentication-agent-1 = {
-      partOf = ["graphical-session.target"];
-      description = "Gnome polkit agent";
-      script = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      unitConfig = {ConditionUser = "!@system";};
-    };
-    extraConfig = "DefaultTimeoutStopSec=10s";
-  };
+  # systemd = {
+  #   # Bind wlr-portal to systemd unit from home-manager
+  #   user.services.xdg-desktop-portal-wlr = {
+  #     partOf = ["graphical-session.target"];
+  #     description = "wlroots desktop portal";
+  #     unitConfig = {ConditionUser = "!@system";};
+  #   };
+  #   # Enable polkit for system wide auth, required as part of gnome-compat
+  #   user.services.polkit-gnome-authentication-agent-1 = {
+  #     partOf = ["graphical-session.target"];
+  #     description = "Gnome polkit agent";
+  #     script = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+  #     unitConfig = {ConditionUser = "!@system";};
+  #   };
+  #   extraConfig = "DefaultTimeoutStopSec=10s";
+  # };
 
   # Enable polkit
   security = {
@@ -128,5 +128,5 @@
     pam.services.swaylock = {};
   };
 
-  environment.systemPackages = with pkgs; [polkit_gnome];
+  # environment.systemPackages = with pkgs; [polkit_gnome];
 }

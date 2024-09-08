@@ -13,8 +13,10 @@ with lib; {
     services = {
       pipewire = {
         enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
+        alsa = {
+          enable = true;
+          support32Bit = true;
+        };
         pulse.enable = true;
         wireplumber.enable = true;
       };
@@ -36,3 +38,15 @@ with lib; {
     };
   };
 }
+# TODO: here
+# services.udev.packages = with pkgs; [
+#   headsetcontrol
+# ];
+# environment.systemPackages = with pkgs; [
+#   headsetcontrol
+#   headset-charge-indicator
+#   pulsemixer
+# ];
+# TODO: take a look at noisetorch
+# TODO: pulsemixer
+

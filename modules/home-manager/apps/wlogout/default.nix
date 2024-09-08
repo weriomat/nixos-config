@@ -13,7 +13,6 @@ with lib; {
       enable = true;
       layout = [
         {
-          # TODO: here
           label = "lock";
           action = "${pkgs.coreutils}/bin/sleep 0.25; ${config.programs.swaylock.package}/bin/swaylock";
           text = "Lock";

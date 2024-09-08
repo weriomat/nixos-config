@@ -161,6 +161,7 @@ with lib; {
         };
         "custom/playerctl#play" = {
           format = "{icon}";
+          # TODO: here make full paths
           return-type = "json";
           exec = ''
             playerctl -a metadata --format '{"text": "{{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F'';

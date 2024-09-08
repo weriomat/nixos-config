@@ -22,6 +22,9 @@ with lib; {
         datestr = "";
         screenshots = true;
         show-failed-attempts = true;
+
+        # TODO: font
+        # font
         # font-size = 24;
 
         indicator = true;

@@ -38,7 +38,7 @@ with lib; {
       };
       systemd = {
         enable = true;
-        enableXdgAutostart = true; # hre
+        enableXdgAutostart = true; # TODO: here
         # extraCommands = []; # move out of config
         # variables = ["--all"];
       };

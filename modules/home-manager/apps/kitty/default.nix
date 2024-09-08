@@ -42,6 +42,7 @@ with lib; {
       };
       font = {
         # IBM Plex mono with nerd font addons
+        # TODO: here
         name = "'BlexMono Nerd Font'";
         size = 16;
         package = pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];};
