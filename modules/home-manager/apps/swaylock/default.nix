@@ -22,6 +22,7 @@ with lib; {
         datestr = "";
         screenshots = true;
         show-failed-attempts = true;
+        # font-size = 24;
 
         indicator = true;
         indicator-radius = 100;
@@ -50,21 +51,6 @@ with lib; {
       enable = true;
       systemdTarget = "hyprland-session.target";
       extraArgs = ["-w"];
-
-      events = [
-        {
-          event = "before-sleep";
-          command = "${pkgs.playerctl}/bin/playerctl pause";
-        }
-        {
-          event = "after-resume";
-          command = "${pkgs.playerctl}/bin/playerctl play";
-        }
-        # {
-        #   event = "before-sleep";
-        #   command = "${config.programs.swaylock.package}/bin/swaylock -f -c 000000";
-        # }
-      ];
 
       timeouts = [
         {
