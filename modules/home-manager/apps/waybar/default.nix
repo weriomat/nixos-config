@@ -66,12 +66,13 @@ with lib; {
           "custom/playerctl#backward"
           "custom/playerctl#play"
           "custom/playerctl#forward"
+          "custom/audio_idle_inhibitor"
         ];
         modules-center = ["hyprland/workspaces"];
         modules-right =
           if globals.laptop
-          then ["tray" "custom/audio_idle_inhibitor" "cpu" "battery" "memory" "disk" "pulseaudio" "network" "clock"]
-          else ["tray" "custom/audio_idle_inhibitor" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
+          then ["tray" "cpu" "battery" "memory" "disk" "pulseaudio" "network" "clock"]
+          else ["tray" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
         clock = {
           format = " {:%H:%M}";
           tooltip = "true";
@@ -271,7 +272,7 @@ with lib; {
             background-size: 200% 200%;
         }
 
-        #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk,
+        #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk, #custom-audio_idle_inhibitor
         #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward{
             background: #${config.waybar.tertiary_background_hex};
             font-weight: bold;
@@ -330,7 +331,14 @@ with lib; {
         #network {
             color: #${config.waybar.tertiary_accent};
             border-radius: 0px 24px 10px 0px;
-           padding-left: 9px;
+            padding-left: 9px;
+            padding-right: 15px;
+        }
+
+        #custom-audio_idle_inhibitor{
+            color: #${config.waybar.tertiary_accent};
+            border-radius: 0px 24px 10px 0px;
+            padding-left: 9px;
             padding-right: 15px;
         }
 
