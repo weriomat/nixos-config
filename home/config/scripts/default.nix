@@ -1,25 +1,6 @@
-{
-  pkgs,
-  globals,
-  ...
-}: let
+{pkgs, ...}: let
   wallpaper_path = "${pkgs.weriomat-wallpapers}";
 in {
-  sleepidle = pkgs.writeShellApplication {
-    name = "sleepidle";
-    runtimeInputs = with pkgs; [hyprland swayidle swaylock libnotify];
-    text = ''
-      swayidle -w timeout 300 'swaylock -f -c 000000' \
-                  timeout 550 'notify-send -u critical --app-name=screenlockwarning "Screen will lock in 30 seconds"' \
-                  timeout 580 '/etc/profiles/per-user/${globals.username}/bin/swaylock -f --grace 20 --fade-in 20'\
-                  timeout 600 'hyprctl dispatch dpms off' \
-                  resume 'hyprctl dispatch dpms on' \
-                  timeout 900 'systemctl suspend' \
-                  before-sleep 'playerctl pause' \
-                  before-sleep 'swaylock -f -c 000000' &
-    '';
-  };
-
   fshow = pkgs.writeShellApplication {
     name = "fshow";
     runtimeInputs = with pkgs; [sqlite coreutils fzf gnugrep gawkInteractive gnused];
