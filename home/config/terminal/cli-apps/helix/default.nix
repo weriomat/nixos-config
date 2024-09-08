@@ -24,7 +24,7 @@
           # stolen from https://github.com/poliorcetics/dotfiles/blob/main/home/helix/languages.nix
           # assist.importGranularity = "module";
           # cargo.extraEnv."CARGO_TARGET_DIR" = "${config.xdg.cacheHome}/rust-analyzer-target-dir";
-          check.command = "clippy";
+          check.command = "${pkgs.clippy}/bin/clippy";
           completion.fullFunctionSignatures.enable = true;
           hover.actions.references.enable = true;
           # lens.references = {
@@ -64,12 +64,15 @@
           # ];
         };
         ruff = {
-          command = "ruff-lsp";
+          command = "${pkgs.ruff-lsp}/bin/ruff-lsp";
           config.settings = {args = ["--ignore" "E501"];};
         };
+
         pyright.config.analysis = {
           typeCheckingMode = "basic";
         };
+
+        # TODO: here
         texlab = {
           auxDirectory = "auz";
           chktex = {
@@ -111,7 +114,7 @@
           name = "nix";
           auto-format = true;
           formatter = {
-            command = "alejandra";
+            command = "${pkgs.alejandra}/bin/alejandra";
             args = ["-q"];
           };
           language-servers = ["nil"];
@@ -125,7 +128,7 @@
           language-servers = ["ruff" "pyright"];
           auto-format = true;
           formatter = {
-            command = "black";
+            command = "${pkgs.black}/bin/black";
             args = ["--line-length" "88" "--quiet" "-"];
           };
         }
