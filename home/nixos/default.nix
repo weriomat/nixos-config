@@ -13,6 +13,7 @@
 
   vscode.enable = true;
   kitty.enable = true;
+  thunderbird.enable = true;
 
   # TODO: gtk, hyprland, waybar
   catppuccin = {
