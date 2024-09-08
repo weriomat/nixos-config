@@ -14,7 +14,7 @@ in
     nix-darwin.lib.darwinSystem {
       specialArgs = {inherit inputs nix-colors globals;};
       modules = [
-        ../../modules/darwin
+        ../../system/darwin
         ./ssh.nix
         inputs.mac-app-util.darwinModules.default
         inputs.home-manager.darwinModules.home-manager
@@ -27,7 +27,7 @@ in
               inputs.arkenfox.hmModules.default
             ];
             users.eliasengel.imports = [
-              ../../modules/home-manager/darwin
+              ../../home/darwin
               ../../modules/home-manager
               inputs.nix-colors.homeManagerModules.default
               inputs.mac-app-util.homeManagerModules.default

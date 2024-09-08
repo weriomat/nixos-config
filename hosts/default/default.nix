@@ -17,7 +17,8 @@ in
   inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {inherit inputs outputs nix-colors globals;};
     modules = [
-      ../../modules/nixos/configuration.nix
+      ../../system/nixos/configuration.nix
+      ../../modules/nixos
       ./hardware-configuration.nix
       ./config.nix
       ./ssh.nix
@@ -42,7 +43,7 @@ in
             inputs.arkenfox.hmModules.default
           ];
           users.${globals.username}.imports = [
-            ../../modules/home-manager/nixos
+            ../../home/nixos
             ../../modules/home-manager
             inputs.nix-colors.homeManagerModules.default
             inputs.nix-index-database.hmModules.nix-index
