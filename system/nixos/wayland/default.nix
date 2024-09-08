@@ -8,7 +8,6 @@
     hyprland = {
       enable = true;
       #   package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      #   xwayland.enable = true;
     };
     xwayland.enable = true;
   };
@@ -26,7 +25,6 @@
       enable = true;
       settings = rec {
         initial_session = {
-          # TODO: set hyprland package
           command = "${pkgs.hyprland}/bin/Hyprland";
           user = "${globals.username}";
         };
