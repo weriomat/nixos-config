@@ -2,27 +2,17 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     helix
-
     cmake-language-server # cmake
     marksman # markdown
     lua-language-server # lua
     texlab # LaTeX
-    metals # scala
     taplo # toml
     delve # go debugger
     gopls # go lsp
-    rubyPackages.solargraph # ruby
-    nodePackages.vscode-html-languageserver-bin # HTML
-    nodePackages.typescript-language-server # TS, TSX and JSX
-    nodePackages.vscode-css-languageserver-bin # css + scss
     nodePackages.bash-language-server # bash
-    nodePackages.vls # vuejs
     nil # nix
-
     yaml-language-server # yaml
-    ruff-lsp
-    black
-    nodePackages_latest.pyright
+    nodePackages_latest.pyright # python
   ];
 
   programs.helix = {
