@@ -34,8 +34,6 @@
   #   };
   # };
 
-  # security.polkit.enable = true;
-
   # security.polkit.extraConfig = ''
   #   polkit.addRule(function(action, subject) {
   #     if (
@@ -52,6 +50,7 @@
   #     }
   #   })
   # '';
+
   #  security.pam.services.swaylock = {
   #   text = ''
   #     auth include login
@@ -76,8 +75,6 @@
   #   xwayland.enable = true;
   # };
 
-  #  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   # xdg.portal.config.common.default = "gtk";
   # Extra Portal Configuration
   # xdg.portal = {

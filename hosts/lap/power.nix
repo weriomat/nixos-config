@@ -18,6 +18,24 @@
     upower.enable = true;
     tlp = {
       enable = true;
+      # settings = {
+      #   DISK_SPINDOWN_TIMEOUT_ON_AC = "keep 1";
+      #   DISK_SPINDOWN_TIMEOUT_ON_BAT = "keep 1";
+
+      #   DISK_APM_LEVEL_ON_BAT = "keep 127";
+      #   DISK_APM_LEVEL_ON_AC = "keep 127";
+
+      #   SATA_LINKPWR_ON_AC = "med_power_with_dipm min_power";
+      #   SATA_LINKPWR_ON_BAT = "med_power_with_dipm min_power";
+
+      #   AHCI_RUNTIME_PM_ON_AC = "on";
+      #   AHCI_RUNTIME_PM_ON_BAT = "on";
+
+      #   AHCI_RUNTIME_PM_TIMEOUT = "6";
+
+      #   RUNTIME_PM_ON_AC = "auto";
+      #   RUNTIME_PM_ON_BAT = "auto";
+      # };
       settings = {
         # CPU handling
         CPU_BOOST_ON_BAT = 0;

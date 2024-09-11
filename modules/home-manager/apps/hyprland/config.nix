@@ -68,6 +68,7 @@
       # TODO: steal from zayneyos/ cobalt
       # TODO: switch to nixpkgs paths
       exec-once = [
+        # TODO: make this paths absolute
         "systemctl --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"

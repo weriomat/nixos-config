@@ -53,7 +53,8 @@
       vaapiVdpau
     ];
   };
-  # environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
+
+  environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
   services.xserver.videoDrivers = ["amdgpu"];
 
   boot = {

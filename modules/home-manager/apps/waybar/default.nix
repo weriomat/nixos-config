@@ -87,6 +87,7 @@ with lib; {
           format-charging = ''<span color="#a6e3a1">{icon}/span> {capacity}%'';
           format-warning = ''<span color="#a6e3a1"></span> {capacity}%'';
           format-full = "Charged ";
+          format-plugged = "󱘖 {capacity}%";
           format-icons = {
             "charging" = [
               "󰢜"
@@ -123,6 +124,7 @@ with lib; {
           exec = "sway-audio-idle-inhibit --dry-print-both-waybar";
           exec-if = "which sway-audio-idle-inhibit";
           return-type = "json";
+          tooltip = true;
           format-icons = {
             output = "";
             input = "";
@@ -193,7 +195,15 @@ with lib; {
             else "/";
           format = "󰋊 {percentage_used}%";
           interval = 60;
+          tooltip = true;
         };
+        #       "network" = {
+        #         format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+        #         format-ethernet = " {bandwidthDownOctets}";
+        #         format-wifi = "{icon} {signalStrength}%";
+        #         format-disconnected = "󰤮";
+        #         tooltip = false;
+        #       };
         network = {
           format-wifi = "  {signalStrength}% <span color='#589df6'>⇵</span> {bandwidthUpBits}/{bandwidthDownBits}";
           format-ethernet = "󰀂  <span color='#589df6'>⇵</span> {bandwidthUpBits}/{bandwidthDownBits}";
@@ -206,12 +216,30 @@ with lib; {
           icon-size = 20;
           spacing = 8;
         };
+        #       "pulseaudio" = {
+        #         format = "{icon} {volume}% {format_source}";
+        #         format-bluetooth = "{volume}% {icon} {format_source}";
+        #         format-bluetooth-muted = " {icon} {format_source}";
+        #         format-muted = " {format_source}";
+        #         format-source = " {volume}%";
+        #         format-source-muted = "";
+        #         format-icons = {
+        #           headphone = "";
+        #           hands-free = "";
+        #           headset = "";
+        #           phone = "";
+        #           portable = "";
+        #           car = "";
+        #           default = ["" "" ""];
+        #         };
+        #       };
         pulseaudio = {
           format = "{icon} {volume}%";
           format-muted = "󰖁 ";
           format-icons = {default = [" "];};
           scroll-step = 5;
-          on-click = "pamixer -t";
+          on-click = "pavucontrol";
+          on-click-right = "pamixer -t";
         };
         "custom/launcher" = {
           format = "";
