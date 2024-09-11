@@ -1,5 +1,4 @@
 {
-  pkgs,
   lib,
   config,
   globals,
@@ -45,9 +44,6 @@ with lib; {
   config = mkIf config.waybar.enable {
     programs.waybar = {
       enable = true;
-      package = pkgs.waybar.overrideAttrs (oa: {
-        mesonFlags = (oa.mesonFlags or []) ++ ["-Dexperimental=true"];
-      });
 
       systemd = {
         enable = true;
