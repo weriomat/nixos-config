@@ -50,28 +50,38 @@ with lib; {
     };
 
     # NOTE: automatic mounting of new devices
-    services.udiskie = {
-      enable = true;
-      automount = true;
-      notify = true;
-      tray = "auto";
-      settings = {
-        program_options = {
-          terminal = "${config.programs.kitty.package}/bin/kitty";
+    services = {
+      udiskie = {
+        enable = true;
+        automount = true;
+        notify = true;
+        tray = "auto";
+        settings = {
+          program_options = {
+            terminal = "${config.programs.kitty.package}/bin/kitty";
+          };
         };
+      };
+
+      # Support for a redlight filter
+      wlsunset = {
+        enable = true;
+        package = pkgs.wlsunset;
+        latitude = "52.5";
+        longitude = "13.4";
+        systemdTarget = "hyprland-session.target";
+      };
+
+      # clipboard history
+      cliphist = {
+        enable = true;
+        allowImages = true;
+        systemdTarget = "hyprland-session.target";
+        extraOptions = ["-max-items" "1000"];
       };
     };
     # TODO: here
     # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
-
-    # Support for a redlight filter
-    services.wlsunset = {
-      enable = true;
-      package = pkgs.wlsunset;
-      latitude = "52.5";
-      longitude = "13.4";
-      systemdTarget = "hyprland-session.target";
-    };
 
     # Allow for Hyprland start when tty1 is used, this is a fallback in case the DM fails
     programs.zsh.profileExtra = ''

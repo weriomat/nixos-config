@@ -77,7 +77,6 @@
         "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         # "xwaylandvideobridge" # TODO: here
         "nm-applet &"
-        "wl-paste --primary --watch wl-copy --primary --clear &"
         "dynwallpaper &"
         "sway-audio-idle-inhibit &"
         "sleep 1 && swaylock"
