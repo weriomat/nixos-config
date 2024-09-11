@@ -11,6 +11,7 @@
     ./hypr_bundle
     ./thunderbird
     ./swayidle
+    ./clipboard
 
     ./discord
     ./kitty

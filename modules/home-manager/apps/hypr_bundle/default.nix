@@ -7,6 +7,7 @@ with lib; {
   options.hyprland.enable = mkEnableOption "Enable hyprland config";
 
   config = mkIf config.hyprland.enable {
+    clipboard.enable = true;
     my_gtk.enable = true;
     my_mako.enable = true;
     swaylock.enable = true;

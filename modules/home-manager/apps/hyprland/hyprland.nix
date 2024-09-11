@@ -71,14 +71,6 @@ with lib; {
         longitude = "13.4";
         systemdTarget = "hyprland-session.target";
       };
-
-      # clipboard history
-      cliphist = {
-        enable = true;
-        allowImages = true;
-        systemdTarget = "hyprland-session.target";
-        extraOptions = ["-max-items" "1000"];
-      };
     };
     # TODO: here
     # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
