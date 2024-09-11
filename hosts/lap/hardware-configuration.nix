@@ -90,7 +90,9 @@
       mesa.drivers
     ];
   };
+
   environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
+
   services.xserver.videoDrivers = ["amdgpu"];
 
   swapDevices = [

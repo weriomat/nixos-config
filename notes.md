@@ -89,3 +89,8 @@ networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.o
 `glmark2`
 `nix shell nixpkgs#lshw`
 `sudo lshw -C display -short`
+
+https://wiki.archlinux.org/title/Hardware_video_acceleration
+`nix shell nixpkgs#libva-utils -c vainfo`
+`nix shell nixpkgs#vdpauinfo -c vdpauinfo`
+`firefox about:support`

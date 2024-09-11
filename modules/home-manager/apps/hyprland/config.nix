@@ -79,7 +79,6 @@
         "nm-applet &"
         "wl-paste --primary --watch wl-copy --primary --clear &"
         "dynwallpaper &"
-        # TODO: add kanshi
         "sway-audio-idle-inhibit &"
         "sleep 1 && swaylock"
         "hyprctl setcursor Nordzy-cursors 22 &"
