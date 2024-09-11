@@ -27,7 +27,7 @@
       # ];
 
       # TODO: here
-      bindl = [",switch:Lid Switch, exec, ${pkgs.laptop_lid_switch}"];
+      # bindl = [",switch:Lid Switch, exec, ${pkgs.laptop_lid_switch}"];
 
       workspace = [
         "1, monitor: DP-1, default:true, on-created-empty:kitty"

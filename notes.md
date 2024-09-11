@@ -94,3 +94,7 @@ https://wiki.archlinux.org/title/Hardware_video_acceleration
 `nix shell nixpkgs#libva-utils -c vainfo`
 `nix shell nixpkgs#vdpauinfo -c vdpauinfo`
 `firefox about:support`
+
+# clipboard
+$mainMod o / $mainMod SFT o -> copy/ delete from clipboard
+`cliphist wipe` -> delete entire history
