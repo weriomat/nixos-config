@@ -2,14 +2,13 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib; {
   options.mako.enable = mkEnableOption "Enable mako notifications";
 
   config = mkIf config.mako.enable {
-    wayland.windowManager.hyprland.settings.exec-once = ["mako &"];
-
     services.mako = {
       enable = true;
 
@@ -35,5 +34,23 @@ with lib; {
       '';
     };
 
+    # NOTE: start mako at startup
+    systemd.user.services.mako = {
+      Unit = {
+        Description = "Mako notification daemon";
+        Documentation = "man:mako(1)";
+      };
+      #   Service = {
+      #     ExecStart = "${pkgs.mako}/bin/mako";
+      #     Restart = "always";
+      #   };
+      Service = {
+        Type = "dbus";
+        BusName = "org.freedesktop.Notifications";
+        ExecStart = "${pkgs.mako}/bin/mako";
+        Restart = "on-failure";
+      };
+      Install.WantedBy = ["hyprland-session.target"];
+    };
   };
 }
