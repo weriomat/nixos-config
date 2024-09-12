@@ -61,19 +61,19 @@
       # TODO: switch to nixpkgs paths
       exec-once = [
         # TODO: make this paths absolute
-        "systemctl --user import-environment &"
+        "${pkgs.systemd}/bin/systemctl --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
         # TODO: maybe --all
         # TODO: fix this -> gnone auth agent
         # "gnome-keyring-daemon --start &"
-        "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
+        "${pkgs.systemd}/bin/systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         # "xwaylandvideobridge" # TODO: here
-        "nm-applet &"
+        "${pkgs.networkmanagerapplet}/bin/nm-applet &"
         "sway-audio-idle-inhibit &"
-        "sleep 1 && swaylock"
-        "hyprctl setcursor Nordzy-cursors 22 &"
-        "sleep 1; hyprctl dispatch workspace 1&"
+        "${config.programs.swaylock.package}/bin/swaylock"
+        "${config.wayland.windowManager.hyprland.package}/bin/hyprctl setcursor Nordzy-cursors 22 &"
+        "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch workspace 1&"
       ];
 
       # TODO: find an option to launch grettd for session switcher

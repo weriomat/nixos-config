@@ -13,7 +13,6 @@ with lib; {
       brightnessctl
       # TODO: here
 
-      networkmanagerapplet
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
       xwaylandvideobridge
       wl-clipboard # TODO: maybe clipman or cliphist?
