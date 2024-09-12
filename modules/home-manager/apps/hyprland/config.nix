@@ -1,18 +1,10 @@
+# TODO: clean up this file
 {
   inputs,
   config,
   pkgs,
   ...
 }: {
-  # TODO: here
-  # # Fixes tray icons: https://github.com/nix-community/home-manager/issues/2064#issuecomment-887300055
-  # systemd.user.targets.tray = {
-  #   Unit = {
-  #     Description = "Home Manager System Tray";
-  #     Requires = ["graphical-session-pre.target"];
-  #   };
-  # };
-
   # TODO: here
   wayland.windowManager.hyprland = {
     settings = {

@@ -40,10 +40,12 @@ with lib; {
 
         scrollback_lines = 500000;
       };
+
       keybindings = {
         "ctrl+c" = "copy_or_interrupt";
         "ctrl+shift+t" = "new_tab_with_cwd";
       };
+
       font = {
         # IBM Plex mono with nerd font addons
         # TODO: here

@@ -22,9 +22,8 @@ with lib; {
     # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
     wayland.windowManager.hyprland = {
       enable = true;
-      xwayland = {
-        enable = true;
-      };
+      xwayland.enable = true;
+
       systemd = {
         enable = true;
         enableXdgAutostart = true; # TODO: here
@@ -55,12 +54,12 @@ with lib; {
       # Support for a redlight filter
       wlsunset = {
         enable = true;
-        package = pkgs.wlsunset;
         latitude = "52.5";
         longitude = "13.4";
         systemdTarget = "hyprland-session.target";
       };
     };
+
     # TODO: here
     # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
 
