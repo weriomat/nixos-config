@@ -1,7 +1,8 @@
 {
-  lib,
-  config,
   globals,
+  config,
+  lib,
+  pkgs,
   ...
 }:
 with lib; {
@@ -42,6 +43,9 @@ with lib; {
   };
 
   config = mkIf config.waybar.enable {
+    # kill waybar
+    wayland.windowManager.hyprland.settings.bind = ["$mainMod SHIFT, B, exec, ${pkgs.toybox}/bin/pkill -SIGUSR1 .waybar-wrapped"];
+
     programs.waybar = {
       enable = true;
 

@@ -9,7 +9,7 @@ with lib; {
 
   config = mkIf config.kitty.enable {
     wayland.windowManager.hyprland.settings.bind = [
-      "$mainMod, K, exec, kitty"
+      "$mainMod, K, exec, ${config.programs.kitty.package}/bin/kitty"
     ];
 
     programs.kitty = {
