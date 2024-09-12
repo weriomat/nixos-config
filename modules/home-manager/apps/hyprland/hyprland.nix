@@ -27,8 +27,10 @@ with lib; {
       systemd = {
         enable = true;
         enableXdgAutostart = true; # TODO: here
-        # extraCommands = []; # move out of config
-        # variables = ["--all"];
+        extraCommands = [
+          "${pkgs.systemd}/bin/systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
+        ];
+        variables = ["--all"];
       };
 
       # TODO: here
@@ -37,8 +39,12 @@ with lib; {
       # recommendedEnvironment = true;
     };
 
-    # NOTE: automatic mounting of new devices
     services = {
+      # NOTE: start nm-applet, blueblueman-applet at boot
+      network-manager-applet.enable = true;
+      blueman-applet.enable = true;
+
+      # NOTE: automatic mounting of new devices
       udiskie = {
         enable = true;
         automount = true;

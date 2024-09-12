@@ -59,9 +59,7 @@
         # TODO: maybe --all
         # TODO: fix this -> gnone auth agent
         # "gnome-keyring-daemon --start &"
-        "${pkgs.systemd}/bin/systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         # "xwaylandvideobridge" # TODO: here
-        "${pkgs.networkmanagerapplet}/bin/nm-applet &"
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl setcursor Nordzy-cursors 22 &"
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace 1&"
       ];
