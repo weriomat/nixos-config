@@ -78,8 +78,6 @@
   # TODO: wlsunset -> i have other services like this enabled -> search for them
   # services.redshift.enable = true; # TODO: here wlrsunset is availdbe as well, or use `services.gammastep`
 
-  # TODO: cbatticon for laptop
-
   programs = {
     jq = {
       enable = true;
