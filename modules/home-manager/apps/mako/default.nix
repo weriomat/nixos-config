@@ -8,6 +8,8 @@ with lib; {
   options.mako.enable = mkEnableOption "Enable mako notifications";
 
   config = mkIf config.mako.enable {
+    wayland.windowManager.hyprland.settings.exec-once = ["mako &"];
+
     services.mako = {
       enable = true;
 
@@ -16,8 +18,10 @@ with lib; {
         flavor = "mocha";
       };
 
-      # TODO: font here
+      # TODO: font here, pango format
       font = "JetBrainsMono Nerd Font 12";
+      # TODO: icon paths
+      # services.mako.iconPath
       padding = "15";
       defaultTimeout = 5000;
       borderSize = 2;
@@ -27,8 +31,9 @@ with lib; {
       extraConfig = ''
         text-alignment=center
         [urgency=high]
-        border-color=#fab387
+        border-color=#${config.colorScheme.palette.base09}
       '';
     };
+
   };
 }
