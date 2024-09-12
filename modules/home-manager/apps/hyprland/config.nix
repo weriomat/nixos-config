@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   # TODO: here
   # # Fixes tray icons: https://github.com/nix-community/home-manager/issues/2064#issuecomment-887300055
   # systemd.user.targets.tray = {
@@ -29,6 +25,7 @@
       # TODO: here
       # bindl = [",switch:Lid Switch, exec, ${pkgs.laptop_lid_switch}"];
 
+      # TODO: provision workspaces better -> use enable options
       workspace = [
         "1, monitor: DP-1, default:true, on-created-empty:kitty"
         "2, monitor: DP-1, on-created-empty:keepassxc"
