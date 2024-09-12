@@ -8,6 +8,8 @@ with lib; {
   options.swaylock.enable = mkEnableOption "Enable swaylock";
 
   config = mkIf config.swaylock.enable {
+    wayland.windowManager.hyprland.settings.exec-once = ["${config.programs.swaylock.package}/bin/swaylock"];
+
     programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;

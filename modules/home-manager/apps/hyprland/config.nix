@@ -71,7 +71,6 @@
         # "xwaylandvideobridge" # TODO: here
         "${pkgs.networkmanagerapplet}/bin/nm-applet &"
         "sway-audio-idle-inhibit &"
-        "${config.programs.swaylock.package}/bin/swaylock"
         "${config.wayland.windowManager.hyprland.package}/bin/hyprctl setcursor Nordzy-cursors 22 &"
         "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch workspace 1&"
       ];
