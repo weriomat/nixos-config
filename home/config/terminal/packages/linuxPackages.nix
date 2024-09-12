@@ -10,7 +10,7 @@
         # -- system information
         usbutils
         linuxPackages.cpupower
-        pciutils
+        pciutils # lspci, setpci
         # -- network
         # networking tools
         nethogs
