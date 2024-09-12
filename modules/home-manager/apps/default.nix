@@ -12,6 +12,7 @@
     ./thunderbird
     ./swayidle
     ./clipboard
+    ./wallpapers
 
     ./discord
     ./kitty

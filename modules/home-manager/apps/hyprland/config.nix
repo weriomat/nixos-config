@@ -75,7 +75,6 @@
         "systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         # "xwaylandvideobridge" # TODO: here
         "nm-applet &"
-        "dynwallpaper &"
         "sway-audio-idle-inhibit &"
         "sleep 1 && swaylock"
         "hyprctl setcursor Nordzy-cursors 22 &"
@@ -103,10 +102,6 @@
 
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"
-
-        # wallpaper picker
-        "$mainMod, W, exec, wallpaper-picker"
-        "$mainMod SHIFT, W, exec, wallpaper-random"
 
         # toggle for lofi music
         "$mainMod, L, exec, lofi"
@@ -424,8 +419,6 @@
     #   # '';
     # extraConfig = ''
 
-    #   exec-once = swaybg -m fill -i $(find ~/Pictures/wallpapers/ -maxdepth 1 -type f) &
-    #   exec-once = sleep 1 && swaylock
 
     #   input {
     #     kb_layout = us

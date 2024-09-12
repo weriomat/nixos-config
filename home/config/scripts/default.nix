@@ -1,8 +1,5 @@
-{pkgs, ...}: let
-  wallpaper_path = "${pkgs.weriomat-wallpapers}";
-in {
+{pkgs, ...}: {
   # TODO: switch to zsh?
-
   # TODO: here
   # stolen from https://haseebmajid.dev/posts/2023-11-15-part-3-hyprland-as-part-of-your-development-workflow/
   laptop_lid_switch = pkgs.writeShellScriptBin "laptop_lid_switch" ''
@@ -274,73 +271,6 @@ in {
           runbg mpv --no-video https://www.youtube.com/live/jfKfPfyJRdk?si=OF0HKrYFFj33BzMo
           notify-send -u normal "Started Lofi Stream"
       fi
-    '';
-  };
-  wall-change = pkgs.writeShellApplication {
-    name = "wall-change";
-    runtimeInputs = with pkgs; [swaybg killall];
-    text = ''
-      killall swaybg || true
-      swaybg -m fill -i "$1"
-    '';
-  };
-  wallpaper-picker = pkgs.writeShellApplication {
-    name = "wallpaper-picker";
-    runtimeInputs = with pkgs; [
-      libnotify
-      swaybg
-      wofi
-      coreutils
-      findutils
-      killall
-    ];
-    text = ''
-      #!/usr/bin/env bash
-      wallpaper_path=${wallpaper_path}
-
-      wallpaper_name="$(find "$wallpaper_path" -exec basename {} \; | wofi --show dmenu --sort-order=alphabetical)"
-      if [[ -f $wallpaper_path/$wallpaper_name ]]; then
-          killall dynwallpaper || true
-          wall-change "$wallpaper_path"/"$wallpaper_name" &
-          notify-send -u normal "Changed Wallpaper to $wallpaper_name" &
-      else
-          exit 1
-      fi
-    '';
-  };
-  wallpaper-random = pkgs.writeShellApplication {
-    name = "wallpaper-random";
-    runtimeInputs = with pkgs; [swaybg libnotify coreutils findutils];
-    text = ''
-      #!/usr/bin/env bash
-      wallpaper_name="$(find ${wallpaper_path} | shuf -n 1)"
-      w_name="$(echo "$wallpaper_name" | xargs basename)"
-      if [[ -f $wallpaper_name ]]; then
-          killall dynwallpaper || true
-          wall-change "$wallpaper_name" &
-          notify-send -u normal "Changed Wallpaper to $w_name" &
-      else
-          exit 1
-      fi
-    '';
-  };
-
-  dynwallpaper = pkgs.writeShellApplication {
-    name = "dynwallpaper";
-    runtimeInputs = with pkgs; [swaybg libnotify coreutils findutils];
-    text = ''
-      #!/usr/bin/env bash
-      while true; do
-        wallpaper_name="$(find ${wallpaper_path} | shuf -n 1)"
-        w_name="$(echo "$wallpaper_name" | xargs basename)"
-        if [[ -f $wallpaper_name ]]; then
-            wall-change "$wallpaper_name" &
-            notify-send -u normal "Changed Wallpaper to $w_name" &
-        else
-            exit 1
-        fi
-        sleep 1800
-      done
     '';
   };
 }
