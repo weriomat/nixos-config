@@ -7,6 +7,8 @@ with lib; {
   options.wofi.enable = mkEnableOption "Enable wofi";
 
   config = mkIf config.wofi.enable {
+    wayland.windowManager.hyprland.settings.bind = ["$mainMod, R, exec, ${config.programs.wofi.package}/bin/wofi --show drun"];
+
     programs.wofi = {
       enable = true;
       settings = {

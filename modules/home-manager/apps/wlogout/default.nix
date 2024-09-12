@@ -9,6 +9,8 @@ with lib; {
   options.wlogout.enable = mkEnableOption "Enable wlogout";
 
   config = mkIf config.wlogout.enable {
+    wayland.windowManager.hyprland.settings.bind = ["$mainMod, Q, exec, ${config.programs.wlogout.package}/bin/wlogout"];
+
     programs.wlogout = {
       enable = true;
       layout = [

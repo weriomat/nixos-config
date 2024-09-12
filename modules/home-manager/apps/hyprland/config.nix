@@ -91,10 +91,8 @@
         "$mainMod, M, exit, "
         "$mainMod, E, exec, dolphin"
         "$mainMod, V, togglefloating,"
-        "$mainMod, R, exec, wofi --show drun"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
-        "$mainMod, Q, exec, wlogout"
 
         # TODO: here
         # switchching focus with vim keys
@@ -105,9 +103,6 @@
 
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"
-
-        # kill waybar
-        "$mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped"
 
         # wallpaper picker
         "$mainMod, W, exec, wallpaper-picker"
