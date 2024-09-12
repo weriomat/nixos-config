@@ -88,7 +88,6 @@
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mainMod, C, killactive,"
         "$mainMod, M, exit, "
-        "$mainMod, E, exec, dolphin"
         "$mainMod, V, togglefloating,"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
