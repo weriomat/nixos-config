@@ -12,6 +12,7 @@
     # see: https://packagecontrol.io
     syntaxes = {};
 
+    # TODO: check if deprecated since catppuccin nix
     themes = {
       catppuccin = {
         src = pkgs.fetchFromGitHub {
@@ -28,9 +29,10 @@
   # aliases
   programs.zsh = {
     shellAliases = {
-      cat = "bat";
-      man = "batman";
+      cat = "${pkgs.bat}/bin/bat";
+      man = "${pkgs.bat-extras.batman}/bin/batman";
 
+      # TODO: paths
       # diff for git
       gdiff = "git diff --name-only --relative --diff-filter=d | xargs bat --diff";
 

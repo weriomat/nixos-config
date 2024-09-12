@@ -4,6 +4,7 @@
   lib,
   ...
 }: {
+  # TODO: paths
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -38,33 +39,6 @@
 
       # set list-colors to enable filename colorizing
       zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-
-      # Man without options will use fzf to select a page
-      zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-
-      function fzf-man(){
-        MAN="${pkgs.bat-extras.batman}/bin/batman"
-        if [ -n "$1" ]; then
-          $MAN "$@"
-          return $?
-        else
-          $MAN -k . | fzf --reverse --preview="echo {1,2} | sed 's/ (/./' | sed -E 's/\)\s*$//' | xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | xargs -r $MAN
-          return $?
-        fi
-      }
-
-      # better cd
-      cdd() {
-          DIR=`fd * -maxdepth 0 -type d -print 2> /dev/null | fzf-tmux` \
-          && cd "$DIR"
-      }
-
-      # cd into dir of file
-      cdf() {
-         local file
-         local dir
-         file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-      }
     '';
 
     shellAliases = {
@@ -102,7 +76,6 @@
 
       # fho
       fho = "fh | xargs firefox";
-      fhc = "fh | wl-copy";
 
       # no
       no = "nh os switch -u";

@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [manix];
+  # TODO: here paths
   programs.zsh.shellAliases = {
     ma = ''
-      manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
+      ${pkgs.manix}/bin/manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | fzf --preview="manix '{}'" | xargs manix'';
   };
 }
