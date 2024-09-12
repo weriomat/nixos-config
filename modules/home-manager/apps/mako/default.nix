@@ -2,13 +2,13 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib; {
   options.mako.enable = mkEnableOption "Enable mako notifications";
 
   config = mkIf config.mako.enable {
+    # NOTE: this gets enabled at startup by dbus through `pkgs.mako/share/dbus-1/services/fr.emersion.mako.service`
     services.mako = {
       enable = true;
 
@@ -32,25 +32,6 @@ with lib; {
         [urgency=high]
         border-color=#${config.colorScheme.palette.base09}
       '';
-    };
-
-    # NOTE: start mako at startup
-    systemd.user.services.mako = {
-      Unit = {
-        Description = "Mako notification daemon";
-        Documentation = "man:mako(1)";
-      };
-      #   Service = {
-      #     ExecStart = "${pkgs.mako}/bin/mako";
-      #     Restart = "always";
-      #   };
-      Service = {
-        Type = "dbus";
-        BusName = "org.freedesktop.Notifications";
-        ExecStart = "${pkgs.mako}/bin/mako";
-        Restart = "on-failure";
-      };
-      Install.WantedBy = ["hyprland-session.target"];
     };
   };
 }
