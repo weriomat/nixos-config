@@ -29,7 +29,7 @@
       env = [
         # TODO: here
         # env = GDK_SCALE,2
-        # env = XCURSOR_SIZE,32
+        # "XCURSOR_THEME"
         "XCURSOR_SIZE,24"
         "GDK_BACKEND,wayland,x11,*"
         "QT_QPA_PLATFORM,wayland;xcb"
@@ -43,8 +43,6 @@
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "QT_QPA_PLATFORMTHEME,qt5ct"
         "GTK_THEME,Catppuccin-Mocha-Compact-Lavender-Dark"
-        # "XCURSOR_THEME"
-        # "XCURSOR_SIZE"
       ];
       # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#minimize-steam-instead-of-killing
       # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#toggle-animationsbluretc-hotkey

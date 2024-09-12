@@ -26,15 +26,7 @@
 
   # TODO: here
   # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
-  #   programs.coolercontrol.enable = true;
-
-  # TODO: here
-  # services = {
-  #    power-profiles-daemon.enable = true;
-
-  #   # battery info
-  #   upower.enable = true;
-  # };
+  # programs.coolercontrol.enable = true;
 
   environment = {
     systemPackages = with pkgs; [nh];
@@ -65,6 +57,7 @@
   # };
 
   programs.dconf.enable = true; # dconf -> edit system preferences
+
   # programs.mtr.enable = true;
   # programs.fuse.userAllowOther = true;
 
