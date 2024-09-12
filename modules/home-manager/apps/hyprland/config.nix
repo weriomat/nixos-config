@@ -74,7 +74,6 @@
         "sleep 1 && swaylock"
         "hyprctl setcursor Nordzy-cursors 22 &"
         "sleep 1; hyprctl dispatch workspace 1&"
-        "discord &"
       ];
 
       # TODO: find an option to launch grettd for session switcher
