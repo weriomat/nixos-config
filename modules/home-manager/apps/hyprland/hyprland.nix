@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   lib,
   config,
@@ -18,9 +17,6 @@ with lib; {
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
       xwaylandvideobridge
       swaybg
-      inputs.hypr-contrib.packages.${pkgs.system}.grimblast
-      grim
-      slurp
       wl-clipboard # TODO: maybe clipman or cliphist?
       wf-recorder
       wayland

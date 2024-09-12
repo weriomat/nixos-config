@@ -1,4 +1,9 @@
-{config, ...}: {
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   # TODO: here
   # # Fixes tray icons: https://github.com/nix-community/home-manager/issues/2064#issuecomment-887300055
   # systemd.user.targets.tray = {
@@ -133,11 +138,9 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # screenshot
-        # "$mainMod SHIFT, 4, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
-        # ",Print, exec, grimblast --notify --cursor  copy area"
-        ",Print, exec, grimblast --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
-      ];
 
+        ",Print, exec, ${inputs.hypr-contrib.packages.${pkgs.system}.grimblast}/bin/grimblast --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+      ];
 
       bindm = [
         # "# Move/resize windows with mainMod + LMB/RMB and dragging"
