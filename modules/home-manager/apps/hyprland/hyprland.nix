@@ -1,7 +1,7 @@
 {
-  pkgs,
-  lib,
   config,
+  lib,
+  pkgs,
   ...
 }:
 with lib; {
@@ -16,7 +16,6 @@ with lib; {
       networkmanagerapplet
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
       xwaylandvideobridge
-      swaybg
       wl-clipboard # TODO: maybe clipman or cliphist?
       wf-recorder
       wayland

@@ -19,6 +19,7 @@
       # TODO: here
       # bindl = [",switch:Lid Switch, exec, ${pkgs.laptop_lid_switch}"];
 
+      # TODO: package name
       # TODO: provision workspaces better -> use enable options
       workspace = [
         "1, monitor: DP-1, default:true, on-created-empty:kitty"
@@ -76,12 +77,15 @@
         "discord &"
       ];
 
+      # TODO: find an option to launch grettd for session switcher
+      # TODO: gnome
+
       "$mainMod" = "SUPER";
       # TODO: swithc to nix paths
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mainMod, C, killactive,"
-        "$mainMod, M, exit, "
+        # "$mainMod, M, exit, "
         "$mainMod, V, togglefloating,"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
@@ -380,7 +384,6 @@
     #   # '';
     # extraConfig = ''
 
-
     #   input {
     #     kb_layout = us
     #     numlock_by_default = true
@@ -464,28 +467,9 @@
     #   bind = $mainMod, F1, exec, show-keybinds
 
     #   # keybindings
-    #   bind = $mainMod SHIFT, Return, exec, kitty --start-as=fullscreen -o 'font_size=16'
-    #   bind = $mainMod, B, exec, firefox
-    #   bind = $mainMod, Q, killactive,
-    #   bind = $mainMod, F, fullscreen, 0
-    #   bind = $mainMod SHIFT, F, fullscreen, 1
-    #   bind = $mainMod, Space, togglefloating,
-    #   bind = $mainMod, D, exec, pkill wofi || wofi --show drun
-    #   bind = $mainMod, Escape, exec, swaylock
-    #   bind = $mainMod SHIFT, Escape, exec, shutdown-script
-    #   bind = $mainMod, P, pseudo,
-    #   bind = $mainMod, J, togglesplit,
-    #   bind = $mainMod, E, exec, nemo
-    #   bind = $mainMod SHIFT, B, exec, pkill -SIGUSR1 .waybar-wrapped
     #   bind = $mainMod, C ,exec, hyprpicker -a
-    #   bind = $mainMod, G,exec, $HOME/.local/bin/toggle_layout
-    #   bind = $mainMod, W,exec, pkill wofi || wallpaper-picker
 
     #   # window control
-    #   bind = $mainMod SHIFT, left, movewindow, l
-    #   bind = $mainMod SHIFT, right, movewindow, r
-    #   bind = $mainMod SHIFT, up, movewindow, u
-    #   bind = $mainMod SHIFT, down, movewindow, d
     #   bind = $mainMod CTRL, left, resizeactive, -80 0
     #   bind = $mainMod CTRL, right, resizeactive, 80 0
     #   bind = $mainMod CTRL, up, resizeactive, 0 -80
@@ -495,13 +479,7 @@
     #   bind = $mainMod ALT, up, moveactive, 0 -80
     #   bind = $mainMod ALT, down, moveactive, 0 80
 
-    #   # mouse binding
-    #   bindm = $mainMod, mouse:272, movewindow
-    #   bindm = $mainMod, mouse:273, resizewindow
-
     #   # windowrule
-    #   windowrule = float,audacious
-    #   windowrule = workspace 8 silent, audacious
     #   windowrule = pin,wofi
     #   windowrule = float,wofi
     #   windowrule = noborder,wofi
@@ -509,11 +487,8 @@
     #   windowrule = idleinhibit focus,mpv
     #   windowrule = float,udiskie
     #   windowrule = float,title:^(Transmission)$
-    #   windowrule = float,title:^(Volume Control)$
     #   windowrule = float,title:^(Firefox — Sharing Indicator)$
     #   windowrule = move 0 0,title:^(Firefox — Sharing Indicator)$
-    #   windowrule = size 700 450,title:^(Volume Control)$
-    #   windowrule = move 40 55%,title:^(Volume Control)$
     #   windowrulev2 = float, title:^(Picture-in-Picture)$
     #   windowrulev2 = opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$
     #   # windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*YouTube.*)$
@@ -536,8 +511,6 @@
     #   windowrule = center,title:^(float_kitty)$
     #   windowrule = size 950 600,title:^(float_kitty)$
 
-    #   windowrulev2 = float,class:^(pavucontrol)$
-    #   windowrulev2 = float,class:^(SoundWireServer)$
     #   windowrulev2 = float,class:^(file_progress)$
     #   windowrulev2 = float,class:^(confirm)$
     #   windowrulev2 = float,class:^(dialog)$

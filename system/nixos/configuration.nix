@@ -94,8 +94,6 @@
 
   #   graphics.enable = true; # for openGL
 
-  #   # Enable sound with pipewire.
-  #   pulseaudio.enable = false;
   # };
 
   audio.enable = true;
