@@ -9,6 +9,7 @@ with lib; {
 
   config = mkIf config.packages.enable {
     # TODO: remove ++ unify with hm packages
+    # TODO: take a look at zenmonitor
     environment.systemPackages = with pkgs; [
       nurl # simple nix prefetch
       duf # df alternative

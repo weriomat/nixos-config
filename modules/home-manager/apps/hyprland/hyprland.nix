@@ -15,7 +15,6 @@ with lib; {
 
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
       xwaylandvideobridge
-      wl-clipboard # TODO: maybe clipman or cliphist?
       wf-recorder
       wayland
     ];

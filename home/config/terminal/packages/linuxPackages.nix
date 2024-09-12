@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   home.packages =
+    # TODO: unify
     if pkgs.stdenv.isLinux
     then
       with pkgs; [

@@ -13,6 +13,7 @@
 
   xdg = lib.mkIf pkgs.stdenv.isLinux {
     configFile = {
+      # TODO: here
       "cava/config".text = ''
         ## Configuration file for CAVA. Default values are commented out. Use either ';' or '#' for commenting.
 
@@ -546,13 +547,11 @@
         ; background = '#111111'
         foreground = '#E6ECFE'
 
-
         # Gradient mode, only hex defined colors (and thereby ncurses mode) are supported,
         # background must also be defined in hex  or remain commented out. 1 = on, 0 = off.
         # You can define as many as 8 different colors. They range from bottom to top of screen
         gradient = 1
         gradient_count = 4
-
         gradient_color_1 = '#44526f'
         gradient_color_2 = '#4e5e7e'
         gradient_color_3 = '#576a8e'
@@ -561,8 +560,6 @@
         gradient_color_6 = '#7486a9'
         gradient_color_7 = '#8191b1'
         gradient_color_8 = '#909fbb'
-
-
 
         [smoothing]
 

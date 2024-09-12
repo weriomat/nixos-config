@@ -1,1 +1,12 @@
-{...}: {imports = [./btop ./eza ./ssh ./starship ./zsh ./cava ./fzf ./fastfetch];}
+{...}: {
+  imports = [
+    ./btop
+    ./eza
+    ./ssh
+    ./starship
+    ./zsh
+    ./cava
+    ./fzf
+    ./fastfetch
+  ];
+}

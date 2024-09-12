@@ -47,15 +47,6 @@
   # TODO: global search git -> what do i have ...
   # TODO: jq
 
-  # TODO: move this into own file + add zsh thingies + config
-  programs.ripgrep = {
-    enable = true;
-    arguments = [
-      "--max-columns-preview"
-      "--colors=line:style:bold"
-    ];
-  };
-
   # set this up for macos s well
   services.pueue = {
     enable = true;
@@ -85,37 +76,48 @@
   #   enable = true;
   # };
 
-  # TODO: wlsunset -> i have other services like this enabled -> search for them
-  #   programs.texlive = {};
   # services.network-manager-applet.enable = true;
+  # TODO: wlsunset -> i have other services like this enabled -> search for them
   # services.redshift.enable = true; # TODO: here wlrsunset is availdbe as well, or use `services.gammastep`
+
   # TODO: cbatticon for laptop
   # services.blueman-applet.enable = true;
 
-  programs.tealdeer = {
-    enable = true; # tldr written in rust
-    settings = {
-      display = {
-        compact = false;
-        use_pager = true;
-      };
-      updates = {
-        auto_update = true;
-        auto_update_interval_hours = 24;
+  programs = {
+    jq = {
+      enable = true;
+      colors = {
+        null = "1;30";
+        false = "0;31";
+        true = "0;32";
+        numbers = "0;36";
+        strings = "0;33";
+        arrays = "1;35";
+        objects = "1;37";
       };
     };
-  };
 
-  programs.jq = {
-    enable = true;
-    colors = {
-      null = "1;30";
-      false = "0;31";
-      true = "0;32";
-      numbers = "0;36";
-      strings = "0;33";
-      arrays = "1;35";
-      objects = "1;37";
+    tealdeer = {
+      enable = true; # tldr written in rust
+      settings = {
+        display = {
+          compact = false;
+          use_pager = true;
+        };
+        updates = {
+          auto_update = true;
+          auto_update_interval_hours = 24;
+        };
+      };
+    };
+
+    # TODO: move this into own file + add zsh thingies + config
+    ripgrep = {
+      enable = true;
+      arguments = [
+        "--max-columns-preview"
+        "--colors=line:style:bold"
+      ];
     };
   };
 

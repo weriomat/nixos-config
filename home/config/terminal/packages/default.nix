@@ -1,1 +1,6 @@
-{...}: {imports = [./usefulPackages.nix ./linuxPackages.nix];}
+{...}: {
+  imports = [
+    ./usefulPackages.nix
+    ./linuxPackages.nix
+  ];
+}

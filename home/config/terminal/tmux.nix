@@ -89,6 +89,7 @@
           set -g @catppuccin_pane_active_border_style "fg=#{thm_orange}" # Use a value compatible with the standard tmux 'pane-border-active-style'
         '';
       }
+      # TODO: paths
       {
         plugin = tmuxPlugins.vim-tmux-navigator;
         extraConfig = ''

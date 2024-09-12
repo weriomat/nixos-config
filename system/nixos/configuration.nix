@@ -25,21 +25,6 @@
   sops.enable = true;
 
   # TODO: here
-  # hardware = {
-  #       logitech.wireless.enable = true;
-  #       logitech.wireless.enableGraphical = true; # Solaar.
-  #     };
-
-  #     environment.systemPackages = with pkgs; [
-  #       solaar
-  #     ];
-
-  #     services.udev.packages = with pkgs; [
-  #       logitech-udev-rules
-  #       solaar
-  #     ];
-
-  # TODO: here
   # systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
   #   programs.coolercontrol.enable = true;
 
@@ -87,10 +72,6 @@
   # services.udisks2.enable = true;
 
   # hardware = {
-  #   # logitech.wireless = { # Extra Logitech Support
-  #   #   enable = true;
-  #   #   enableGraphical = true;
-  #   # };
 
   #   graphics.enable = true; # for openGL
 
