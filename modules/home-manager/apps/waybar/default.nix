@@ -125,8 +125,8 @@ with lib; {
         # stolen from https://github.com/ErikReider/SwayAudioIdleInhibit
         "custom/audio_idle_inhibitor" = {
           format = "{icon}";
-          exec = "sway-audio-idle-inhibit --dry-print-both-waybar";
-          exec-if = "which sway-audio-idle-inhibit";
+          exec = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit --dry-print-both-waybar";
+          exec-if = "${pkgs.toybox}/bin/which sway-audio-idle-inhibit";
           return-type = "json";
           tooltip = true;
           format-icons = {

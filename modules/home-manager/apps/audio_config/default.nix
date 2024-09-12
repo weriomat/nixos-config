@@ -8,11 +8,10 @@ with lib; {
   options.audio_config.enable = mkEnableOption "Enable HomeManager audio setup";
 
   config = mkIf config.audio_config.enable {
+    # TODO: factor out from waybar audio-idle-ihnhibit
     home.packages = with pkgs; [
       playerctl
       pamixer
-      # TODO: factor out from waybar
-      sway-audio-idle-inhibit # no inhbit if audio playing
     ];
     # TODO: audio
     # services.pulseeffects = {};
@@ -22,6 +21,9 @@ with lib; {
 
     wayland.windowManager.hyprland.settings = {
       # NOTE: maybe configure `XF86MonBrightness<Up|Down>` as well if need be for controlling backlight of a keyboard
+      exec-once = [
+        "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit &"
+      ];
       bind = [
         ",XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 2"
         ",XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 2"
