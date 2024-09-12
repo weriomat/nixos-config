@@ -19,7 +19,19 @@ with lib; {
     # services.playerctld = {};
     # services.pasystray = {};
     # services.easyeffects = {};
+
     wayland.windowManager.hyprland.settings = {
+      # NOTE: maybe configure `XF86MonBrightness<Up|Down>` as well if need be for controlling backlight of a keyboard
+      bind = [
+        ",XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 2"
+        ",XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 2"
+        ",XF86AudioMute, exec, ${pkgs.pamixer}/bin/pamixer -t"
+        ",XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
+        ",XF86AudioNext, exec, ${pkgs.playerctl}/bin/playerctl next"
+        ",XF86AudioPrev, exec, ${pkgs.playerctl}/bin/playerctl previous"
+        ",XF86AudioStop, exec, ${pkgs.playerctl}/bin/playerctl stop"
+      ];
+
       # TODO: maybe this in per host config as well?
       # bindle = [
       #   # volume
@@ -30,25 +42,6 @@ with lib; {
       #   ", XF86MonBrightnessUp, exec, brillo -q -u 300000 -A 5"
       #   ", XF86MonBrightnessDown, exec, brillo -q -u 300000 -U 5"
       # ];
-      bind = [
-        # TODO: move those to
-        # media and volume control
-        ",XF86AudioRaiseVolume, exec, pamixer -i 2"
-        ",XF86AudioLowerVolume, exec, pamixer -d 2"
-        ",XF86AudioMute, exec, pamixer -t"
-        ",XF86AudioPlay, exec, playerctl play-pause"
-        ",XF86AudioNext, exec, playerctl next"
-        ",XF86AudioPrev, exec, playerctl previous"
-        ",XF86AudioStop, exec, playerctl stop"
-
-        # TODO: here
-        # bind=,XF86AudioMicMute,exec, volume --toggle-mic
-        # bind=ALT,XF86AudioPlay,exec,systemctl --user restart playerctld
-        # bind=,XF86MonBrightnessUp,exec, brightness --inc
-        # bind=,XF86MonBrightnessDown,exec, brightness --dec
-        # ",XF86AudioMicMute" = "exec, ${pkgs.pamixer}/bin/pamixer --default-source --toggle-mute";
-      ];
-      # TODO: here
       # bindi = {
       #   ",XF86MonBrightnessUp" = "exec, ${pkgs.brightnessctl}/bin/brightnessctl +5%";
       #   ",XF86MonBrightnessDown" = "exec, ${pkgs.brightnessctl}/bin/brightnessctl -5% ";
