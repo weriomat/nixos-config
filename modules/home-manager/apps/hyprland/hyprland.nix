@@ -14,8 +14,6 @@ with lib; {
       brightnessctl
       # TODO: here
 
-      playerctl
-      pamixer
       networkmanagerapplet
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
       xwaylandvideobridge
@@ -26,8 +24,6 @@ with lib; {
       wl-clipboard # TODO: maybe clipman or cliphist?
       wf-recorder
       wayland
-
-      sway-audio-idle-inhibit # no inhbit if audio playing
     ];
 
     # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];

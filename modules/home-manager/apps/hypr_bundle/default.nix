@@ -17,5 +17,6 @@ with lib; {
     wlogout.enable = true;
     swayidle.enable = true;
     wallpapers.enable = true;
+    audio_config.enable = true;
   };
 }

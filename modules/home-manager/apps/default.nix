@@ -13,6 +13,7 @@
     ./swayidle
     ./clipboard
     ./wallpapers
+    ./audio_config
 
     ./discord
     ./kitty

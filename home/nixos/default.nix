@@ -144,12 +144,6 @@
   # TODO: sytembus notify
   # services.systembus-notify = {};
 
-  # TODO: audio
-  # services.pulseeffects = {};
-  # services.playerctld = {};
-  # services.pasystray = {};
-  # services.easyeffects = {};
-
   # TODO: fusuma
   # services.fusuma = {}; # gestures for trackpad
 
