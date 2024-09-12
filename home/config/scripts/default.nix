@@ -263,7 +263,7 @@ in {
   };
   lofi = pkgs.writeShellApplication {
     name = "lofi";
-    runtimeInputs = with pkgs; [coreutils mpv-unwrapped mako libnotify];
+    runtimeInputs = with pkgs; [coreutils mpv-unwrapped libnotify];
     text = ''
       #!/usr/bin/env bash
 
@@ -290,7 +290,6 @@ in {
       libnotify
       swaybg
       wofi
-      mako
       coreutils
       findutils
       killall
@@ -311,7 +310,7 @@ in {
   };
   wallpaper-random = pkgs.writeShellApplication {
     name = "wallpaper-random";
-    runtimeInputs = with pkgs; [swaybg libnotify coreutils mako findutils];
+    runtimeInputs = with pkgs; [swaybg libnotify coreutils findutils];
     text = ''
       #!/usr/bin/env bash
       wallpaper_name="$(find ${wallpaper_path} | shuf -n 1)"
@@ -328,7 +327,7 @@ in {
 
   dynwallpaper = pkgs.writeShellApplication {
     name = "dynwallpaper";
-    runtimeInputs = with pkgs; [swaybg libnotify coreutils mako findutils];
+    runtimeInputs = with pkgs; [swaybg libnotify coreutils findutils];
     text = ''
       #!/usr/bin/env bash
       while true; do
