@@ -4,6 +4,9 @@
   globals,
   ...
 }: {
+  # TODO: sytembus notify
+  # services.systembus-notify = {};
+
   discord.enable = true;
   firefox.enable = true;
   hyprland.enable =
@@ -25,6 +28,7 @@
   # git things to take a look at
   # TODO: git.delta; git.diff-so-fancy; git.hooks
   # NOTE: maybe this works with githooks nix
+  # TODO: global search git -> what do i have ...
 
   # TODO: calender for cli -> khal
 
@@ -44,27 +48,23 @@
   # NOTE: bitwarden cli client
   # programs.rbw = {};
 
-  # TODO: global search git -> what do i have ...
-  # TODO: jq
+  services = {
+    # NOTE: notifications about power
+    poweralertd.enable = true;
 
-  # set this up for macos s well
-  services.pueue = {
-    enable = true;
-    settings = {
-      daemon = {
-        default_parallel_tasks = 2;
-      };
-      client = {
-        dark_mode = true;
+    # set this up for macos s well
+    pueue = {
+      enable = true;
+      settings = {
+        daemon = {
+          default_parallel_tasks = 2;
+        };
+        client = {
+          dark_mode = true;
+        };
       };
     };
   };
-
-  # TODO: config
-  # services.poweralertd.enable = true;
-
-  # TODO: battery notifys
-  # services.batsignal = {};
 
   # home.packages = [pkgs.pciutils]; # lspci, setpci
 
@@ -129,17 +129,11 @@
   # TODO: dashboard
   # services.glance = {};
 
-  # TODO: here
-  # services.network-manager-applet.enable = true;
-
   # TODO: if nextcloud
   # services.nextcloud-client = {};
 
   # TODO: all good things with pdf
   # services.signaturepdf = {};
-
-  # TODO: sytembus notify
-  # services.systembus-notify = {};
 
   # TODO: fusuma
   # services.fusuma = {}; # gestures for trackpad
@@ -153,13 +147,6 @@
   #     defaultQuality = "1080";
   #     baseTheme = "catppuccinMocha";
   #   };
-  # };
-
-  # TODO: here
-  # programs.texlive = {
-  #   enable = true;
-  #   packageSet =
-  #     pkgs.texlive.combined.scheme-full;
   # };
 
   # TODO: programs.yt-dlp = {}; # Dowoloader for yt files
