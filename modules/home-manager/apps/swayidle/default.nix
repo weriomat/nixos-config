@@ -24,8 +24,8 @@ with lib; {
         }
         {
           timeout = 600;
-          command = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms off";
-          resumeCommand = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch dpms on";
+          command = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch dpms off";
+          resumeCommand = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch dpms on";
         }
         {
           timeout = 900;

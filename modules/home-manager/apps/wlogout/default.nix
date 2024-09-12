@@ -28,7 +28,7 @@ with lib; {
         }
         {
           label = "logout";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch exit";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch exit";
           text = "Exit";
           keybind = "e";
         }

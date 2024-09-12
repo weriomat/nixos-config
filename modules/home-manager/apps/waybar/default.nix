@@ -142,8 +142,8 @@ with lib; {
           active-only = false;
           all-outputs = false;
           disable-scroll = false;
-          on-scroll-up = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch workspace e-1";
-          on-scroll-down = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch workspace e+1";
+          on-scroll-up = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace e-1";
+          on-scroll-down = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace e+1";
           format = "{name}";
           on-click = "activate";
           format-icons = {
