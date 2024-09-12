@@ -129,7 +129,6 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # screenshot
-
         ",Print, exec, ${inputs.hypr-contrib.packages.${pkgs.system}.grimblast}/bin/grimblast --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
       ];
 
@@ -291,7 +290,7 @@
         # ];
       };
 
-      xwayland = {force_zero_scaling = true;};
+      xwayland.force_zero_scaling = true;
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       dwindle = {
@@ -315,10 +314,8 @@
         no_gaps_when_only = false;
       };
 
-      gestures = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        workspace_swipe = false;
-      };
+      # See https://wiki.hyprland.org/Configuring/Variables/ for more
+      gestures.workspace_swipe = false;
 
       misc = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more

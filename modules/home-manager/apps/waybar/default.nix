@@ -248,6 +248,9 @@ with lib; {
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
           on-click-right = "${pkgs.pamixer}/bin/pamixer -t";
         };
+        # backlight = {
+        #   format = " {percent}%";
+        # };
         "custom/launcher" = {
           format = "";
           on-click = "${pkgs.toybox}/bin/pkill wofi || ${config.programs.wofi.package}/bin/wofi --show drun";
