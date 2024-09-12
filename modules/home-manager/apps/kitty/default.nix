@@ -8,6 +8,10 @@ with lib; {
   options.kitty.enable = mkEnableOption "Enable my kitty options";
 
   config = mkIf config.kitty.enable {
+    wayland.windowManager.hyprland.settings.bind = [
+      "$mainMod, K, exec, kitty"
+    ];
+
     programs.kitty = {
       enable = true;
       package = pkgs.unstable.kitty;

@@ -90,7 +90,6 @@
       # TODO: swithc to nix paths
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        "$mainMod, K, exec, kitty"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit, "
         "$mainMod, E, exec, dolphin"
@@ -519,8 +518,6 @@
     #   bind = $mainMod, F1, exec, show-keybinds
 
     #   # keybindings
-    #   bind = $mainMod, Return, exec, kitty
-    #   bind = ALT, Return, exec, kitty --title float_kitty
     #   bind = $mainMod SHIFT, Return, exec, kitty --start-as=fullscreen -o 'font_size=16'
     #   bind = $mainMod, B, exec, firefox
     #   bind = $mainMod, Q, killactive,
