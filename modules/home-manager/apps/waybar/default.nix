@@ -87,6 +87,7 @@ with lib; {
             warning = 30;
             critical = 15;
           };
+          # TODO: color
           format = ''<span color="#fab387">{icon}</span> {capacity}%'';
           format-charging = ''<span color="#a6e3a1">{icon}/span> {capacity}%'';
           format-warning = ''<span color="#a6e3a1"></span> {capacity}%'';
@@ -141,8 +142,8 @@ with lib; {
           active-only = false;
           all-outputs = false;
           disable-scroll = false;
-          on-scroll-up = "hyprctl dispatch workspace e-1";
-          on-scroll-down = "hyprctl dispatch workspace e+1";
+          on-scroll-up = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch workspace e-1";
+          on-scroll-down = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl dispatch workspace e+1";
           format = "{name}";
           on-click = "activate";
           format-icons = {
@@ -155,21 +156,23 @@ with lib; {
             "*" = 5;
           };
         };
+
         "custom/playerctl#backward" = {
           format = "󰙣 ";
-          on-click = "playerctl previous";
-          on-scroll-up = "playerctl volume .05+";
-          on-scroll-down = "playerctl volume .05-";
+          on-click = "${pkgs.playerctl}/bin/playerctl previous";
+          on-scroll-up = "${pkgs.playerctl}/bin/playerctl volume .05+";
+          on-scroll-down = "${pkgs.playerctl}/bin/playerctl volume .05-";
         };
         "custom/playerctl#play" = {
           format = "{icon}";
           # TODO: here make full paths
           return-type = "json";
           exec = ''
-            playerctl -a metadata --format '{"text": "{{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F'';
-          on-click = "playerctl play-pause";
-          on-scroll-up = "playerctl volume .05+";
-          on-scroll-down = "playerctl volume .05-";
+            ${pkgs.playerctl}/bin/playerctl -a metadata --format '{"text": "{{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F
+          '';
+          on-click = "${pkgs.playerctl}/bin/playerctl play-pause";
+          on-scroll-up = "${pkgs.playerctl}/bin/playerctl volume .05+";
+          on-scroll-down = "${pkgs.playerctl}/bin/playerctl volume .05-";
           format-icons = {
             Playing = "<span>󰏥 </span>";
             Paused = "<span> </span>";
@@ -178,9 +181,9 @@ with lib; {
         };
         "custom/playerctl#forward" = {
           format = "󰙡 ";
-          on-click = "playerctl next";
-          on-scroll-up = "playerctl volume .05+";
-          on-scroll-down = "playerctl volume .05-";
+          on-click = "${pkgs.playerctl}/bin/playerctl next";
+          on-scroll-up = "${pkgs.playerctl}/bin/playerctl volume .05+";
+          on-scroll-down = "${pkgs.playerctl}/bin/playerctl volume .05-";
         };
         memory = {
           format = "󰟜 {}%";
@@ -214,7 +217,7 @@ with lib; {
           tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
           format-linked = "{ifname} (No IP)";
           format-disconnected = "󰖪 ";
-          on-click = "nm-connection-editor";
+          on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
         };
         tray = {
           icon-size = 20;
@@ -242,13 +245,12 @@ with lib; {
           format-muted = "󰖁 ";
           format-icons = {default = [" "];};
           scroll-step = 5;
-          on-click = "pavucontrol";
-          on-click-right = "pamixer -t";
+          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
+          on-click-right = "${pkgs.pamixer}/bin/pamixer -t";
         };
         "custom/launcher" = {
           format = "";
-          on-click = "pkill wofi || wofi --show drun";
-          on-click-right = "pkill wofi || wallpaper-picker";
+          on-click = "${pkgs.toybox}/bin/pkill wofi || ${config.programs.wofi.package}/bin/wofi --show drun";
           tooltip = "false";
         };
       };
