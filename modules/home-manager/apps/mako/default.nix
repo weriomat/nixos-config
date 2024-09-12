@@ -1,13 +1,13 @@
 # stolen from https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/mako/default.nix
 {
-  lib,
   config,
+  lib,
   ...
 }:
 with lib; {
-  options.my_mako.enable = mkEnableOption "Enable mako notifications";
+  options.mako.enable = mkEnableOption "Enable mako notifications";
 
-  config = mkIf config.my_mako.enable {
+  config = mkIf config.mako.enable {
     services.mako = {
       enable = true;
 

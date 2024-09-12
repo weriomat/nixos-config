@@ -9,7 +9,7 @@ with lib; {
   config = mkIf config.hyprland.enable {
     clipboard.enable = true;
     my_gtk.enable = true;
-    my_mako.enable = true;
+    mako.enable = true;
     swaylock.enable = true;
     wofi.enable = true;
     waybar.enable = true;
