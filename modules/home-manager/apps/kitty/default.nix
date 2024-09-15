@@ -14,7 +14,10 @@ with lib; {
 
     programs.kitty = {
       enable = true;
-      package = pkgs.unstable.kitty;
+      package =
+        if pkgs.stdenv.isDarwin
+        then pkgs.kitty
+        else pkgs.unstable.kitty;
 
       catppuccin = {
         enable = true;
