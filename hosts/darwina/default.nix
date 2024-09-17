@@ -27,6 +27,7 @@ in
             ];
             users.eliasengel.imports = [
               ../../home/darwin
+              ../../home/config
               ../../modules/home-manager
               inputs.nix-colors.homeManagerModules.default
               inputs.mac-app-util.homeManagerModules.default
