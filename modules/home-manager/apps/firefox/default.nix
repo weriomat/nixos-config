@@ -5,17 +5,22 @@
   globals,
   ...
 }:
-with lib; {
-  options.firefox.enable = mkEnableOption "Enable firefox config";
+with lib; let
+  cfg = config.firefox;
+in {
+  options.firefox = {
+    enable = mkEnableOption "Enable firefox config";
+    arkenfox.enable = mkEnableOption "Enable arkenfox";
+  };
 
-  config = mkIf config.firefox.enable {
+  config = mkIf cfg.enable {
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
     # TODO: take a look at https://github.com/fufexan/dotfiles/blob/main/home/programs/browsers/firefox.nix
     home.sessionVariables.BROWSER = "firefox";
     programs.firefox = {
       enable = true;
 
-      arkenfox = {
+      arkenfox = lib.mkIf cfg.arkenfox.enable {
         enable = true;
         version = "master";
       };
@@ -26,7 +31,7 @@ with lib; {
       profiles.${globals.username} = {
         # potentially problematic: 0703, 0820 (color visited links)
         # see: nix build "github:dwarfmaster/arkenfox-nixos#arkenfox-v103_0-doc-static" && firefox result
-        arkenfox = {
+        arkenfox = lib.mkIf cfg.arkenfox.enable {
           # TODO: here
           enable = true;
           "0000".enable = true;
