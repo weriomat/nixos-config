@@ -13,6 +13,9 @@
       autoScrub.enable = true;
     };
 
+    # set cache size for laglanguagetool to 8gb
+    languagetool.settings.cacheSize = lib.mkForce 8192;
+
     # i think hardened kernel bug
     logrotate.checkConfig = false;
 
