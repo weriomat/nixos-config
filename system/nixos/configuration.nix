@@ -56,7 +56,42 @@
   #   nfs.server.enable = false;
   # };
 
-  programs.dconf.enable = true; # dconf -> edit system preferences
+  # TODO:  # -- Media Tools --
+  # gimp
+  # handbrake
+  # mplayer
+  # gthumb
+  # jellyfin-media-player
+  # jellyfin-mpv-shim
+  # graphviz
+
+  # TODO: here
+  # # DNS -- let's hop it doesn't break
+  # networking = {
+  #   dhcpcd.extraConfig = "nohook resolv.conf";
+  #   nameservers = [
+  #     "1.1.1.1#one.one.one.one"
+  #     "1.0.0.1#one.one.one.one"
+  #     "9.9.9.9#quad-nine"
+  #   ];
+  # };
+
+  # services.resolved = {
+  #   enable = true;
+  #   dnssec = "false";
+  #   domains = [ "~." ];
+  #   fallbackDns = config.networking.nameservers;
+  # };
+
+  programs = {
+    # Corectrl support - for managing CPU/GPU freq via a GUI
+    corectrl = {
+      enable = true;
+      gpuOverclock.enable = true;
+    };
+
+    dconf.enable = true; # dconf -> edit system preferences
+  };
 
   # programs.mtr.enable = true;
   # programs.fuse.userAllowOther = true;

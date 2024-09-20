@@ -1,6 +1,5 @@
 1. thunderbird intergration 
 2. nixos-import -> base -> make it so u just import base; + base for hm
-3. remove globals.isWork -> figure out how to do it with nas thingie
 6. take a look at https://nix-community.github.io/home-manager/options.xhtml#opt-programs.kitty.shellIntegration.enableZshIntegration
 7. take a look at accounts home-manager
 8. look at new hm options

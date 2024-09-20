@@ -42,7 +42,7 @@
       # url = "github:hyprwm/Hyprland";
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
-    # TODO: DO i use this?
+
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -66,9 +66,6 @@ with lib; {
       };
     };
 
-    # TODO: here
-    # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
-
     # Allow for Hyprland start when tty1 is used, this is a fallback in case the DM fails
     programs.zsh.profileExtra = ''
       if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then

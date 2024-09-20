@@ -98,3 +98,6 @@ https://wiki.archlinux.org/title/Hardware_video_acceleration
 # clipboard
 $mainMod o / $mainMod SFT o -> copy/ delete from clipboard
 `cliphist wipe` -> delete entire history
+
+# unset histroy in zsh
+`fc -p` -> starts shell in inmemory mode

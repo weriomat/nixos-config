@@ -47,6 +47,8 @@
       # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#minimize-steam-instead-of-killing
       # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#toggle-animationsbluretc-hotkey
 
+      # FIXME: user units dont start at startup
+
       # TODO: steal from zayneyos/ cobalt
       # TODO: switch to nixpkgs paths
       exec-once = [
@@ -60,6 +62,7 @@
         # "xwaylandvideobridge" # TODO: here
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl setcursor Nordzy-cursors 22 &"
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace 1&"
+        "systemctl --user restart kanshi.service waybar.service"
       ];
 
       # TODO: find an option to launch grettd for session switcher
