@@ -83,9 +83,15 @@
             port = 23;
             identityFile = hetzner_key;
           };
-          server = {
-            user = "marts";
+          vps = {
+            user = "weriomat";
             hostname = "49.13.52.45";
+            port = 2077;
+            identityFile = hetzner_key;
+          };
+          big = {
+            user = "weriomat";
+            hostname = "192.168.178.32";
             port = 2077;
             identityFile = hetzner_key;
           };
