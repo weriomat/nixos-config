@@ -10,7 +10,11 @@ with lib; {
   config = mkIf config.audio_config.enable {
     # TODO: factor out from waybar audio-idle-ihnhibit
     home.packages = with pkgs; [
-      playerctl
+      paprefs # pulseaudio preferences
+      pasystray # pulseaudio systray
+      pavucontrol # pulseaudio volume control
+      playerctl # music player controller
+      pulsemixer # pulseaudio mixer
       pamixer
     ];
     # TODO: audio
@@ -19,6 +23,7 @@ with lib; {
     # services.pasystray = {};
     # services.easyeffects = {};
 
+    # TODO: swtich to lib.getEXE
     wayland.windowManager.hyprland.settings = {
       # NOTE: maybe configure `XF86MonBrightness<Up|Down>` as well if need be for controlling backlight of a keyboard
       exec-once = [

@@ -81,6 +81,80 @@ in {
     ];
   };
 
+  # TODO: here
+  # pgcli # modern postgres client
+
+  # xdg.portal = {
+  #   enable = true;
+  #   config = {
+  #     common = {
+  #       default = ["hyprland"];
+  #     };
+  #     hyprland = {
+  #       default = ["gtk" "hyprland"];
+  #     };
+  #   };
+  #   extraPortals = with pkgs; [
+  #     xdg-desktop-portal-gtk
+  #     xdg-desktop-portal-hyprland
+  #   ];
+  #   xdgOpenUsePortal = true;
+  # };
+
+  # services = {
+  #      flameshot = {
+  #        enable = true;
+  #        settings = {
+  #          General = {
+  #            showStartupLaunchMessage = false;
+  #          };
+  #        };
+  #      };
+
+  #      gnome-keyring = {
+  #        enable = false;
+  #        components = [ "pkcs11" "secrets" "ssh" ];
+  #      };
+  #    };
+
+  # TODO: fonots
+  # Making fonts accessible to applications.
+  # fonts.packages = with pkgs; [
+  #   customFonts
+  #   font-awesome
+  #   myfonts.flags-world-color
+  #   myfonts.icomoon-feather
+  # ];
+  #  customFonts = pkgs.nerdfonts.override {
+  #   fonts = [
+  #     "JetBrainsMono"
+  #     "Iosevka"
+  #   ];
+  # };
+
+  # TODO: gtk
+  # gtk = rec {
+  #    enable = true;
+  #    iconTheme = {
+  #      name = "BeautyLine";
+  #      package = pkgs.beauty-line-icon-theme;
+  #    };
+  #    theme = {
+  #      name = "Juno-ocean";
+  #      package = pkgs.juno-theme;
+  #    };
+  #    gtk4 = {
+  #      extraConfig = {
+  #        gtk-application-prefer-dark-theme = true;
+  #      };
+  #      # the dark files are not copied by default, as not all themes have separate files
+  #      # see: https://github.com/nix-community/home-manager/blob/afcedcf2c8e424d0465e823cf833eb3adebe1db7/modules/misc/gtk.nix#L238
+  #      extraCss = ''
+  #        @import url("file://${theme.package}/share/themes/${theme.name}/gtk-4.0/gtk-dark.css");
+  #      '';
+  #    };
+  #  };
+
   home.packages = [
     # used by `gio open` and xdp-gtk
     (pkgs.writeShellScriptBin "xdg-terminal-exec" ''

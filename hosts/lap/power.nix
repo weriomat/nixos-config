@@ -18,6 +18,8 @@
     upower.enable = true;
     tlp = {
       enable = true;
+      # TODO: here
+
       # settings = {
       #   DISK_SPINDOWN_TIMEOUT_ON_AC = "keep 1";
       #   DISK_SPINDOWN_TIMEOUT_ON_BAT = "keep 1";
