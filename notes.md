@@ -101,3 +101,11 @@ $mainMod o / $mainMod SFT o -> copy/ delete from clipboard
 
 # unset histroy in zsh
 `fc -p` -> starts shell in inmemory mode
+
+# portscan
+get subnet from `ip a`
+`sudo nmap -sn <output>`
+
+# ssh keygen 
+update thingie
+`ssh-keygen -R 192.168.178.32`

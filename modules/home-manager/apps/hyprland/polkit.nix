@@ -2,6 +2,10 @@
   # Enable polkit
   security.polkit.enable = true;
 
+  # TODO: https://github.com/niksingh710/ndots/blob/master/nixos/optional/authentication.nix
+  # TODO: here
+  # https://github.com/niksingh710/ndots/blob/19757f8b37013323b2cc681b4e46ebce5fef44c3/nixos/optional/authentication.nix
+
   # TODO: here
   home.packages = with pkgs; [polkit_gnome];
 

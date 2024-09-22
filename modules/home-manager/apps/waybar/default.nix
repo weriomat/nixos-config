@@ -42,6 +42,8 @@ with lib; {
     };
   };
 
+  # TODO: waybar modules like upower and stuff
+  # TODO: take a look at https://github.com/niksingh710/ndots/blob/master/home/optional/wm/hyprland/waybar/default.nix
   config = mkIf config.waybar.enable {
     # kill waybar
     wayland.windowManager.hyprland.settings.bind = ["$mainMod SHIFT, B, exec, ${pkgs.toybox}/bin/pkill -SIGUSR1 .waybar-wrapped"];

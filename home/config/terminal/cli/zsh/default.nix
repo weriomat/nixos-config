@@ -81,6 +81,10 @@
       no = "nh os switch -u";
 
       rebuild = lib.mkIf pkgs.stdenv.isDarwin "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4";
+
+      # TODO: here
+      # isodate = ''date -u "+%Y-%m-%dT%H:%M:%SZ"'';
+      # mime = "xdg-mime query filetype";
     };
 
     shellGlobalAliases = {

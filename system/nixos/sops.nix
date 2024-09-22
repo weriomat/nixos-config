@@ -19,6 +19,7 @@
 
       age.keyFile = "/home/${globals.username}/.config/sops/age/keys.txt";
 
+      # TODO: passwd file + mutableusers
       secrets.borg-key = {
         owner = "${globals.username}";
       };

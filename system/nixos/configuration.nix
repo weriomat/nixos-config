@@ -18,6 +18,36 @@
     ./sops.nix
   ];
 
+  # TODO: here
+  # services.libinput = {
+  #   enable = true;
+  #   touchpad = {
+  #     naturalScrolling = true;
+  #     disableWhileTyping = true;
+  #   };
+  # };
+  #  hardware.opentabletdriver = {
+  #   enable = true;
+  #   daemon.enable = true;
+  # };
+
+  #   let
+  #   ports = {
+  #     from = 1714;
+  #     to = 1764;
+  #   };
+  # in
+  # {
+  #   networking.firewall = {
+  #     allowedTCPPortRanges = [ ports ];
+  #     allowedUDPPortRanges = [ ports ];
+  #   };
+  #   hm.services.kdeconnect = {
+  #     enable = true;
+  #     indicator = true;
+  #   };
+  # }
+
   # groot.txt
   #      [00;32m  \^V//
   #      [00;33m  |[01;37m. [01;37m.[00;33m|   [01;34m I AM (G)ROOT!

@@ -30,7 +30,12 @@ with lib; {
         extraCommands = [
           "${pkgs.systemd}/bin/systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         ];
-        variables = ["--all"];
+        variables = [
+          "--all"
+          "XDG_SESSION_TYPE"
+          "QT_QPA_PLATFORMTHEME"
+          "XDG_CONFIG_HOME"
+        ];
       };
 
       # TODO: here
