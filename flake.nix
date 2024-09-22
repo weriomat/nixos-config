@@ -21,6 +21,11 @@
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin.url = "github:catppuccin/nix";
 
+    # Firefox addons
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur.url = "github:nix-community/nur";
     arkenfox = {
       url = "github:dwarfmaster/arkenfox-nixos";
@@ -108,6 +113,18 @@
           deadnix.enable = true;
           statix.enable = true;
           nil.enable = true;
+        };
+      };
+      devShells = let
+        pkgs = import nixpkgs {inherit system;};
+      in rec {
+        default = deploy;
+        deploy = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            sops
+            alejandra
+            nix
+          ];
         };
       };
     });

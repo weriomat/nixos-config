@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   config,
@@ -16,6 +17,69 @@ in {
   config = mkIf cfg.enable {
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
     # TODO: take a look at https://github.com/fufexan/dotfiles/blob/main/home/programs/browsers/firefox.nix
+
+    # TODO: darkreader
+    # home.file.".config/darkreader/config.json".text =
+    #   # json
+    #   ''
+    #     {
+    #       "schemeVersion": 2,
+    #       "enabled": true,
+    #       "fetchNews": true,
+    #       "theme": {
+    #         "mode": 1,
+    #         "brightness": 100,
+    #         "contrast": 100,
+    #         "grayscale": 0,
+    #         "sepia": 0,
+    #         "useFont": false,
+    #         "fontFamily": "Open Sans",
+    #         "textStroke": 0,
+    #         "engine": "dynamicTheme",
+    #         "stylesheet": "",
+    #         "darkSchemeBackgroundColor": "#${colors.base00}",
+    #         "darkSchemeTextColor": "#${colors.base0F}",
+    #         "lightSchemeBackgroundColor": "#${colors.base0F}",
+    #         "lightSchemeTextColor": "#${colors.base00}",
+    #         "scrollbarColor": "auto",
+    #         "selectionColor": "auto",
+    #         "styleSystemControls": false,
+    #         "lightColorScheme": "Default",
+    #         "darkColorScheme": "Default",
+    #         "immediateModify": false
+    #       },
+    #       "presets": [],
+    #       "customThemes": [],
+    #       "enabledByDefault": true,
+    #       "enabledFor": [],
+    #       "disabledFor": [],
+    #       "changeBrowserTheme": false,
+    #       "syncSettings": false,
+    #       "syncSitesFixes": true,
+    #       "automation": {
+    #         "enabled": false,
+    #         "mode": "",
+    #         "behavior": "OnOff"
+    #       },
+    #       "time": {
+    #         "activation": "18:00",
+    #         "deactivation": "9:00"
+    #       },
+    #       "location": {
+    #         "latitude": null,
+    #         "longitude": null
+    #       },
+    #       "previewNewDesign": true,
+    #       "enableForPDF": true,
+    #       "enableForProtectedPages": true,
+    #       "enableContextMenus": false,
+    #       "detectDarkTheme": false,
+    #       "displayedNews": [
+    #         "thanks-2023"
+    #       ]
+    #     }
+    #   '';
+
     home.sessionVariables.BROWSER = "firefox";
     programs.firefox = {
       enable = true;
@@ -160,7 +224,7 @@ in {
           }
         ];
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
           ublock-origin
           darkreader
           auto-tab-discard
@@ -193,7 +257,29 @@ in {
           # bypass-paywalls-clean # https://twitter.com/Magnolia1234B
           vimium # https://github.com/philc/vimium
 
-          languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
+          # TODO: here
+          (languagetool.overrideAttrs {meta.license = lib.licenses.free;})
+          # languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
+
+          #    privacy-badger
+          # vimium-c
+          # darkreader
+          # proton-pass
+          # ublock-origin
+          # refined-github
+          # gloc
+          # enhanced-github
+          # clearurls
+          # adaptive-tab-bar-colour
+          # unpaywall
+          # simple-translate
+
+          # # NOTE: Hacky solution here will change when get time
+          # (languagetool.overrideAttrs { meta.license = lib.licenses.free; })
+          # (tampermonkey.overrideAttrs { meta.license = lib.licenses.free; })
+          # (enhancer-for-youtube.overrideAttrs {
+          #   meta.license = lib.licenses.free;
+          # })
         ];
         search = {
           default = "DuckDuckGo";

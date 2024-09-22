@@ -42,9 +42,6 @@ with lib; {
       overlays = [
         outputs.overlays.additions
         outputs.overlays.unstable-packages
-        # TODO: take a look
-        # TODO: switch to only overlay for firefox thingies
-        inputs.nur.overlay
       ];
       config = {
         allowUnfree = true;
