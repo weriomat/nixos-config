@@ -8,41 +8,39 @@ with lib; {
   options.networking.enable = mkEnableOption "Enable networking settings";
 
   config = mkIf config.networking.enable {
-    # services = {
-    #   openssh = {
-    #     enable = true;
-    #     settings.UseDns = true;
-    #   };
-
-    #   # DNS resolver
-    #   resolved = {
-    #     enable = true;
-    #     dnsovertls = "opportunistic";
-    #   };
-    # };
-
-    # TODO: intrd. has same optino
-    # NOTE: dont wait for network to be online while booting
-    systemd.network = {
-      wait-online.enable = false;
+    # DNS resolver
+    services.resolved = {
       enable = true;
+      dnsovertls = "true";
+      dnssec = "false";
+      domains = ["~."];
+      fallbackDns = config.networking.nameservers;
     };
 
-    # TODO: maybe own dns server/ own caching
+    # NOTE: dont wait for network to be online while booting
+    systemd.network = {
+      enable = true;
+      wait-online.enable = false;
+    };
+
     networking = {
-      # TODO: here
-      # use quad9 with DNS over TLS
-      # nameservers = ["9.9.9.9#dns.quad9.net"];
+      # NOTE: DoT -> `https://shivering-isles.com/2021/01/configure-dot-on-systemd-resolved`
+      nameservers = [
+        "1.1.1.1#one.one.one.one"
+        "1.0.0.1#one.one.one.one"
+        "9.9.9.9#dns.quad9.net"
+      ];
+      dhcpcd.extraConfig = "nohook resolv.conf";
 
       networkmanager = {
         enable = true;
         # dns = "systemd-resolved";
-        # wifi.powersave = true;
+        dns = lib.mkForce "none"; # NOTE: tell nm not to touch /etc/resolv.conf
+        wifi.powersave = true;
       };
-      # };
+
       hostName = "${globals.hostname}";
       useNetworkd = true;
-      # timeServers = options.networking.timeServers.default ++ ["pool.ntp.org"];
 
       firewall = {
         enable = true;
