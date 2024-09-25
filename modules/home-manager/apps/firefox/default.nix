@@ -181,6 +181,17 @@ in {
             url = "https://github.com/cpu/rust-flake/blob/main/README.md";
           }
           {
+            name = "noogle";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "noogle";
+                tags = ["nix"];
+                url = "https://noogle.dev/";
+              }
+            ];
+          }
+          {
             name = "Grafana - Dashboard";
             toolbar = true;
             bookmarks = [
@@ -287,10 +298,38 @@ in {
             "Crates" = {
               urls = [
                 {
-                  template = "https://crates.io/";
+                  template = "https://crates.io/search?q={searchTerms}";
                 }
               ];
               definedAliases = ["@c"];
+            };
+            "Noogle" = {
+              urls = [
+                {
+                  template = "https://noogle.dev/q?term={searchTerms}";
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
+              definedAliases = ["@n"];
+            };
+            "Nix Options" = {
+              urls = [
+                {
+                  template = "https://search.nixos.org/options";
+                  params = [
+                    {
+                      name = "type";
+                      value = "packages";
+                    }
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = ["@o"];
             };
             "Nix Packages" = {
               urls = [
@@ -332,10 +371,11 @@ in {
             "Home Manager Options" = {
               urls = [
                 {
-                  template = "https://mipmip.github.io/home-manager-option-search/";
+                  template = "https://home-manager-options.extranix.com/?query={searchTerms}";
                 }
               ];
               definedAliases = ["@hm"];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
           };
           force = true;
