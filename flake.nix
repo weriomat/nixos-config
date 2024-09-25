@@ -26,7 +26,6 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = "github:nix-community/nur";
     arkenfox = {
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.arkenfox.inputs.nixpkgs.follows = "nixpkgs";
