@@ -81,7 +81,28 @@
       no = "nh os switch -u";
 
       rebuild = lib.mkIf pkgs.stdenv.isDarwin "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4";
+
+      # TODO: here
+      # Set some aliases
+      # c = "clear";
+      # mkdir = "mkdir -vp";
+      # rm = "rm -rifv";
+      # mv = "mv -iv";
+      # cp = "cp -riv";
+      # cat = "bat --paging=never --style=plain";
+      # ls = "exa -a --icons";
+      # tree = "exa --tree --icons";
+      # nd = "nix develop -c $SHELL";
     };
+
+    # # basically aliases for directories:
+    # # `cd ~dots` will cd into ~/.config/nixos
+    # dirHashes = {
+    #   dots = "$HOME/.config/nixos";
+    #   stuff = "$HOME/stuff";
+    #   media = "/run/media/$USER";
+    #   junk = "$HOME/stuff/other";
+    # };
 
     shellGlobalAliases = {
       UUID = "$(uuidgen | tr -d \\n)";

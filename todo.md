@@ -9,6 +9,127 @@ https://github.com/kinzoku-dev/neovim
 -> laptop hibernate
 -> laptop borg 
 -> vaultwarden
+firefox-sync
+https://nix-community.github.io/home-manager/options.xhtml#opt-systemd.user.automounts
+https://nix-community.github.io/home-manager/options.xhtml#opt-launchd.agents._name_.config.LimitLoadToSessionType
+https://nix-community.github.io/home-manager/options.xhtml#opt-home.language.name
+https://nix-community.github.io/home-manager/options.xhtml#opt-home.keyboard.model
+https://github.com/JaysFreaky/fancontrol-gui
+https://coredns.io/
+https://github.com/joshmedeski/sesh
+https://github.com/joshmedeski/tmux-fzf-url
+https://github.com/joshmedeski/dotfiles
+https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/system/systemd-lock-handler.nix
+https://sr.ht/~whynothugo/systemd-lock-handler/
+https://nixos.org/manual/nixos/unstable/#module-services-parsedmarc
+https://nixos.org/manual/nixos/unstable/#module-services-parsedmarc-grafana-geoip
+https://nixos.org/manual/nixos/unstable/#module-services-networking-dnsmasq
+https://nixos.org/manual/nixos/unstable/#module-services-glance
+https://nixos.org/manual/nixos/unstable/#module-services-gitlab
+https://nixos.org/manual/nixos/unstable/#module-services-filesender
+https://nixos.org/manual/nixos/unstable/#sec-gpu-accel
+https://nixos.org/manual/nixos/unstable/#sec-custom-ifnames
+https://nixos.org/manual/nixos/unstable/#module-services-nextcloud
+https://nixos.org/manual/nixos/unstable/#module-services-keycloak
+https://nixos.org/manual/nixos/unstable/#sec-systemd-sysusers
+https://nixos.org/manual/nixos/unstable/#module-postgresql
+https://nixos.org/manual/nixos/unstable/#module-security-acme
+https://nixos.org/manual/nixos/unstable/#module-services-mailman
+https://search.nixos.org/options?channel=24.05&from=0&size=50&sort=relevance&type=packages&query=systemd.sysuser
+https://search.nixos.org/options?channel=24.05&show=services.opensmtpd.serverConfiguration&from=0&size=50&sort=relevance&type=packages&query=opensmt
+https://dataswamp.org/~solene/2018-09-06-openbsd-opensmtpd-relay.html
+https://wiki.archlinux.org/title/Msmtp
+https://marlam.de/msmtp/msmtp.html#Transport-Layer-Security
+https://wiki.archlinux.org/title/OpenSMTPD
+https://www.davd.io/posts/2021-12-18-freebsd-mail-server-part-1/
+https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/hardware/amdgpu.nix
+https://search.nixos.org/options?channel=unstable&show=hardware.amdgpu.opencl.enable&from=0&size=50&sort=relevance&type=packages&query=hardware.amd
+https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/hardware/acpid.nix
+https://github.com/NixOS/nixpkgs/tree/nixos-unstable/nixos/modules/services/hardware
+https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/hardware/thermald.nix
+https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/hardware/hddfancontrol.nix
+https://github.com/NixOS/nixpkgs/blob/nixos-unstable/nixos/modules/services/hardware/amdvlk.nix
+
+# image hosting server
+https://nixos.org/manual/nixos/unstable/#module-services-pict-rs
+immich
+
+# pingvinshare
+https://nixos.org/manual/nixos/unstable/#module-services-pingvin-share
+
+# analytics for website
+https://nixos.org/manual/nixos/unstable/#module-services-plausible
+
+-> generate a secret key
+`openssl rand -base64 64`
+
+# mosquitto
+https://nixos.org/manual/nixos/unstable/#module-services-mosquitto
+-> switch to tls
+https://search.nixos.org/options?channel=24.05&size=50&sort=relevance&type=packages&query=mosquitto
+
+https://nixos.org/manual/nixos/unstable/#module-services-meilisearch
+-> fulltext search
+https://search.nixos.org/options?channel=24.05&show=services.meilisearch.listenPort&from=0&size=50&sort=relevance&type=packages&query=meilisearch
+https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch#search
+
+
+# git
+
+programs.git.extraConfig = {
+                init = { defaultBranch = "main"; };
+                core = {
+                    excludesfile = "$NIXOS_CONFIG_DIR/scripts/gitignore";
+                };
+
+# boot
+<!-- # Boot settings: clean /tmp/, latest kernel and enable bootloader -->
+    <!-- boot = { -->
+        <!-- cleanTmpDir = true; -->
+        <!-- loader = { -->
+        <!-- systemd-boot.enable = true; -->
+        <!-- systemd-boot.editor = false; -->
+        <!-- efi.canTouchEfiVariables = true; -->
+        <!-- timeout = 0; -->
+        <!-- }; -->
+    <!-- }; -->
+
+# fonts
+<!-- # Install fonts -->
+    <!-- fonts = { -->
+        <!-- fonts = with pkgs; [ -->
+            <!-- jetbrains-mono -->
+            <!-- roboto -->
+            <!-- openmoji-color -->
+            <!-- (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) -->
+        <!-- ]; -->
+
+        <!-- fontconfig = { -->
+            <!-- hinting.autohint = true; -->
+            <!-- defaultFonts = { -->
+              <!-- emoji = [ "OpenMoji Color" ]; -->
+            <!-- }; -->
+        <!-- }; -->
+    <!-- }; -->
+
+# TODO:
+matrix
+
+# TAKE a look at
+https://github.com/glanceapp/glance
+https://github.com/qdm12/ddns-updater
+https://localsend.org/de
+https://github.com/apernet/OpenGFW?tab=readme-ov-file
+https://github.com/FlareSolverr/FlareSolverr
+https://nixos.org/manual/nixos/unstable/#module-services-anki-sync-server
+
+# new in 24.11
+localsend
+playerctl
+flaresolver
+
+sound options
+https://nixos.org/manual/nixos/unstable/release-notes#sec-release-24.11-migration-sound
 
 # config files right with boxxy lol 
 `https://github.com/queer/boxxy`

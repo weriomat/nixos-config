@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
   # we dont have to disable anything since it is disables by default
   kitty.enable = true;
@@ -9,6 +13,7 @@
     flavor = "mocha";
   };
   home = {
+    packages = with pkgs; [ripgrep];
     stateVersion = "23.11";
   };
   programs.home-manager.enable = true;
