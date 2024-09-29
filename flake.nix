@@ -21,7 +21,11 @@
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin.url = "github:catppuccin/nix";
 
-    nur.url = "github:nix-community/nur";
+    # Firefox addons
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     arkenfox = {
       url = "github:dwarfmaster/arkenfox-nixos";
       inputs.arkenfox.inputs.nixpkgs.follows = "nixpkgs";
@@ -42,7 +46,7 @@
       # url = "github:hyprwm/Hyprland";
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
-    # TODO: DO i use this?
+
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -108,6 +112,18 @@
           deadnix.enable = true;
           statix.enable = true;
           nil.enable = true;
+        };
+      };
+      devShells = let
+        pkgs = import nixpkgs {inherit system;};
+      in rec {
+        default = deploy;
+        deploy = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            sops
+            alejandra
+            nix
+          ];
         };
       };
     });

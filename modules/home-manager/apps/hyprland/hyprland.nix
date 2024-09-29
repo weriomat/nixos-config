@@ -30,7 +30,12 @@ with lib; {
         extraCommands = [
           "${pkgs.systemd}/bin/systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         ];
-        variables = ["--all"];
+        variables = [
+          "--all"
+          "XDG_SESSION_TYPE"
+          "QT_QPA_PLATFORMTHEME"
+          "XDG_CONFIG_HOME"
+        ];
       };
 
       # TODO: here
@@ -65,9 +70,6 @@ with lib; {
         systemdTarget = "hyprland-session.target";
       };
     };
-
-    # TODO: here
-    # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
 
     # Allow for Hyprland start when tty1 is used, this is a fallback in case the DM fails
     programs.zsh.profileExtra = ''

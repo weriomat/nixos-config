@@ -39,4 +39,20 @@ with lib; {
       docker-compose # start group of containers for dev
     ];
   };
+
+  # TODO: here
+  # environment.systemPackages = with pkgs; [ virtiofsd ];
+  #   programs.virt-manager.enable = true;
+  #   services = {
+  #     qemuGuest.enable = true;
+  #     spice-vdagentd.enable = true;
+  #   };
+
+  #   virtualisation.libvirtd.enable = true;
+  # config = mkIf cfg.qemu {
+  #   dconf.settings."org/virt-manager/virt-manager/connections" = {
+  #     autoconnect = [ "qemu:///system" ];
+  #     uris = [ "qemu:///system" ];
+  #   };
+  # };
 }

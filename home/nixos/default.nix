@@ -8,12 +8,14 @@
   # services.systembus-notify = {};
 
   discord.enable = true;
-  firefox.enable = true;
+  firefox = {
+    enable = true;
+    arkenfox.enable = true;
+  };
   hyprland.enable =
     if globals.isLaptop
     then false
     else true;
-
   vscode.enable = true;
   kitty.enable = true;
   thunderbird.enable = true;

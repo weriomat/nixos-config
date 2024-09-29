@@ -93,6 +93,8 @@
       # ls = "exa -a --icons";
       # tree = "exa --tree --icons";
       # nd = "nix develop -c $SHELL";
+      # isodate = ''date -u "+%Y-%m-%dT%H:%M:%SZ"'';
+      # mime = "xdg-mime query filetype";
     };
 
     # # basically aliases for directories:

@@ -27,7 +27,6 @@ with lib; {
       emojify # emoji on shell
 
       mermaid-cli
-      sops
       powertop
       pdfarranger
       ethtool

@@ -12,6 +12,31 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # TODO: plymoth
+  # (mkIf cfg.silent {
+
+  #       systemd.watchdog.rebootTime = "0s";
+
+  #       boot = {
+  #         consoleLogLevel = 0;
+  #         initrd.verbose = !cfg.silent;
+  #         loader = { timeout = 0; };
+  #         kernelParams = [
+  #           "quiet"
+  #           "splash"
+  #           "loglevel=3"
+  #           "rd.systemd.show_status=false"
+  #           "rd.udev.log_level=3"
+  #           "udev.log_priority=3"
+  #           "nowatchdog"
+  #         ];
+  #       };
+  #     })
+
+  #     (mkIf cfg.plymouth {
+  #       boot.plymouth.enable = true;
+  #       boot.initrd.systemd.enable = true;
+  #     })
   boot = {
     # Bootloader.
     loader = {
@@ -44,6 +69,7 @@
 
     # hibernate
     # TODO: here
+    # TODO: boot.zfs.allowHibernation
     # resumeDevice = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8";
   };
 

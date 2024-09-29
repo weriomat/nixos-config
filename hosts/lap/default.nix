@@ -7,7 +7,6 @@
   globals = rec {
     isLaptop =
       false; # global for specifying if hyprland should be enabled
-    isWork = false;
     username = "marts";
     host = "nixos-laptop";
     hostname = host;
@@ -51,7 +50,7 @@ in
           users.${globals.username}.imports = [
             ../../modules/home-manager
             ../../home/nixos
-            ../../home/config # TODO: here
+            ../../home/config
             inputs.nix-colors.homeManagerModules.default
             inputs.nix-index-database.hmModules.nix-index
             inputs.catppuccin.homeManagerModules.catppuccin

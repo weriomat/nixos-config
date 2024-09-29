@@ -1,21 +1,90 @@
 {
+  inputs,
   pkgs,
   lib,
   config,
   globals,
   ...
 }:
-with lib; {
-  options.firefox.enable = mkEnableOption "Enable firefox config";
+with lib; let
+  cfg = config.firefox;
+in {
+  options.firefox = {
+    enable = mkEnableOption "Enable firefox config";
+    arkenfox.enable = mkEnableOption "Enable arkenfox";
+  };
 
-  config = mkIf config.firefox.enable {
+  config = mkIf cfg.enable {
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
     # TODO: take a look at https://github.com/fufexan/dotfiles/blob/main/home/programs/browsers/firefox.nix
+
+    # TODO: darkreader
+    # home.file.".config/darkreader/config.json".text =
+    #   # json
+    #   ''
+    #     {
+    #       "schemeVersion": 2,
+    #       "enabled": true,
+    #       "fetchNews": true,
+    #       "theme": {
+    #         "mode": 1,
+    #         "brightness": 100,
+    #         "contrast": 100,
+    #         "grayscale": 0,
+    #         "sepia": 0,
+    #         "useFont": false,
+    #         "fontFamily": "Open Sans",
+    #         "textStroke": 0,
+    #         "engine": "dynamicTheme",
+    #         "stylesheet": "",
+    #         "darkSchemeBackgroundColor": "#${colors.base00}",
+    #         "darkSchemeTextColor": "#${colors.base0F}",
+    #         "lightSchemeBackgroundColor": "#${colors.base0F}",
+    #         "lightSchemeTextColor": "#${colors.base00}",
+    #         "scrollbarColor": "auto",
+    #         "selectionColor": "auto",
+    #         "styleSystemControls": false,
+    #         "lightColorScheme": "Default",
+    #         "darkColorScheme": "Default",
+    #         "immediateModify": false
+    #       },
+    #       "presets": [],
+    #       "customThemes": [],
+    #       "enabledByDefault": true,
+    #       "enabledFor": [],
+    #       "disabledFor": [],
+    #       "changeBrowserTheme": false,
+    #       "syncSettings": false,
+    #       "syncSitesFixes": true,
+    #       "automation": {
+    #         "enabled": false,
+    #         "mode": "",
+    #         "behavior": "OnOff"
+    #       },
+    #       "time": {
+    #         "activation": "18:00",
+    #         "deactivation": "9:00"
+    #       },
+    #       "location": {
+    #         "latitude": null,
+    #         "longitude": null
+    #       },
+    #       "previewNewDesign": true,
+    #       "enableForPDF": true,
+    #       "enableForProtectedPages": true,
+    #       "enableContextMenus": false,
+    #       "detectDarkTheme": false,
+    #       "displayedNews": [
+    #         "thanks-2023"
+    #       ]
+    #     }
+    #   '';
+
     home.sessionVariables.BROWSER = "firefox";
     programs.firefox = {
       enable = true;
 
-      arkenfox = {
+      arkenfox = lib.mkIf cfg.arkenfox.enable {
         enable = true;
         version = "master";
       };
@@ -26,7 +95,7 @@ with lib; {
       profiles.${globals.username} = {
         # potentially problematic: 0703, 0820 (color visited links)
         # see: nix build "github:dwarfmaster/arkenfox-nixos#arkenfox-v103_0-doc-static" && firefox result
-        arkenfox = {
+        arkenfox = lib.mkIf cfg.arkenfox.enable {
           # TODO: here
           enable = true;
           "0000".enable = true;
@@ -112,6 +181,17 @@ with lib; {
             url = "https://github.com/cpu/rust-flake/blob/main/README.md";
           }
           {
+            name = "noogle";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "noogle";
+                tags = ["nix"];
+                url = "https://noogle.dev/";
+              }
+            ];
+          }
+          {
             name = "Grafana - Dashboard";
             toolbar = true;
             bookmarks = [
@@ -155,7 +235,7 @@ with lib; {
           }
         ];
 
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
           ublock-origin
           darkreader
           auto-tab-discard
@@ -188,7 +268,29 @@ with lib; {
           # bypass-paywalls-clean # https://twitter.com/Magnolia1234B
           vimium # https://github.com/philc/vimium
 
-          languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
+          # TODO: here
+          (languagetool.overrideAttrs {meta.license = lib.licenses.free;})
+          # languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
+
+          #    privacy-badger
+          # vimium-c
+          # darkreader
+          # proton-pass
+          # ublock-origin
+          # refined-github
+          # gloc
+          # enhanced-github
+          # clearurls
+          # adaptive-tab-bar-colour
+          # unpaywall
+          # simple-translate
+
+          # # NOTE: Hacky solution here will change when get time
+          # (languagetool.overrideAttrs { meta.license = lib.licenses.free; })
+          # (tampermonkey.overrideAttrs { meta.license = lib.licenses.free; })
+          # (enhancer-for-youtube.overrideAttrs {
+          #   meta.license = lib.licenses.free;
+          # })
         ];
         search = {
           default = "DuckDuckGo";
@@ -196,10 +298,38 @@ with lib; {
             "Crates" = {
               urls = [
                 {
-                  template = "https://crates.io/";
+                  template = "https://crates.io/search?q={searchTerms}";
                 }
               ];
               definedAliases = ["@c"];
+            };
+            "Noogle" = {
+              urls = [
+                {
+                  template = "https://noogle.dev/q?term={searchTerms}";
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
+              definedAliases = ["@n"];
+            };
+            "Nix Options" = {
+              urls = [
+                {
+                  template = "https://search.nixos.org/options";
+                  params = [
+                    {
+                      name = "type";
+                      value = "packages";
+                    }
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = ["@o"];
             };
             "Nix Packages" = {
               urls = [
@@ -241,10 +371,11 @@ with lib; {
             "Home Manager Options" = {
               urls = [
                 {
-                  template = "https://mipmip.github.io/home-manager-option-search/";
+                  template = "https://home-manager-options.extranix.com/?query={searchTerms}";
                 }
               ];
               definedAliases = ["@hm"];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
           };
           force = true;

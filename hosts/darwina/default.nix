@@ -5,7 +5,6 @@
   ...
 }: let
   globals = {
-    isWork = false;
     username = "eliasengel";
     laptop = true;
   };

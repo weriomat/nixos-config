@@ -7,6 +7,8 @@ My NixOS Config/ NixDarwin Config
 due to mounting a nfs share, we can not doublemount it -> remove by 
 sudo umount /home/marts/nfs
 
+# NOTE: nm does not touch /etc/resolv.conf -> dns settings from e.g. wireguard will get ignored...
+
 # NOTE
 interernal ips:
 nixos-host: 192.168.178.180

@@ -5,6 +5,7 @@
   ...
 }: {
   programs = {
+    # TODO: https://github.com/niksingh710/ndots/blob/master/modules/home/shell/fzf.nix
     fzf = {
       enable = true;
       enableBashIntegration = true;

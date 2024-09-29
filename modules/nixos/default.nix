@@ -13,5 +13,8 @@
     ./languagetool.nix
     ./user.nix
     ./steam.nix
+
+    # TODO: here
+    ./smartd.nix
   ];
 }

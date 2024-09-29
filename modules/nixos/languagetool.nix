@@ -1,4 +1,4 @@
-{globals, ...}: {
+_: {
   # TODO: make this a module with cacheSize
   services.languagetool = {
     # NOTE: do not forget to set this server as source in firefox
@@ -11,10 +11,7 @@
       # fasttextModel
       # fasttextBinary
       # languageModel
-      cacheSize =
-        if globals.laptop
-        then 10000
-        else 2500;
+      cacheSize = 2056;
     };
   };
 }

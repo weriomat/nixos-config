@@ -74,12 +74,12 @@
             port = 23;
             identityFile = hetzner_key;
           };
-          server = {
-            user = "root";
-            hostname = "49.13.52.45";
-            port = 2077;
-            identityFile = hetzner_key;
-          };
+          # server = {
+          #   user = "root";
+          #   hostname = "49.13.52.45";
+          #   port = 2077;
+          #   identityFile = hetzner_key;
+          # };
         };
       };
     };

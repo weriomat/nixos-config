@@ -10,13 +10,65 @@
 # TODO: brightnessctl
 # TODO: waybar status -> corectl etc
 # TODO: hyprland fix hyprland setup -> vimjoyer video
-# TODO: cloudflare dns
 {
   imports = [
     ./wayland
     ./borg.nix
     ./sops.nix
   ];
+
+  # TODO: here
+  # services.libinput = {
+  #   enable = true;
+  #   touchpad = {
+  #     naturalScrolling = true;
+  #     disableWhileTyping = true;
+  #   };
+  # };
+  #  hardware.opentabletdriver = {
+  #   enable = true;
+  #   daemon.enable = true;
+  # };
+
+  #   let
+  #   ports = {
+  #     from = 1714;
+  #     to = 1764;
+  #   };
+  # in
+  # {
+  #   networking.firewall = {
+  #     allowedTCPPortRanges = [ ports ];
+  #     allowedUDPPortRanges = [ ports ];
+  #   };
+  #   hm.services.kdeconnect = {
+  #     enable = true;
+  #     indicator = true;
+  #   };
+  # }
+
+  # groot.txt
+  #      [00;32m  \^V//
+  #      [00;33m  |[01;37m. [01;37m.[00;33m|   [01;34m I AM (G)ROOT!
+  #      [00;32m- [00;33m\ - / [00;32m_
+  #      [00;33m \_| |_/
+  #      [00;33m   \ \
+  #      [00;31m __[00;33m/[00;31m_[00;33m/[00;31m__
+  #      [00;31m|_______|  [00;37m With great power comes great responsibility.
+  #      [00;31m \     /   [00;37m Use sudo wisely.
+  #      [00;31m  \___/
+  # [0m
+  # Sudo custom prompt message
+  # security.sudo.configFile = ''
+  #   Defaults lecture=always
+  #   Defaults lecture_file=${misc/groot.txt}
+  # '';
+
+  # TODO: trackpad
+  # services.libinput = {
+  #   enable = true;
+  #   touchpad.disableWhileTyping = true;
+  # };
 
   # TODO: make a new name sceme for custom options + incorperate globals
 
@@ -56,7 +108,24 @@
   #   nfs.server.enable = false;
   # };
 
-  programs.dconf.enable = true; # dconf -> edit system preferences
+  # TODO:  # -- Media Tools --
+  # gimp
+  # handbrake
+  # mplayer
+  # gthumb
+  # jellyfin-media-player
+  # jellyfin-mpv-shim
+  # graphviz
+
+  programs = {
+    # Corectrl support - for managing CPU/GPU freq via a GUI
+    corectrl = {
+      enable = true;
+      gpuOverclock.enable = true;
+    };
+
+    dconf.enable = true; # dconf -> edit system preferences
+  };
 
   # programs.mtr.enable = true;
   # programs.fuse.userAllowOther = true;
