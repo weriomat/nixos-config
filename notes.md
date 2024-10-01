@@ -99,6 +99,15 @@ https://wiki.archlinux.org/title/Hardware_video_acceleration
 $mainMod o / $mainMod SFT o -> copy/ delete from clipboard
 `cliphist wipe` -> delete entire history
 
+# build packages 
+`nix-shell -E 'with import <nixpkgs> { }; callPackage ./default.nix { }'`
+`cd $(mktemp -d)`
+`unpackPhase`
+`patchPhase`
+`updateAutotoolsGnuConfigScriptsPhase`
+`configurePhase`
+`buildPhase`
+``
 # unset histroy in zsh
 `fc -p` -> starts shell in inmemory mode
 

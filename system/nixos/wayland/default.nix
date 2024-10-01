@@ -54,6 +54,18 @@
     };
   };
 
+  # # Wayland stuff: enable XDG integration, allow sway to use brillo
+  # xdg = {
+  #   portal = {
+  #     enable = true;
+  #     extraPortals = with pkgs; [
+  #       xdg-desktop-portal-wlr
+  #       xdg-desktop-portal-gtk
+  #     ];
+  #     gtkUsePortal = true;
+  #   };
+  # };
+
   # NOTE: maybe move this into hm?
   # TODO: here https://wiki.hyprland.org/Useful-Utilities/Hyprland-desktop-portal/
   # portal for sharing (file pickers)
