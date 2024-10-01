@@ -44,6 +44,96 @@ with lib; {
 
   # TODO: waybar modules like upower and stuff
   # TODO: take a look at https://github.com/niksingh710/ndots/blob/master/home/optional/wm/hyprland/waybar/default.nix
+  # TODO: https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/waybar/default.nix
+  # TODO:
+  # "custom/battery" = {
+  #       exec = "${scripts.battery}/bin/script";
+  #       format = " 󰁹 {}";
+  #       interval = 10;
+  #     };  battery = pkgs.writeShellScriptBin "script" ''
+  #   cat /sys/class/power_supply/BAT0/capacity
+  # '';
+
+  # bluetooth = {
+  #     format = "";
+  #     format-connected = " {num_connections}";
+  #     format-disabled = "";
+  #     tooltip-format = " {device_alias}";
+  #     tooltip-format-connected = "{device_enumerate}";
+  #     tooltip-format-enumerate-connected = " {device_alias}";
+  #   };
+
+  #   mpris = {
+  #     format = "DEFAULT: {player_icon} {dynamic}";
+  #     format-paused = "DEFAULT: {status_icon} <i>{dynamic}</i>";
+  #     player-icons = {
+  #       "default" = "▶";
+  #       "mpv" = "🎵";
+  #     };
+  #     status-icons = {
+  #       "paused" = "⏸";
+  #     };
+  #     # "ignored-players": ["firefox"]
+  #   };
+
+  # TODO: https://github.com/danth/stylix/blob/master/modules/waybar/hm.nix
+
+  # TODO: here
+  #  memory = {
+  #     format = "󰾆 {percentage}%";
+  #     format-alt = "󰾅 {used}GB";
+  #     interval = 30;
+  #     max-length = 10;
+  #     tooltip = true;
+  #     tooltip-format = " {used:0.1f}GB/{total:0.1f}GB";
+  #   };
+
+  #   network = {
+  #     format-disconnected = " Disconnected";
+  #     format-ethernet = "󱘖 Wired";
+  #     format-linked = "󱘖 {ifname} (No IP)";
+  #     format-wifi = "󰤨 {essid}";
+  #     interval = 5;
+  #     max-length = 30;
+  #     tooltip-format = "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
+  #   };
+
+  #   pulseaudio = {
+  #     format = "{icon}  {volume}%";
+  #     format-icons = {
+  #       car = " ";
+  #       default = ["" "" ""];
+  #       hands-free = " ";
+  #       headphone = " ";
+  #       headset = " ";
+  #       phone = " ";
+  #       portable = " ";
+  #     };
+  #     format-muted = "婢 {volume}%";
+  #     on-click = "pavucontrol -t 3";
+  #     on-click-middle = "pamixer -t";
+  #     on-scroll-down = "pamixer -d 5";
+  #     on-scroll-up = "pamixer -i 5";
+  #     scroll-step = 5;
+  #     tooltip-format = "{icon} {desc} {volume}%";
+  #   };
+
+  #   "pulseaudio#microphone" = {
+  #     format = "{format_source}";
+  #     format-source = "  {volume}%";
+  #     format-source-muted = "  {volume}%";
+  #     on-click = "pavucontrol -t 4";
+  #     on-click-middle = "pamixer --default-source -t";
+  #     on-scroll-down = "pamixer --default-source -d 5";
+  #     on-scroll-up = "pamixer --default-source -i 5";
+  #     scroll-step = 5;
+  #   };
+
+  #   tray = {
+  #     icon-size = 15;
+  #     spacing = 5;
+  #   };
+  # };
   config = mkIf config.waybar.enable {
     # kill waybar
     wayland.windowManager.hyprland.settings.bind = ["$mainMod SHIFT, B, exec, ${pkgs.toybox}/bin/pkill -SIGUSR1 .waybar-wrapped"];

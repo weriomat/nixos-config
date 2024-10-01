@@ -6,6 +6,7 @@
   ...
 }: {
   # TODO: here
+  # TODO: switch to lib.getEXE
   wayland.windowManager.hyprland = {
     settings = {
       # TODO: here

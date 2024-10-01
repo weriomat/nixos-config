@@ -48,7 +48,16 @@
   # programs.pubs = {};
 
   # NOTE: bitwarden cli client
-  # programs.rbw = {};
+  #  programs.rbw = {
+  #   enable = true;
+  #   settings = {
+  #     email =
+  #     base_url = "https://api.bitwarden.com/";
+  #     identity_url = "https://identity.bitwarden.com/";
+  #     lock_timeout = 300;
+  #     pinentry = pkgs.pinentry-curses;
+  #   };
+  # };
 
   services = {
     # NOTE: notifications about power

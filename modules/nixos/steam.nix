@@ -36,4 +36,33 @@ with lib; {
     # TODO: here
     # gamemode.enable = true;
   };
+
+  # https://github.com/danth/stylix/blob/master/modules/mangohud/hm.nix
+  # home.sessionVariables = {
+  #   STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+  # };
+
+  # programs.mangohud.enable = true;
+
+  # home.packages = with pkgs; [
+  #   lutris
+  #   steam
+  #   steam-run
+  #   protonup-ng
+  #   gamemode
+  #   dxvk
+  #   # parsec-bin
+
+  #   gamescope
+
+  #   # heroic
+  #   mangohud
+
+  #   steamPackages.steam-runtime
+  #   r2modman
+
+  #   heroic
+
+  #   er-patcher
+  # ];
 }
