@@ -20,9 +20,9 @@ with lib; {
     environment.systemPackages = with pkgs; [
       lunar-client
       # TODO: here
-      gamemode
-      gamescope
-      winetricks
+      # gamemode
+      # gamescope
+      # winetricks
     ];
     # ++ [
     #   inputs.nix-gaming.packages.${pkgs.system}.proton-ge
