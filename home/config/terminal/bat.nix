@@ -36,6 +36,7 @@
       # diff for git
       gdiff = "git diff --name-only --relative --diff-filter=d | xargs bat --diff";
 
+      # TODO: move these into zsh why they herre
       # open file in helix
       ho = "hx $(fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}')";
 

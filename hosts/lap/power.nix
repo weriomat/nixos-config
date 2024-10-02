@@ -10,6 +10,11 @@
     cpuFreqGovernor = "schedutil";
   };
 
+  # TODO: here, zram swap/ swapfile large enough
+  systemd.sleep.extraConfig = ''
+    AllowHibernation=yes
+  '';
+
   # Enable upower for bat management
   # the specific scheduler/ handling will be different on work and rw due to differences
   # in the CPU archictectures
