@@ -17,6 +17,14 @@ in {
   config = mkIf cfg.enable {
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
     # TODO: take a look at https://github.com/fufexan/dotfiles/blob/main/home/programs/browsers/firefox.nix
+    # TODO:  fonts
+    #   profileSettings = {
+    #   settings = {
+    #     "font.name.monospace.x-western" = config.stylix.fonts.monospace.name;
+    #     "font.name.sans-serif.x-western" = config.stylix.fonts.sansSerif.name;
+    #     "font.name.serif.x-western" = config.stylix.fonts.serif.name;
+    #   };
+    # };
 
     # TODO: darkreader
     # home.file.".config/darkreader/config.json".text =

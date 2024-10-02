@@ -8,6 +8,7 @@ _: {
     GDK_BACKEND = "wayland";
     ANKI_WAYLAND = "1";
     DIRENV_LOG_FORMAT = "";
+    # TODO: direnv -> https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/nix-direnv.nix
     WLR_DRM_NO_ATOMIC = "1";
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";

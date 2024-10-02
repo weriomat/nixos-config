@@ -38,6 +38,8 @@ with lib; {
     };
   };
 }
+# pipewire
+# TODO: https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/pipewire.nix
 # TODO: here
 # services.udev.packages = with pkgs; [
 #   headsetcontrol
