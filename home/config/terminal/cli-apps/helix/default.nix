@@ -11,6 +11,7 @@
     gopls # go lsp
     nodePackages.bash-language-server # bash
     nil # nix
+    nixd # nix
     yaml-language-server # yaml
     nodePackages_latest.pyright # python
   ];
@@ -102,6 +103,7 @@
             ];
           };
         };
+        nixd.command = "${pkgs.nixd}/bin/nixd";
       };
 
       language = [
@@ -120,7 +122,8 @@
             command = "${pkgs.alejandra}/bin/alejandra";
             args = ["-q"];
           };
-          language-servers = ["nil"];
+          # NOTE: removed nil
+          language-servers = ["nixd"];
         }
         {
           name = "go";

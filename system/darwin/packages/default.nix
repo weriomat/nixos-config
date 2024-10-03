@@ -6,7 +6,6 @@
     prettyping
     # packages from homebrew
     cadical
-    wireshark
     # calibre
     automake
     python311Full
