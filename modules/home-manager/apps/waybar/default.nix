@@ -174,6 +174,7 @@ with lib; {
           format-alt = " {:%d/%m}";
         };
 
+        # TODO: upower
         battery = {
           states = {
             warning = 30;
