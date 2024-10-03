@@ -1,20 +1,27 @@
-{pkgs, ...}:
-pkgs.stdenv.mkDerivation {
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  lutgen,
+  findutils,
+  coreutils,
+  ...
+}:
+stdenv.mkDerivation rec {
   pname = "weriomat wallpapers";
   version = "0.0.1";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "weriomat";
     repo = "wallpapers";
     rev = "e97c5d06ea8e875634fdf3482951018444e781a2";
-    hash = "sha256-VJ0ZOn2I3bxdWabn9KAbL5AmkZUz9AuhbaXQXgEGm3Q=";
+    hash = "sha256-ys1S/utfIvx0SoE+0sUDvvhD/5Bh96PYZTzq2efCNKo=";
   };
-
-  buildInputs = with pkgs; [lutgen findutils coreutils];
+  buildInputs = [lutgen findutils coreutils];
 
   buildPhase = ''
     mkdir -p $out/lut_wallpapers
-    find . -type f -exec ${pkgs.lutgen}/bin/lutgen apply {} -p catppuccin-mocha -o $out/lut_wallpapers/{} \;
+    find . -type f -exec ${lutgen}/bin/lutgen apply {} -p catppuccin-mocha -o $out/lut_wallpapers/{} \;
   '';
 
   installPhase = ''
@@ -26,5 +33,12 @@ pkgs.stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  description = "Wallpaper collection from Weriomat";
+  meta = with lib; {
+    description = "Wallpaper collection from Weriomat";
+    homepage = "https://github.com/weriomat/wallpapers";
+    license = licenses.mit;
+    maintainers = with maintainers; [weriomat];
+    mainProgram = "wallpapers";
+    platforms = platforms.all;
+  };
 }
