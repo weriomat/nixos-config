@@ -6,8 +6,8 @@
   options,
   pkgs,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) optionalString concatMapStringsSep mkOption types mkEnableOption literalExpression mkIf mkDefault;
   host = config.networking.fqdnOrHostName;
 
   cfg = config.services.msmartd;
@@ -17,7 +17,7 @@ with lib; let
   ns = cfg.notifications.systembus-notify;
   nw = cfg.notifications.wall;
   nx = cfg.notifications.x11;
-  ntfy = cfg.notifications.ntfy;
+  inherit (cfg.notifications) ntfy;
 
   smartdNotify = pkgs.writeScript "smartd-notify.sh" ''
     #! ${pkgs.runtimeShell}
@@ -85,7 +85,7 @@ with lib; let
       "DEVICESCAN ${notifyOpts}${cfg.defaults.autodetected}"}
   '';
 
-  smartdDeviceOpts = {...}: {
+  smartdDeviceOpts = _: {
     options = {
       device = mkOption {
         example = "/dev/sda";
