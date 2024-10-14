@@ -4,15 +4,9 @@
   globals,
   ...
 }: let
-  inherit (lib) mkOption types mkIf;
+  inherit (lib) mkEnableOption mkIf;
 in {
-  options.sops = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable sops settings";
-    };
-  };
+  options.sops.enable = mkEnableOption "Enable sops settings";
 
   config = mkIf config.sops.enable {
     sops = {

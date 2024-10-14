@@ -112,7 +112,6 @@
           deadnix.enable = true;
           statix.enable = true;
           nil.enable = true;
-          # flake-checker.enable = true;
 
           # not nix
           shellcheck.enable = true;
