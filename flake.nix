@@ -105,13 +105,24 @@
     // utils.lib.eachDefaultSystem (system: {
       packages = import ./pkgs nixpkgs.legacyPackages.${system};
       formatter = nixpkgs.legacyPackages.${system}.alejandra;
-      checks.${system} = pre-commit-hooks.lib.${system}.run {
-        src = ./.;
+      checks.default = pre-commit-hooks.lib.${system}.run {
+        src = self.outPath;
         hooks = {
           alejandra.enable = true;
           deadnix.enable = true;
           statix.enable = true;
           nil.enable = true;
+          # flake-checker.enable = true;
+
+          # not nix
+          shellcheck.enable = true;
+          markdownlint.enable = true;
+          yamllint.enable = true;
+          check-toml.enable = true;
+          check-json.enable = true;
+
+          # commits
+          convco.enable = true;
         };
       };
       devShells = let
@@ -119,10 +130,12 @@
       in rec {
         default = deploy;
         deploy = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            sops
-            alejandra
-            nix
+          inherit (self.checks.${system}.default) shellHook;
+          buildInputs = [
+            self.checks.${system}.default.enabledPackages
+            pkgs.sops
+            pkgs.alejandra
+            pkgs.nix
           ];
         };
       };
