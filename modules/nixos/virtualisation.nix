@@ -4,8 +4,9 @@
   config,
   globals,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.virt.enable = mkEnableOption "Enable virtualisation";
 
   config = mkIf config.virt.enable {

@@ -4,8 +4,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.thunderbird.enable = mkEnableOption "Enable Thunderbird";
 
   config = mkIf config.thunderbird.enable {

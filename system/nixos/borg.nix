@@ -4,15 +4,17 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  inherit (lib) mkOption types mkIf;
+in {
   options.borg = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
+    enable = mkOption {
+      type = types.bool;
       default = false;
       description = "Enable borg settings";
     };
   };
-  config = lib.mkIf config.borg.enable {
+  config = mkIf config.borg.enable {
     environment.systemPackages = with pkgs; [vorta];
     services.borgbackup.jobs."hetzner" = {
       repo = "ssh://u406968@u406968.your-storagebox.de:23/home/backups/${globals.host}";

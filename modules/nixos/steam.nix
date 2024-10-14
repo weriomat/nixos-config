@@ -3,8 +3,9 @@
   pkgs,
   lib,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.steam.enable = mkEnableOption "Enable Gaming thingies";
 
   # This is going to be decided per host

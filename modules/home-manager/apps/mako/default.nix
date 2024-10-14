@@ -3,8 +3,9 @@
   config,
   lib,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.mako.enable = mkEnableOption "Enable mako notifications";
 
   config = mkIf config.mako.enable {

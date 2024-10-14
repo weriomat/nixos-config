@@ -3,8 +3,9 @@
   config,
   lib,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.clipboard.enable = mkEnableOption "Enable Clipboard config with hyprland bindings";
 
   config = mkIf config.clipboard.enable {

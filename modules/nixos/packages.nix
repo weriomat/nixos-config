@@ -3,8 +3,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkIf mkEnableOption;
+in {
   options.packages.enable = mkEnableOption "Enable packages";
 
   config = mkIf config.packages.enable {

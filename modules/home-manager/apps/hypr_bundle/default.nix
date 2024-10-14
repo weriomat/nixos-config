@@ -2,8 +2,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.hyprland.enable = mkEnableOption "Enable hyprland config";
 
   config = mkIf config.hyprland.enable {

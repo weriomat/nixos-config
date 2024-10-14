@@ -4,8 +4,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.nix-settings.enable = mkEnableOption "Enable nix settings";
 
   config = mkIf config.nix-settings.enable {

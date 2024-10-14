@@ -2,8 +2,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.wofi.enable = mkEnableOption "Enable wofi";
 
   config = mkIf config.wofi.enable {

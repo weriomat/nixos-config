@@ -3,16 +3,18 @@
   config,
   globals,
   ...
-}: {
+}: let
+  inherit (lib) mkOption types mkIf;
+in {
   options.sops = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
+    enable = mkOption {
+      type = types.bool;
       default = false;
       description = "Enable sops settings";
     };
   };
 
-  config = lib.mkIf config.sops.enable {
+  config = mkIf config.sops.enable {
     sops = {
       defaultSopsFile = ../../secrets/secrets.yaml;
       defaultSopsFormat = "yaml";

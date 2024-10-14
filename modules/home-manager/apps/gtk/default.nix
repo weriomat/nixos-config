@@ -3,8 +3,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.my_gtk.enable = mkEnableOption "Enable gtk settings";
 
   config = mkIf config.my_gtk.enable {

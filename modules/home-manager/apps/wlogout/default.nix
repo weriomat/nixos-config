@@ -4,8 +4,9 @@
   config,
   lib,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.wlogout.enable = mkEnableOption "Enable wlogout";
 
   config = mkIf config.wlogout.enable {

@@ -3,8 +3,8 @@
   config,
   globals,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.networking;
 in {
   options.networking = {

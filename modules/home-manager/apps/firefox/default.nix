@@ -5,8 +5,8 @@
   config,
   globals,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.firefox;
 in {
   options.firefox = {
@@ -92,7 +92,7 @@ in {
     programs.firefox = {
       enable = true;
 
-      arkenfox = lib.mkIf cfg.arkenfox.enable {
+      arkenfox = mkIf cfg.arkenfox.enable {
         enable = true;
         version = "master";
       };
@@ -103,7 +103,7 @@ in {
       profiles.${globals.username} = {
         # potentially problematic: 0703, 0820 (color visited links)
         # see: nix build "github:dwarfmaster/arkenfox-nixos#arkenfox-v103_0-doc-static" && firefox result
-        arkenfox = lib.mkIf cfg.arkenfox.enable {
+        arkenfox = mkIf cfg.arkenfox.enable {
           # TODO: here
           enable = true;
           "0000".enable = true;
@@ -277,7 +277,7 @@ in {
           vimium # https://github.com/philc/vimium
 
           # TODO: here
-          (languagetool.overrideAttrs {meta.license = lib.licenses.free;})
+          (languagetool.overrideAttrs {meta.license = licenses.free;})
           # languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
 
           #    privacy-badger

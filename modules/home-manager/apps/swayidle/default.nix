@@ -3,8 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.swayidle.enable = mkEnableOption "Enable swayidle";
 
   config = mkIf config.swayidle.enable {

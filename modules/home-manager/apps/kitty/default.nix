@@ -3,8 +3,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.kitty.enable = mkEnableOption "Enable my kitty options";
 
   config = mkIf config.kitty.enable {

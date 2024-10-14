@@ -4,8 +4,9 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkOption types mkIf;
+in {
   options.waybar = {
     enable = mkEnableOption "Enable waybar config";
     font = mkOption {

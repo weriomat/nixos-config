@@ -2,8 +2,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.flatpack.enable = mkEnableOption "Enable flatpack";
 
   config = mkIf config.flatpack.enable {

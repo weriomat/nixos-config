@@ -3,8 +3,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.swaylock.enable = mkEnableOption "Enable swaylock";
 
   config = mkIf config.swaylock.enable {

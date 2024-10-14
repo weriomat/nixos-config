@@ -2,8 +2,9 @@
   lib,
   config,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.keyboard.enable = mkEnableOption "Enable keyboard properties";
 
   config = mkIf config.keyboard.enable {

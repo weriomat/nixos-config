@@ -3,8 +3,8 @@
   lib,
   pkgs,
   ...
-}:
-with lib; let
+}: let
+  inherit (lib) mkEnableOption mkIf;
   wallpaper_path = "${pkgs.weriomat-wallpapers}";
 in {
   options.wallpapers.enable = mkEnableOption "Enable Wallpaper configuration";

@@ -3,8 +3,9 @@
   lib,
   pkgs,
   ...
-}:
-with lib; {
+}: let
+  inherit (lib) mkEnableOption mkIf;
+in {
   options.audio_config.enable = mkEnableOption "Enable HomeManager audio setup";
 
   config = mkIf config.audio_config.enable {
