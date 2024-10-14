@@ -2,3 +2,5 @@ wallpapers/*
 !modules/**/wallpapers/*
 *.png
 .pre-commit-config.yaml
+result
+result/
