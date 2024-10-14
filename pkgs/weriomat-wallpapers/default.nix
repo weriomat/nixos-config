@@ -7,7 +7,7 @@
   coreutils,
   ...
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "weriomat wallpapers";
   version = "0.0.1";
 
