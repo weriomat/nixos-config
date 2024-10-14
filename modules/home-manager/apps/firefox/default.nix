@@ -6,7 +6,7 @@
   globals,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf licenses;
   cfg = config.firefox;
 in {
   options.firefox = {
