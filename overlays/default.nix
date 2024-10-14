@@ -1,5 +1,5 @@
 # This file defines overlays
-{inputs, ...}: {
+{inputs, ...}: rec {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs {pkgs = final;};
 
@@ -10,5 +10,9 @@
       inherit (final) system;
       config.allowUnfree = true;
     };
+  };
+
+  borg = _final: prev: {
+    borgmatic = prev.borgmatic.overrideAttrs (old: {patches = (old.patches or []) ++ [./borgmatic.patch];});
   };
 }

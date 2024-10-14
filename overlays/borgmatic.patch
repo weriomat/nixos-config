@@ -1,0 +1,13 @@
+diff --git a/sample/systemd/borgmatic.service b/sample/systemd/borgmatic.service
+index 3ec9710e..645b1bda 100644
+--- a/sample/systemd/borgmatic.service
++++ b/sample/systemd/borgmatic.service
+@@ -4,7 +4,7 @@ Wants=network-online.target
+ After=network-online.target
+ # Prevent borgmatic from running unless the machine is plugged into power. Remove this line if you
+ # want to allow borgmatic to run anytime.
+-ConditionACPower=true
++ConditionACPower=false
+ 
+ [Service]
+ Type=oneshot

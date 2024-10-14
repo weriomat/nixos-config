@@ -35,10 +35,6 @@
 
     # i think hardened kernel bug
     logrotate.checkConfig = false;
-
-    borgbackup.jobs."hetzner" = {
-      doInit = lib.mkForce false;
-    };
   };
 
   networking.hostId = "fb363d05";

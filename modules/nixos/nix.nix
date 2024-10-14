@@ -59,6 +59,7 @@ in {
       overlays = [
         outputs.overlays.additions
         outputs.overlays.unstable-packages
+        outputs.overlays.borg
       ];
       config = {
         allowUnfree = true;
