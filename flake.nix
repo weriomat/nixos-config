@@ -135,6 +135,7 @@
             pkgs.sops
             pkgs.alejandra
             pkgs.nix
+            pkgs.nurl # simple nix prefetch
           ];
         };
       };
