@@ -122,6 +122,7 @@
   services.xserver.videoDrivers = ["amdgpu"];
 
   swapDevices = [{device = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8";}];
+  zramSwap.enable = true;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
