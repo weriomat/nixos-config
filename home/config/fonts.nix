@@ -2,11 +2,14 @@
   fonts.fontconfig = {
     enable = true;
     # TODO: fonts -> fira code
-    defaultFonts = {
-      #   serif = ["Source Serif" "Noto Color Emoji"];
-      #   sansSerif = ["Fira Sans" "FiraGO" "Noto Color Emoji"];
-      emoji = ["apple-emoji"];
-    };
+    # NOTE: this config is for the hm user, we just configure it via nixos
+    # defaultFonts = {
+    #   serif = ["Source Serif"];
+    #   sansSerif = ["FiraGO"];
+    #   #   sansSerif = ["Fira Sans" "FiraGO" "Noto Color Emoji"];
+    #   monospace = ["MonoLisa Nerd Font"];
+    #   emoji = ["apple-emoji"];
+    # };
   };
 
   # fonts:
@@ -18,11 +21,11 @@
     # TODO: emote picker
     # pkgs.emote
 
-    (pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];})
+    # (pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];})
     # pkgs.nerdfonts
     (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
     # pkgs.twemoji-color-font
-    pkgs.iosevka-comfy.comfy
+    # pkgs.iosevka-comfy.comfy
   ];
 
   gtk.font = {

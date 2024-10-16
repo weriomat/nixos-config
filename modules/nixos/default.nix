@@ -3,6 +3,7 @@
     ./audio.nix
     ./dictionaries.nix
     ./documentation.nix
+    ./fonts.nix
     ./flatpak.nix
     ./graphical.nix
     ./keyboard.nix
