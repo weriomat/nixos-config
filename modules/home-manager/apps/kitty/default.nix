@@ -49,14 +49,6 @@ in {
         "ctrl+c" = "copy_or_interrupt";
         "ctrl+shift+t" = "new_tab_with_cwd";
       };
-
-      font = {
-        # IBM Plex mono with nerd font addons
-        # TODO: here
-        name = "'BlexMono Nerd Font'";
-        size = 16;
-        package = pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];};
-      };
     };
   };
 }

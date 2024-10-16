@@ -117,21 +117,6 @@ in {
   #      };
   #    };
 
-  # TODO: fonots
-  # Making fonts accessible to applications.
-  # fonts.packages = with pkgs; [
-  #   customFonts
-  #   font-awesome
-  #   myfonts.flags-world-color
-  #   myfonts.icomoon-feather
-  # ];
-  #  customFonts = pkgs.nerdfonts.override {
-  #   fonts = [
-  #     "JetBrainsMono"
-  #     "Iosevka"
-  #   ];
-  # };
-
   # TODO: gtk
   # gtk = rec {
   #    enable = true;
@@ -345,24 +330,4 @@ in {
   #   "application/pdf" = "zathura.desktop";
   #   "application/vnd.ms-powerpoint" = "zathura.desktop";
   # };
-
-  # TODO: fonts
-  # emoji = with pkgs; [
-  #      noto-fonts
-  #      noto-fonts-cjk
-  #      noto-fonts-emoji
-  #      noto-fonts-cjk-sans
-  #      noto-fonts-cjk-serif
-  #      noto-fonts-extra
-  #    ];
-  #    nerd = with pkgs; [
-  #      carlito
-  #      ipafont
-  #      kochi-substitute
-  #      source-code-pro
-  #      ttf_bitstream_vera
-  #      (nerdfonts.override {
-  #        fonts = [ "JetBrainsMono" "FiraCode" "DroidSansMono" ];
-  #      })
-  #    ];
 }
