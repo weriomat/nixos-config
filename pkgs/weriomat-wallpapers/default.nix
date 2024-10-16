@@ -14,8 +14,8 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "weriomat";
     repo = "wallpapers";
-    rev = "e97c5d06ea8e875634fdf3482951018444e781a2";
-    hash = "sha256-ys1S/utfIvx0SoE+0sUDvvhD/5Bh96PYZTzq2efCNKo=";
+    rev = "387d403644f2a7a25808d3b61a12dc5c69d3ec16";
+    hash = "sha256-9krfY9V6lph+fHGcv4fiOrJYGHTQSNaye7t5yr+/ms4=";
   };
   buildInputs = [lutgen findutils coreutils];
 
