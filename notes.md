@@ -202,3 +202,7 @@ or `-n <num>` for the number of biggest files
 ## fonts
 
 list -> `fc-list`
+
+## zramswap
+
+`zramctl`
