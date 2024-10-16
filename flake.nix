@@ -136,6 +136,12 @@
             pkgs.alejandra
             pkgs.nix
             pkgs.nurl # simple nix prefetch
+            pkgs.nix-init # packaging helper
+
+            # see parts of derivations
+            pkgs.nix-tree
+            pkgs.graphviz
+            pkgs.nix-du
           ];
         };
       };
