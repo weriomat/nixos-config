@@ -254,9 +254,12 @@ in {
           firefox-color
           facebook-container
           decentraleyes
-          keepassxc-browser
           return-youtube-dislikes
           user-agent-string-switcher
+
+          # passwords
+          bitwarden
+          # keepassxc-browser
 
           # new
           censor-tracker # https://censortracker.org/en.html
