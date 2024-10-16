@@ -13,7 +13,7 @@ in {
       defaultSopsFile = ../../secrets/secrets.yaml;
       defaultSopsFormat = "yaml";
 
-      age.keyFile = "/home/${globals.username}/.config/sops/age/keys.txt";
+      age.keyFile = "/keys.txt";
 
       # TODO: passwd file + mutableusers
       secrets.borg-key = {
