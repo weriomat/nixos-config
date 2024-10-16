@@ -104,7 +104,12 @@
             ];
           };
         };
-        nixd.command = "${pkgs.nixd}/bin/nixd";
+        nixd = {
+          command = "${pkgs.nixd}/bin/nixd";
+          nixpkgs.expr = "import (builtins.getFlake \"/home/brisingr05/nixos-config\").inputs.nixpkgs { }";
+          formatting.command = ["nixfmt"]; # Currently doesn't work
+          options.nixos.expr = "(builtins.getFlake \"/home/brisingr05/nixos-config\").nixosConfigurations.hpaio.options";
+        };
       };
 
       language = [
