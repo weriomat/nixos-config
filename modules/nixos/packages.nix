@@ -45,9 +45,6 @@ in {
       unstable.libdrm
       ffmpeg
 
-      # keyboard
-      qmk
-
       nixos-rebuild
       vim
       wget

@@ -38,8 +38,6 @@
     lazygit
 
     nmap
-    # TODO: qmk idk
-    # qmk
 
     cloc
     gnumake
