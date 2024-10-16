@@ -112,6 +112,9 @@
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, J, togglesplit, # dwindle"
 
+        # emoji picker
+        "$mainMod, E, exec, ${pkgs.rofimoji.override {x11Support = false;}}/bin/rofimoji --selector wofi --clipboarder wl-copy --action copy --typer wtype"
+
         # TODO: here
         # switchching focus with vim keys
         "$mainMod, h, movefocus, l"
@@ -123,7 +126,7 @@
         "$mainMod SHIFT, F, fullscreen, 0"
 
         # toggle for lofi music
-        "$mainMod, L, exec, lofi"
+        # "$mainMod, L, exec, lofi"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
