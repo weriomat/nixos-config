@@ -43,6 +43,7 @@ in {
     };
   };
 
+  # https://gist.github.com/genofire/07234e810fcd16f9077710d4303f9a9e
   # TODO: waybar modules like upower and stuff
   # TODO: take a look at https://github.com/niksingh710/ndots/blob/master/home/optional/wm/hyprland/waybar/default.nix
   # TODO: https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/waybar/default.nix

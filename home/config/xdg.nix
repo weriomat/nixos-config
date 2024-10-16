@@ -1,4 +1,5 @@
 # TODO: here
+# https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/xdg-mimes.nix
 {
   config,
   pkgs,
@@ -49,6 +50,22 @@
     // audio
     // browserTypes);
 in {
+  # xdg.mimeApps = {
+  #   enable = true;
+  #   defaultApplications = {
+  #     "x-scheme-handler/http" = "firefox.desktop";
+  #     "x-scheme-handler/https" = "firefox.desktop";
+  #     "x-scheme-handler/chrome" = "firefox.desktop";
+  #     "text/html" = "firefox.desktop";
+  #   };
+  # };
+  # xdg.desktopEntries.thunderbird = {
+  #   name = "Thunderbird";
+  #   exec = "thunderbird %U";
+  #   terminal = false;
+  #   categories = ["Application" "Network" "Chat" "Email"];
+  #   mimeType = ["message/rfc822" "x-scheme-handler/mailto" "text/calendar" "text/x-vcard"];
+  # };
   xdg = {
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";

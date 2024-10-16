@@ -1,4 +1,5 @@
 # TODO: clean up this file
+# TODO: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/hyprland/config.nix
 {
   inputs,
   config,

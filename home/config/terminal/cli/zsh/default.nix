@@ -5,6 +5,7 @@
   ...
 }: {
   # TODO: paths
+  # TODO: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/zsh/zsh.nix
   programs.zsh = {
     enable = true;
     autocd = true;
