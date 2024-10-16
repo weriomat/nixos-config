@@ -59,19 +59,19 @@ in {
           start = {
             title = "A borgmatic backup started - laptop";
             message = "Watch this space...";
-            tags = "borgmatic";
+            tags = "borgmatic,lap";
             priority = "min";
           };
           finish = {
             title = "A borgmatic backup completed successfully - laptop";
             message = "Nice!";
-            tags = "borgmatic,+1";
+            tags = "borgmatic,lap,+1";
             priority = "min";
           };
           fail = {
             title = "A borgmatic backup failed - laptop";
             message = "You should probably fix it";
-            tags = "borgmatic,-1,skull";
+            tags = "borgmatic,lap,-1,skull";
             priority = "max";
           };
           states = [
