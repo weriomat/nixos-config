@@ -158,5 +158,12 @@
     pam.services.swaylock = {};
   };
 
+  # Enable polkit for system wide auth, required as part of gnome-compat
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "Gnome polkit agent";
+    partOf = ["graphical-session.target"];
+    script = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    unitConfig = {ConditionUser = "!@system";};
+  };
   environment.systemPackages = with pkgs; [polkit_gnome];
 }
