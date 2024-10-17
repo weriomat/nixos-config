@@ -206,3 +206,53 @@ list -> `fc-list`
 ## zramswap
 
 `zramctl`
+
+## rotate gpg key
+
+notes [here](https://unix.stackexchange.com/questions/184947/how-to-import-secret-gpg-key-copied-from-one-machine-to-another)
+-> follow guide from [here](https://github.com/drduh/YubiKey-Guide/tree/master?tab=readme-ov-file#create-certify-key)
+-> maybe sign new key with old key
+-> once all written to bakup thingie
+-> exported to yubikey
+-> write pubkey to laptop via usb stick
+-> `gpg --import <pubkey.asc>`
+-> `gpg -k` -> from new key keyid
+-> `export KEYID=<id>`
+trust new key
+
+```bash
+gpg --command-fd=0 --pinentry-mode=loopback --edit-key $KEYID <<EOF
+trust
+5
+y
+save
+EOF
+```
+
+`gpg --card-status`
+-> verify that sth is under General key info
+
+### test
+
+```bash
+echo "\ntest message string" | \
+  gpg --encrypt --armor \
+      --recipient $KEYID --output encrypted.txt
+```
+
+```bash
+gpg --decrypt --armor encrypted.txt
+```
+
+### Add keys to github/gitlab
+
+`ssh-add -L` -> should give new key
+rotate `~/.ssh/id_rsa_yubikey.pub`
+via first backing up that one
+`ssh-add -L > ~/.ssh/id_rsa_yubikey.pub`
+-> verify that only the one key interesd is present
+
+-> add `pubkey.asc` -> as new
+[gpg key](https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account),
+add `id_rsa_yubikey.pub` as ssh loginkey
+-> rotate siging key in git config in nixos
