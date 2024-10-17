@@ -10,7 +10,7 @@
     delve # go debugger
     gopls # go lsp
     nodePackages.bash-language-server # bash
-    nil # nix
+    # nil # nix
     nixd # nix
     yaml-language-server # yaml
     nodePackages_latest.pyright # python
