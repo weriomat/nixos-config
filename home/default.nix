@@ -1,4 +1,8 @@
-{...}: {imports = [./config];}
+{...}: {
+  imports = [
+    ./config
+  ];
+}
 # TODO: automatic imports of things
 # imports = with builtins;
 #     map (fn: ./${fn})

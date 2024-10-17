@@ -1,3 +1,4 @@
+# TODO: https://github.com/niksingh710/ndots/blob/master/home/optional/wm/hyprland/waybar/default.nix
 {
   globals,
   config,

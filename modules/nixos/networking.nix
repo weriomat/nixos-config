@@ -50,7 +50,6 @@ in {
       hostName = "${globals.hostname}";
       useNetworkd = true;
       # TODO: dont use iptables...
-
       firewall = {
         enable = true;
         checkReversePath = "loose"; # cuz of vpn

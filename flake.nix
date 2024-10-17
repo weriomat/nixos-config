@@ -59,6 +59,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # TODO: diff packaging https://github.com/niksingh710/ndots/blob/master/pkgs/mono-lisa/default.nix
     # font
     monoLisa = {
       url = "path:/home/marts/.nixos/MonoLisa";

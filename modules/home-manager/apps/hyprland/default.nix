@@ -2,7 +2,7 @@
   imports =
     [(import ./hyprland.nix)]
     ++ [(import ./config.nix)]
-    ++ [(import ./variables.nix)] # ++ [ (import ./polkit.nix) ]
+    ++ [(import ./variables.nix)]
     ++ [inputs.hyprland.homeManagerModules.default];
   # TODO: here
   # drag and drop for hyprland and wayland
