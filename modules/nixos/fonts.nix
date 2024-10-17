@@ -33,6 +33,7 @@ in {
           serif = ["DejaVu Serif"];
           # ["Source Serif"];
           monospace = ["DejaVu Sans Mono"];
+          # ["MonoLisa Nerd Font"];
           emoji = ["apple-emoji"];
         };
       };

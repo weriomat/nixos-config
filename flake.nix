@@ -59,6 +59,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # font
+    monoLisa = {
+      url = "path:/home/marts/.nixos/MonoLisa";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # dev
     pre-commit-hooks = {
       url = "github:cachix/pre-commit-hooks.nix";

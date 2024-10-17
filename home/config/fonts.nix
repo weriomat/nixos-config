@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   fonts.fontconfig = {
     enable = true;
     # TODO: fonts -> fira code
@@ -16,6 +20,7 @@
   # https://fonts.google.com/noto/specimen/Noto+Emoji
 
   home.packages = [
+    inputs.monoLisa.packages.${pkgs.system}.default
     pkgs.apple-emoji
 
     # TODO: emote picker
@@ -39,6 +44,10 @@
       # name = "'BlexMono Nerd Font'";
       # size = 16;
       # package = pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];};
+
+      name = "MoneLisa Nerd Font";
+      package = inputs.monoLisa.packages.${pkgs.system}.default;
+      size = 16;
     };
     # firefox.profiles.profileSettings.settings = {
     #   "font.name.monospace.x-western" = config.stylix.fonts.monospace.name;
