@@ -256,3 +256,8 @@ via first backing up that one
 [gpg key](https://docs.github.com/en/authentication/managing-commit-signature-verification/adding-a-gpg-key-to-your-github-account),
 add `id_rsa_yubikey.pub` as ssh loginkey
 -> rotate siging key in git config in nixos
+
+## Thunderbird
+
+[Shotcuts](https://support.mozilla.org/en-US/kb/keyboard-shortcuts-thunderbird)
+TODO: backups

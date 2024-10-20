@@ -5,6 +5,28 @@ https://github.com/kinzoku-dev/neovim
 https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles
 `
 
+## Thunderbird
+
+`
+https://github.com/drduh/config/blob/master/thunderbird.user.js
+https://github.com/drduh/config/blob/master/sysctl.conf
+https://github.com/drduh/config/blob/master/gpg.conf
+https://github.com/drduh/config/tree/master/domains
+https://github.com/drduh/macOS-Security-and-Privacy-Guide?tab=readme-ov-file
+https://github.com/drduh/YubiKey-Guide
+https://github.com/catppuccin/thunderbird/tree/main
+`
+
+`
+https://support.mozilla.org/en-US/kb/keyboard-shortcuts-thunderbird
+https://search.nixos.org/options?channel=unstable&from=0&size=50&sort=relevance&type=packages&query=programs.thunderbird
+https://github.com/floeff/thunderbird-configuration/blob/main/user.js
+https://github.com/thunderbird/autoconfig/tree/master
+https://github.com/gyunaev/birdtray
+https://wiki.archlinux.org/title/Thunderbird
+https://support.mozilla.org/en-US/kb/keyboard-shortcuts-thunderbird
+`
+
 ## TODO: switch to lib.getExe
 
 `
