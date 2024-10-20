@@ -4,6 +4,7 @@
   ...
 }: {
   steam.enable = true;
+  mail.enable = true;
 
   services.borgbackup.jobs."hetzner" = {
     exclude = lib.mkForce [

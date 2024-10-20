@@ -7,6 +7,7 @@
     ./flatpak.nix
     ./graphical.nix
     ./keyboard.nix
+    ./mail.nix
     ./networking.nix
     ./nix.nix
     ./packages.nix
