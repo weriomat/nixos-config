@@ -12,8 +12,10 @@ in {
   config = mkIf cfg.enable {
     systemd.user.services.protonmail-bridge = {
       description = "Start protonmail-bridge at startup";
-      after = ["network.target"];
-      wantedBy = ["multi-user.target"];
+      wants = ["network-online.target"];
+      after = ["network-online.target"];
+      wantedBy = ["default.target"];
+
       serviceConfig = {
         Restart = "always";
         ExecStart = "${getExe pkgs.protonmail-bridge} -n";
