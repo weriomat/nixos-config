@@ -5,7 +5,6 @@
     cmake-language-server # cmake
     marksman # markdown
     lua-language-server # lua
-    texlab # LaTeX
     taplo # toml
     delve # go debugger
     gopls # go lsp
@@ -77,15 +76,16 @@
           typeCheckingMode = "basic";
         };
 
-        # TODO: here
+        # NOTE: LaTeX
         texlab = {
+          command = "${pkgs.texlab}/bin/texlab";
           auxDirectory = "auz";
           chktex = {
             onOpenAndSave = true;
             onEdit = true;
           };
           forwardSearch = {
-            executable = "okular";
+            executable = "${pkgs.okular}/bin/okular";
             args = ["--unique" "file:%p#src:%l%f"];
           };
 
@@ -93,7 +93,7 @@
             forwardSearchAfter = true;
             onSave = true;
 
-            executable = "latexmk";
+            executable = "${pkgs.texlive.withPackages (ps: [ps.latexmk])}/bin/latexmk";
             args = [
               "-pdf"
               "-interaction=nonstopmode"
@@ -104,7 +104,27 @@
             ];
           };
         };
+
+        # LTeX LSP for grammar and spellchecking
+        ltex = {
+          command = pkgs.ltex-ls + "/bin/ltex-ls";
+          config.ltex = {
+            completionEnabled = true;
+            ltex-ls.logLevel = "warning";
+            server.trace = "off";
+            statusBarItem = false;
+
+            language = "auto";
+            additionalRules.enablePickyRules = true;
+            disabledRules.en-US = [
+              "EN_QUOTES"
+              "UPPERCASE_SENTENCE_START"
+            ];
+          };
+        };
+
         nixd = {
+          # TODO: here
           command = "${pkgs.nixd}/bin/nixd";
           # nixpkgs.expr = "import (builtins.getFlake \"/home/brisingr05/nixos-config\").inputs.nixpkgs { }";
           # formatting.command = ["nixfmt"]; # Currently doesn't work
@@ -133,6 +153,14 @@
         }
         {
           name = "go";
+          auto-format = true;
+        }
+        {
+          name = "latex";
+          language-servers = [
+            "texlab"
+            "ltex"
+          ];
           auto-format = true;
         }
         {
