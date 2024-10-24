@@ -115,6 +115,9 @@
         # emoji picker
         "$mainMod, E, exec, ${pkgs.rofimoji.override {x11Support = false;}}/bin/rofimoji --selector wofi --clipboarder wl-copy --action copy --typer wtype"
 
+        # Thunderbird
+        "$mainMod, T, exec, ${pkgs.thunderbird}/bin/thunderbird"
+
         # TODO: here
         # switchching focus with vim keys
         "$mainMod, h, movefocus, l"
