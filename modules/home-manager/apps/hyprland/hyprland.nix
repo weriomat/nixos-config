@@ -12,8 +12,6 @@ in {
     home.packages = with pkgs; [
       libnotify
       brightnessctl
-      # TODO: here
-
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
       xwaylandvideobridge
       wf-recorder

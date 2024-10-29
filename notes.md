@@ -261,3 +261,58 @@ add `id_rsa_yubikey.pub` as ssh loginkey
 
 [Shotcuts](https://support.mozilla.org/en-US/kb/keyboard-shortcuts-thunderbird)
 TODO: backups
+
+## ZFS
+
+## Set compression
+
+`sudo zfs set compression=<algorithm> <data-set>`
+algorithm: zstd-fast, zstd-6
+
+to see compression ratio/ compression
+`zfs get compress,compressratio <data-set>`
+
+## firefox
+
+`strg + sft + page<up|down>` to move tab arround
+
+## thunderbird
+
+[from](https://support.mozilla.org/en-US/kb/keyboard-shortcuts-thunderbird?redirectslug=keyboard-shortcuts&redirectlocale=en-US)
+`ctrl n -> new email`
+`ctrl r -> reply`
+`ctrl shift r -> reply to all`
+`n -> next unread email`
+`m -> mark message as read`
+`j -> mark as junk`
+`shift j -> mark not as junk`
+`a -> archive message`
+`s -> add/remove star`
+`del -> delete message`
+`ctrl z -> undo`
+`ctrl y -> redo`
+
+`f -> goto next message`
+`b -> goto prev message`
+`n -> goto next unread message`
+`p -> goto prev unread message`
+
+### search
+
+`ctrl k -> search though all messages`
+`ctrl k -> search quick filter`
+
+## Kitty
+
+`ctrl shift enter` enter new window
+`ctrl shift f` swap windows
+`ctrl shift l` cycle thingies
+ctrl vim keys
+`ctrl a` -> horizontal layout
+`ctrl x` -> stack layout
+`ctrl arrows for resizing`
+`ctrl shift r` -> to enter resizing mode
+`ctrl shift <.|,>` -> move tab forward | backwards
+`ctrl shift g` -> browse output of last command
+`ctrl shift [|]` -> previous | next window
+`ctrl shift f | b` -> move window forwards backwards

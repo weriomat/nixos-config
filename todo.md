@@ -5,6 +5,11 @@ https://github.com/kinzoku-dev/neovim
 https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles
 `
 
+## Config
+
+Take a look at this config
+`https://gitlab.com/usmcamp0811/dotfiles/-/tree/nixos?ref_type=heads`
+
 ## Thunderbird
 
 `
@@ -52,6 +57,8 @@ https://duckduckgo.com/?t=ffab&q=maglev+paper+google&ia=web
 https://duckduckgo.com/?q=quick+paper+tcp+networking&t=ffab&ia=web
 https://duckduckgo.com/?t=ffab&q=sctp&ia=web
 https://www.wireguard.com/papers/wireguard.pdf
+https://ed25519.cr.yp.to/papers.html
+https://edolstra.github.io/pubs/phd-thesis.pdf
 `
 
 ## catppuccin nix

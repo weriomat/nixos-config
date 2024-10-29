@@ -6,6 +6,7 @@
 }: {
   # TODO: paths
   # TODO: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/zsh/zsh.nix
+  # TODO: add shortcut to set off history
   programs.zsh = {
     enable = true;
     autocd = true;

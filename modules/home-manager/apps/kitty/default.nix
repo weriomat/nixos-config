@@ -8,6 +8,9 @@
 in {
   options.kitty.enable = mkEnableOption "Enable my kitty options";
 
+  # TODO: broewser : https://github.com/chase/awrit
+  # TODO: take a look at shortcuts
+  # TODO: windows
   config = mkIf config.kitty.enable {
     wayland.windowManager.hyprland.settings.bind = [
       "$mainMod, K, exec, ${config.programs.kitty.package}/bin/kitty"

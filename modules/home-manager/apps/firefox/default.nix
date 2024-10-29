@@ -14,9 +14,13 @@ in {
     arkenfox.enable = mkEnableOption "Enable arkenfox";
   };
 
+  # TODO: https://github.com/gvolpe/nix-config/blob/b9ff455faaf5a4890985305e5c7a5a01606d20f3/home/shared/default.nix
+
   config = mkIf cfg.enable {
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
     # TODO: take a look at https://github.com/fufexan/dotfiles/blob/main/home/programs/browsers/firefox.nix
+    # TODO: Take a look at https://github.com/gvolpe/nix-config/blob/b9ff455faaf5a4890985305e5c7a5a01606d20f3/home/programs/firefox/addons.nix
+    # TODO: take a look at https://github.com/gvolpe/nix-config/blob/b9ff455faaf5a4890985305e5c7a5a01606d20f3/home/programs/firefox/default.nix
     # TODO:  fonts
     #   profileSettings = {
     #   settings = {
