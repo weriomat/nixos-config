@@ -16,9 +16,9 @@ in {
         man-db.enable = true;
         generateCaches = true;
       };
-      dev.enable = lib.mkIf pkgs.stdenv.isLinux true;
+      dev.enable = mkIf pkgs.stdenv.isLinux true;
       doc.enable = true;
-      nixos.enable = lib.mkIf pkgs.stdenv.isLinux true;
+      nixos.enable = mkIf pkgs.stdenv.isLinux true;
       info.enable = true;
     };
   };
