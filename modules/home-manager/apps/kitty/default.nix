@@ -51,6 +51,23 @@ in {
       keybindings = {
         "ctrl+c" = "copy_or_interrupt";
         "ctrl+shift+t" = "new_tab_with_cwd";
+        # Vim movement in windows
+        "ctrl+h" = "neighboring_window left";
+        "ctrl+l" = "neighboring_window right";
+        "ctrl+j" = "neighboring_window down";
+        "ctrl+k" = "neighboring_window up";
+        # prev active window
+        "ctrl+p" = "nth_window -1";
+        # window layouts
+        "ctrl+a" = "enabled_layouts horizontal";
+        "ctrl+x" = "enabled_layouts stack";
+        # resizing
+        "ctrl+left" = "resize_window narrower";
+        "ctrl+right" = "resize_window wider";
+        "ctrl+up" = "resize_window taller";
+        "ctrl+down" = "resize_window shorter 3";
+        # reset all windows in the tab to default sizes
+        "ctrl+home" = "resize_window reset";
       };
     };
   };
