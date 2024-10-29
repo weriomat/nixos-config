@@ -26,7 +26,6 @@ in {
 
       emojify # emoji on shell
 
-      mermaid-cli
       powertop
       pdfarranger
       ethtool
@@ -84,7 +83,7 @@ in {
       gcc
       llvm
       clang_15
-      clang-tools_15
+      clang-tools
       extra-cmake-modules
       llvmPackages_latest.lldb
       plasma5Packages.extra-cmake-modules
