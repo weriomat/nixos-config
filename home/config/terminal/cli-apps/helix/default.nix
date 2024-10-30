@@ -1,16 +1,20 @@
 # to get helix runnin in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
-{pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  inherit (lib) mkIf;
+in {
   home.packages = with pkgs; [
     helix
     cmake-language-server # cmake
-    marksman # markdown
     lua-language-server # lua
     taplo # toml
     delve # go debugger
     gopls # go lsp
     nodePackages.bash-language-server # bash
-    # nil # nix
-    nixd # nix
     yaml-language-server # yaml
     nodePackages_latest.pyright # python
   ];
@@ -114,6 +118,9 @@
             server.trace = "off";
             statusBarItem = false;
 
+            # since we have languagetool running on localhost we can set this here, only on linux tho
+            languageToolHttpServerUri = mkIf pkgs.stdenv.isLinux "http://localhost:8081";
+
             language = "auto";
             additionalRules.enablePickyRules = true;
             disabledRules.en-US = [
@@ -125,10 +132,17 @@
 
         nixd = {
           # TODO: here
+          # nil # nix
+          # nixd # nix
           command = "${pkgs.nixd}/bin/nixd";
           # nixpkgs.expr = "import (builtins.getFlake \"/home/brisingr05/nixos-config\").inputs.nixpkgs { }";
           # formatting.command = ["nixfmt"]; # Currently doesn't work
           # options.nixos.expr = "(builtins.getFlake \"/home/brisingr05/nixos-config\").nixosConfigurations.hpaio.options";
+        };
+
+        # markdown
+        marksman = {
+          command = "${pkgs.marksman}/bin/marksman";
         };
       };
 
@@ -136,6 +150,36 @@
         {
           name = "c";
           auto-format = true;
+        }
+        {
+          name = "cpp";
+          auto-format = true;
+        }
+
+        {
+          name = "markdown";
+          auto-format = true;
+          language-servers = [
+            "marksman"
+            "ltex"
+          ];
+          formatter = {
+            command = "${pkgs.dprint}/bin/dprint";
+            args = let
+              config = pkgs.writeText "config.json" ''
+                {
+                  "markdown": {
+                    "lineWidth":120,
+                  },
+                  "excludes": [],
+                  "plugins": [
+                    "https://plugins.dprint.dev/markdown-0.17.8.wasm"
+                  ]
+                }
+              '';
+            in ["fmt" "--config" "${config}" "--stdin" "md"];
+          };
+          rulers = [120];
         }
         {
           name = "haskell";
@@ -157,16 +201,16 @@
         }
         {
           name = "latex";
+          auto-format = true;
           language-servers = [
             "texlab"
             "ltex"
           ];
-          auto-format = true;
         }
         {
           name = "python";
-          language-servers = ["ruff" "pyright"];
           auto-format = true;
+          language-servers = ["ruff" "pyright"];
           formatter = {
             command = "${pkgs.black}/bin/black";
             args = ["--line-length" "88" "--quiet" "-"];
