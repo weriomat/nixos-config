@@ -23,6 +23,8 @@ in
       ./power.nix
       ./ssh.nix
       ./config.nix
+      # for UNI
+      ./gns.nix
 
       # sops
       inputs.sops-nix.nixosModules.sops
