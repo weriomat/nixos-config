@@ -28,7 +28,7 @@ use `comma` or `,` to run a app with help of nix-db without installing
 
 `<ctrl> + r` -> search shell history
 `<ctrl> + t` -> search through files in current dir with currently fzf
-`<alt> + c`  -> search through subfolders and folders of current dir
+`<alt> + c` -> search through subfolders and folders of current dir
 
 ## fzf
 
@@ -177,11 +177,9 @@ nix-tree --derivation 'nixpkgs#asciiquarium'
 
 ### Run nix-tree on a flake reference of a nixosConfiguration
 
-`
-nix build --print-out-paths --no-link '.#nixosConfigurations.foo.
+`nix build --print-out-paths --no-link '.#nixosConfigurations.foo.
 config.system.build.toplevel'
-nix-tree '.#nixosConfigurations.foo.config.system.build.toplevel'
-`
+nix-tree '.#nixosConfigurations.foo.config.system.build.toplevel'`
 
 ### transitive dependencies of a package
 
