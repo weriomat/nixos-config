@@ -59,8 +59,8 @@ in {
         # prev active window
         "ctrl+p" = "nth_window -1";
         # window layouts
-        "ctrl+a" = "enabled_layouts horizontal";
-        "ctrl+x" = "enabled_layouts stack";
+        "ctrl+a" = "toggle_layout horizontal";
+        "ctrl+x" = "toggle_layout stack";
         # resizing
         "ctrl+left" = "resize_window narrower";
         "ctrl+right" = "resize_window wider";
