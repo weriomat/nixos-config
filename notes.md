@@ -302,9 +302,15 @@ to see compression ratio/ compression
 
 ## Kitty
 
+### Tabs
+
+`ctrl shift l|h` -> next|previous tab
+
+### Windows
+
 `ctrl shift enter` enter new window
 `ctrl shift f` swap windows
-`ctrl shift l` cycle thingies
+`ctrl shift o` cycle thingies
 ctrl vim keys
 `ctrl a` -> horizontal layout
 `ctrl x` -> stack layout
