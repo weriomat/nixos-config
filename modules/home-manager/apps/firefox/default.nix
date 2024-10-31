@@ -264,6 +264,7 @@ in {
           # passwords
           bitwarden
           # keepassxc-browser
+          linkwarden
 
           # new
           censor-tracker # https://censortracker.org/en.html
