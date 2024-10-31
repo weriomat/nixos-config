@@ -12,6 +12,13 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # NOTE: https://bugs.launchpad.net/ubuntu/+source/linux-oem-6.1/+bug/2017277
+  # https://bugs.launchpad.net/ubuntu/+source/linux-oem-6.1/+bug/2017277/comments/4
+  environment.etc."modprobe.d/70-rtw89.conf".text = ''
+    options rtw89_pci disable_clkreq=y disable_aspm_l1=y disable_aspm_l1ss=y
+    options rtw89pci disable_clkreq=y disable_aspm_l1=y disable_aspm_l1ss=y
+  '';
+
   # systemd.watchdog.rebootTime = "0s";
   boot = {
     # # NOTE: plymouth
