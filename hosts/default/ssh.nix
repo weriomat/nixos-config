@@ -57,20 +57,19 @@
         extraConfig = "IdentitiesOnly yes";
 
         matchBlocks = let
-          tu_key = "/home/${globals.username}/.ssh/tu-gitlab.pub";
           raspi_key = "/home/${globals.username}/.ssh/id_ed25519";
           hetzner_key = "/home/${globals.username}/.ssh/deploy_hetzner";
         in {
-          "github.com" = {user = "git";};
+          # git services
+          "github.com".user = "git";
+          "git.tu-berlin.de".user = "git";
           "gitlab.cobalt.rocks" = {
             port = 3724;
             user = "git";
             identityFile = raspi_key;
           };
-          "git.tu-berlin.de" = {
-            user = "git";
-            identityFile = tu_key;
-          };
+
+          # selfhosted
           raspi = {
             hostname = "192.168.178.21";
             user = "marts";
@@ -87,13 +86,11 @@
             user = "weriomat";
             hostname = "49.13.52.45";
             port = 2077;
-            identityFile = hetzner_key;
           };
           big = {
             user = "weriomat";
             hostname = "192.168.178.32";
             port = 2077;
-            identityFile = hetzner_key;
           };
         };
       };

@@ -45,14 +45,13 @@
         serverAliveInterval = 60;
         serverAliveCountMax = 3;
         extraOptionOverrides = {
-          # IdentityFile = "/home/${globals.username}/.ssh/id_rsa_yubikey.pub";
+          IdentityFile = "/Users/${globals.username}/.ssh/id_rsa_yubikey.pub";
         };
 
         extraConfig = "IdentitiesOnly yes";
 
         matchBlocks = let
           tu_key = "/Users/${globals.username}/.ssh/id_ed25519";
-          # raspi_key = "/Users/${globals.username}/.ssh/id_ed25519.pub";
           hetzner_key = "/Users/${globals.username}/.ssh/deploy_hetzner";
         in {
           "github.com" = {
@@ -78,7 +77,6 @@
             user = "weriomat";
             hostname = "49.13.52.45";
             port = 2077;
-            identityFile = hetzner_key;
           };
         };
       };

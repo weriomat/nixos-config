@@ -28,7 +28,12 @@
           reader-port = "Yubico Yubi";
           disable-ccid = "";
         };
+        settings = {
+          # TODO: https://github.com/jvanbruegge/nix-config/blob/master/gpg.nix
+          # https://github.com/jvanbruegge/nix-config/blob/c980c986d407154883478a2794fffa28a7526965/gpg.nix
+        };
       };
+      # TODO: take a look at hm opitons
       git = {
         enable = true;
         userName = "weriomat";
@@ -37,6 +42,9 @@
         extraConfig = {
           safe.directory = "*";
           init.defaultBranch = "main";
+          tag.gpgSign = true;
+          # NOTE: rebase by default
+          pull.rebase = true;
         };
         signing = {
           signByDefault = true;
@@ -58,21 +66,13 @@
         extraConfig = "IdentitiesOnly yes";
 
         matchBlocks = let
-          # tu_key = "/home/${globals.username}/.ssh/tu-gitlab.pub";
-          # raspi_key = "/home/${globals.username}/.ssh/id_ed25519";
           hetzner_key = "/home/${globals.username}/.ssh/deploy_hetzner";
         in {
-          "github.com" = {user = "git";};
-          "git.tu-berlin.de" = {
-            user = "git";
-            # identityFile = tu_key;
-          };
-          # raspi = {
-          #   hostname = "192.168.178.21";
-          #   user = "marts";
-          #   identityFile = raspi_key;
-          #   port = 2077;
-          # };
+          # git services
+          "github.com".user = "git";
+          "git.tu-berlin.de".user = "git";
+
+          # selfhosted
           storage = {
             user = "u406968";
             hostname = "u406968.your-storagebox.de";
@@ -83,13 +83,11 @@
             user = "weriomat";
             hostname = "49.13.52.45";
             port = 2077;
-            identityFile = hetzner_key;
           };
           big = {
             user = "weriomat";
             hostname = "192.168.178.32";
             port = 2077;
-            identityFile = hetzner_key;
           };
         };
       };
