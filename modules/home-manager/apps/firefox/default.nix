@@ -451,6 +451,9 @@ in {
           # pocket
           "extensions.pocket.enabled" = false;
 
+          "browser.urlbar.suggest.quicksuggest.sponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+
           # arkenfox conflikt
           # "privacy.firstparty.isolate" = true; # WHY
           # "browser.startup.homepage" = "https://duckduckgo.com";
