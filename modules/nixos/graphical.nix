@@ -13,7 +13,7 @@ in {
     # TODO: check if i use them
     environment.systemPackages = with pkgs; [
       obsidian
-      cider
+      unstable.cider
 
       # graphical
       gnome.gnome-calendar
