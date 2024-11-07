@@ -49,6 +49,7 @@ https://duckduckgo.com/?q=quick+paper+tcp+networking&t=ffab&ia=web
 https://duckduckgo.com/?t=ffab&q=sctp&ia=web
 https://www.wireguard.com/papers/wireguard.pdf
 https://ed25519.cr.yp.to/papers.html
+https://db.in.tum.de/~leis/papers/morsels.pdf
 https://edolstra.github.io/pubs/phd-thesis.pdf`
 
 ## catppuccin nix

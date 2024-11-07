@@ -320,3 +320,26 @@ ctrl vim keys
 `ctrl shift g` -> browse output of last command
 `ctrl shift [|]` -> previous | next window
 `ctrl shift f | b` -> move window forwards backwards
+
+## Make a bootable windows stick
+
+download image
+
+`nix shell nixpkgs#quickemu -c quickget windows 10`
+
+make usb stick
+
+`nix shell nixpkgs#ntfs3g nixpkgs#woeusb`
+`sudo woeusb --device Win10_22H2_EnglishInternational_x64v1.iso /dev/sda`
+
+## Mass unzip
+
+`unzip '*.zip'`
+
+## Gnome
+
+TTY2
+
+on laptop `fn + strg + alt + <nr>` -> 2
+login
+`dbus-run-session -- gnome-shell --display-server --wayland`
