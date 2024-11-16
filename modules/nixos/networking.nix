@@ -4,7 +4,7 @@
   globals,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkForce;
   cfg = config.networking;
 in {
   options.networking = {
@@ -36,10 +36,10 @@ in {
         "9.9.9.9#dns.quad9.net"
       ];
       dhcpcd.extraConfig = mkIf cfg.dns.enable "nohook resolv.conf";
+      resolvconf.enable = mkForce false;
 
       networkmanager = {
         enable = true;
-        # dns = "systemd-resolved";
         dns =
           if cfg.dns.enable
           then lib.mkForce "none"
