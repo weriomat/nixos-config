@@ -11,11 +11,16 @@ in {
 
   config = mkIf config.nix-settings.enable {
     nix = {
+      channel.enable = false;
+
       nixPath = ["nixpkgs=${inputs.nixpkgs}" "unstable=${inputs.nixpkgs-unstable}"];
 
       # enable local registry for better search
       # https://discourse.nixos.org/t/local-flake-based-nix-search-nix-run-and-nix-shell/13433/12
-      registry.nixpkgs.flake = inputs.nixpkgs;
+      registry = {
+        nixpkgs.flake = inputs.nixpkgs;
+        nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
+      };
 
       settings = {
         sandbox = true;
