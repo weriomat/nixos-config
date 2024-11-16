@@ -41,6 +41,11 @@ well as his own [config](https://github.com/Misterio77/nix-config/tree/main)
 Special thanks to [nmasur](https://github.com/nmasur) for having a
 great structured [config](https://github.com/nmasur/dotfiles/blob/c53f1470ee04890f461796ba0d14cce393f2b5c3/hosts/lookingglass/default.nix)
 
+### Frost-Phoenix
+
+Specia thanks to [Frost-Phoenix](https://github.com/Frost-Phoenix) for having
+a great hyprland desktop [configuration](https://github.com/Frost-Phoenix/nixos-config/tree/catppuccin).
+
 ## The maker of fzf
 
 A special thanks goes out to the maker of [fzf](https://github.com/junegunn/fzf)
