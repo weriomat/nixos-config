@@ -144,6 +144,8 @@ in {
         marksman = {
           command = "${pkgs.marksman}/bin/marksman";
         };
+
+        clangd.args = ["--enable-config"];
       };
 
       language = [
