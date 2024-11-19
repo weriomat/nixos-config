@@ -55,6 +55,8 @@ in {
         keybindings = {
           "ctrl+c" = "copy_or_interrupt";
           "ctrl+shift+t" = "new_tab_with_cwd";
+          # new window with same pwd
+          "ctrl+shift+enter" = "launch --cwd=current";
           # Vim movement in windows
           "ctrl+h" = "neighboring_window left";
           "ctrl+l" = "neighboring_window right";
