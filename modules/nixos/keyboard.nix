@@ -8,6 +8,12 @@ in {
   options.keyboard.enable = mkEnableOption "Enable keyboard properties";
 
   config = mkIf config.keyboard.enable {
+    # Blacklist logitech usb receiver from USB autosuspend
+    services.udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="046d", ATTR{idProduct}=="c548", GOTO="power_usb_rules_end"
+      ACTION=="add", SUBSYSTEM=="usb", TEST=="power/control", ATTR{power/control}="auto", LABEL="power_usb_rules_end"
+    '';
+
     i18n = {
       defaultLocale = "en_US.UTF-8";
 
