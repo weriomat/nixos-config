@@ -43,8 +43,8 @@
           safe.directory = "*";
           init.defaultBranch = "main";
           tag.gpgSign = true;
-          # NOTE: rebase by default
-          pull.rebase = true;
+          # NOTE: do not rebase by default
+          pull.rebase = false;
         };
         signing = {
           signByDefault = true;
