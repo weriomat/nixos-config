@@ -36,13 +36,13 @@ in {
         "9.9.9.9#dns.quad9.net"
       ];
       dhcpcd.extraConfig = mkIf cfg.dns.enable "nohook resolv.conf";
-      resolvconf.enable = mkForce false;
+      resolvconf.enable = mkIf cfg.dns.enable (mkForce false);
 
       networkmanager = {
         enable = true;
         dns =
           if cfg.dns.enable
-          then lib.mkForce "none"
+          then mkForce "none"
           else "default"; # NOTE: tell nm not to touch /etc/resolv.conf
         wifi.powersave = true;
       };
