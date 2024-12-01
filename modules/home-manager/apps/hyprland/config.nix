@@ -9,6 +9,37 @@
   # TODO: here
   # TODO: switch to lib.getEXE
   wayland.windowManager.hyprland = {
+    # Create a easy way to resize windows
+    extraConfig =
+      # from https://www.reddit.com/r/hyprland/comments/14jehzj/creating_keybindings_to_resize_a_window/
+      /*
+      hyprlang
+      */
+      ''
+        # will switch to a submap called resize
+        bind = ALT, R, submap, resize
+
+        # will start a submap called "resize"
+        submap = resize
+
+        # sets repeatable binds for resizing the active window
+        binde = , right, resizeactive, 10 0
+        binde = , left, resizeactive, -10 0
+        binde = , up, resizeactive, 0 -10
+        binde = , down, resizeactive, 0 10
+        binde = , l, resizeactive, 50 0
+        binde = , h, resizeactive, -50 0
+        binde = , k, resizeactive, 0 -40
+        binde = , j, resizeactive, 0 40
+
+        # use reset to go back to the global submap
+        bind = , escape, submap, reset
+
+        # will reset the submap, which will return to the global submap
+        submap = reset
+
+      '';
+
     settings = {
       # TODO: here
       # bindl = [",switch:Lid Switch, exec, ${pkgs.laptop_lid_switch}"];
@@ -77,6 +108,26 @@
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "QT_QPA_PLATFORMTHEME,qt5ct"
         "GTK_THEME,Catppuccin-Mocha-Compact-Lavender-Dark"
+
+        # TODO: https://github.com/saygo-png/nixos/blob/main/modules/myHyprland.nix
+        # extraConfig =
+        # /*
+        # hyprlang
+        # */
+        # ''
+        #   env = NIXOS_OZONE_WL, 1
+        #   env = XDG_CURRENT_DESKTOP, Hyprland
+        #   env = XDG_SESSION_TYPE, wayland
+        #   env = XDG_SESSION_DESKTOP, Hyprland
+        #   env = GDK_BACKEND, wayland, x11, *
+        #   env = CLUTTER_BACKEND, wayland
+        #   env = QT_QPA_PLATFORM, wayland;xcb
+        #   env = QT_QPA_PLATFORMTHEME, qt5ct
+        #   env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
+        #   env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
+        #   env = MOZ_ENABLE_WAYLAND, 1
+        #   env = GTK_USE_PORTAL, 1
+        # '';
       ];
       # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#minimize-steam-instead-of-killing
       # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#toggle-animationsbluretc-hotkey
