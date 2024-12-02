@@ -2,7 +2,7 @@
 {
   description = "Marts - Nixos config flake";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     utils.url = "github:numtide/flake-utils";
@@ -15,7 +15,7 @@
 
     # hm
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-colors.url = "github:misterio77/nix-colors";
@@ -97,6 +97,8 @@
     {
       overlays = import ./overlays {inherit inputs;};
 
+      # TODO: nixd https://www.youtube.com/watch?v=M_zMoHlbZBY
+      # TODO: make seperate home module and move things around to make use of nixd
       # Full system build for x86
       nixosConfigurations = {
         nixos = import ./hosts/default {inherit inputs outputs nix-colors;};
@@ -123,7 +125,6 @@
           # not nix
           shellcheck.enable = true;
           markdownlint.enable = true;
-          yamllint.enable = true;
           check-toml.enable = true;
           check-json.enable = true;
 
@@ -145,6 +146,8 @@
             pkgs.nurl # simple nix prefetch
             pkgs.nix-init # packaging helper
 
+            # TODO: take a look at this: https://github.com/louib/nix2sbom
+            # TODO: flake checker
             # see parts of derivations
             pkgs.nix-tree
             pkgs.graphviz

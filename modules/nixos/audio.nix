@@ -8,7 +8,6 @@ in {
   options.audio.enable = mkEnableOption "Enable audio settings";
 
   config = mkIf config.audio.enable {
-    sound.enable = true;
     security.rtkit.enable = true; # RealtimeKit system service, realtime scheduling priory to user process on demand -> used by Pulse audio
 
     services = {

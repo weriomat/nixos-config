@@ -15,7 +15,7 @@ in {
     gopls # go lsp
     nodePackages.bash-language-server # bash
     yaml-language-server # yaml
-    nodePackages_latest.pyright # python
+    pyright # python
   ];
   # TODO: https://gitlab.com/hmajid2301/nixicle/-/blob/main/modules/home/cli/terminals/kitty/default.nix
 

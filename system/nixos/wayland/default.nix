@@ -13,7 +13,7 @@ in {
 
   programs.xwayland.enable = true; # Enable simulation of x11
 
-  hardware.opengl.enable = lib.mkDefault true;
+  hardware.graphics.enable = lib.mkDefault true;
 
   services = {
     # Window manager only sessions (unlike DEs) don't handle XDG

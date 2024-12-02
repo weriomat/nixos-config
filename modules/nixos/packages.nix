@@ -35,7 +35,7 @@ in {
       pdfarranger
 
       # gnome disk
-      gnome.gnome-disk-utility
+      gnome-disk-utility
 
       # learning git game
       oh-my-git

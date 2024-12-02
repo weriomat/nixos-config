@@ -29,7 +29,6 @@
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod"];
       kernelModules = [
-        "amdgpu"
         "cpufreq_ondemand"
         "cpufreq_powersave"
       ];
@@ -46,8 +45,8 @@
     # support for building nix packages for rp4
     binfmt.emulatedSystems = ["aarch64-linux"];
 
-    # newer kernel cuz wlan driver crashes cuz of aspm
-    kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
+    # NOTE: kernel is pinned with support for zfs
+    kernelPackages = pkgs.linuxPackages_6_6;
   };
 
   fileSystems = {
@@ -73,25 +72,28 @@
     };
   };
 
-  # GPU Support - See https://nixos.wiki/wiki/AMD_GPU
-  hardware.opengl = {
-    enable = true;
+  # TODO: use https://github.com/NixOS/nixpkgs/blob/release-24.11/nixos/modules/services/hardware/amdvlk.nix
+  # TODO: use https://github.com/NixOS/nixpkgs/blob/release-24.11/nixos/modules/services/hardware/amdgpu.nix
+  # TODO: amdvlk?
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
 
-    # Support for opencl, vulkan, amdgpu and rocm
-    driSupport = true;
-    # For 32 bit applications
-    driSupport32Bit = true;
-
-    extraPackages = with pkgs; [
-      rocm-opencl-icd
-      rocm-opencl-runtime
-      vaapiVdpau
-      mesa.drivers
-    ];
-    extraPackages32 = with pkgs.driversi686Linux; [
-      vaapiVdpau
-      mesa.drivers
-    ];
+      extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+        mesa.drivers
+        mesa.opencl
+      ];
+      extraPackages32 = with pkgs.driversi686Linux; [
+        mesa.drivers
+        mesa.opencl
+      ];
+    };
+    amdgpu = {
+      opencl.enable = true;
+      initrd.enable = true;
+    };
   };
 
   environment.sessionVariables.VDPAU_DRIVER = "radeonsi";

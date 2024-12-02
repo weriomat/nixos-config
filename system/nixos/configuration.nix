@@ -4,7 +4,6 @@
   globals,
   ...
 }:
-# TODO: gnome polkit
 # TODO: improve hyprland config
 # TODO: laptop power management
 # TODO: brightnessctl
@@ -16,6 +15,8 @@
     ./borg.nix
     ./sops.nix
   ];
+
+  services.protonmail-bridge.enable = true;
 
   # for bsysprak
   # the shared of objects of the listed libs will be provided

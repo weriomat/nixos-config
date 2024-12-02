@@ -11,50 +11,30 @@
 }: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
-  # followed guide from https://nixos.wiki/wiki/AMD_GPU
-  systemd.tmpfiles.rules = ["L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"];
+  # TODO: amdvlk?
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
 
-  # TODO: here
-  # hardware.graphics = {
-  #   enable = true;
-
-  #   extraPackages = with pkgs; [
-  #     libva
-  #     vaapiVdpau
-  #     libvdpau-va-gl
-  #   ];
-  #   extraPackages32 = with pkgs.pkgsi686Linux; [
-  #     vaapiVdpau
-  #     libvdpau-va-gl
-  #   ];
-  #enableAllFirmware = true;
-  # };
-
-  # GPU Support - See https://nixos.wiki/wiki/AMD_GPU
-  hardware.opengl = {
-    enable = true;
-
-    # Support for opencl, vulkan, amdgpu and rocm
-    driSupport = true;
-    # For 32 bit applications
-    driSupport32Bit = true;
-
-    extraPackages = with pkgs; [
-      amdvlk
-      rocmPackages.clr.icd
-      #   rocm-opencl-icd
-      #   rocm-opencl-runtime
-      vaapiVdpau
-      mesa.drivers
-    ];
-    extraPackages32 = with pkgs.driversi686Linux; [
-      amdvlk
-      mesa.drivers
-      vaapiVdpau
-    ];
+      extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+        mesa.drivers
+        mesa.opencl
+      ];
+      extraPackages32 = with pkgs.driversi686Linux; [
+        mesa.drivers
+        mesa.opencl
+      ];
+    };
+    amdgpu = {
+      opencl.enable = true;
+      initrd.enable = true;
+    };
   };
 
   environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
+
   services.xserver.videoDrivers = ["amdgpu"];
 
   boot = {
@@ -63,7 +43,6 @@
     #  kernelModules = ["acpi_call"];
     initrd = {
       availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
-      kernelModules = ["amdgpu"];
       luks = {
         devices."luks-e21fd631-a002-472c-a43c-bd984147f9a2".device = "/dev/disk/by-uuid/e21fd631-a002-472c-a43c-bd984147f9a2";
         devices."luks-18c6f525-719b-4b5f-bcb2-7e9ba01353d1".device = "/dev/disk/by-uuid/18c6f525-719b-4b5f-bcb2-7e9ba01353d1";
@@ -115,6 +94,7 @@
   };
 
   swapDevices = [{device = "/dev/disk/by-uuid/1631adfb-0d13-4a18-8ee5-ae0697077df4";}];
+  zramSwap.enable = true;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

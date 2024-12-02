@@ -16,7 +16,7 @@ in {
       unstable.cider
 
       # graphical
-      gnome.gnome-calendar
+      gnome-calendar
       xfce.thunar
 
       # media

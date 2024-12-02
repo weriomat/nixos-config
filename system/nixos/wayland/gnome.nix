@@ -18,14 +18,14 @@ in {
   # castrate gnome
   environment.gnome.excludePackages =
     (with pkgs; [
-      tracker
-      tracker-miners
+      tinysparql
+      localsearch
       gnome-connections
       gnome-photos
       gnome-tour
       endeavour
     ])
-    ++ (with pkgs.gnome; [
+    ++ (with pkgs; [
       cheese # webcam tool
       gnome-remote-desktop
       gnome-font-viewer

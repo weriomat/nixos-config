@@ -5,7 +5,6 @@
 }: {
   # NOTE: disbale virtualiziation
   virt.enable = lib.mkForce false;
-  mail.enable = true;
 
   # TODO: for every host a vpn as a split tunnel for email relay or sth: https://ssh.sshslowdns.com/wireguard-split-tunnel-config/
   # TODO: setup email with host
@@ -43,7 +42,7 @@
   # NOTE: kanshi is configured at the host level
   home-manager.users.${globals.username} = {
     services.kanshi = {
-      enable = true;
+      enable = false;
       systemdTarget = "hyprland-session.target";
       settings = [
         {

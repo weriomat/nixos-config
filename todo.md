@@ -202,15 +202,6 @@ https://github.com/apernet/OpenGFW?tab=readme-ov-file
 https://github.com/FlareSolverr/FlareSolverr
 https://nixos.org/manual/nixos/unstable/#module-services-anki-sync-server`
 
-## new in 24.11
-
-localsend
-playerctl
-flaresolver
-
-sound options
-`https://nixos.org/manual/nixos/unstable/release-notes#sec-release-24.11-migration-sound`
-
 ## config files right with boxxy lol
 
 `https://github.com/queer/boxxy`

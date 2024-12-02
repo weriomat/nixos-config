@@ -49,6 +49,8 @@ in {
 
     services.borgmatic = {
       enable = true;
+      enableConfigCheck = false; # NOTE: disabled due to sops
+
       settings = {
         ntfy = {
           topic = "backup";
