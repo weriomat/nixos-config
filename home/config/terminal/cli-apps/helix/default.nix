@@ -1,6 +1,5 @@
 # to get helix runnin in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
 {
-  config,
   lib,
   pkgs,
   ...
@@ -229,7 +228,7 @@ in {
 
     settings = {
       editor = {
-        auto-save = true;
+        # auto-save = true;
         bufferline = "always";
         line-number = "relative";
         true-color = true;
@@ -253,10 +252,20 @@ in {
       };
 
       keys.normal = {
-        space.w = ":w";
-        space.q = ":q";
+        # TODO: lazygit
+        space = {
+          w = ":w";
+          q = ":q";
+          G = ":sh kitty @ launch --no-response --type=overlay --cwd $(pwd) --title gl lazygit";
+        };
         "{" = "goto_prev_paragraph";
         "}" = "goto_next_paragraph";
+        # better window naivgation
+        # TODO: fix this
+        "C-h" = "jump_view_left";
+        "C-j" = "jump_view_down";
+        "C-k" = "jump_view_up";
+        "C-l" = "jump_view_right";
       };
     };
   };
