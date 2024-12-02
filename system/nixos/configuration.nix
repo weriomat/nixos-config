@@ -18,21 +18,26 @@
 
   services.protonmail-bridge.enable = true;
 
-  # for bsysprak
-  # the shared of objects of the listed libs will be provided
-  # via the environment variable `NIX_LD_LIBRARY_PATH`
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      zlib
-      gmp
-      mpfr
-      libmpc
-      glib
-      pixman
-      expat
-      ncurses5
-    ];
+  # NOTE: this will punch a hole through the firewall
+  programs = {
+    localsend.enable = true;
+
+    # for bsysprak
+    # the shared of objects of the listed libs will be provided
+    # via the environment variable `NIX_LD_LIBRARY_PATH`
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        zlib
+        gmp
+        mpfr
+        libmpc
+        glib
+        pixman
+        expat
+        ncurses5
+      ];
+    };
   };
 
   # TODO: here
