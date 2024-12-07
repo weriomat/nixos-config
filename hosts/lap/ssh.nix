@@ -71,6 +71,7 @@
           # git services
           "github.com".user = "git";
           "git.tu-berlin.de".user = "git";
+          "gitlab.cobalt.rocks".user = "git";
 
           # selfhosted
           storage = {
