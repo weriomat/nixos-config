@@ -12,6 +12,8 @@ in {
     # TODO: remove ++ unify with hm packages
     # TODO: take a look at zenmonitor
     environment.systemPackages = with pkgs; [
+      devenv # nix shell
+
       duf # df alternative
       ncdu # du alternative
       dogdns # dig alternative
