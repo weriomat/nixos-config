@@ -179,9 +179,6 @@
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"
 
-        # toggle for lofi music
-        # "$mainMod, L, exec, lofi"
-
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"

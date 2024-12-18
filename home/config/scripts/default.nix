@@ -257,19 +257,4 @@
       "$prog" "$@" &  # $@ is all args
     '';
   };
-  lofi = pkgs.writeShellApplication {
-    name = "lofi";
-    runtimeInputs = with pkgs; [coreutils mpv-unwrapped libnotify];
-    text = ''
-      #!/usr/bin/env bash
-
-      if (pgrep -fl mpv | grep -v grep > /dev/null) then
-          pkill mpv
-          notify-send -u normal "Stopped Lofi Stream"
-      else
-          runbg mpv --no-video https://www.youtube.com/live/jfKfPfyJRdk?si=OF0HKrYFFj33BzMo
-          notify-send -u normal "Started Lofi Stream"
-      fi
-    '';
-  };
 }
