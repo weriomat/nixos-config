@@ -46,7 +46,7 @@
     binfmt.emulatedSystems = ["aarch64-linux"];
 
     # NOTE: kernel is pinned with support for zfs
-    kernelPackages = pkgs.linuxPackages_6_6;
+    kernelPackages = pkgs.linuxPackages_6_12;
   };
 
   fileSystems = {
