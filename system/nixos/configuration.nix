@@ -104,8 +104,6 @@
   # programs.coolercontrol.enable = true;
 
   environment = {
-    systemPackages = with pkgs; [nh];
-    sessionVariables = {FLAKE = "/home/${globals.username}/.nixos/nixos";};
     pathsToLink = ["/share/zsh" "/share/xdg-desktop-portal" "/share/applications"]; # for zsh.enableCompletion
   };
 
@@ -141,6 +139,10 @@
   # graphviz
 
   programs = {
+    nh = {
+      enable = true;
+      flake = /home/${globals.username}/.nixos/nixos;
+    };
     # Corectrl support - for managing CPU/GPU freq via a GUI
     corectrl = {
       enable = true;
