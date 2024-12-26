@@ -5,7 +5,7 @@
   pkgs,
   ...
 }: let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe' getExe;
 in {
   options.my_hyprland.enable = mkEnableOption "Enable hyrpland config";
 
@@ -19,7 +19,6 @@ in {
       wayland
     ];
 
-    # systemd.user.targets.hyprland-session.Unit.Wants = ["xdg-desktop-autostart.target"];
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # NOTE: this options will be used by the nixos-module as well
@@ -27,9 +26,9 @@ in {
 
       systemd = {
         enable = true;
-        enableXdgAutostart = true; # TODO: here
+        enableXdgAutostart = true;
         extraCommands = [
-          "${pkgs.systemd}/bin/systemctl --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
+          "${getExe' pkgs.systemd "systemctl"} --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         ];
         variables = [
           "--all"
@@ -38,11 +37,6 @@ in {
           "XDG_CONFIG_HOME"
         ];
       };
-
-      # TODO: here
-      # reloadConfig = true;
-      # systemdIntegration = true;
-      # recommendedEnvironment = true;
     };
 
     services = {
@@ -58,7 +52,7 @@ in {
         tray = "auto";
         settings = {
           program_options = {
-            terminal = "${config.programs.kitty.package}/bin/kitty";
+            terminal = "${getExe config.programs.kitty.package}";
           };
         };
       };

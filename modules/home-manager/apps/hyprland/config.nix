@@ -4,8 +4,11 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
-}: {
+}: let
+  inherit (lib) getExe getExe';
+in {
   # TODO: here
   # TODO: switch to lib.getEXE
   wayland.windowManager.hyprland = {
@@ -132,13 +135,9 @@
       # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#minimize-steam-instead-of-killing
       # TODO: https://wiki.hyprland.org/Configuring/Uncommon-tips--tricks/#toggle-animationsbluretc-hotkey
 
-      # FIXME: user units dont start at startup
-
       # TODO: steal from zayneyos/ cobalt
-      # TODO: switch to nixpkgs paths
       exec-once = [
-        # TODO: make this paths absolute
-        "${pkgs.systemd}/bin/systemctl --user import-environment &"
+        "${getExe' pkgs.systemd "systemctl"} --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
         # TODO: maybe --all
@@ -147,34 +146,31 @@
         # "xwaylandvideobridge" # TODO: here
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl setcursor Nordzy-cursors 22 &"
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace 1&"
-        "systemctl --user restart kanshi.service waybar.service"
+        "${getExe' pkgs.systemd "systemctl"} --user restart kanshi.service waybar.service"
       ];
 
       # TODO: find an option to launch grettd for session switcher
       # TODO: gnome
 
       "$mainMod" = "SUPER";
-      # TODO: swithc to nix paths
       bind = [
-        # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mainMod, C, killactive,"
-        # "$mainMod, M, exit, "
         "$mainMod, V, togglefloating,"
         "$mainMod, P, pseudo, # dwindle"
-        "$mainMod, J, togglesplit, # dwindle"
+        "$mainMod, D, togglesplit, # dwindle"
 
         # emoji picker
         "$mainMod, E, exec, ${pkgs.rofimoji.override {x11Support = false;}}/bin/rofimoji --selector wofi --clipboarder wl-copy --action copy --typer wtype"
 
         # Thunderbird
-        "$mainMod, T, exec, ${pkgs.thunderbird}/bin/thunderbird"
+        "$mainMod, T, exec, ${getExe pkgs.thunderbird}"
 
         # TODO: here
         # switchching focus with vim keys
-        "$mainMod, h, movefocus, l"
-        "$mainMod, l, movefocus, r"
-        "$mainMod, k, movefocus, u"
-        "$mainMod, j, movefocus, d"
+        "$mainMod, H, movefocus, l"
+        "$mainMod, L, movefocus, r"
+        "$mainMod, K, movefocus, u"
+        "$mainMod, J, movefocus, d"
 
         "$mainMod, F, fullscreen, 1"
         "$mainMod SHIFT, F, fullscreen, 0"
@@ -209,7 +205,7 @@
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
 
-        # "# Example special workspace (scratchpad)""
+        # Example special workspace (scratchpad)
         "$mainMod, S, togglespecialworkspace, magic"
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
@@ -218,15 +214,15 @@
         "$mainMod, mouse_up, workspace, e-1"
 
         # screenshot
-        ",Print, exec, ${inputs.hypr-contrib.packages.${pkgs.system}.grimblast}/bin/grimblast --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+        ",Print, exec, ${getExe inputs.hypr-contrib.packages.${pkgs.system}.grimblast} --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
       ];
 
       bindm = [
-        # "# Move/resize windows with mainMod + LMB/RMB and dragging"
+        # Move/resize windows with mainMod + LMB/RMB and dragging
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
-      # TODO: fix this -> https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
+
       windowrulev2 = [
         "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
         "noanim,class:^(xwaylandvideobridge)$"
@@ -243,8 +239,8 @@
         "float, title:^(.*Bitwarden Password Manager.*)$"
 
         # throw sharing indicators away
-        # "workspace special silent, title:^(Firefox — Sharing Indicator)$"
-        # "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
+        "workspace special silent, title:^(Firefox — Sharing Indicator)$"
+        "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
 
         # idle inhibit while watching videos
         "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
@@ -259,9 +255,6 @@
         "rounding 0, xwayland:1"
         "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$"
         "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
-
-        # don't render hyprbars on tiling windows
-        # "plugin:hyprbars:nobar, floating:0"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
