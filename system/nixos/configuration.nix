@@ -16,6 +16,7 @@
     ./sops.nix
   ];
 
+  hardware.keyboard.qmk.enable = true;
   services.protonmail-bridge.enable = true;
 
   # NOTE: this will punch a hole through the firewall
