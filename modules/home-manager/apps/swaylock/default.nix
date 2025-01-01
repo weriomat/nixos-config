@@ -15,14 +15,14 @@ in
       "${config.programs.swaylock.package}/bin/swaylock"
     ];
 
+    catppuccin.swaylock = {
+      enable = true;
+      flavor = "mocha";
+    };
+
     programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;
-
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-      };
 
       settings = {
         clock = true;

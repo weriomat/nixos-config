@@ -11,14 +11,14 @@ in
   options.mako.enable = mkEnableOption "Enable mako notifications";
 
   config = mkIf config.mako.enable {
+    catppuccin.mako = {
+      enable = true;
+      flavor = "mocha";
+    };
+
     # NOTE: this gets enabled at startup by dbus through `pkgs.mako/share/dbus-1/services/fr.emersion.mako.service`
     services.mako = {
       enable = true;
-
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-      };
 
       # TODO: font here, pango format
       font = "JetBrainsMono Nerd Font 12";

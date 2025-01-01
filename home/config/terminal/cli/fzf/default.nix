@@ -5,17 +5,17 @@
   ...
 }:
 {
+  catppuccin.fzf = {
+    enable = true;
+    flavor = "mocha";
+  };
+
   programs = {
     # TODO: https://github.com/niksingh710/ndots/blob/master/modules/home/shell/fzf.nix
     fzf = {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
-
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-      };
 
       changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d"; # <alt> + c
       changeDirWidgetOptions = [

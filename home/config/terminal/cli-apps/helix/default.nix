@@ -21,6 +21,12 @@ in
   ];
   # TODO: https://gitlab.com/hmajid2301/nixicle/-/blob/main/modules/home/cli/terminals/kitty/default.nix
 
+  catppuccin.helix = {
+    enable = true;
+    flavor = "mocha";
+    useItalics = true;
+  };
+
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -241,12 +247,6 @@ in
           };
         }
       ];
-    };
-
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-      useItalics = true;
     };
 
     settings = {

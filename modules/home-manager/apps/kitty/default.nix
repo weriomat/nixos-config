@@ -17,14 +17,14 @@ in
       "$mainMod SHIFT, K, exec, ${config.programs.kitty.package}/bin/kitty"
     ];
 
+    catppuccin.kitty = {
+      enable = true;
+      flavor = "mocha";
+    };
+
     programs.kitty = {
       enable = true;
       package = if pkgs.stdenv.isDarwin then pkgs.kitty else pkgs.unstable.kitty;
-
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-      };
 
       shellIntegration.enableZshIntegration = true;
 

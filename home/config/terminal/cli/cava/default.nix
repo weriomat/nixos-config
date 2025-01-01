@@ -6,7 +6,7 @@
 }:
 {
   home.packages = lib.mkIf pkgs.stdenv.isLinux [ pkgs.cava ];
-  programs.cava.catppuccin = {
+  catppuccin.cava = {
     enable = true;
     flavor = "mocha";
     transparent = false;

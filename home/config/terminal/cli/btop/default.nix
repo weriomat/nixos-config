@@ -1,16 +1,18 @@
 { lib, ... }:
+let
+  inherit (lib) mkForce;
+in
 {
+  # is beeing overwritten
+  catppuccin.btop = {
+    enable = true;
+    flavor = "mocha";
+  };
   programs.btop = {
     enable = true;
 
-    # is beeing overwritten
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
-
     settings = {
-      color_theme = lib.mkForce "gruvbox_dark_v2";
+      color_theme = mkForce "gruvbox_dark_v2";
       vim_keys = true;
     };
   };

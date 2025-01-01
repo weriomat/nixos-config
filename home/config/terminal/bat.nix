@@ -1,11 +1,12 @@
 { pkgs, ... }:
 {
+  catppuccin.bat = {
+    enable = true;
+    flavor = "mocha";
+  };
+
   programs.bat = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      flavor = "mocha";
-    };
 
     # TODO: less
     #  # Less colors

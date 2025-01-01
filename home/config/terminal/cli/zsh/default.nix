@@ -5,6 +5,11 @@
   ...
 }:
 {
+  catppuccin.zsh-syntax-highlighting = {
+    enable = true;
+    flavor = "mocha";
+  };
+
   # TODO: paths
   # TODO: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/zsh/zsh.nix
   # TODO: add shortcut to set off history
@@ -17,10 +22,6 @@
     # adds 0.15 sek to startup time
     syntaxHighlighting = {
       enable = true;
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-      };
     };
 
     envExtra = ''
