@@ -3,11 +3,15 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf mkForce;
   cfg = config.myfont;
-in {
-  options.myfont.enable = mkEnableOption "Enable my fontconfiguration" // {default = true;};
+in
+{
+  options.myfont.enable = mkEnableOption "Enable my fontconfiguration" // {
+    default = true;
+  };
   config = mkIf cfg.enable {
     fonts = {
       enableDefaultPackages = mkForce false;
@@ -28,13 +32,13 @@ in {
         enable = true;
         defaultFonts = {
           # TODO: set default fonts
-          sansSerif = ["DejaVu Sans"];
+          sansSerif = [ "DejaVu Sans" ];
           # ["FiraGO"];
-          serif = ["DejaVu Serif"];
+          serif = [ "DejaVu Serif" ];
           # ["Source Serif"];
-          monospace = ["DejaVu Sans Mono"];
+          monospace = [ "DejaVu Sans Mono" ];
           # ["MonoLisa Nerd Font"];
-          emoji = ["apple-emoji"];
+          emoji = [ "apple-emoji" ];
         };
       };
     };

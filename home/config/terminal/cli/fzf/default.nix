@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   programs = {
     # TODO: https://github.com/niksingh710/ndots/blob/master/modules/home/shell/fzf.nix
     fzf = {
@@ -29,7 +30,9 @@
       ];
 
       fileWidgetCommand = "${pkgs.fd}/bin/fd --type f"; # <ctrl> + t
-      fileWidgetOptions = ["--preview '${config.programs.bat.package}/bin/bat --color=always --style=numbers --line-range=:500 {}'"];
+      fileWidgetOptions = [
+        "--preview '${config.programs.bat.package}/bin/bat --color=always --style=numbers --line-range=:500 {}'"
+      ];
 
       tmux = {
         enableShellIntegration = true;

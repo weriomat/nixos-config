@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   fonts.fontconfig = {
     enable = true;
     # TODO: fonts -> fira code
@@ -28,7 +29,7 @@
 
     # (pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];})
     # pkgs.nerdfonts
-    (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     # pkgs.twemoji-color-font
     # pkgs.iosevka-comfy.comfy
   ];

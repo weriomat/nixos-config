@@ -20,7 +20,14 @@ stdenv.mkDerivation {
     hash = "sha256-liklPjOJhHOBWQH8AQwkLfIG0KIqdnZcVAa7oMrVZMk=";
   };
 
-  buildInputs = [which imagemagick pngquant zopfli python312Packages.fonttools python312Packages.nototools];
+  buildInputs = [
+    which
+    imagemagick
+    pngquant
+    zopfli
+    python312Packages.fonttools
+    python312Packages.nototools
+  ];
 
   buildPhase = ''
     make -j
@@ -39,7 +46,7 @@ stdenv.mkDerivation {
     description = "Brings Apple's vibrant emojis to your Linux experience";
     homepage = "https://github.com/samuelngs/apple-emoji-linux";
     license = licenses.asl20;
-    maintainers = with maintainers; [weriomat];
+    maintainers = with maintainers; [ weriomat ];
     mainProgram = "apple-emoji-linux";
     platforms = platforms.all;
   };

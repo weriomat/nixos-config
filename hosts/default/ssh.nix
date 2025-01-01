@@ -3,10 +3,11 @@
   lib,
   globals,
   ...
-}: {
+}:
+{
   services = {
     openssh.enable = false;
-    udev.packages = [pkgs.yubikey-personalization];
+    udev.packages = [ pkgs.yubikey-personalization ];
     pcscd.enable = true;
     gnome.gnome-keyring.enable = lib.mkForce false;
   };
@@ -56,43 +57,45 @@
 
         extraConfig = "IdentitiesOnly yes";
 
-        matchBlocks = let
-          raspi_key = "/home/${globals.username}/.ssh/id_ed25519";
-          hetzner_key = "/home/${globals.username}/.ssh/deploy_hetzner";
-        in {
-          # git services
-          "github.com".user = "git";
-          "git.tu-berlin.de".user = "git";
-          "gitlab.cobalt.rocks" = {
-            port = 3724;
-            user = "git";
-            identityFile = raspi_key;
-          };
+        matchBlocks =
+          let
+            raspi_key = "/home/${globals.username}/.ssh/id_ed25519";
+            hetzner_key = "/home/${globals.username}/.ssh/deploy_hetzner";
+          in
+          {
+            # git services
+            "github.com".user = "git";
+            "git.tu-berlin.de".user = "git";
+            "gitlab.cobalt.rocks" = {
+              port = 3724;
+              user = "git";
+              identityFile = raspi_key;
+            };
 
-          # selfhosted
-          raspi = {
-            hostname = "192.168.178.21";
-            user = "marts";
-            identityFile = raspi_key;
-            port = 2077;
+            # selfhosted
+            raspi = {
+              hostname = "192.168.178.21";
+              user = "marts";
+              identityFile = raspi_key;
+              port = 2077;
+            };
+            storage = {
+              user = "u406968";
+              hostname = "u406968.your-storagebox.de";
+              port = 23;
+              identityFile = hetzner_key;
+            };
+            vps = {
+              user = "weriomat";
+              hostname = "49.13.52.45";
+              port = 2077;
+            };
+            big = {
+              user = "weriomat";
+              hostname = "192.168.178.32";
+              port = 2077;
+            };
           };
-          storage = {
-            user = "u406968";
-            hostname = "u406968.your-storagebox.de";
-            port = 23;
-            identityFile = hetzner_key;
-          };
-          vps = {
-            user = "weriomat";
-            hostname = "49.13.52.45";
-            port = 2077;
-          };
-          big = {
-            user = "weriomat";
-            hostname = "192.168.178.32";
-            port = 2077;
-          };
-        };
       };
     };
     services.gpg-agent = {

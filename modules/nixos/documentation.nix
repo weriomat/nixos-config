@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.doc.enable = mkEnableOption "Enable documentation settings";
 
   config = mkIf config.doc.enable {

@@ -4,9 +4,11 @@
   config,
   globals,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.virt.enable = mkEnableOption "Enable virtualisation";
 
   config = mkIf config.virt.enable {
@@ -15,7 +17,10 @@ in {
       enable = true;
     };
     users.users.${globals.username} = {
-      extraGroups = ["libvirtd" "docker"]; # docker new
+      extraGroups = [
+        "libvirtd"
+        "docker"
+      ]; # docker new
     };
 
     virtualisation = {

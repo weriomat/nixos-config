@@ -2,7 +2,8 @@
   pkgs,
   globals,
   ...
-}: {
+}:
+{
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
@@ -50,35 +51,37 @@
 
         extraConfig = "IdentitiesOnly yes";
 
-        matchBlocks = let
-          tu_key = "/Users/${globals.username}/.ssh/id_ed25519";
-          hetzner_key = "/Users/${globals.username}/.ssh/deploy_hetzner";
-        in {
-          "github.com" = {
-            user = "git";
-            identityFile = "/Users/${globals.username}/.ssh/github";
+        matchBlocks =
+          let
+            tu_key = "/Users/${globals.username}/.ssh/id_ed25519";
+            hetzner_key = "/Users/${globals.username}/.ssh/deploy_hetzner";
+          in
+          {
+            "github.com" = {
+              user = "git";
+              identityFile = "/Users/${globals.username}/.ssh/github";
+            };
+            "git.tu-berlin.de" = {
+              user = "git";
+              identityFile = tu_key;
+            };
+            "gitlab.cobalt.rocks" = {
+              user = "git";
+              port = 3724;
+              identityFile = tu_key;
+            };
+            storage = {
+              user = "u406968";
+              hostname = "u406968.your-storagebox.de";
+              port = 23;
+              identityFile = hetzner_key;
+            };
+            vps = {
+              user = "weriomat";
+              hostname = "49.13.52.45";
+              port = 2077;
+            };
           };
-          "git.tu-berlin.de" = {
-            user = "git";
-            identityFile = tu_key;
-          };
-          "gitlab.cobalt.rocks" = {
-            user = "git";
-            port = 3724;
-            identityFile = tu_key;
-          };
-          storage = {
-            user = "u406968";
-            hostname = "u406968.your-storagebox.de";
-            port = 23;
-            identityFile = hetzner_key;
-          };
-          vps = {
-            user = "weriomat";
-            hostname = "49.13.52.45";
-            port = 2077;
-          };
-        };
       };
     };
     # systemd service

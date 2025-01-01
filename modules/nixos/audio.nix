@@ -2,9 +2,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.audio.enable = mkEnableOption "Enable audio settings";
 
   config = mkIf config.audio.enable {
@@ -67,4 +69,3 @@ in {
 #   enable = true;
 #   enableGraphical = true;
 # };
-

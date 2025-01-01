@@ -3,16 +3,18 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.swayidle.enable = mkEnableOption "Enable swayidle";
 
   config = mkIf config.swayidle.enable {
     services.swayidle = {
       enable = true;
       systemdTarget = "hyprland-session.target";
-      extraArgs = ["-w"];
+      extraArgs = [ "-w" ];
 
       timeouts = [
         {

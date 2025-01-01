@@ -5,9 +5,16 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (lib) mkEnableOption mkOption types mkIf;
-in {
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkOption
+    types
+    mkIf
+    ;
+in
+{
   options.waybar = {
     enable = mkEnableOption "Enable waybar config";
     font = mkOption {
@@ -139,7 +146,9 @@ in {
   # };
   config = mkIf config.waybar.enable {
     # kill waybar
-    wayland.windowManager.hyprland.settings.bind = ["$mainMod SHIFT, B, exec, ${pkgs.toybox}/bin/pkill -SIGUSR1 .waybar-wrapped"];
+    wayland.windowManager.hyprland.settings.bind = [
+      "$mainMod SHIFT, B, exec, ${pkgs.toybox}/bin/pkill -SIGUSR1 .waybar-wrapped"
+    ];
 
     programs.waybar = {
       enable = true;
@@ -163,11 +172,29 @@ in {
           "custom/playerctl#forward"
           "custom/audio_idle_inhibitor"
         ];
-        modules-center = ["hyprland/workspaces"];
+        modules-center = [ "hyprland/workspaces" ];
         modules-right =
-          if globals.laptop
-          then ["tray" "cpu" "battery" "memory" "disk" "pulseaudio" "network" "clock"]
-          else ["tray" "cpu" "memory" "disk" "pulseaudio" "network" "clock"];
+          if globals.laptop then
+            [
+              "tray"
+              "cpu"
+              "battery"
+              "memory"
+              "disk"
+              "pulseaudio"
+              "network"
+              "clock"
+            ]
+          else
+            [
+              "tray"
+              "cpu"
+              "memory"
+              "disk"
+              "pulseaudio"
+              "network"
+              "clock"
+            ];
         clock = {
           format = " {:%H:%M}";
           tooltip = "true";
@@ -292,10 +319,7 @@ in {
           interval = 2;
         };
         disk = {
-          path =
-            if globals.laptop
-            then "/home"
-            else "/";
+          path = if globals.laptop then "/home" else "/";
           format = "󰋊 {percentage_used}%";
           interval = 60;
           tooltip = true;
@@ -339,7 +363,9 @@ in {
         pulseaudio = {
           format = "{icon} {volume}%";
           format-muted = "󰖁 ";
-          format-icons = {default = [" "];};
+          format-icons = {
+            default = [ " " ];
+          };
           scroll-step = 5;
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
           on-click-right = "${pkgs.pamixer}/bin/pamixer -t";

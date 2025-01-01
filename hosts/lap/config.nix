@@ -2,7 +2,8 @@
   globals,
   lib,
   ...
-}: {
+}:
+{
   # NOTE: disbale virtualiziation
   virt.enable = lib.mkForce false;
 
@@ -12,7 +13,7 @@
   # TODO: smartd for other hosts
   # TODO: upstream
   # TODO: https://rair.dev/zfs-smart-ntfy/
-  sops.secrets."ntfy" = {};
+  sops.secrets."ntfy" = { };
 
   services = {
     # TODO: setup mail as a relay though vps

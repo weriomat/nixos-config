@@ -1,5 +1,6 @@
 # from `https://github.com/fufexan/dotfiles/blob/main/system/programs/gamemode.nix`
-{inputs, ...}: {
+{ inputs, ... }:
+{
   programs.gamemode = {
     enable = true;
     settings = {

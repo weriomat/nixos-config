@@ -3,61 +3,75 @@
   outputs,
   nix-colors,
   ...
-}: let
+}:
+let
   globals = rec {
-    isLaptop =
-      false; # global for specifying if hyprland should be enabled
+    isLaptop = false; # global for specifying if hyprland should be enabled
     username = "marts";
     host = "nixos-laptop";
     hostname = host;
     laptop = true;
   };
 in
-  inputs.nixpkgs.lib.nixosSystem {
-    specialArgs = {inherit inputs outputs nix-colors globals;};
-    modules = [
-      ../../modules/nixos
-      ../../system/nixos/configuration.nix
+inputs.nixpkgs.lib.nixosSystem {
+  specialArgs = {
+    inherit
+      inputs
+      outputs
+      nix-colors
+      globals
+      ;
+  };
+  modules = [
+    ../../modules/nixos
+    ../../system/nixos/configuration.nix
 
-      ./hardware-configuration.nix
-      ./power.nix
-      ./ssh.nix
-      ./config.nix
-      # for UNI
-      ./gns.nix
+    ./hardware-configuration.nix
+    ./power.nix
+    ./ssh.nix
+    ./config.nix
+    # for UNI
+    ./gns.nix
 
-      # sops
-      inputs.sops-nix.nixosModules.sops
+    # sops
+    inputs.sops-nix.nixosModules.sops
 
-      # arkenfox
-      inputs.arkenfox.hmModules.default
+    # arkenfox
+    inputs.arkenfox.hmModules.default
 
-      # catppuccin nix
-      inputs.catppuccin.nixosModules.catppuccin
+    # catppuccin nix
+    inputs.catppuccin.nixosModules.catppuccin
 
-      # nixos hardware
-      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-amd
-      inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-      inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    # nixos hardware
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-amd
+    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
 
-      inputs.home-manager.nixosModules.home-manager
-      {
-        home-manager = {
-          extraSpecialArgs = {inherit inputs outputs nix-colors globals;};
-          useUserPackages = true;
-          useGlobalPkgs = true;
-          sharedModules = [
-            inputs.arkenfox.hmModules.default
-          ];
-          users.${globals.username}.imports = [
-            ../../modules/home-manager
-            ../../home/nixos
-            ../../home/config
-            inputs.nix-colors.homeManagerModules.default
-            inputs.nix-index-database.hmModules.nix-index
-            inputs.catppuccin.homeManagerModules.catppuccin
-          ];
+    inputs.home-manager.nixosModules.home-manager
+    {
+      home-manager = {
+        extraSpecialArgs = {
+          inherit
+            inputs
+            outputs
+            nix-colors
+            globals
+            ;
         };
-      }
-    ];
-  }
+        useUserPackages = true;
+        useGlobalPkgs = true;
+        sharedModules = [
+          inputs.arkenfox.hmModules.default
+        ];
+        users.${globals.username}.imports = [
+          ../../modules/home-manager
+          ../../home/nixos
+          ../../home/config
+          inputs.nix-colors.homeManagerModules.default
+          inputs.nix-index-database.hmModules.nix-index
+          inputs.catppuccin.homeManagerModules.catppuccin
+        ];
+      };
+    }
+  ];
+}

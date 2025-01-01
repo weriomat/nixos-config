@@ -1,4 +1,5 @@
-{inputs, ...}: {
+{ inputs, ... }:
+{
   # inputs.self, inputs.nix-darwin, and inputs.nixpkgs can be accessed here
 
   documentation = {
@@ -17,7 +18,7 @@
     checkConfig = true;
     # is the default -> all users are allowed -> privileged users always are allowed
     settings = {
-      allowed-users = ["*"];
+      allowed-users = [ "*" ];
       auto-optimise-store = true;
       sandbox = true;
     };
@@ -34,8 +35,7 @@
 
   # Set Git commit hash for darwin-version.
   system = {
-    configurationRevision =
-      inputs.self.rev or inputs.self.dirtyRev or null;
+    configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
     # Used for backwards compatibility, please read the changelog before changing.
     # $ darwin-rebuild changelog
@@ -98,8 +98,7 @@
         AppleInterfaceStyle = "Dark";
         # AppleFontSmoothing
 
-        AppleInterfaceStyleSwitchesAutomatically =
-          false;
+        AppleInterfaceStyleSwitchesAutomatically = false;
 
         # AppleKeyboardUIMode
 
@@ -149,7 +148,9 @@
 
   # The platform the configuration will be used on.
   nixpkgs = {
-    config = {allowUnfree = true;};
+    config = {
+      allowUnfree = true;
+    };
     hostPlatform = "aarch64-darwin";
   };
 }

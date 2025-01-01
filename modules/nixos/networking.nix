@@ -3,13 +3,17 @@
   config,
   globals,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf mkForce;
   cfg = config.networking;
-in {
+in
+{
   options.networking = {
     enable = mkEnableOption "Enable networking settings";
-    dns.enable = mkEnableOption "Enable dns settings" // {default = true;};
+    dns.enable = mkEnableOption "Enable dns settings" // {
+      default = true;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -18,7 +22,7 @@ in {
       enable = true;
       dnsovertls = "true";
       dnssec = "false";
-      domains = ["~."];
+      domains = [ "~." ];
       fallbackDns = config.networking.nameservers;
     };
 
@@ -40,10 +44,7 @@ in {
 
       networkmanager = {
         enable = true;
-        dns =
-          if cfg.dns.enable
-          then mkForce "none"
-          else "default"; # NOTE: tell nm not to touch /etc/resolv.conf
+        dns = if cfg.dns.enable then mkForce "none" else "default"; # NOTE: tell nm not to touch /etc/resolv.conf
         wifi.powersave = true;
       };
 

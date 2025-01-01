@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # dictionaries
   environment.systemPackages = with pkgs; [
     aspell

@@ -4,14 +4,16 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
   inherit (config.sops) templates;
   placeholders = config.sops.placeholder;
-in {
+in
+{
   options.borg.enable = mkEnableOption "Enable borg settings";
   config = mkIf config.borg.enable {
-    environment.systemPackages = with pkgs; [vorta];
+    environment.systemPackages = with pkgs; [ vorta ];
 
     # NOTE: idea from: https://gitlab.cobalt.rocks/shared-configs/nixos-ng/-/blob/b41b04b8d1dbcfe536c4fa175cb13f80fb484e1d/hosts/carbon/backups/shared.nix#L5
     # borgmatic shared configuration to provide repositories for per-application backups
@@ -19,19 +21,19 @@ in {
       secrets = {
         # NOTE: this user should only have ro access to the encrypted backup
         # username for ssh to storage box
-        "storage_box/user" = {};
+        "storage_box/user" = { };
         # port for ssh to storage box
-        "storage_box/port" = {};
+        "storage_box/port" = { };
         # hostname of storage box
-        "storage_box/host" = {};
+        "storage_box/host" = { };
         # ssh private key to access storage box
-        "storage_box/key" = {};
+        "storage_box/key" = { };
         # public ssh host key of storage box
-        "storage_box/host_key" = {};
+        "storage_box/host_key" = { };
         # encryption key for borg repo
-        "storage_box/encryption_passphrase" = {};
+        "storage_box/encryption_passphrase" = { };
         # ntfy user password
-        "storage_box/ntfy" = {};
+        "storage_box/ntfy" = { };
       };
 
       templates = {
@@ -115,7 +117,9 @@ in {
           }
         ];
         # Passphrase to unlock the encryption key with.
-        encryption_passcommand = "${pkgs.coreutils}/bin/cat ${config.sops.secrets."storage_box/encryption_passphrase".path}";
+        encryption_passcommand = "${pkgs.coreutils}/bin/cat ${
+          config.sops.secrets."storage_box/encryption_passphrase".path
+        }";
         # Number of seconds between each checkpoint during a long-running backup.
         checkpoint_interval = 1800;
         # Type of compression to use when creating archives.
@@ -123,7 +127,9 @@ in {
         # Remote network upload rate limit in kiBytes/second.
         upload_rate_limit = 4000;
         # Command to use instead of "ssh". This can be used to specify ssh options.
-        ssh_command = "ssh -p \${storagePort} -i ${templates.backupKey.path} -o UserKnownHostsFile=${config.sops.secrets."storage_box/host_key".path}";
+        ssh_command = "ssh -p \${storagePort} -i ${templates.backupKey.path} -o UserKnownHostsFile=${
+          config.sops.secrets."storage_box/host_key".path
+        }";
         # Keep all archives within this time interval. See "skip_actions" for
         # disabling pruning altogether.
         # Number of daily archives to keep.

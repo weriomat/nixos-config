@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   # TODO: here
   # stolen from https://haseebmajid.dev/posts/2023-11-15-part-3-hyprland-as-part-of-your-development-workflow/
   laptop_lid_switch = pkgs.writeShellScriptBin "laptop_lid_switch" ''
@@ -16,7 +17,12 @@
   # stolen from https://gitlab.com/Zaney/zaneyos/-/blob/main/scripts/web-search.nix?ref_type=heads
   web-search = pkgs.writeShellApplication {
     name = "web-search";
-    runtimeInputs = with pkgs; [hyprland swayidle swaylock libnotify];
+    runtimeInputs = with pkgs; [
+      hyprland
+      swayidle
+      swaylock
+      libnotify
+    ];
     text = ''
        declare -A URLS
 
@@ -62,7 +68,14 @@
 
   fshow = pkgs.writeShellApplication {
     name = "fshow";
-    runtimeInputs = with pkgs; [sqlite coreutils fzf gnugrep gawkInteractive gnused];
+    runtimeInputs = with pkgs; [
+      sqlite
+      coreutils
+      fzf
+      gnugrep
+      gawkInteractive
+      gnused
+    ];
     text = ''
       git log --graph --color=always \
           --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
@@ -78,7 +91,13 @@
   fzfmenu = pkgs.writeShellApplication {
     # Stolen from https://github.com/junegunn/fzf/wiki/Examples#fzf-as-dmenu-replacement
     name = "fzfmenu";
-    runtimeInputs = with pkgs; [fzf toybox kitty bash gawkInteractive];
+    runtimeInputs = with pkgs; [
+      fzf
+      toybox
+      kitty
+      bash
+      gawkInteractive
+    ];
     text = ''
       #!/usr/bin/env bash
       FZF_DEFAULT_OPTS="--height=100% --layout=reverse --border --no-sort --prompt=\"~ \" --color=dark,hl:red:regular,fg+:white:regular,hl+:red:regular:reverse,query:white:regular,info:gray:regular,prompt:red:bold,pointer:red:bold" exec kitty --class="fzf-menu" -e bash -c "fzf-tmux -m $* < /proc/$$/fd/0 | awk 'BEGIN {ORS=\" \"} {print}' > /proc/$$/fd/1"
@@ -87,7 +106,12 @@
 
   fb = pkgs.writeShellApplication {
     name = "fb";
-    runtimeInputs = with pkgs; [buku gawkInteractive toybox sqlite];
+    runtimeInputs = with pkgs; [
+      buku
+      gawkInteractive
+      toybox
+      sqlite
+    ];
     # TODO: fix to work with fzf menu, sqlite3: https://github.com/junegunn/fzf/wiki/Examples#buku
 
     text = ''
@@ -109,7 +133,11 @@
 
   fif = pkgs.writeShellApplication {
     name = "fif";
-    runtimeInputs = with pkgs; [ripgrep-all toybox coreutils];
+    runtimeInputs = with pkgs; [
+      ripgrep-all
+      toybox
+      coreutils
+    ];
 
     text = ''
       #!/usr/bin/env bash
@@ -173,7 +201,14 @@
 
   fh = pkgs.writeShellApplication {
     name = "fh";
-    runtimeInputs = with pkgs; [sqlite coreutils fzf gnugrep gawkInteractive gnused];
+    runtimeInputs = with pkgs; [
+      sqlite
+      coreutils
+      fzf
+      gnugrep
+      gawkInteractive
+      gnused
+    ];
     text = ''
       #!/usr/bin/env bash
       # query all of your firefox history by visit date, title or url
@@ -226,7 +261,7 @@
   # };
   toggle_toggle_blur = pkgs.writeShellApplication {
     name = "toggle_blur";
-    runtimeInputs = with pkgs; [hyprland];
+    runtimeInputs = with pkgs; [ hyprland ];
     text = ''
         #!/usr/bin/env bash
       if hyprctl getoption decoration:blur:enabled | grep "int: 1" >/dev/null ; then

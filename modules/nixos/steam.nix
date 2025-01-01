@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.steam.enable = mkEnableOption "Enable Gaming thingies";
 
   # This is going to be decided per host
@@ -13,10 +15,8 @@ in {
     programs = {
       steam = {
         enable = true;
-        remotePlay.openFirewall =
-          true; # Open ports in the firewall for Steam Remote Play
-        dedicatedServer.openFirewall =
-          true; # Open ports in the firewall for Source Dedicated Server
+        remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+        dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
         gamescopeSession.enable = true;
       };
     };

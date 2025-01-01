@@ -3,10 +3,11 @@
   lib,
   globals,
   ...
-}: {
+}:
+{
   services = {
     openssh.enable = false;
-    udev.packages = [pkgs.yubikey-personalization];
+    udev.packages = [ pkgs.yubikey-personalization ];
     pcscd.enable = true;
     gnome.gnome-keyring.enable = lib.mkForce false;
   };
@@ -65,32 +66,34 @@
 
         extraConfig = "IdentitiesOnly yes";
 
-        matchBlocks = let
-          hetzner_key = "/home/${globals.username}/.ssh/deploy_hetzner";
-        in {
-          # git services
-          "github.com".user = "git";
-          "git.tu-berlin.de".user = "git";
-          "gitlab.cobalt.rocks".user = "git";
+        matchBlocks =
+          let
+            hetzner_key = "/home/${globals.username}/.ssh/deploy_hetzner";
+          in
+          {
+            # git services
+            "github.com".user = "git";
+            "git.tu-berlin.de".user = "git";
+            "gitlab.cobalt.rocks".user = "git";
 
-          # selfhosted
-          storage = {
-            user = "u406968";
-            hostname = "u406968.your-storagebox.de";
-            port = 23;
-            identityFile = hetzner_key;
+            # selfhosted
+            storage = {
+              user = "u406968";
+              hostname = "u406968.your-storagebox.de";
+              port = 23;
+              identityFile = hetzner_key;
+            };
+            vps = {
+              user = "weriomat";
+              hostname = "49.13.52.45";
+              port = 2077;
+            };
+            big = {
+              user = "weriomat";
+              hostname = "192.168.178.32";
+              port = 2077;
+            };
           };
-          vps = {
-            user = "weriomat";
-            hostname = "49.13.52.45";
-            port = 2077;
-          };
-          big = {
-            user = "weriomat";
-            hostname = "192.168.178.32";
-            port = 2077;
-          };
-        };
       };
     };
     services.gpg-agent = {

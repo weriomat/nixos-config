@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   services.gns3-server = {
     enable = true;
     dynamips.enable = true;
@@ -20,5 +21,8 @@
     addNetworkInterface = true;
   };
 
-  environment.systemPackages = [pkgs.gns3-gui pkgs.xterm];
+  environment.systemPackages = [
+    pkgs.gns3-gui
+    pkgs.xterm
+  ];
 }

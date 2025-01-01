@@ -2,7 +2,8 @@
   pkgs,
   globals,
   ...
-}: {
+}:
+{
   time.timeZone = "Europe/Berlin";
 
   users = {

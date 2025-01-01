@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf mkEnableOption;
-in {
+in
+{
   options.packages.enable = mkEnableOption "Enable packages";
 
   config = mkIf config.packages.enable {
@@ -64,8 +66,8 @@ in {
       nodejs
       go
       openjdk
-      (pkgs.python3.withPackages (p:
-        with p; [
+      (pkgs.python3.withPackages (
+        p: with p; [
           pandas
           ffmpeg-python
           isort
@@ -79,7 +81,8 @@ in {
           git-filter-repo
           yt-dlp
           matplotlib
-        ]))
+        ]
+      ))
       python3
 
       gcc

@@ -1,6 +1,6 @@
 # TODO: here
 # stolen from `https://github.com/fufexan/dotfiles/blob/main/home/services/system/power-monitor.nix`
-_: {}
+_: { }
 # {
 #   pkgs,
 #   lib,
@@ -96,4 +96,3 @@ _: {}
 #     inherit script;
 #   };
 # }
-

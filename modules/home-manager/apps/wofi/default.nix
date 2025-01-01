@@ -2,13 +2,17 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.wofi.enable = mkEnableOption "Enable wofi";
 
   config = mkIf config.wofi.enable {
-    wayland.windowManager.hyprland.settings.bind = ["$mainMod, R, exec, ${config.programs.wofi.package}/bin/wofi --show drun"];
+    wayland.windowManager.hyprland.settings.bind = [
+      "$mainMod, R, exec, ${config.programs.wofi.package}/bin/wofi --show drun"
+    ];
 
     # TODO: here
     # bind=ALT,R,exec,wofi --show run --xoffset=1670 --yoffset=12 --width=230px --height=984 --style=$HOME/.config/wofi.css --term=footclient --prompt=Run

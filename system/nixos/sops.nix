@@ -3,9 +3,11 @@
   config,
   globals,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.sops.enable = mkEnableOption "Enable sops settings";
 
   config = mkIf config.sops.enable {

@@ -6,18 +6,18 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) getExe getExe';
-in {
+in
+{
   # TODO: here
   # TODO: switch to lib.getEXE
   wayland.windowManager.hyprland = {
     # Create a easy way to resize windows
     extraConfig =
       # from https://www.reddit.com/r/hyprland/comments/14jehzj/creating_keybindings_to_resize_a_window/
-      /*
-      hyprlang
-      */
+      # hyprlang
       ''
         # will switch to a submap called resize
         bind = ALT, R, submap, resize
@@ -160,7 +160,9 @@ in {
         "$mainMod, D, togglesplit, # dwindle"
 
         # emoji picker
-        "$mainMod, E, exec, ${pkgs.rofimoji.override {x11Support = false;}}/bin/rofimoji --selector wofi --clipboarder wl-copy --action copy --typer wtype"
+        "$mainMod, E, exec, ${
+          pkgs.rofimoji.override { x11Support = false; }
+        }/bin/rofimoji --selector wofi --clipboarder wl-copy --action copy --typer wtype"
 
         # Thunderbird
         "$mainMod, T, exec, ${getExe pkgs.thunderbird}"
@@ -214,7 +216,9 @@ in {
         "$mainMod, mouse_up, workspace, e-1"
 
         # screenshot
-        ",Print, exec, ${getExe inputs.hypr-contrib.packages.${pkgs.system}.grimblast} --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+        ",Print, exec, ${
+          getExe inputs.hypr-contrib.packages.${pkgs.system}.grimblast
+        } --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
       ];
 
       bindm = [
@@ -267,7 +271,9 @@ in {
 
         follow_mouse = 1;
 
-        touchpad = {natural_scroll = "no";};
+        touchpad = {
+          natural_scroll = "no";
+        };
 
         sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
       };
@@ -279,7 +285,8 @@ in {
         border_size = 2;
         # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         # "col.inactive_border" = "rgba(595959aa)";
-        "col.active_border" = "rgb(${config.colorScheme.palette.base0E}) rgb(${config.colorScheme.palette.base0C}) 45deg";
+        "col.active_border" =
+          "rgb(${config.colorScheme.palette.base0E}) rgb(${config.colorScheme.palette.base0C}) 45deg";
         "col.inactive_border" = "0x00000000";
         # TODO: fix this
         # border_part_of_window = false;
@@ -400,8 +407,7 @@ in {
 
       misc = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        force_default_wallpaper =
-          0; # Set to 0 to disable the anime mascot wallpapers
+        force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
         disable_hyprland_logo = true;
       };
     };

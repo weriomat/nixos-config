@@ -2,7 +2,8 @@
   inputs,
   pkgs,
   ...
-}: {
+}:
+{
   programs.tmux = {
     enable = true;
     aggressiveResize = true; # resize window to the smalles session for which is in the current window
@@ -111,7 +112,7 @@
           bind-key -T copy-mode-vi 'C-\' select-pane -l
         '';
       }
-      {plugin = tmuxPlugins.yank;}
+      { plugin = tmuxPlugins.yank; }
       {
         plugin = tmuxPlugins.resurrect;
         extraConfig = ''

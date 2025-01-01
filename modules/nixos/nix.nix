@@ -5,16 +5,21 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.nix-settings.enable = mkEnableOption "Enable nix settings";
 
   config = mkIf config.nix-settings.enable {
     nix = {
       channel.enable = false;
 
-      nixPath = ["nixpkgs=${inputs.nixpkgs}" "unstable=${inputs.nixpkgs-unstable}"];
+      nixPath = [
+        "nixpkgs=${inputs.nixpkgs}"
+        "unstable=${inputs.nixpkgs-unstable}"
+      ];
 
       # enable local registry for better search
       # https://discourse.nixos.org/t/local-flake-based-nix-search-nix-run-and-nix-shell/13433/12
@@ -24,8 +29,16 @@ in {
       };
 
       settings = {
-        allowed-users = ["${globals.username}" "root" "@wheel"];
-        trusted-users = ["${globals.username}" "root" "@wheel"];
+        allowed-users = [
+          "${globals.username}"
+          "root"
+          "@wheel"
+        ];
+        trusted-users = [
+          "${globals.username}"
+          "root"
+          "@wheel"
+        ];
         sandbox = true;
         experimental-features = "nix-command flakes";
         auto-optimise-store = true;

@@ -3,11 +3,13 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   # TODO: fix this
-  imports = [(import ./theme-template.nix)];
+  imports = [ (import ./theme-template.nix) ];
   options.discord.enable = mkEnableOption "Enable discord overlay";
 
   config = mkIf config.discord.enable {

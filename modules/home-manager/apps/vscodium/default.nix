@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.vscode.enable = mkEnableOption "Enable my vscode config";
 
   config = mkIf config.vscode.enable {

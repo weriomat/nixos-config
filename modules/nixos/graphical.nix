@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.graphical.enable = mkEnableOption "Enable graphical apps";
 
   config = mkIf config.graphical.enable {

@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.bat = {
     enable = true;
     catppuccin = {
@@ -16,11 +17,17 @@
     # export LESS_TERMCAP_ue=$'\e[0m'
     # export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-    extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch prettybat]; # missing batpipe
+    extraPackages = with pkgs.bat-extras; [
+      batdiff
+      batman
+      batgrep
+      batwatch
+      prettybat
+    ]; # missing batpipe
 
     # for highliting if something fales
     # see: https://packagecontrol.io
-    syntaxes = {};
+    syntaxes = { };
 
     # TODO: check if deprecated since catppuccin nix
     themes = {

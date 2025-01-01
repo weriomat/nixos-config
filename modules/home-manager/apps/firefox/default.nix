@@ -5,10 +5,12 @@
   config,
   globals,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf licenses;
   cfg = config.firefox;
-in {
+in
+{
   options.firefox = {
     enable = mkEnableOption "Enable firefox config";
     arkenfox.enable = mkEnableOption "Enable arkenfox";
@@ -154,42 +156,42 @@ in {
         bookmarks = [
           {
             name = "Home-Manager Wiki";
-            tags = ["wiki"];
+            tags = [ "wiki" ];
             keyword = "homemanager";
             url = "https://nix-community.github.io/home-manager/options.xhtml";
           }
           {
             name = "Nix - A One Pager -> Nix Language";
-            tags = ["wiki"];
+            tags = [ "wiki" ];
             keyword = "nix";
             url = "https://github.com/tazjin/nix-1p";
           }
           {
             name = "nixos-manual";
-            tags = ["wiki"];
+            tags = [ "wiki" ];
             keyword = "nixos";
             url = "https://nixos.org/manual/nix/stable/introduction";
           }
           {
             name = "NixOS - Book";
-            tags = ["Books"];
+            tags = [ "Books" ];
             keyword = "nixbook";
             url = "https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration";
           }
           {
             name = "Install guide of steam";
-            tags = ["wiki"];
+            tags = [ "wiki" ];
             keyword = "steam";
             url = "https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html";
           }
           {
             name = "rust flake";
-            tags = ["rust"];
+            tags = [ "rust" ];
             url = "https://www.tweag.io/blog/2022-09-22-rust-nix/";
           }
           {
             name = "rust flake with hercules ci";
-            tags = ["rust"];
+            tags = [ "rust" ];
             url = "https://github.com/cpu/rust-flake/blob/main/README.md";
           }
           {
@@ -198,7 +200,7 @@ in {
             bookmarks = [
               {
                 name = "noogle";
-                tags = ["nix"];
+                tags = [ "nix" ];
                 url = "https://noogle.dev/";
               }
             ];
@@ -285,7 +287,7 @@ in {
           vimium # https://github.com/philc/vimium
 
           # TODO: here
-          (languagetool.overrideAttrs {meta.license = licenses.free;})
+          (languagetool.overrideAttrs { meta.license = licenses.free; })
           # languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
 
           #    privacy-badger
@@ -317,7 +319,7 @@ in {
                   template = "https://crates.io/search?q={searchTerms}";
                 }
               ];
-              definedAliases = ["@c"];
+              definedAliases = [ "@c" ];
             };
             "Noogle" = {
               urls = [
@@ -326,7 +328,7 @@ in {
                 }
               ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
-              definedAliases = ["@n"];
+              definedAliases = [ "@n" ];
             };
             "Nix Options" = {
               urls = [
@@ -345,7 +347,7 @@ in {
                 }
               ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@o"];
+              definedAliases = [ "@o" ];
             };
             "Nix Packages" = {
               urls = [
@@ -364,7 +366,7 @@ in {
                 }
               ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = ["@np"];
+              definedAliases = [ "@np" ];
             };
             "ProtonDB" = {
               urls = [
@@ -372,7 +374,7 @@ in {
                   template = "https://www.protondb.com/search?q={searchTerms}";
                 }
               ];
-              definedAliases = ["@pd"];
+              definedAliases = [ "@pd" ];
             };
             "NixOS Wiki" = {
               urls = [
@@ -382,7 +384,7 @@ in {
               ];
               iconUpdateURL = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000; # every day
-              definedAliases = ["@nw"];
+              definedAliases = [ "@nw" ];
             };
             "Home Manager Options" = {
               urls = [
@@ -390,7 +392,7 @@ in {
                   template = "https://home-manager-options.extranix.com/?query={searchTerms}";
                 }
               ];
-              definedAliases = ["@hm"];
+              definedAliases = [ "@hm" ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
           };

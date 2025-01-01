@@ -3,7 +3,8 @@
   inputs,
   globals,
   ...
-}: {
+}:
+{
   # TODO: sytembus notify
   # services.systembus-notify = {};
 
@@ -12,10 +13,7 @@
     enable = true;
     arkenfox.enable = true;
   };
-  hyprland.enable =
-    if globals.isLaptop
-    then false
-    else true;
+  hyprland.enable = if globals.isLaptop then false else true;
   vscode.enable = true;
   kitty.enable = true;
   thunderbird.enable = true;
@@ -173,7 +171,7 @@
     inherit (globals) username;
     homeDirectory = "/home/${username}";
     stateVersion = "23.11"; # Has not to be changed
-    packages = builtins.attrValues (import ../config/scripts {inherit pkgs globals inputs;});
+    packages = builtins.attrValues (import ../config/scripts { inherit pkgs globals inputs; });
     # Add ./local/bin to $PATH
     sessionPath = [
       "$HOME/.cargo/bin"

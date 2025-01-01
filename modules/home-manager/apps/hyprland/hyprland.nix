@@ -4,9 +4,16 @@
   lib,
   pkgs,
   ...
-}: let
-  inherit (lib) mkEnableOption mkIf getExe' getExe;
-in {
+}:
+let
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    getExe'
+    getExe
+    ;
+in
+{
   options.my_hyprland.enable = mkEnableOption "Enable hyrpland config";
 
   config = mkIf config.my_hyprland.enable {

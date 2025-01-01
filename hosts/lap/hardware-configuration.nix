@@ -7,7 +7,8 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -27,23 +28,29 @@
       systemd-boot.configurationLimit = 100;
     };
     initrd = {
-      availableKernelModules = ["nvme" "xhci_pci" "uas" "sd_mod"];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "uas"
+        "sd_mod"
+      ];
       kernelModules = [
         "cpufreq_ondemand"
         "cpufreq_powersave"
       ];
 
       luks = {
-        devices."luks-rpool-nvme-Samsung_SSD_990_PRO_2TB_S7DNNU0X417249D-part2".device = "/dev/disk/by-uuid/47848e3e-66c6-43e6-a878-096b608c098d";
+        devices."luks-rpool-nvme-Samsung_SSD_990_PRO_2TB_S7DNNU0X417249D-part2".device =
+          "/dev/disk/by-uuid/47848e3e-66c6-43e6-a878-096b608c098d";
         devices."swapDevice".device = "/dev/disk/by-uuid/de8dd340-6c95-471a-9394-db5bef325386";
       };
     };
-    kernelModules = ["kvm-amd"];
+    kernelModules = [ "kvm-amd" ];
 
-    extraModulePackages = [];
+    extraModulePackages = [ ];
 
     # support for building nix packages for rp4
-    binfmt.emulatedSystems = ["aarch64-linux"];
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     # NOTE: kernel is pinned with support for zfs
     kernelPackages = pkgs.linuxPackages_6_12;
@@ -98,9 +105,9 @@
 
   environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
 
-  services.xserver.videoDrivers = ["amdgpu"];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
-  swapDevices = [{device = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8";}];
+  swapDevices = [ { device = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8"; } ];
   zramSwap.enable = true;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

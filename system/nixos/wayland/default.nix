@@ -3,13 +3,15 @@
   pkgs,
   globals,
   ...
-}: let
+}:
+let
   inherit (lib) mkForce;
   # NOTE: this is the version used by home-manager
   # hyprland = config.home-manager.users.${globals.username}.wayland.windowManager.hyprland.finalPackage;
   inherit (pkgs) hyprland;
-in {
-  imports = [./gnome.nix];
+in
+{
+  imports = [ ./gnome.nix ];
 
   programs.xwayland.enable = true; # Enable simulation of x11
 
@@ -22,7 +24,13 @@ in {
 
     printing = {
       enable = true;
-      drivers = with pkgs; [brlaser brgenml1lpr brgenml1cupswrapper gutenprint gutenprintBin];
+      drivers = with pkgs; [
+        brlaser
+        brgenml1lpr
+        brgenml1cupswrapper
+        gutenprint
+        gutenprintBin
+      ];
     };
 
     dbus.enable = true;
@@ -61,24 +69,26 @@ in {
     wlr.enable = mkForce false; # hyprland has its own portal
     xdgOpenUsePortal = true;
     extraPortals = [
-      (pkgs.xdg-desktop-portal-hyprland.override {inherit hyprland;})
+      (pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; })
     ];
-    configPackages = [hyprland];
+    configPackages = [ hyprland ];
   };
 
   # Enable polkit
   security = {
     polkit.enable = true;
-    pam.services.swaylock = {};
+    pam.services.swaylock = { };
   };
 
   # Enable polkit for system wide auth, required as part of gnome-compat
   systemd.user = {
     services.polkit-gnome-authentication-agent-1 = {
       description = "Gnome polkit agent";
-      partOf = ["graphical-session.target"];
+      partOf = [ "graphical-session.target" ];
       script = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      unitConfig = {ConditionUser = "!@system";};
+      unitConfig = {
+        ConditionUser = "!@system";
+      };
     };
 
     # Set default hyprland environment
@@ -86,5 +96,5 @@ in {
       DefaultEnvironment="PATH=/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:$PATH"
     '';
   };
-  environment.systemPackages = with pkgs; [polkit_gnome];
+  environment.systemPackages = with pkgs; [ polkit_gnome ];
 }

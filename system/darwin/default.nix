@@ -1,1 +1,8 @@
-{...}: {imports = [./packages ./config ./homebrew];}
+{ ... }:
+{
+  imports = [
+    ./packages
+    ./config
+    ./homebrew
+  ];
+}

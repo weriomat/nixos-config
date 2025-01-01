@@ -1,3 +1,8 @@
-{...}: {imports = [./terminal ./fonts.nix];}
+{ ... }:
+{
+  imports = [
+    ./terminal
+    ./fonts.nix
+  ];
+}
 # TODO: rework import/ config layout
-

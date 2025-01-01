@@ -2,9 +2,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkForce;
-in {
+in
+{
   # gnome for backup
   services.xserver.desktopManager.gnome.enable = true;
 

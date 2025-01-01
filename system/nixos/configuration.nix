@@ -105,7 +105,11 @@
   # programs.coolercontrol.enable = true;
 
   environment = {
-    pathsToLink = ["/share/zsh" "/share/xdg-desktop-portal" "/share/applications"]; # for zsh.enableCompletion
+    pathsToLink = [
+      "/share/zsh"
+      "/share/xdg-desktop-portal"
+      "/share/applications"
+    ]; # for zsh.enableCompletion
   };
 
   # hardware.keyboard.qmk.enable = true;

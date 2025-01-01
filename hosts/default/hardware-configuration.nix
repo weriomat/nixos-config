@@ -8,8 +8,9 @@
   pkgs,
   globals,
   ...
-}: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+}:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   # TODO: amdvlk?
   hardware = {
@@ -35,21 +36,30 @@
 
   environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
 
-  services.xserver.videoDrivers = ["amdgpu"];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   boot = {
     # TODO: here
     # extraModulePackages = with config.boot.kernelPackages; [acpi_call];
     #  kernelModules = ["acpi_call"];
     initrd = {
-      availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod"];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "ahci"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+      ];
       luks = {
-        devices."luks-e21fd631-a002-472c-a43c-bd984147f9a2".device = "/dev/disk/by-uuid/e21fd631-a002-472c-a43c-bd984147f9a2";
-        devices."luks-18c6f525-719b-4b5f-bcb2-7e9ba01353d1".device = "/dev/disk/by-uuid/18c6f525-719b-4b5f-bcb2-7e9ba01353d1";
+        devices."luks-e21fd631-a002-472c-a43c-bd984147f9a2".device =
+          "/dev/disk/by-uuid/e21fd631-a002-472c-a43c-bd984147f9a2";
+        devices."luks-18c6f525-719b-4b5f-bcb2-7e9ba01353d1".device =
+          "/dev/disk/by-uuid/18c6f525-719b-4b5f-bcb2-7e9ba01353d1";
       };
     };
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
     # Bootloader.
     loader = {
       systemd-boot.enable = true;
@@ -58,7 +68,7 @@
     };
 
     # support for building nix packages for rp4
-    binfmt.emulatedSystems = ["aarch64-linux"];
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 
   fileSystems = {
@@ -93,7 +103,7 @@
     };
   };
 
-  swapDevices = [{device = "/dev/disk/by-uuid/1631adfb-0d13-4a18-8ee5-ae0697077df4";}];
+  swapDevices = [ { device = "/dev/disk/by-uuid/1631adfb-0d13-4a18-8ee5-ae0697077df4"; } ];
   zramSwap.enable = true;
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -105,6 +115,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  hardware.cpu.amd.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

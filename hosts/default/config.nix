@@ -2,7 +2,8 @@
   lib,
   globals,
   ...
-}: {
+}:
+{
   steam.enable = true;
 
   services.borgbackup.jobs."hetzner" = {

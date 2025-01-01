@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.my_gtk.enable = mkEnableOption "Enable gtk settings";
 
   config = mkIf config.my_gtk.enable {
@@ -21,7 +23,7 @@ in {
       theme = {
         name = "Catppuccin-Mocha-Compact-Lavender-Dark";
         package = pkgs.catppuccin-gtk.override {
-          accents = ["lavender"];
+          accents = [ "lavender" ];
           size = "compact";
           # tweaks = [ "rimless" ];
           variant = "mocha";

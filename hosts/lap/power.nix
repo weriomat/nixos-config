@@ -1,5 +1,6 @@
 # stolen from cobalt
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     linuxPackages.cpupower
   ];

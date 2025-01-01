@@ -3,9 +3,11 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   inherit (lib) mkEnableOption mkIf;
-in {
+in
+{
   options.kitty.enable = mkEnableOption "Enable my kitty options";
 
   # TODO: broewser : https://github.com/chase/awrit
@@ -17,10 +19,7 @@ in {
 
     programs.kitty = {
       enable = true;
-      package =
-        if pkgs.stdenv.isDarwin
-        then pkgs.kitty
-        else pkgs.unstable.kitty;
+      package = if pkgs.stdenv.isDarwin then pkgs.kitty else pkgs.unstable.kitty;
 
       catppuccin = {
         enable = true;

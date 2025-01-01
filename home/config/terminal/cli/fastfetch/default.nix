@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   # stolen from: https://gitlab.com/Zaney/zaneyos/-/blob/main/config/fastfetch/default.nix?ref_type=heads
   programs = {
     # TODO: here
