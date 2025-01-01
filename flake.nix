@@ -84,40 +84,42 @@
     nix-formatter-pack.url = "github:Gerschtli/nix-formatter-pack";
   };
 
-  outputs = {
-    self,
-    utils,
-    nixpkgs,
-    nix-colors,
-    pre-commit-hooks,
-    ...
-  } @ inputs: let
-    inherit (self) outputs;
-  in
+  outputs =
     {
-      overlays = import ./overlays {inherit inputs;};
+      self,
+      utils,
+      nixpkgs,
+      nix-colors,
+      pre-commit-hooks,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+    in
+    {
+      overlays = import ./overlays { inherit inputs; };
 
       # TODO: nixd https://www.youtube.com/watch?v=M_zMoHlbZBY
       # TODO: make seperate home module and move things around to make use of nixd
       # Full system build for x86
       nixosConfigurations = {
-        nixos = import ./hosts/default {inherit inputs outputs nix-colors;};
-        nixos-laptop = import ./hosts/lap {inherit inputs outputs nix-colors;};
+        nixos = import ./hosts/default { inherit inputs outputs nix-colors; };
+        nixos-laptop = import ./hosts/lap { inherit inputs outputs nix-colors; };
       };
 
       # Full hm build for aarch64
-      darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina {inherit inputs nix-colors;};
+      darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs nix-colors; };
 
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
     }
     // utils.lib.eachDefaultSystem (system: {
       packages = import ./pkgs nixpkgs.legacyPackages.${system};
-      formatter = nixpkgs.legacyPackages.${system}.alejandra;
+      formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
       checks.default = pre-commit-hooks.lib.${system}.run {
         src = self.outPath;
         hooks = {
-          alejandra.enable = true;
+          nixfmt-rfc-style.enable = true;
           deadnix.enable = true;
           statix.enable = true;
           nil.enable = true;
@@ -132,28 +134,30 @@
           convco.enable = true;
         };
       };
-      devShells = let
-        pkgs = import nixpkgs {inherit system;};
-      in rec {
-        default = deploy;
-        deploy = pkgs.mkShell {
-          inherit (self.checks.${system}.default) shellHook;
-          buildInputs = [
-            self.checks.${system}.default.enabledPackages
-            pkgs.sops
-            pkgs.alejandra
-            pkgs.nix
-            pkgs.nurl # simple nix prefetch
-            pkgs.nix-init # packaging helper
+      devShells =
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        rec {
+          default = deploy;
+          deploy = pkgs.mkShell {
+            inherit (self.checks.${system}.default) shellHook;
+            buildInputs = [
+              self.checks.${system}.default.enabledPackages
+              pkgs.sops
+              pkgs.nixfmt-rfc-style
+              pkgs.nix
+              pkgs.nurl # simple nix prefetch
+              pkgs.nix-init # packaging helper
 
-            # TODO: take a look at this: https://github.com/louib/nix2sbom
-            # TODO: flake checker
-            # see parts of derivations
-            pkgs.nix-tree
-            pkgs.graphviz
-            pkgs.nix-du
-          ];
+              # TODO: take a look at this: https://github.com/louib/nix2sbom
+              # TODO: flake checker
+              # see parts of derivations
+              pkgs.nix-tree
+              pkgs.graphviz
+              pkgs.nix-du
+            ];
+          };
         };
-      };
     });
 }

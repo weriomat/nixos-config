@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) mkIf;
-in {
+in
+{
   home.packages = with pkgs; [
     helix
     cmake-language-server # cmake
@@ -28,10 +30,7 @@ in {
           # stolen from https://github.com/poliorcetics/dotfiles/blob/main/home/helix/languages.nix
           # assist.importGranularity = "module";
           # cargo.extraEnv."CARGO_TARGET_DIR" = "${config.xdg.cacheHome}/rust-analyzer-target-dir";
-          check.command =
-            if pkgs.stdenv.isDarwin
-            then "clippy"
-            else "${pkgs.clippy}/bin/clippy";
+          check.command = if pkgs.stdenv.isDarwin then "clippy" else "${pkgs.clippy}/bin/clippy";
           completion.fullFunctionSignatures.enable = true;
           hover.actions.references.enable = true;
           # lens.references = {
@@ -72,7 +71,12 @@ in {
         };
         ruff = {
           command = "${pkgs.ruff-lsp}/bin/ruff-lsp";
-          config.settings = {args = ["--ignore" "E501"];};
+          config.settings = {
+            args = [
+              "--ignore"
+              "E501"
+            ];
+          };
         };
 
         pyright.config.analysis = {
@@ -89,14 +93,17 @@ in {
           };
           forwardSearch = {
             executable = "${pkgs.okular}/bin/okular";
-            args = ["--unique" "file:%p#src:%l%f"];
+            args = [
+              "--unique"
+              "file:%p#src:%l%f"
+            ];
           };
 
           build = {
             forwardSearchAfter = true;
             onSave = true;
 
-            executable = "${pkgs.texlive.withPackages (ps: [ps.latexmk])}/bin/latexmk";
+            executable = "${pkgs.texlive.withPackages (ps: [ ps.latexmk ])}/bin/latexmk";
             args = [
               "-pdf"
               "-interaction=nonstopmode"
@@ -144,7 +151,7 @@ in {
           command = "${pkgs.marksman}/bin/marksman";
         };
 
-        clangd.args = ["--enable-config"];
+        clangd.args = [ "--enable-config" ];
       };
 
       language = [
@@ -166,21 +173,29 @@ in {
           ];
           formatter = {
             command = "${pkgs.dprint}/bin/dprint";
-            args = let
-              config = pkgs.writeText "config.json" ''
-                {
-                  "markdown": {
-                    "lineWidth":120,
-                  },
-                  "excludes": [],
-                  "plugins": [
-                    "https://plugins.dprint.dev/markdown-0.17.8.wasm"
-                  ]
-                }
-              '';
-            in ["fmt" "--config" "${config}" "--stdin" "md"];
+            args =
+              let
+                config = pkgs.writeText "config.json" ''
+                  {
+                    "markdown": {
+                      "lineWidth":120,
+                    },
+                    "excludes": [],
+                    "plugins": [
+                      "https://plugins.dprint.dev/markdown-0.17.8.wasm"
+                    ]
+                  }
+                '';
+              in
+              [
+                "fmt"
+                "--config"
+                "${config}"
+                "--stdin"
+                "md"
+              ];
           };
-          rulers = [120];
+          rulers = [ 120 ];
         }
         {
           name = "haskell";
@@ -190,11 +205,11 @@ in {
           name = "nix";
           auto-format = true;
           formatter = {
-            command = "${pkgs.alejandra}/bin/alejandra";
-            args = ["-q"];
+            command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+            args = [ "-q" ];
           };
           # NOTE: removed nil
-          language-servers = ["nixd"];
+          language-servers = [ "nixd" ];
         }
         {
           name = "go";
@@ -211,10 +226,18 @@ in {
         {
           name = "python";
           auto-format = true;
-          language-servers = ["ruff" "pyright"];
+          language-servers = [
+            "ruff"
+            "pyright"
+          ];
           formatter = {
             command = "${pkgs.black}/bin/black";
-            args = ["--line-length" "88" "--quiet" "-"];
+            args = [
+              "--line-length"
+              "88"
+              "--quiet"
+              "-"
+            ];
           };
         }
       ];
