@@ -290,6 +290,8 @@ in
           (languagetool.overrideAttrs { meta.license = licenses.free; })
           # languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
 
+          zotero-connector
+
           #    privacy-badger
           # vimium-c
           # darkreader
