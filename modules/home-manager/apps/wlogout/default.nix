@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf mkForce;
 in
 {
   options.wlogout.enable = mkEnableOption "Enable wlogout";
@@ -58,7 +58,7 @@ in
         }
       ];
       # TODO: fix buttons
-      style = ''
+      style = mkForce ''
         * {
           font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
         	background-image: none;
