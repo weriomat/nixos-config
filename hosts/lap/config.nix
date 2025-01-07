@@ -1,6 +1,7 @@
 {
   globals,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -14,6 +15,8 @@
   # TODO: upstream
   # TODO: https://rair.dev/zfs-smart-ntfy/
   sops.secrets."ntfy" = { };
+
+  environment.systemPackages = [ pkgs.obs-studio ];
 
   services = {
     # TODO: setup mail as a relay though vps

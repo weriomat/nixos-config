@@ -47,7 +47,7 @@
     };
     kernelModules = [ "kvm-amd" ];
 
-    extraModulePackages = [ ];
+    extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_12.v4l2loopback ];
 
     # support for building nix packages for rp4
     binfmt.emulatedSystems = [ "aarch64-linux" ];
