@@ -21,7 +21,6 @@
   '';
 
   boot = {
-    # Bootloader.
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -47,13 +46,12 @@
     };
     kernelModules = [ "kvm-amd" ];
 
-    extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_12.v4l2loopback ];
-
     # support for building nix packages for rp4
     binfmt.emulatedSystems = [ "aarch64-linux" ];
 
     # NOTE: kernel is pinned with support for zfs
     kernelPackages = pkgs.linuxPackages_6_12;
+    extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_12.v4l2loopback ];
   };
 
   fileSystems = {
