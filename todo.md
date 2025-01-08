@@ -84,7 +84,6 @@ https://nix-community.github.io/home-manager/options.xhtml#opt-home.keyboard.mod
 https://github.com/JaysFreaky/fancontrol-gui
 https://coredns.io/
 https://github.com/joshmedeski/sesh
-https://github.com/joshmedeski/tmux-fzf-url
 https://github.com/joshmedeski/dotfiles
 https://github.com/NixOS/nixpkgs/blob/nixos-24.05/nixos/modules/services/system/systemd-lock-handler.nix
 https://sr.ht/~whynothugo/systemd-lock-handler/

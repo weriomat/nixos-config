@@ -7,12 +7,6 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     utils.url = "github:numtide/flake-utils";
 
-    # tmux sessionsx
-    sessionx = {
-      url = "github:omerxx/tmux-sessionx";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # hm
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";

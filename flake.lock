@@ -1508,30 +1508,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "pre-commit-hooks": "pre-commit-hooks_2",
-        "sessionx": "sessionx",
         "sops-nix": "sops-nix",
         "utils": "utils_2"
-      }
-    },
-    "sessionx": {
-      "inputs": {
-        "flake-parts": "flake-parts_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1736251564,
-        "narHash": "sha256-SRKI4mliMSMp/Yd+oSn48ArbbRA+szaj70BQeTd8NhM=",
-        "owner": "omerxx",
-        "repo": "tmux-sessionx",
-        "rev": "42c18389e73b80381d054dd1005b8c9a66942248",
-        "type": "github"
-      },
-      "original": {
-        "owner": "omerxx",
-        "repo": "tmux-sessionx",
-        "type": "github"
       }
     },
     "sops-nix": {

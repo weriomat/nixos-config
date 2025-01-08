@@ -34,12 +34,6 @@
         "--preview '${config.programs.bat.package}/bin/bat --color=always --style=numbers --line-range=:500 {}'"
       ];
 
-      tmux = {
-        enableShellIntegration = true;
-        shellIntegrationOptions = [
-          "-d 40%"
-        ];
-      };
     };
     # TODO: here make paths
     zsh.envExtra = lib.mkAfter ''
