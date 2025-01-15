@@ -3,7 +3,6 @@
 ## NIX
 
 - Proper nixd setup with hm integration
-- alejandra on lists with one thingie space arround wegen gf in helix
 - take a look at hm scripts and evaluate if i keep them
 
 ## DEV
