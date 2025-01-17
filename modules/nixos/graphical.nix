@@ -19,7 +19,6 @@ in
 
       # graphical
       gnome-calendar
-      xfce.thunar
 
       # media
       pavucontrol
