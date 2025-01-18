@@ -51,7 +51,7 @@ in
       # TODO: provision workspaces better -> use enable options
       workspace = [
         "1, monitor: DP-1, default:true, on-created-empty:kitty"
-        "2, monitor: DP-1, on-created-empty:thunar"
+        "2, monitor: DP-1"
         "3, monitor: DP-1, on-created-empty:cider"
         "4, monitor: DP-1, on-created-empty:discord"
         "5, monitor: DP-1, on-created-empty:keepassxc"
