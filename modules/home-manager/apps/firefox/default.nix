@@ -314,6 +314,7 @@ in
         ];
         search = {
           default = "DuckDuckGo";
+          privateDefault = "DuckDuckGo";
           engines = {
             "Crates" = {
               urls = [
