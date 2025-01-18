@@ -6,7 +6,6 @@
 }:
 let
   globals = rec {
-    isLaptop = false; # global for specifying if hyprland should be enabled
     username = "marts";
     host = "nixos-laptop";
     hostname = host;

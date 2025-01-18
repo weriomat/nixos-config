@@ -13,7 +13,7 @@
     enable = true;
     arkenfox.enable = true;
   };
-  hyprland.enable = if globals.isLaptop then false else true;
+  hyprland.enable = true;
   vscode.enable = true;
   kitty.enable = true;
   thunderbird.enable = true;
