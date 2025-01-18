@@ -50,17 +50,17 @@ in
       # TODO: package name
       # TODO: provision workspaces better -> use enable options
       workspace = [
-        "1, monitor: DP-1, default:true, on-created-empty:kitty"
-        "2, monitor: DP-1"
-        "3, monitor: DP-1, on-created-empty:cider"
-        "4, monitor: DP-1, on-created-empty:discord"
-        "5, monitor: DP-1, on-created-empty:keepassxc"
-        "6, monitor: DP-3, default:true, on-created-empty:firefox"
-        "7, monitor: DP-3"
-        "8, monitor: DP-3"
-        "9, monitor: DP-3"
-        "10, monitor: DP-3"
-        "11, monitor: HDMI-A-1, default:true, on-created-empty:cider"
+        "1, monitor: HDMI-A-1, default:true, on-created-empty:kitty"
+        "2, monitor: HDMI-A-1"
+        "3, monitor: HDMI-A-1, on-created-empty:cider"
+        "4, monitor: HDMI-A-1, on-created-empty:discord"
+        "5, monitor: HDMI-A-1, on-created-empty:keepassxc"
+        "6, monitor: DP-1, default:true, on-created-empty:firefox"
+        "7, monitor: DP-1"
+        "8, monitor: DP-1"
+        "9, monitor: DP-1"
+        "10, monitor: DP-1"
+        "11, monitor: DP-3, default:true, on-created-empty:cider"
       ];
       env = [
         # TODO: new
