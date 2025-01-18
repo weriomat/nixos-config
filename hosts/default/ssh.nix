@@ -38,10 +38,12 @@
         extraConfig = {
           safe.directory = "*";
           init.defaultBranch = "main";
+          tag.gpgSign = true;
+          pull.rebase = false;
         };
         signing = {
           signByDefault = true;
-          key = "008F5FA7F0C2803D";
+          key = "E64AE4E613602685";
         };
       };
       ssh = {
@@ -67,9 +69,7 @@
             "github.com".user = "git";
             "git.tu-berlin.de".user = "git";
             "gitlab.cobalt.rocks" = {
-              port = 3724;
               user = "git";
-              identityFile = raspi_key;
             };
 
             # selfhosted
