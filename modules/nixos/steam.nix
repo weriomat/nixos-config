@@ -21,7 +21,6 @@ in
       };
     };
     environment.systemPackages = with pkgs; [
-      lunar-client
       # TODO: here
       gamemode
       gamescope
