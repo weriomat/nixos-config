@@ -90,7 +90,7 @@ in
         ]
         (mkIf globals.laptop [
           ",XF86MonBrightnessUp, exec, ${getExe pkgs.brightnessctl} set +5%"
-          ",XF86MonBrightnessDown, exec, ${getExe pkgs.brightnessctl} set -5% "
+          ",XF86MonBrightnessDown, exec, ${getExe pkgs.brightnessctl} set 5%-"
 
         ])
       ];
