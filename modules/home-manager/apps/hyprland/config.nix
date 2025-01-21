@@ -1,5 +1,6 @@
 # TODO: clean up this file
 # TODO: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/hyprland/config.nix
+# TODO: https://wiki.hyprland.org/Configuring/Binds/#switches
 {
   inputs,
   config,
@@ -68,26 +69,12 @@ in
         # "HYPRCURSOR_SIZE,24"
         # "HYPRCURSOR_THEME,${config.stylix.cursor.name}"
 
-        # # XDG
-        # "XDG_CURRENT_DESKTOP,Hyprland"
-        # "XDG_SESSION_TYPE,wayland"
-        # "XDG_SESSION_DESKTOP,Hyprland"
-
-        # # QT
-        # "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        # "QT_QPA_PLATFORM,wayland;xcb"
-        # "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        # "QT_QPA_PLATFORMTHEME,qt6ct"
-
         # # Toolkit
-        # "SDL_VIDEODRIVER,wayland"
         # "_JAVA_AWT_WM_NONEREPARENTING,1"
         # "_JAVA_OPTIONS,-Dawt.useSystemAAFontSettings=on"
         # "JAVA_FONTS,/usr/share/fonts/TTF"
-        # "CLUTTER_BACKEND,wayland"
-        # "GDK_BACKEND,wayland,x11"
 
-        # # Enabling firefox wayland
+        # Enabling firefox wayland
         # "BROWSER,firefox"
         # "MOZ_ENABLE_WAYLAND,1"
 
@@ -95,22 +82,30 @@ in
 
         # "SWWW_TRANSITION_STEP,60"
         # "SWWW_TRANSITION,simple"
-        # TODO: here
         # env = GDK_SCALE,2
-        # "XCURSOR_THEME"
-        "XCURSOR_SIZE,24"
+
+        # from https://wiki.hyprland.org/Configuring/Environment-variables/
+        # Toolkit backend
         "GDK_BACKEND,wayland,x11,*"
         "QT_QPA_PLATFORM,wayland;xcb"
         "SDL_VIDEODRIVER,wayland"
         "CLUTTER_BACKEND,wayland"
+
+        # XDG
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
+
+        # QT
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
         "QT_QPA_PLATFORM,wayland;xcb"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         "QT_QPA_PLATFORMTHEME,qt5ct"
+
+        # Theming
+        "XCURSOR_SIZE,24"
         "GTK_THEME,Catppuccin-Mocha-Compact-Lavender-Dark"
+        # "XCURSOR_THEME" # TODO:
 
         # TODO: https://github.com/saygo-png/nixos/blob/main/modules/myHyprland.nix
         # extraConfig =
@@ -119,15 +114,6 @@ in
         # */
         # ''
         #   env = NIXOS_OZONE_WL, 1
-        #   env = XDG_CURRENT_DESKTOP, Hyprland
-        #   env = XDG_SESSION_TYPE, wayland
-        #   env = XDG_SESSION_DESKTOP, Hyprland
-        #   env = GDK_BACKEND, wayland, x11, *
-        #   env = CLUTTER_BACKEND, wayland
-        #   env = QT_QPA_PLATFORM, wayland;xcb
-        #   env = QT_QPA_PLATFORMTHEME, qt5ct
-        #   env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
-        #   env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
         #   env = MOZ_ENABLE_WAYLAND, 1
         #   env = GTK_USE_PORTAL, 1
         # '';
@@ -412,9 +398,6 @@ in
       };
     };
     # extraConfig = if (config.globals.isLaptop) then ''
-    #   # TODO: fix this -> not for desktop -> just need for laptop
-    #   bind = ,XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl -c backlight set +5%
-    #   bind = ,XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl -c backlight set 5%-
     #   # Example per-device config
     #   # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
     #   device:epic-mouse-v1 {
