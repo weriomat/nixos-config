@@ -46,7 +46,7 @@
       # size = 16;
       # package = pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];};
 
-      name = "MoneLisa Nerd Font";
+      name = "MonoLisa Nerd Font";
       package = inputs.monoLisa.packages.${pkgs.system}.default;
       size = 16;
     };
