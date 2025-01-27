@@ -26,6 +26,14 @@ in
       gnome-photos
       gnome-tour
       endeavour
+      gnome-user-docs
+      gnome-user-share
+      gnome-text-editor
+      gnome-console
+      gnome-weather
+      gnome-software
+      gnome-tecla
+      yelp
       orca # Screnreader
     ])
     ++ (with pkgs; [
@@ -37,9 +45,9 @@ in
       gnome-maps
       gnome-clocks
       gnome-contacts
+      gnome-characters
       epiphany # web browser
       geary # email reader
-      gnome-characters
       seahorse # password manager
       baobab # disk usage analyzer
       file-roller # archive manager
