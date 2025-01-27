@@ -102,7 +102,7 @@ in
         ",XF86AudioStop, exec, ${getExe pkgs.playerctl} stop"
       ];
 
-      # TODO: maybe this in per host config as well?
+      # TODO: maybe this in per host config as well? `hyprctl clients`
       #   windowrule = float,audacious
       #   windowrule = workspace 8 silent, audacious
       #   windowrule = float,title:^(Volume Control)$

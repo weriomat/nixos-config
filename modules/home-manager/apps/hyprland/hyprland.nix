@@ -65,6 +65,7 @@ in
       };
 
       # Support for a redlight filter
+      # TODO: switch to hyprsunset?
       wlsunset = {
         enable = true;
         latitude = "52.5";

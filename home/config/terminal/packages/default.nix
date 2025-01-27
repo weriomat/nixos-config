@@ -9,6 +9,7 @@ in
 with pkgs;
 {
   # TODO: zusammenfuerhen mit nixos config
+  # TODO: remove unused
   # janked from cobalt
   # Zsh packages
   home.packages = mkMerge [
