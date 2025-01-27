@@ -8,13 +8,13 @@
   # TODO: sytembus notify
   # services.systembus-notify = {};
 
+  # NOTE: vscodium disabled since tex stuff works
   discord.enable = true;
   firefox = {
     enable = true;
     arkenfox.enable = true;
   };
   hyprland.enable = true;
-  vscode.enable = true;
   kitty.enable = true;
   thunderbird.enable = true;
 
