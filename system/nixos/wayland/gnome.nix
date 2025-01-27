@@ -26,6 +26,7 @@ in
       gnome-photos
       gnome-tour
       endeavour
+      orca # Screnreader
     ])
     ++ (with pkgs; [
       cheese # webcam tool
