@@ -19,15 +19,13 @@ in
 
       duf # df alternative
       ncdu # du alternative
+      dust # du alternative
       dogdns # dig alternative
-      dust
 
       glow # view markdown on cli
 
       sysz # systemctl thingie
       clerk # mpd client
-
-      buku # private db manager
 
       emojify # emoji on shell
 
@@ -36,8 +34,6 @@ in
       ethtool
       lm_sensors
       fanctl
-
-      pdfarranger
 
       # gnome disk
       gnome-disk-utility
