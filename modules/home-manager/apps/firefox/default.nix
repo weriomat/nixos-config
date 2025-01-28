@@ -258,7 +258,7 @@ in
           darkreader
           auto-tab-discard
           canvasblocker
-          clearurls
+          # clearurls
           # add capuccin colors to firefox-color -> manual idk how to do that in nix
           # enable dark theme in about:addons under themes
           firefox-color
