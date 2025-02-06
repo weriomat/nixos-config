@@ -20,18 +20,12 @@
   # fonts:
   # https://fonts.google.com/noto/specimen/Noto+Emoji
 
+  # NOTE: some fonts to keep in mind "IBMPlexMono" (nerfont), pkgs.twemoji-color-font, pkgs.iosevka-comfy.comfy
   home.packages = [
     inputs.monoLisa.packages.${pkgs.system}.default
     pkgs.apple-emoji
 
-    # TODO: emote picker
-    # pkgs.emote
-
-    # (pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];})
-    # pkgs.nerdfonts
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    # pkgs.twemoji-color-font
-    # pkgs.iosevka-comfy.comfy
   ];
 
   gtk.font = {
@@ -41,11 +35,7 @@
 
   programs = {
     kitty.font = {
-      # NOTE: old: IBM Plex mono with nerd font addons
-      # name = "'BlexMono Nerd Font'";
-      # size = 16;
-      # package = pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];};
-
+      # NOTE: alternative "'BlexMono Nerd Font'"
       name = "MonoLisa Nerd Font";
       package = inputs.monoLisa.packages.${pkgs.system}.default;
       size = 16;
@@ -58,7 +48,7 @@
   };
 
   # services.mako.font = "Name size";
-  # TODO: firefox, kitty, waybar, from stylix, wofi, mako, swaylock, helix, wlogout
+  # TODO: firefox, wofi, mako, swaylock, helix, wlogout
 
   # in normal nixos options
   # fonts.packages = [
@@ -68,24 +58,8 @@
   # ];
 
   # TODO: fonts
-  # emoji = with pkgs; [
-  #      noto-fonts
-  #      noto-fonts-cjk
-  #      noto-fonts-emoji
-  #      noto-fonts-cjk-sans
-  #      noto-fonts-cjk-serif
-  #      noto-fonts-extra
-  #    ];
-  #    nerd = with pkgs; [
-  #      carlito
-  #      ipafont
-  #      kochi-substitute
-  #      source-code-pro
-  #      ttf_bitstream_vera
-  #      (nerdfonts.override {
-  #        fonts = [ "JetBrainsMono" "FiraCode" "DroidSansMono" ];
-  #      })
-  #    ];
+  # emoji = with pkgs; [ noto-fonts, noto-fonts-cjk, noto-fonts-emoji, noto-fonts-cjk-sans, noto-fonts-cjk-serif, noto-fonts-extra ];
+  # nerd = with pkgs; [ carlito, ipafont, kochi-substitute, source-code-pro, ttf_bitstream_vera, (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "DroidSansMono" ]; }) ];
 
   # Configure fonts
   # fonts = {
