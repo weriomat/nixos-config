@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  globals,
   ...
 }:
 # TODO: improve hyprland config
@@ -144,10 +143,6 @@
   # graphviz
 
   programs = {
-    nh = {
-      enable = true;
-      flake = /home/${globals.username}/.nixos/nixos;
-    };
     # Corectrl support - for managing CPU/GPU freq via a GUI
     corectrl = {
       enable = true;

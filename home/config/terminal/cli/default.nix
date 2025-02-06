@@ -9,5 +9,6 @@
     ./cava
     ./fzf
     ./fastfetch
+    ./nh
   ];
 }
