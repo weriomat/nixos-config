@@ -37,12 +37,12 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "Wallpaper collection from Weriomat";
     homepage = "https://github.com/weriomat/wallpapers";
-    license = licenses.mit;
-    maintainers = with maintainers; [ weriomat ];
+    license = lib.licenses.mit;
+    maintainers = [ lib.maintainers.weriomat ];
     mainProgram = "wallpapers";
-    platforms = platforms.all;
+    platforms = lib.platforms.all;
   };
 }

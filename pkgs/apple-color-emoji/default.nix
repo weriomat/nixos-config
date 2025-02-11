@@ -42,12 +42,12 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "Brings Apple's vibrant emojis to your Linux experience";
     homepage = "https://github.com/samuelngs/apple-emoji-linux";
-    license = licenses.asl20;
-    maintainers = with maintainers; [ weriomat ];
+    license = lib.licenses.asl20;
+    maintainers = [ lib.maintainers.weriomat ];
     mainProgram = "apple-emoji-linux";
-    platforms = platforms.all;
+    platforms = lib.platforms.all;
   };
 }
