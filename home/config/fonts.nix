@@ -34,11 +34,24 @@
   };
 
   programs = {
-    kitty.font = {
-      # NOTE: alternative "'BlexMono Nerd Font'"
-      name = "MonoLisa Nerd Font";
-      package = inputs.monoLisa.packages.${pkgs.system}.default;
-      size = 16;
+    kitty = {
+      font = {
+        # NOTE: alternative "'BlexMono Nerd Font'"
+        name = "MonoLisa Nerd Font";
+        package = inputs.monoLisa.packages.${pkgs.system}.default;
+        size = 16;
+      };
+      extraConfig = ''
+        font_features MonoLisa -calt +liga +zero +ss01 +ss02 +ss07 +ss08 +ss10 +ss11 +ss18
+        modify_font cell_width 100%
+        modify_font cell_height 100%
+        font_features MonoLisa-RegularItalic +ss02
+      ''; # Stolen from https://github.com/redyf/nixdots/blob/main/home/desktop/addons/kitty/default.nix
+      settings = {
+        bold_font = "auto";
+        italic_font = "auto";
+        bold_italic_font = "auto";
+      };
     };
     # firefox.profiles.profileSettings.settings = {
     #   "font.name.monospace.x-western" = config.stylix.fonts.monospace.name;
