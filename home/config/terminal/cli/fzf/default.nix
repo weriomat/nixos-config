@@ -35,7 +35,6 @@
       ];
 
     };
-    # TODO: here make paths
     zsh.envExtra = lib.mkAfter ''
         # Man without options will use fzf to select a page
       zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
@@ -51,17 +50,11 @@
         fi
       }
 
-      # better cd
-      cdd() {
-          DIR=`fd * -maxdepth 0 -type d -print 2> /dev/null | fzf-tmux` \
-          && cd "$DIR"
-      }
-
       # cd into dir of file
       cdf() {
          local file
          local dir
-         file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+         file=$(${config.programs.fzf.package}/bin/fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
       }
     '';
   };
