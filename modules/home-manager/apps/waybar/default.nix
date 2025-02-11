@@ -205,12 +205,14 @@ in
         };
 
         # TODO: upower
+        # TODO: color
         battery = {
           states = {
             warning = 30;
             critical = 15;
           };
-          # TODO: color
+          tooltip-format = "{}\nClick to reload Waybar";
+          on-click = "${pkgs.systemd}/bin/systemctl restart --user waybar";
           format = ''<span color="#fab387">{icon}</span> {capacity}%'';
           format-charging = ''<span color="#a6e3a1">{icon}/span> {capacity}%'';
           format-warning = ''<span color="#a6e3a1"></span> {capacity}%'';
@@ -242,8 +244,6 @@ in
               "󰁹"
             ];
           };
-          # max-length = 25;
-          tooltip = false;
         };
 
         # stolen from https://github.com/ErikReider/SwayAudioIdleInhibit
