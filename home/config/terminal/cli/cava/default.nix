@@ -14,10 +14,8 @@
 
   xdg = lib.mkIf pkgs.stdenv.isLinux {
     configFile = {
-      # TODO: here
       "cava/config".text = ''
         ## Configuration file for CAVA. Default values are commented out. Use either ';' or '#' for commenting.
-
 
         [general]
 
