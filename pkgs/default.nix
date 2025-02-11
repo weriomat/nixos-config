@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  starship-catppuccin = pkgs.callPackage ./starship-catppuccin { };
   weriomat-wallpapers = pkgs.callPackage ./weriomat-wallpapers { };
   apple-emoji = pkgs.callPackage ./apple-color-emoji { };
   # TODO: signal desktop
