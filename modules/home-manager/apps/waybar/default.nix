@@ -324,15 +324,9 @@ in
           interval = 60;
           tooltip = true;
         };
-        #       "network" = {
-        #         format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
-        #         format-ethernet = " {bandwidthDownOctets}";
-        #         format-wifi = "{icon} {signalStrength}%";
-        #         format-disconnected = "󰤮";
-        #         tooltip = false;
-        #       };
         network = {
-          format-wifi = "  {signalStrength}% <span color='#589df6'>⇵</span> {bandwidthUpBits}/{bandwidthDownBits}";
+          #         format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+          format-wifi = "  {signalStrength}% <span color='#589df6'>⇵</span>";
           format-ethernet = "󰀂  <span color='#589df6'>⇵</span> {bandwidthUpBits}/{bandwidthDownBits}";
           tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
           format-linked = "{ifname} (No IP)";
