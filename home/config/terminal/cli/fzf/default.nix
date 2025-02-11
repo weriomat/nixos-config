@@ -45,7 +45,7 @@
           $MAN "$@"
           return $?
         else
-          $MAN -k . | ${config.programs.fzf.package}/bin/fzf --reverse --preview="${pkgs.toybox}/bin/echo {1,2} | ${pkgs.toybox}/bin/sed 's/ (/./' | ${pkgs.toybox}/bin/sed -E 's/\)\s*$//' | ${pkgs.toybox}/bin/xargs $MAN" | awk '{print $1 "." $2}' | tr -d '()' | ${pkgs.toybox}/bin/xargs -r $MAN
+          $MAN -k . | ${config.programs.fzf.package}/bin/fzf --reverse --preview="${pkgs.toybox}/bin/echo {1,2} | ${pkgs.toybox}/bin/sed 's/ (/./' | ${pkgs.toybox}/bin/sed -E 's/\)\s*$//' | ${pkgs.toybox}/bin/xargs $MAN" | ${pkgs.gawk}/bin/awk '{print $1 "." $2}' | tr -d '()' | ${pkgs.toybox}/bin/xargs -r $MAN
           return $?
         fi
       }
