@@ -43,8 +43,13 @@ great structured [config](https://github.com/nmasur/dotfiles/blob/c53f1470ee0489
 
 ### Frost-Phoenix
 
-Specia thanks to [Frost-Phoenix](https://github.com/Frost-Phoenix) for having
+Special thanks to [Frost-Phoenix](https://github.com/Frost-Phoenix) for having
 a great hyprland desktop [configuration](https://github.com/Frost-Phoenix/nixos-config/tree/catppuccin).
+
+### Redyf
+
+Special thanks to [Redyf](https://github.com/redyf) for having a structured
+[configuration](https://github.com/redyf/nixdots)
 
 ## The maker of fzf
 
