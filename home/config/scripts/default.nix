@@ -17,11 +17,11 @@
   # stolen from https://gitlab.com/Zaney/zaneyos/-/blob/main/scripts/web-search.nix?ref_type=heads
   web-search = pkgs.writeShellApplication {
     name = "web-search";
-    runtimeInputs = with pkgs; [
-      hyprland
-      swayidle
-      swaylock
-      libnotify
+    runtimeInputs = [
+      pkgs.hyprland
+      pkgs.swayidle
+      pkgs.swaylock
+      pkgs.libnotify
     ];
     text = ''
        declare -A URLS
@@ -68,13 +68,13 @@
 
   fshow = pkgs.writeShellApplication {
     name = "fshow";
-    runtimeInputs = with pkgs; [
-      sqlite
-      coreutils
-      fzf
-      gnugrep
-      gawkInteractive
-      gnused
+    runtimeInputs = [
+      pkgs.sqlite
+      pkgs.coreutils
+      pkgs.fzf
+      pkgs.gnugrep
+      pkgs.gawkInteractive
+      pkgs.gnused
     ];
     text = ''
       git log --graph --color=always \
@@ -91,12 +91,12 @@
   fzfmenu = pkgs.writeShellApplication {
     # Stolen from https://github.com/junegunn/fzf/wiki/Examples#fzf-as-dmenu-replacement
     name = "fzfmenu";
-    runtimeInputs = with pkgs; [
-      fzf
-      toybox
-      kitty
-      bash
-      gawkInteractive
+    runtimeInputs = [
+      pkgs.fzf
+      pkgs.toybox
+      pkgs.kitty
+      pkgs.bash
+      pkgs.gawkInteractive
     ];
     text = ''
       #!/usr/bin/env bash
@@ -106,11 +106,11 @@
 
   fb = pkgs.writeShellApplication {
     name = "fb";
-    runtimeInputs = with pkgs; [
-      buku
-      gawkInteractive
-      toybox
-      sqlite
+    runtimeInputs = [
+      pkgs.buku
+      pkgs.gawkInteractive
+      pkgs.toybox
+      pkgs.sqlite
     ];
     # TODO: fix to work with fzf menu, sqlite3: https://github.com/junegunn/fzf/wiki/Examples#buku
 
@@ -133,10 +133,10 @@
 
   fif = pkgs.writeShellApplication {
     name = "fif";
-    runtimeInputs = with pkgs; [
-      ripgrep-all
-      toybox
-      coreutils
+    runtimeInputs = [
+      pkgs.ripgrep-all
+      pkgs.toybox
+      pkgs.coreutils
     ];
 
     text = ''
@@ -201,13 +201,13 @@
 
   fh = pkgs.writeShellApplication {
     name = "fh";
-    runtimeInputs = with pkgs; [
-      sqlite
-      coreutils
-      fzf
-      gnugrep
-      gawkInteractive
-      gnused
+    runtimeInputs = [
+      pkgs.sqlite
+      pkgs.coreutils
+      pkgs.fzf
+      pkgs.gnugrep
+      pkgs.gawkInteractive
+      pkgs.gnused
     ];
     text = ''
       #!/usr/bin/env bash
@@ -261,7 +261,7 @@
   # };
   toggle_toggle_blur = pkgs.writeShellApplication {
     name = "toggle_blur";
-    runtimeInputs = with pkgs; [ hyprland ];
+    runtimeInputs = [ pkgs.hyprland ];
     text = ''
         #!/usr/bin/env bash
       if hyprctl getoption decoration:blur:enabled | grep "int: 1" >/dev/null ; then
