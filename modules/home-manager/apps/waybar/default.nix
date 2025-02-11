@@ -211,6 +211,7 @@ in
             warning = 30;
             critical = 15;
           };
+          interval = 30; # set interval to check every 30sek instead of 1min
           tooltip-format = "{}\nClick to reload Waybar";
           on-click = "${pkgs.systemd}/bin/systemctl restart --user waybar";
           format = ''<span color="#fab387">{icon}</span> {capacity}%'';
