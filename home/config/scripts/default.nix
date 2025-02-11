@@ -88,49 +88,6 @@
     '';
   };
 
-  fzfmenu = pkgs.writeShellApplication {
-    # Stolen from https://github.com/junegunn/fzf/wiki/Examples#fzf-as-dmenu-replacement
-    name = "fzfmenu";
-    runtimeInputs = [
-      pkgs.fzf
-      pkgs.toybox
-      pkgs.kitty
-      pkgs.bash
-      pkgs.gawkInteractive
-    ];
-    text = ''
-      #!/usr/bin/env bash
-      FZF_DEFAULT_OPTS="--height=100% --layout=reverse --border --no-sort --prompt=\"~ \" --color=dark,hl:red:regular,fg+:white:regular,hl+:red:regular:reverse,query:white:regular,info:gray:regular,prompt:red:bold,pointer:red:bold" exec kitty --class="fzf-menu" -e bash -c "fzf-tmux -m $* < /proc/$$/fd/0 | awk 'BEGIN {ORS=\" \"} {print}' > /proc/$$/fd/1"
-    '';
-  };
-
-  fb = pkgs.writeShellApplication {
-    name = "fb";
-    runtimeInputs = [
-      pkgs.buku
-      pkgs.gawkInteractive
-      pkgs.toybox
-      pkgs.sqlite
-    ];
-    # TODO: fix to work with fzf menu, sqlite3: https://github.com/junegunn/fzf/wiki/Examples#buku
-
-    text = ''
-      #!/usr/bin/env bash
-      # fb - buku bookmarks fzfmenu opener
-      buku -p -f 4 |
-          awk -F $'\t' '{
-              if ($4 == "")
-                  printf "%s \t\x1b[38;5;208m%s\033[0m\n", $2, $3
-              else
-                  printf "%s \t\x1b[38;5;124m%s \t\x1b[38;5;208m%s\033[0m\n", $2, $4, $3
-          }' |
-          fzf --tabstop 1 --ansi -d $'\t' --with-nth=2,3 \
-              --preview-window='bottom:10%' --preview 'printf "\x1b[38;5;117m%s\033[0m\n" {1}' |
-              awk '{print $1}' | xargs -d '\n' -I{} -n1 -r xdg-open '{}'
-
-    '';
-  };
-
   fif = pkgs.writeShellApplication {
     name = "fif";
     runtimeInputs = [
@@ -146,58 +103,6 @@
 
     '';
   };
-
-  # fbu = pkgs.writeShellApplication {
-  #   name = "fbu";
-  #   runtimeInputs = with pkgs; [buku gawkInteractive toybox sqlite fzf];
-  #   text = ''
-  #     #!/usr/bin/env bash
-
-  #     # BUKU bookmark manager
-  #     # get bookmark ids
-  #     get_buku_ids() {
-  #         buku -p -f 5 | fzf --tac --layout=reverse-list -m | \
-  #           cut -d $'\t' -f 1
-  #     }
-
-  #     # buku update
-  #     # save newline separated string into an array
-  #     mapfile -t ids < <(get_buku_ids)
-
-  #     echo buku --update ${"ids[@]"} "$@"
-
-  #     # [[ -z "${ids [0]}" ]] && return 0 # return if has no bookmark selected
-
-  #     buku --update ${"ids[@]"} "$@"
-
-  #   '';
-  # };
-
-  # fbw = pkgs.writeShellApplication {
-  #   name = "fbw";
-  #   runtimeInputs = with pkgs; [buku gawkInteractive toybox sqlite fzf];
-  #   text = ''
-  #     #!/usr/bin/env bash
-
-  #     # BUKU bookmark manager
-  #     # get bookmark ids
-  #     get_buku_ids() {
-  #         buku -p -f 5 | fzf --tac --layout=reverse-list -m | \
-  #           cut -d $'\t' -f 1
-  #     }
-
-  #     # buku update
-  #     # save newline separated string into an array
-  #     ids=( $(get_buku_ids) )
-
-  #     # update websites
-  #     for i in ${ids[@]}; do
-  #         echo buku --write "$i"
-  #         buku --write "$i"
-  #     done
-
-  #   '';
-  # };
 
   fh = pkgs.writeShellApplication {
     name = "fh";
