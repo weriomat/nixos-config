@@ -75,13 +75,6 @@
     };
   };
 
-  # TODO: tmate
-
-  # TODO: here
-  # xdg = {
-  #   enable = true;
-  # };
-
   programs = {
     jq = {
       enable = true;
@@ -121,9 +114,6 @@
   #   discordPackage = pkgs.discord;
   # };
 
-  # TODO: dashboard
-  # services.glance = {};
-
   # TODO: if nextcloud
   # services.nextcloud-client = {};
 
@@ -148,7 +138,6 @@
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
-  # TODO: # disable manuals as nmd fails to build often
   manual = {
     html.enable = true; # `home-manager-help`
     json.enable = true; # creates all hm options as a json
@@ -167,9 +156,6 @@
     ];
     # preferXdgDirectories = true;
   };
-
-  # TODO: here
-  # nix.registry = {};
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
