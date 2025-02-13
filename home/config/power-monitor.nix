@@ -53,10 +53,10 @@ _: { }
 #     	inotifywait -qq "$BAT_STATUS" "$BAT_CAP"
 #     done
 #   '';
-#   dependencies = with pkgs; [
-#     coreutils
-#     power-profiles-daemon
-#     inotify-tools
+#   dependencies = [
+#     pkgs.coreutils
+#     pkgs.power-profiles-daemon
+#     pkgs.inotify-tools
 #   ];
 # in {
 #   # Power state monitor. Switches Power profiles based on charging state.

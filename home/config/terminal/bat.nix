@@ -9,12 +9,12 @@
     bat = {
       enable = true;
 
-      extraPackages = with pkgs.bat-extras; [
-        batdiff
-        batman
-        batgrep
-        batwatch
-        prettybat
+      extraPackages = [
+        pkgs.bat-extras.batdiff
+        pkgs.bat-extras.batman
+        pkgs.bat-extras.batgrep
+        pkgs.bat-extras.batwatch
+        pkgs.bat-extras.prettybat
       ]; # missing batpipe
     };
 

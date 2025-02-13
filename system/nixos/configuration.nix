@@ -27,15 +27,15 @@
     # via the environment variable `NIX_LD_LIBRARY_PATH`
     nix-ld = {
       enable = true;
-      libraries = with pkgs; [
-        zlib
-        gmp
-        mpfr
-        libmpc
-        glib
-        pixman
-        expat
-        ncurses5
+      libraries = [
+        pkgs.zlib
+        pkgs.gmp
+        pkgs.mpfr
+        pkgs.libmpc
+        pkgs.glib
+        pkgs.pixman
+        pkgs.expat
+        pkgs.ncurses5
       ];
     };
   };

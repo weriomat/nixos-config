@@ -24,12 +24,12 @@ in
 
     printing = {
       enable = true;
-      drivers = with pkgs; [
-        brlaser
-        brgenml1lpr
-        brgenml1cupswrapper
-        gutenprint
-        gutenprintBin
+      drivers = [
+        pkgs.brlaser
+        pkgs.brgenml1lpr
+        pkgs.brgenml1cupswrapper
+        pkgs.gutenprint
+        pkgs.gutenprintBin
       ];
     };
 

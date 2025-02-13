@@ -1,13 +1,13 @@
 { pkgs, ... }:
 {
   # dictionaries
-  environment.systemPackages = with pkgs; [
-    aspell
-    aspellDicts.en
-    aspellDicts.de
-    aspellDicts.en-computers
-    aspellDicts.en-science
-    hunspell
-    hunspellDicts.en-us
+  environment.systemPackages = [
+    pkgs.aspell
+    pkgs.aspellDicts.en
+    pkgs.aspellDicts.de
+    pkgs.aspellDicts.en-computers
+    pkgs.aspellDicts.en-science
+    pkgs.hunspell
+    pkgs.hunspellDicts.en-us
   ];
 }

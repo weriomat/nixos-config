@@ -141,7 +141,7 @@
   # TODO: here, exec at start of hyprland
   # xdg = pkgs.writeShellApplication {
   #   name = "xdg";
-  #   runtimeInputs = with pkgs; [ killall ];
+  #   runtimeInputs = [ pkgs.killall ];
   #   text = ''
   #     sleep 1
 
