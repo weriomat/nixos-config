@@ -109,15 +109,6 @@
         };
       };
     };
-
-    # TODO: move this into own file + add zsh thingies + config
-    ripgrep = {
-      enable = true;
-      arguments = [
-        "--max-columns-preview"
-        "--colors=line:style:bold"
-      ];
-    };
   };
 
   # css for discord
