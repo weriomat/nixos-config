@@ -96,5 +96,5 @@ in
       DefaultEnvironment="PATH=/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:$PATH"
     '';
   };
-  environment.systemPackages = with pkgs; [ polkit_gnome ];
+  environment.systemPackages = [ pkgs.polkit_gnome ];
 }

@@ -8,16 +8,16 @@ let
   inherit (lib) mkIf;
 in
 {
-  home.packages = with pkgs; [
-    helix
-    cmake-language-server # cmake
-    lua-language-server # lua
-    taplo # toml
-    delve # go debugger
-    gopls # go lsp
-    nodePackages.bash-language-server # bash
-    yaml-language-server # yaml
-    pyright # python
+  home.packages = [
+    pkgs.helix
+    pkgs.cmake-language-server # cmake
+    pkgs.lua-language-server # lua
+    pkgs.taplo # toml
+    pkgs.delve # go debugger
+    pkgs.gopls # go lsp
+    pkgs.nodePackages.bash-language-server # bash
+    pkgs.yaml-language-server # yaml
+    pkgs.pyright # python
   ];
   # TODO: https://gitlab.com/hmajid2301/nixicle/-/blob/main/modules/home/cli/terminals/kitty/default.nix
 

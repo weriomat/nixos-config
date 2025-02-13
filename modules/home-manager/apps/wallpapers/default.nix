@@ -16,9 +16,9 @@ in
     home.packages = builtins.attrValues {
       wall-change = pkgs.writeShellApplication {
         name = "wall-change";
-        runtimeInputs = with pkgs; [
-          swaybg
-          killall
+        runtimeInputs = [
+          pkgs.swaybg
+          pkgs.killall
         ];
         text = ''
           ${pkgs.killall}/bin/killall swaybg || true
@@ -31,11 +31,11 @@ in
       let
         dynwallpaper = pkgs.writeShellApplication {
           name = "dynwallpaper";
-          runtimeInputs = with pkgs; [
-            swaybg
-            libnotify
-            coreutils
-            findutils
+          runtimeInputs = [
+            pkgs.swaybg
+            pkgs.libnotify
+            pkgs.coreutils
+            pkgs.findutils
           ];
           text = ''
             while true; do
@@ -60,13 +60,13 @@ in
             # TODO: fix this
             wallpaper-picker = pkgs.writeShellApplication {
               name = "wallpaper-picker";
-              runtimeInputs = with pkgs; [
-                libnotify
-                swaybg
-                wofi
-                coreutils
-                findutils
-                killall
+              runtimeInputs = [
+                pkgs.libnotify
+                pkgs.swaybg
+                pkgs.wofi
+                pkgs.coreutils
+                pkgs.findutils
+                pkgs.killall
               ];
               text = ''
                 wallpaper_path=${wallpaper_path}
@@ -82,11 +82,11 @@ in
             };
             wallpaper-random = pkgs.writeShellApplication {
               name = "wallpaper-random";
-              runtimeInputs = with pkgs; [
-                swaybg
-                libnotify
-                coreutils
-                findutils
+              runtimeInputs = [
+                pkgs.swaybg
+                pkgs.libnotify
+                pkgs.coreutils
+                pkgs.findutils
               ];
               text = ''
                 wallpaper_name="$(find ${wallpaper_path} | shuf -n 1)"

@@ -17,13 +17,13 @@ in
   options.my_hyprland.enable = mkEnableOption "Enable hyrpland config";
 
   config = mkIf config.my_hyprland.enable {
-    home.packages = with pkgs; [
-      libnotify
-      brightnessctl
+    home.packages = [
+      pkgs.libnotify
+      pkgs.brightnessctl
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
-      xwaylandvideobridge
-      wf-recorder
-      wayland
+      pkgs.xwaylandvideobridge
+      pkgs.wf-recorder
+      pkgs.wayland
     ];
 
     wayland.windowManager.hyprland = {

@@ -14,12 +14,12 @@ let
     ;
   toggle-mic = pkgs.writeShellApplication {
     name = "toggle-mic";
-    runtimeInputs = with pkgs; [
-      pamixer
-      libnotify
-      gnugrep
-      gawk
-      coreutils
+    runtimeInputs = [
+      pkgs.pamixer
+      pkgs.libnotify
+      pkgs.gnugrep
+      pkgs.gawk
+      pkgs.coreutils
     ];
 
     text = ''
@@ -61,12 +61,12 @@ in
 
   # NOTE: this configures brightness stuff as well
   config = mkIf config.audio_config.enable {
-    home.packages = with pkgs; [
-      pasystray # pulseaudio systray
-      pavucontrol # pulseaudio volume control
-      playerctl # music player controller
-      pulsemixer # pulseaudio mixer
-      pamixer
+    home.packages = [
+      pkgs.pasystray # pulseaudio systray
+      pkgs.pavucontrol # pulseaudio volume control
+      pkgs.playerctl # music player controller
+      pkgs.pulsemixer # pulseaudio mixer
+      pkgs.pamixer
     ];
 
     # TODO: audio
