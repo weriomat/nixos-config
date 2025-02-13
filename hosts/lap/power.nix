@@ -1,8 +1,8 @@
 # stolen from cobalt
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    linuxPackages.cpupower
+  environment.systemPackages = [
+    pkgs.linuxPackages.cpupower
   ];
 
   powerManagement = {

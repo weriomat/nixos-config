@@ -16,9 +16,9 @@
     startAgent = false;
   };
 
-  environment.systemPackages = with pkgs; [
-    paperkey
-    yubikey-manager-qt
+  environment.systemPackages = [
+    pkgs.paperkey
+    pkgs.yubikey-manager-qt
   ];
 
   home-manager.users.${globals.username} = {

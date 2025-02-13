@@ -43,13 +43,13 @@ in
 # pipewire
 # TODO: https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/pipewire.nix
 # TODO: here
-# services.udev.packages = with pkgs; [
-#   headsetcontrol
+# services.udev.packages = [
+#   pkgs.headsetcontrol
 # ];
-# environment.systemPackages = with pkgs; [
-#   headsetcontrol
-#   headset-charge-indicator
-#   pulsemixer
+# environment.systemPackages = [
+#   pkgs.headsetcontrol
+#   pkgs.headset-charge-indicator
+#   pkgs.pulsemixer
 # ];
 # TODO: take a look at noisetorch
 # TODO: pulsemixer
@@ -58,12 +58,12 @@ in
 #       logitech.wireless.enable = true;
 #       logitech.wireless.enableGraphical = true; # Solaar.
 #     };
-#     environment.systemPackages = with pkgs; [
-#       solaar
+#     environment.systemPackages = [
+#       pkgs.solaar
 #     ];
-#     services.udev.packages = with pkgs; [
-#       logitech-udev-rules
-#       solaar
+#     services.udev.packages = [
+#       pkgs.logitech-udev-rules
+#       pkgs.solaar
 #     ];
 # logitech.wireless = { # Extra Logitech Support
 #   enable = true;

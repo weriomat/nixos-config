@@ -20,13 +20,13 @@ in
         gamescopeSession.enable = true;
       };
     };
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = [
       # TODO: here
-      gamemode
-      gamescope
-      winetricks
+      pkgs.gamemode
+      pkgs.gamescope
+      pkgs.winetricks
 
-      protonup # instead of ge
+      pkgs.protonup # instead of ge
       # mangohud
     ];
     # ++ [

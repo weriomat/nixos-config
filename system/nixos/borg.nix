@@ -13,7 +13,7 @@ in
 {
   options.borg.enable = mkEnableOption "Enable borg settings";
   config = mkIf config.borg.enable {
-    environment.systemPackages = with pkgs; [ vorta ];
+    environment.systemPackages = [ pkgs.vorta ];
 
     # NOTE: idea from: https://gitlab.cobalt.rocks/shared-configs/nixos-ng/-/blob/b41b04b8d1dbcfe536c4fa175cb13f80fb484e1d/hosts/carbon/backups/shared.nix#L5
     # borgmatic shared configuration to provide repositories for per-application backups

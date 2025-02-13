@@ -9,12 +9,11 @@
     enableSSHSupport = true;
   };
   home-manager.users.${globals.username} = {
-    # home.packages = with pkgs; [yubikey-manager-qt];
-    home.packages = with pkgs; [
+    home.packages = [
       # yubikey-manager4
-      yubikey-manager
-      yubikey-personalization
-      git
+      pkgs.yubikey-manager
+      pkgs.yubikey-personalization
+      pkgs.git
     ];
     programs = {
       gpg = {

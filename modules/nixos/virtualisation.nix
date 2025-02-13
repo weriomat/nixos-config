@@ -36,13 +36,13 @@ in
     };
 
     # Useful otherdevelopment tools
-    environment.systemPackages = with pkgs; [
-      quickemu
+    environment.systemPackages = [
+      pkgs.quickemu
 
       # new
-      dive # look into docker image layers
-      podman-tui # status of containers in the terminal
-      docker-compose # start group of containers for dev
+      pkgs.dive # look into docker image layers
+      pkgs.podman-tui # status of containers in the terminal
+      pkgs.docker-compose # start group of containers for dev
     ];
   };
 
