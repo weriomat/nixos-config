@@ -1,4 +1,5 @@
-_: {
+{ pkgs, ... }:
+{
   catppuccin.lazygit = {
     enable = true;
     flavor = "mocha";
@@ -6,5 +7,11 @@ _: {
   };
 
   # Git helper
-  programs.lazygit.enable = true;
+  programs = {
+    lazygit.enable = true;
+    zsh.shellAliases = {
+      gl = "${pkgs.lazygit}/bin/lazygit";
+    };
+  };
+
 }
