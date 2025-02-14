@@ -30,9 +30,7 @@
   # NOTE: maybe this works with githooks nix
   # TODO: global search git -> what do i have ...
 
-  # TODO: calender for cli -> khal
-
-  # TODO: nice hud to see gpu stats
+  # TODO: nice hud to see gpu stats; with steam
   # programs.mangohud = {};
 
   # TODO: entweder vlc or mpv
@@ -40,18 +38,6 @@
   #   enable = true;
   #   defaultProfiles = ["gpu-hq"];
   #   scripts = [pkgs.mpvScripts.mpris];
-  # };
-
-  # NOTE: bitwarden cli client
-  #  programs.rbw = {
-  #   enable = true;
-  #   settings = {
-  #     email =
-  #     base_url = "https://api.bitwarden.com/";
-  #     identity_url = "https://identity.bitwarden.com/";
-  #     lock_timeout = 300;
-  #     pinentry = pkgs.pinentry-curses;
-  #   };
   # };
 
   services = {
