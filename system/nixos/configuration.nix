@@ -112,9 +112,9 @@
   };
 
   # hardware.keyboard.qmk.enable = true;
-  # environment.systemPackages = with pkgs; [
-  #   vial
-  #   via
+  # environment.systemPackages =  [
+  #   pkgs.vial
+  #   pkgs.via
   # ];
 
   # services = {

@@ -42,9 +42,6 @@
   #   scripts = [pkgs.mpvScripts.mpris];
   # };
 
-  # TODO: organize academic research papers
-  # programs.pubs = {};
-
   # NOTE: bitwarden cli client
   #  programs.rbw = {
   #   enable = true;

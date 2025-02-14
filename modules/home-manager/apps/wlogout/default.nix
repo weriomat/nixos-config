@@ -44,7 +44,6 @@ in
           keybind = "s";
         }
         {
-          # TODO: switch to suspend-then-hibernate
           label = "suspend";
           action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl suspend";
           text = "Suspend";

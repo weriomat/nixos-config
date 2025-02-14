@@ -47,7 +47,7 @@ in
   };
 
   # TODO: here
-  # environment.systemPackages = with pkgs; [ virtiofsd ];
+  # environment.systemPackages = [ pkgs.virtiofsd ];
   #   programs.virt-manager.enable = true;
   #   services = {
   #     qemuGuest.enable = true;

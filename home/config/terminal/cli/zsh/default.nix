@@ -62,13 +62,11 @@
       format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
 
       # alternative to cmds
-      ping = "prettyping";
+      ping = "${pkgs.prettyping}/bin/prettyping";
       df = "duf --all --theme dark";
       dig = "dog";
       du = "dust";
       grep = "rg --color=auto";
-
-      raspi = "ssh -i ~/.ssh/id_ed25519 -p 2077 marts@192.168.178.21";
 
       # check nix flake
       check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
@@ -86,10 +84,9 @@
 
       # TODO: here
       # Set some aliases
-      # c = "clear";
-      # mkdir = "mkdir -vp";
+      mkdir = "mkdir -vp";
       # rm = "rm -rifv";
-      # mv = "mv -iv";
+      mv = "mv -iv";
       # cp = "cp -riv";
       # cat = "bat --paging=never --style=plain";
       # ls = "exa -a --icons";
