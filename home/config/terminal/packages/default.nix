@@ -6,7 +6,6 @@
 let
   inherit (lib) mkIf mkMerge;
 in
-with pkgs;
 {
   # TODO: zusammenfuerhen mit nixos config
   # TODO: remove unused
@@ -14,63 +13,62 @@ with pkgs;
   # Zsh packages
   home.packages = mkMerge [
     [
-      bc # calc
-      cmatrix # -> hacker style
+      pkgs.bc # calc
+      pkgs.cmatrix # -> hacker style
 
       # -- general utils
-      curl
-      delta
-      screen
-      dig
-      netcat-gnu
-      fd
-      fzf
-      lsof
-      imagemagick
+      pkgs.curl
+      pkgs.delta
+      pkgs.screen
+      pkgs.dig
+      pkgs.netcat-gnu
+      pkgs.fd
+      pkgs.fzf
+      pkgs.lsof
+      pkgs.imagemagick
       # ncdu
-      zip
-      neofetch
-      tree
-      tealdeer
-      tree-sitter
-      unzip
-      wget
+      pkgs.zip
+      pkgs.neofetch
+      pkgs.tree
+      pkgs.tree-sitter
+      pkgs.unzip
+      pkgs.wget
 
       # -- system level utils
-      man
-      killall
-      file
-      moreutils
-      coreutils
+      pkgs.man
+      pkgs.killall
+      pkgs.file
+      pkgs.moreutils
+      pkgs.coreutils
 
       # -- bash scripting
-      shfmt
-      shellcheck
+      pkgs.shfmt
+      pkgs.shellcheck
 
       # -- network
       # networking tools
-      iperf3
-      dnsutils # `dig` + `nslookup`
-      ldns # replacement of `dig`, it provide the command `drill`
-      aria2 # A lightweight multi-protocol & multi-source command-line download utility
-      socat # replacement of openbsd-netcat
-      nmap # A utility for network discovery and security auditing
-      ipcalc # it is a calculator for the IPv4/v6 addresses
-      nload
-      minio-client
+      pkgs.iperf3
+      pkgs.dnsutils # `dig` + `nslookup`
+      pkgs.ldns # replacement of `dig`, it provide the command `drill`
+      pkgs.aria2 # A lightweight multi-protocol & multi-source command-line download utility
+      pkgs.socat # replacement of openbsd-netcat
+      pkgs.nmap # A utility for network discovery and security auditing
+      pkgs.ipcalc # it is a calculator for the IPv4/v6 addresses
+      pkgs.nload
+      pkgs.minio-client
     ]
     (mkIf pkgs.stdenv.isLinux [
       # -- system level utils
-      mlocate
-      parted
+      pkgs.mlocate
+      pkgs.parted
       # -- system information
-      usbutils
-      linuxPackages.cpupower
-      pciutils # lspci, setpci
+      pkgs.usbutils
+      pkgs.linuxPackages.cpupower
+      pkgs.pciutils # lspci, setpci
       # -- network
       # networking tools
-      nethogs
-      traceroute
+      pkgs.nethogs
+      pkgs.traceroute
     ])
   ];
 }

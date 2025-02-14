@@ -11,28 +11,25 @@ in
   options.graphical.enable = mkEnableOption "Enable graphical apps";
 
   config = mkIf config.graphical.enable {
-    # TODO: make this into package list with ++ syntax
-    # TODO: check if i use them
-    environment.systemPackages = with pkgs; [
-      obsidian
-      unstable.cider
-
-      # graphical
-      gnome-calendar
+    environment.systemPackages = [
+      # to categorize
+      pkgs.unstable.cider # apple music player
+      pkgs.zotero # research paper assitant, note that the betterbibtex extension was installed manually
+      pkgs.gnome-disk-utility
+      pkgs.gnome-calendar # calendar
 
       # media
-      pavucontrol
-      smartmontools
-      inkscape
-      vlc
-      glxinfo
-      vdpauinfo
+      pkgs.smartmontools # smart mon
+      pkgs.inkscape # drawing
+      pkgs.vlc # video watching
+      pkgs.glxinfo # info about glx
+      pkgs.vdpauinfo # info on vdpau drivers -> which media codecs are supported
 
       # office
-      libreoffice
-      pandoc
-      keepassxc
-      evince
+      pkgs.libreoffice # office
+      pkgs.pandoc # convert between documents
+      pkgs.keepassxc # passowrd manager
+      pkgs.evince # pdf viewer
     ];
   };
 }

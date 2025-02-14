@@ -15,7 +15,6 @@ in
     # TODO: take a look at zenmonitor
     environment.systemPackages = with pkgs; [
       devenv # nix shell
-      zotero # research paper assitant, note that the betterbibtex extension was installed manually
 
       duf # df alternative
       ncdu # du alternative
@@ -35,12 +34,8 @@ in
       lm_sensors
       fanctl
 
-      # gnome disk
-      gnome-disk-utility
-
       # learning git game
       oh-my-git
-      prettyping
       unstable.libdrm
       ffmpeg
 
