@@ -43,15 +43,16 @@ let
           | while read -r index; do
           mic_muted="$(pamixer --source "$index" --get-mute)"
 
-          if [ "$mic_muted" = "true" ]; then
-              pamixer --source "$index" -u
-          else
-              pamixer --source "$index" -m
-          fi
-
           word=$(pamixer --list-sources | grep input | grep "$index" | awk '{print $4}')
           line=$(pamixer --list-sources | grep input | grep "$index" | grep -o "''${word}[^\"]*" | grep -o "[^\"]*")
-          notify-send --hint=int:transient:1 "$line" "Toggled"
+          if [ "$mic_muted" = "true" ]; then
+              pamixer --source "$index" -u
+              notify-send --hint=int:transient:1 "$line Umuted"
+          else
+              pamixer --source "$index" -m
+              notify-send --hint=int:transient:1 "$line Muted"
+          fi
+
       done
     '';
   };
