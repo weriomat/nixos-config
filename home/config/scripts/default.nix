@@ -1,5 +1,6 @@
 { pkgs, ... }:
 {
+  # TODO: document all shortcuts
   # TODO: here
   # stolen from https://haseebmajid.dev/posts/2023-11-15-part-3-hyprland-as-part-of-your-development-workflow/
   laptop_lid_switch = pkgs.writeShellScriptBin "laptop_lid_switch" ''
