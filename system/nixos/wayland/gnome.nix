@@ -19,42 +19,42 @@ in
 
   # castrate gnome
   environment.gnome.excludePackages =
-    (with pkgs; [
-      tinysparql
-      localsearch
-      gnome-connections
-      gnome-photos
-      gnome-tour
-      endeavour
-      gnome-user-docs
-      gnome-user-share
-      gnome-text-editor
-      gnome-console
-      gnome-weather
-      gnome-software
-      gnome-tecla
-      yelp
-      orca # Screnreader
-    ])
-    ++ (with pkgs; [
-      cheese # webcam tool
-      gnome-remote-desktop
-      gnome-font-viewer
-      gnome-music
-      gnome-logs
-      gnome-maps
-      gnome-clocks
-      gnome-contacts
-      gnome-characters
-      epiphany # web browser
-      geary # email reader
-      seahorse # password manager
-      baobab # disk usage analyzer
-      file-roller # archive manager
-      totem # video player
-      tali # poker game
-      iagno # go game
-      hitori # sudoku game
-      atomix # puzzle game
-    ]);
+    [
+      pkgs.tinysparql
+      pkgs.localsearch
+      pkgs.gnome-connections
+      pkgs.gnome-photos
+      pkgs.gnome-tour
+      pkgs.endeavour
+      pkgs.gnome-user-docs
+      pkgs.gnome-user-share
+      pkgs.gnome-text-editor
+      pkgs.gnome-console
+      pkgs.gnome-weather
+      pkgs.gnome-software
+      pkgs.gnome-tecla
+      pkgs.yelp
+      pkgs.orca # Screnreader
+    ]
+    ++ [
+      pkgs.cheese # webcam tool
+      pkgs.gnome-remote-desktop
+      pkgs.gnome-font-viewer
+      pkgs.gnome-music
+      pkgs.gnome-logs
+      pkgs.gnome-maps
+      pkgs.gnome-clocks
+      pkgs.gnome-contacts
+      pkgs.gnome-characters
+      pkgs.epiphany # web browser
+      pkgs.geary # email reader
+      pkgs.seahorse # password manager
+      pkgs.baobab # disk usage analyzer
+      pkgs.file-roller # archive manager
+      pkgs.totem # video player
+      pkgs.tali # poker game
+      pkgs.iagno # go game
+      pkgs.hitori # sudoku game
+      pkgs.atomix # puzzle game
+    ];
 }
