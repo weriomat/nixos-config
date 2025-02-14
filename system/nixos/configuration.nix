@@ -70,22 +70,27 @@
   #   };
   # }
 
-  # groot.txt
-  #      [00;32m  \^V//
-  #      [00;33m  |[01;37m. [01;37m.[00;33m|   [01;34m I AM (G)ROOT!
-  #      [00;32m- [00;33m\ - / [00;32m_
-  #      [00;33m \_| |_/
-  #      [00;33m   \ \
-  #      [00;31m __[00;33m/[00;31m_[00;33m/[00;31m__
-  #      [00;31m|_______|  [00;37m With great power comes great responsibility.
-  #      [00;31m \     /   [00;37m Use sudo wisely.
-  #      [00;31m  \___/
-  # [0m
+  # yanked from https://github.com/gvolpe/nix-config/blob/5cb1693b9926fab569e1a69e9cb3b2ce2ed09d2d/system/misc/groot.txt
   # Sudo custom prompt message
-  # security.sudo.configFile = ''
-  #   Defaults lecture=always
-  #   Defaults lecture_file=${misc/groot.txt}
-  # '';
+  security.sudo.configFile =
+    let
+      file = pkgs.writeText "groot.txt" ''
+              [00;32m  \^V//
+             [00;33m  |[01;37m. [01;37m.[00;33m|   [01;34m I AM (G)ROOT!
+             [00;32m- [00;33m\ - / [00;32m_
+             [00;33m \_| |_/
+             [00;33m   \ \
+             [00;31m __[00;33m/[00;31m_[00;33m/[00;31m__
+             [00;31m|_______|  [00;37m With great power comes great responsibility.
+             [00;31m \     /   [00;37m Use sudo wisely.
+             [00;31m  \___/
+        [0m
+      '';
+    in
+    ''
+      Defaults lecture=always
+      Defaults lecture_file=${toString file}
+    '';
 
   # TODO: trackpad
   # services.libinput = {
