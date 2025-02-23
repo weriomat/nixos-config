@@ -210,6 +210,24 @@ in
             ];
           }
           {
+            name = "Utils";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "Chmod calc";
+                url = "https://chmod-calculator.com/";
+              }
+              {
+                name = "Nixhub";
+                url = "https://www.nixhub.io/";
+              }
+              {
+                name = "gpg cheat-sheet";
+                url = "https://gock.net/blog/2020/gpg-cheat-sheet";
+              }
+            ];
+          }
+          {
             name = "Grafana - Dashboard";
             toolbar = true;
             bookmarks = [
