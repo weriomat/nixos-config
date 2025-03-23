@@ -204,7 +204,7 @@ in
         # screenshot
         ",Print, exec, ${
           getExe inputs.hypr-contrib.packages.${pkgs.system}.grimblast
-        } --notify --cursor copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+        } --notify copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
       ];
 
       bindm = [
