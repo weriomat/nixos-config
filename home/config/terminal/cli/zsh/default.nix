@@ -13,178 +13,195 @@
   # TODO: paths
   # TODO: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/zsh/zsh.nix
   # TODO: add shortcut to set off history
-  programs.zsh = {
-    enable = true;
-    autocd = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-
-    # adds 0.15 sek to startup time
-    syntaxHighlighting = {
+  programs = {
+    bash = {
       enable = true;
+      historyFile = "${config.xdg.stateHome}/bash/history";
     };
+    zsh = {
+      # dotDir = "${config.xdg.configHome}/zsh";
+      dotDir = ".config/zsh";
+      enable = true;
+      autocd = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
 
-    envExtra = ''
-      # # If not running interactively, don't do anything and return early
-      # [[ -o interactive ]] || exit 0
-      # Enable Ctrl+arrow key bindings for word jumping
-      bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
-      bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
+      # adds 0.15 sek to startup time
+      syntaxHighlighting = {
+        enable = true;
+      };
 
-      # TODO: open commands in $EDITOR with C-e
-      autoload -z edit-command-line
-      zle -N edit-command-line
-      bindkey "^e" edit-command-line
+      envExtra = ''
+        # # If not running interactively, don't do anything and return early
+        # [[ -o interactive ]] || exit 0
+        # Enable Ctrl+arrow key bindings for word jumping
+        bindkey '^[[1;5C' forward-word     # Ctrl+right arrow
+        bindkey '^[[1;5D' backward-word    # Ctrl+left arrow
 
-      # Fix an issue with tmux.
-      export KEYTIMEOUT=1
-      # Use vim bindings.
-      set -o vi
+        # TODO: open commands in $EDITOR with C-e
+        autoload -z edit-command-line
+        zle -N edit-command-line
+        bindkey "^e" edit-command-line
 
-      # set list-colors to enable filename colorizing
-      zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-    '';
+        # Fix an issue with tmux.
+        export KEYTIMEOUT=1
+        # Use vim bindings.
+        set -o vi
 
-    shellAliases = {
-      diff = "diff --color";
+        # set list-colors to enable filename colorizing
+        zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
 
-      ga = "git add";
-      gb = "git branch";
-      gc = "git commit -m";
-      gco = "git checkout";
-      gss = "git status -sb";
-      gpp = "git push";
-      gpu = "git pull";
+        # extra exports
+        export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+        export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+        export GOPATH="$XDG_DATA_HOME"/go
+        export CARGO_HOME="$XDG_DATA_HOME"/cargo
+        export ZDOTDIR="$HOME"/${config.programs.zsh.dotDir}
+      '';
 
-      ssh = "TERM=xterm-256color /usr/bin/env ssh";
+      shellAliases = {
+        diff = "diff --color";
 
-      # format nix flake
-      format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
+        ga = "git add";
+        gb = "git branch";
+        gc = "git commit -m";
+        gco = "git checkout";
+        gss = "git status -sb";
+        gpp = "git push";
+        gpu = "git pull";
 
-      # alternative to cmds
-      ping = "${pkgs.prettyping}/bin/prettyping";
-      df = "duf --all --theme dark";
-      dig = "dog";
-      du = "dust";
-      grep = "rg --color=auto";
+        ssh = "TERM=xterm-256color /usr/bin/env ssh";
 
-      # check nix flake
-      check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
+        # format nix flake
+        format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
 
-      # nix shell
-      nd = "nix develop -c zsh";
+        # alternative to cmds
+        ping = "${pkgs.prettyping}/bin/prettyping";
+        df = "duf --all --theme dark";
+        dig = "dog";
+        du = "dust";
+        grep = "rg --color=auto";
 
-      # fho
-      fho = "fh | xargs firefox";
+        wget = ''${pkgs.wget} --hsts-file="$XDG_DATA_HOME/wget-hsts"'';
 
-      # no
-      no = "nh os switch -u";
+        # check nix flake
+        check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
 
-      rebuild = lib.mkIf pkgs.stdenv.isDarwin "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4";
+        # nix shell
+        nd = "nix develop -c zsh";
 
-      # TODO: here
-      # Set some aliases
-      mkdir = "mkdir -vp";
-      # rm = "rm -rifv";
-      mv = "mv -iv";
-      # cp = "cp -riv";
-      # cat = "bat --paging=never --style=plain";
-      # ls = "exa -a --icons";
-      # tree = "exa --tree --icons";
-      # nd = "nix develop -c $SHELL";
-      # isodate = ''date -u "+%Y-%m-%dT%H:%M:%SZ"'';
-      # mime = "xdg-mime query filetype";
+        # fho
+        fho = "fh | xargs firefox";
+
+        # no
+        no = "nh os switch -u";
+
+        rebuild = lib.mkIf pkgs.stdenv.isDarwin "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4";
+
+        # TODO: here
+        # Set some aliases
+        mkdir = "mkdir -vp";
+        # rm = "rm -rifv";
+        mv = "mv -iv";
+        # cp = "cp -riv";
+        # cat = "bat --paging=never --style=plain";
+        # ls = "exa -a --icons";
+        # tree = "exa --tree --icons";
+        # nd = "nix develop -c $SHELL";
+        # isodate = ''date -u "+%Y-%m-%dT%H:%M:%SZ"'';
+        mime = "xdg-mime query filetype"; # check mimetype of a file
+      };
+
+      # # basically aliases for directories:
+      # # `cd ~dots` will cd into ~/.config/nixos
+      # dirHashes = {
+      #   dots = "$HOME/.config/nixos";
+      #   stuff = "$HOME/stuff";
+      #   media = "/run/media/$USER";
+      #   junk = "$HOME/stuff/other";
+      # };
+
+      shellGlobalAliases = {
+        UUID = "$(uuidgen | tr -d \\n)";
+        G = "| grep";
+      };
+
+      history = {
+        size = 100000; # this probably slows down shell history opening
+        path = "${config.xdg.dataHome}/zsh/history";
+        ignoreDups = true;
+        ignoreSpace = true;
+        share = true;
+      };
+
+      historySubstringSearch.enable = true;
+
+      initExtraBeforeCompInit = ''
+        export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-mocha)"
+      '';
+
+      plugins = [
+        # vi mode and fzf tab add 0.007 to startup time
+        {
+          name = "zsh-vi-mode";
+          src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+        }
+        {
+          name = "fzf-tab";
+          src = pkgs.fetchFromGitHub {
+            owner = "Aloxaf";
+            repo = "fzf-tab";
+            rev = "7fed01afba9392b6392408b9a0cf888522ed7a10";
+            sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
+          };
+        }
+
+        # {
+        #   name = "emoji-cli";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "babarot";
+        #     repo = "emoji-cli";
+        #     rev = "0fbb2e48e07218c5a2776100a4c708b21cb06688";
+        #     sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
+        #   };
+        #   file = "emoji-cli.plugin.zsh";
+        # }
+
+        # This plugin is mega slow -> slows down startup by 1.4sek
+        # {
+        #   name = "fast-syntax-highlighting";
+        #   src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+        # }
+
+        # {
+        #   name = "zsh-completion";
+        #   src = "${pkgs.zsh-completions}/zsh-completions.plugin.zsh";
+        # }
+        # {
+        #   name = "forgit";
+        #   src = "${pkgs.zsh-forgit}/forgit.plugin.zsh";
+        # }
+        # {
+        #   name = "enhancd";
+        #   file = "init.sh";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "b4b4r07";
+        #     repo = "enhancd";
+        #     rev = "v2.2.1";
+        #     sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
+        #   };
+        # }
+        #   {
+        #     name = "zsh-nix-shell";
+        #     file = "nix-shell.plugin.zsh";
+        #     src = pkgs.fetchFromGitHub {
+        #       owner = "chisui";
+        #       repo = "zsh-nix-shell";
+        #       rev = "v0.8.0";
+        #       sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+        #     };
+        #   }
+      ];
     };
-
-    # # basically aliases for directories:
-    # # `cd ~dots` will cd into ~/.config/nixos
-    # dirHashes = {
-    #   dots = "$HOME/.config/nixos";
-    #   stuff = "$HOME/stuff";
-    #   media = "/run/media/$USER";
-    #   junk = "$HOME/stuff/other";
-    # };
-
-    shellGlobalAliases = {
-      UUID = "$(uuidgen | tr -d \\n)";
-      G = "| grep";
-    };
-
-    history = {
-      size = 100000; # this probably slows down shell history opening
-      path = "${config.xdg.dataHome}/zsh/history";
-      ignoreDups = true;
-      ignoreSpace = true;
-      share = true;
-    };
-
-    historySubstringSearch.enable = true;
-
-    initExtraBeforeCompInit = ''
-      export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-mocha)"
-    '';
-
-    plugins = [
-      # vi mode and fzf tab add 0.007 to startup time
-      {
-        name = "zsh-vi-mode";
-        src = "${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-      }
-      {
-        name = "fzf-tab";
-        src = pkgs.fetchFromGitHub {
-          owner = "Aloxaf";
-          repo = "fzf-tab";
-          rev = "7fed01afba9392b6392408b9a0cf888522ed7a10";
-          sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
-        };
-      }
-
-      # {
-      #   name = "emoji-cli";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "babarot";
-      #     repo = "emoji-cli";
-      #     rev = "0fbb2e48e07218c5a2776100a4c708b21cb06688";
-      #     sha256 = "sha256-ilUavAIWmLiMh2PumtErMCpOcR71ZMlQkKhVOTDdHZw=";
-      #   };
-      #   file = "emoji-cli.plugin.zsh";
-      # }
-
-      # This plugin is mega slow -> slows down startup by 1.4sek
-      # {
-      #   name = "fast-syntax-highlighting";
-      #   src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-      # }
-
-      # {
-      #   name = "zsh-completion";
-      #   src = "${pkgs.zsh-completions}/zsh-completions.plugin.zsh";
-      # }
-      # {
-      #   name = "forgit";
-      #   src = "${pkgs.zsh-forgit}/forgit.plugin.zsh";
-      # }
-      # {
-      #   name = "enhancd";
-      #   file = "init.sh";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "b4b4r07";
-      #     repo = "enhancd";
-      #     rev = "v2.2.1";
-      #     sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
-      #   };
-      # }
-      #   {
-      #     name = "zsh-nix-shell";
-      #     file = "nix-shell.plugin.zsh";
-      #     src = pkgs.fetchFromGitHub {
-      #       owner = "chisui";
-      #       repo = "zsh-nix-shell";
-      #       rev = "v0.8.0";
-      #       sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
-      #     };
-      #   }
-    ];
   };
 }
