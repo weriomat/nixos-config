@@ -43,8 +43,7 @@ in
         experimental-features = "nix-command flakes";
         auto-optimise-store = true;
         warn-dirty = false;
-        # TODO: here
-        # use-xdg-base-directories = true;
+        use-xdg-base-directories = true;
         substituters = [
           "https://hyprland.cachix.org"
           "https://cache.nixos.org"
