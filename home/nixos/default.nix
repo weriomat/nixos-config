@@ -137,7 +137,7 @@
       "$HOME/.cargo/bin"
       "$HOME/.local/bin"
     ];
-    # preferXdgDirectories = true;
+    preferXdgDirectories = true;
   };
 
   # Let Home Manager install and manage itself.
