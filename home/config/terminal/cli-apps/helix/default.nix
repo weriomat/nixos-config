@@ -18,6 +18,7 @@ in
     pkgs.nodePackages.bash-language-server # bash
     pkgs.yaml-language-server # yaml
     pkgs.pyright # python
+    pkgs.terraform-ls
   ];
   # TODO: https://gitlab.com/hmajid2301/nixicle/-/blob/main/modules/home/cli/terminals/kitty/default.nix
 
@@ -161,6 +162,16 @@ in
       };
 
       language = [
+        {
+          name = "hcl";
+          auto-format = true;
+          language-servers = [ "terraform-ls" ];
+        }
+        {
+          name = "tfvars";
+          auto-format = true;
+          language-servers = [ "terraform-ls" ];
+        }
         {
           name = "c";
           auto-format = true;
