@@ -1,25 +1,161 @@
 # TODO: here
-# https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/xdg-mimes.nix
+# FROM: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/xdg-mimes.nix
 {
   config,
   pkgs,
   ...
-}: let
-  browser = ["firefox"];
-  imageViewer = ["org.gnome.Loupe"];
-  videoPlayer = ["io.github.celluloid_player.Celluloid"];
-  audioPlayer = ["io.bassi.Amberol"];
+}:
+let
+  browser = [ "firefox" ];
+  imageViewer = [ "org.gnome.Loupe" ];
+  videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
+  audioPlayer = [ "io.bassi.Amberol" ];
+  editorMain = [ "Helix" ];
+  pdfViewer = [ "org.gnome.Evince" ];
+  email = [ "thunderbird" ];
+  # TODO: figure out how to disable pdf-arranger
+  # TODO: xdg-ninja
 
-  xdgAssociations = type: program: list:
-    builtins.listToAttrs (map (e: {
+  xdgAssociations =
+    type: program: list:
+    builtins.listToAttrs (
+      map (e: {
         name = "${type}/${e}";
         value = program;
-      })
-      list);
+      }) list
+    );
 
-  image = xdgAssociations "image" imageViewer ["png" "svg" "jpeg" "gif"];
-  video = xdgAssociations "video" videoPlayer ["mp4" "avi" "mkv"];
-  audio = xdgAssociations "audio" audioPlayer ["mp3" "flac" "wav" "aac"];
+  pdf =
+    (xdgAssociations "application" pdfViewer [
+      "pdf"
+      "vnd.ms-powerpoint"
+    ])
+    // (xdgAssociations "image" pdfViewer [ "vnd.djvu" ]);
+
+  # TODO: nsxiv, pqiv as viewers
+  image = xdgAssociations "image" imageViewer [
+    "png"
+    "svg"
+    "jpeg"
+    "gif"
+    # added
+    "bmp"
+    "jpg"
+    "jxl"
+    "avif"
+    "heif"
+    "tiff"
+    "webp"
+    "x-eps"
+    "x-ico"
+    "x-psd"
+    "x-tga"
+    "x-icns"
+    "x-webp"
+    "svg+xml"
+    "x-xbitmap"
+    "x-xpixmap"
+    "x-portable-bitmap"
+    "x-portable-pixmap"
+    "x-portable-graymap"
+  ];
+
+  # TODO: ics to calendar?
+  # TODO: to rss with rss reader
+  mail =
+    (xdgAssociations "x-scheme-handler" email [
+      "mailto"
+      "mid"
+      "news"
+      "snews"
+      "nntp"
+      "feed"
+      "webcals"
+      "webcal"
+    ])
+    // (xdgAssociations "application" email [
+      "rss+xml"
+      "x-extension-rss"
+      "x-extension-ics"
+    ])
+    // (xdgAssociations "text" email [
+      "calendar"
+      "x-vcard"
+    ])
+    // (xdgAssociations "message" email [ "rfc822" ]);
+
+  video =
+    (xdgAssociations "video" videoPlayer [
+      "mp4"
+      "avi"
+      "mkv"
+      # added
+      "dv"
+      "3gp"
+      "avi"
+      "fli"
+      "flv"
+      "mp4"
+      "ogg"
+      "divx"
+      "mp2t"
+      "mpeg"
+      "webm"
+      "3gpp"
+      "3gpp2"
+      "mp4v-es"
+      "msvideo"
+      "quicktime"
+      "vnd.divx"
+      "vnd.mpegurl"
+      "vnd.rn-realvideo"
+      "x-avi"
+      "x-flv"
+      "x-m4v"
+      "x-ogm"
+      "x-mpeg2"
+      "x-ms-asf"
+      "x-ms-wmv"
+      "x-ms-wmx"
+      "x-ms-wvx"
+      "x-ms-wm"
+      "x-ms-wmp"
+      "x-ms-wmz"
+      "x-theora"
+      "x-msvideo"
+      "x-ogm+ogg"
+      "x-matroska"
+      "x-matroska-3d"
+      "x-theora+ogg"
+    ])
+    // (xdgAssociations "application" videoPlayer [ "x-matroska" ]);
+
+  audio = xdgAssociations "audio" audioPlayer [
+    "mp3"
+    "flac"
+    "wav"
+    "aac"
+    # added
+    "mp4"
+    "ogg"
+    "mpeg"
+    "x-mp3"
+    "x-wav"
+    "vorbis"
+    "x-flac"
+    "mpegurl"
+    "x-scpls"
+    "x-speex"
+    "x-ms-wma"
+    "x-vorbis"
+    "x-mpegurl"
+    "x-oggflac"
+    "x-musepack"
+    "x-vorbis+ogg"
+    "x-pn-realaudio"
+    "vnd.rn-realaudio"
+  ];
+
   browserTypes =
     (xdgAssociations "application" browser [
       "json"
@@ -28,6 +164,8 @@
       "x-extension-shtml"
       "x-extension-xht"
       "x-extension-xhtml"
+      # added
+      "xhtml+xml"
     ])
     // (xdgAssociations "x-scheme-handler" browser [
       "about"
@@ -35,21 +173,70 @@
       "http"
       "https"
       "unknown"
+      # added
+      "chrome"
+    ])
+    // (xdgAssociations "text" browser [ "html" ]); # added
+
+  editor =
+    (xdgAssociations "text" editorMain [
+      "plain"
+      "rhtml"
+      "x-tex"
+      "x-java"
+      "x-ruby"
+      "x-cmake"
+      "markdown"
+      "x-python"
+      "x-readme"
+      "x-markdown"
+      "x-c++hdr"
+      "x-c++src"
+      "x-chdr"
+      "x-csrc"
+      "x-java"
+      "x-moc"
+      "x-pascal"
+      "x-tcl"
+      "x-tex"
+      "x-c"
+      "x-c++"
+      "x-nix"
+    ])
+    // (xdgAssociations "inode" editorMain [ "x-empty" ])
+    // (xdgAssociations "application" editorMain [
+      "json"
+      "x-ruby"
+      "x-yaml"
+      "x-docbook+xml"
+      "x-shellscript"
     ]);
 
   # XDG MIME types
-  associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
-      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf"];
+  associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) (
+    {
       "text/html" = browser;
-      "text/plain" = ["Helix"];
-      "x-scheme-handler/chrome" = ["chromium-browser"];
-      "inode/directory" = ["yazi"];
+      "x-scheme-handler/chrome" = [ "chromium-browser" ];
+      "inode/directory" = [ "yazi" ];
     }
     // image
     // video
     // audio
-    // browserTypes);
-in {
+    // browserTypes
+    // editor
+    // pdf
+    // mail
+  );
+in
+{
+
+  home.packages = [
+    pkgs.yazi
+    pkgs.loupe
+    pkgs.evince
+    pkgs.celluloid
+  ];
+
   # xdg.mimeApps = {
   #   enable = true;
   #   defaultApplications = {
@@ -59,6 +246,7 @@ in {
   #     "text/html" = "firefox.desktop";
   #   };
   # };
+  # TODO: here
   # xdg.desktopEntries.thunderbird = {
   #   name = "Thunderbird";
   #   exec = "thunderbird %U";
@@ -69,6 +257,7 @@ in {
   xdg = {
     enable = true;
     cacheHome = config.home.homeDirectory + "/.local/cache";
+    # dataHome = "~/.local/share";
 
     mimeApps = {
       enable = true;
@@ -81,103 +270,57 @@ in {
       extraConfig = {
         XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
       };
+      #   documents = "$HOME/stuff/other/";
+      #   download = "$HOME/stuff/other/";
+      #   videos = "$HOME/stuff/other/";
+      #   music = "$HOME/stuff/music/";
+      #   pictures = "$HOME/stuff/pictures/";
+      #   desktop = "$HOME/stuff/other/";
+      #   publicShare = "$HOME/stuff/other/";
+      #   templates = "$HOME/stuff/other/";
     };
   };
+
+  # home.packages = [
+  # used by `gio open` and xdp-gtk
+  # (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
+  #   kitty "$@"
+  # '')
+  # pkgs.xdg-utils
+  # ];
 
   # TODO: here
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    config = {
-      common.default = ["gtk"];
-      hyprland.default = ["gtk" "hyprland"];
-    };
-
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   xdgOpenUsePortal = true;
+  #   config = {
+  #     common.default = [ "gtk" ];
+  #     hyprland.default = [
+  #       "gtk"
+  #       "hyprland"
+  #     ];
+  #     #     common.default = ["hyprland"];
+  #     #     hyprland.default = ["gtk" "hyprland"];
+  #   };
+  #   extraPortals = [
+  #     pkgs.xdg-desktop-portal-gtk
+  #     #     xdg-desktop-portal-hyprland
+  #   ];
+  # };
 
   # TODO: here
   # pgcli # modern postgres client
 
-  # xdg.portal = {
-  #   enable = true;
-  #   config = {
-  #     common = {
-  #       default = ["hyprland"];
-  #     };
-  #     hyprland = {
-  #       default = ["gtk" "hyprland"];
-  #     };
-  #   };
-  #   extraPortals = with pkgs; [
-  #     xdg-desktop-portal-gtk
-  #     xdg-desktop-portal-hyprland
-  #   ];
-  #   xdgOpenUsePortal = true;
-  # };
-
   # services = {
   #      flameshot = {
   #        enable = true;
-  #        settings = {
-  #          General = {
-  #            showStartupLaunchMessage = false;
-  #          };
-  #        };
+  #        settings.General.showStartupLaunchMessage = false;
   #      };
-
   #      gnome-keyring = {
   #        enable = false;
   #        components = [ "pkcs11" "secrets" "ssh" ];
   #      };
   #    };
-
-  # TODO: gtk
-  # gtk = rec {
-  #    enable = true;
-  #    iconTheme = {
-  #      name = "BeautyLine";
-  #      package = pkgs.beauty-line-icon-theme;
-  #    };
-  #    theme = {
-  #      name = "Juno-ocean";
-  #      package = pkgs.juno-theme;
-  #    };
-  #    gtk4 = {
-  #      extraConfig = {
-  #        gtk-application-prefer-dark-theme = true;
-  #      };
-  #      # the dark files are not copied by default, as not all themes have separate files
-  #      # see: https://github.com/nix-community/home-manager/blob/afcedcf2c8e424d0465e823cf833eb3adebe1db7/modules/misc/gtk.nix#L238
-  #      extraCss = ''
-  #        @import url("file://${theme.package}/share/themes/${theme.name}/gtk-4.0/gtk-dark.css");
-  #      '';
-  #    };
-  #  };
-
-  home.packages = [
-    # used by `gio open` and xdp-gtk
-    (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-      foot "$@"
-    '')
-    pkgs.xdg-utils
-  ];
-
-  # TODO: here
-  # xdg.userDirs = {
-  #   enable = true;
-  #   documents = "$HOME/stuff/other/";
-  #   download = "$HOME/stuff/other/";
-  #   videos = "$HOME/stuff/other/";
-  #   music = "$HOME/stuff/music/";
-  #   pictures = "$HOME/stuff/pictures/";
-  #   desktop = "$HOME/stuff/other/";
-  #   publicShare = "$HOME/stuff/other/";
-  #   templates = "$HOME/stuff/other/";
-  # };
-  # home.packages = with pkgs; [ffmpegthumbnailer];
 
   # programs.mpv = {
   #   enable = true;
@@ -191,26 +334,6 @@ in {
   #     force-window = true;
   #     ytdl-format = "bestvideo+bestaudio";
   #   };
-  # };
-
-  # xdg.mimeApps.defaultApplications = {
-  #   "video/mp4" = "mpv.desktop";
-  #   "video/x-matroska" = "mpv.desktop";
-  #   "video/webm" = "mpv.desktop";
-  #   "video/quicktime" = "mpv.desktop";
-  #   "video/x-msvideo" = "mpv.desktop";
-  #   "video/x-ms-wmv" = "mpv.desktop";
-  #   "video/x-flv" = "mpv.desktop";
-  #   "video/x-m4v" = "mpv.desktop";
-  #   "video/3gpp" = "mpv.desktop";
-  #   "video/3gpp2" = "mpv.desktop";
-  #   "video/x-matroska-3d" = "mpv.desktop";
-  #   "video/x-ms-asf" = "mpv.desktop";
-  #   "video/x-ms-wvx" = "mpv.desktop";
-  #   "video/x-ms-wmx" = "mpv.desktop";
-  #   "video/x-ms-wm" = "mpv.desktop";
-  #   "video/x-ms-wmp" = "mpv.desktop";
-  #   "video/x-ms-wmz" = "mpv.desktop";
   # };
 
   # TODO: img viewer
@@ -306,14 +429,6 @@ in {
   #       }    '';
   # };
 
-  # xdg.mimeApps.defaultApplications = {
-  #   "image/jpeg" = "pqiv.desktop";
-  #   "image/gif" = "pqiv.desktop";
-  #   "image/webp" = "pqiv.desktop";
-  #   "image/png" = "pqiv.desktop";
-  #   "image/svg+xml" = "pqiv.desktop";
-  # };
-
   # TODO: pdfviewer
   # programs.zathura = {
   #   enable = true;
@@ -343,8 +458,88 @@ in {
   #   '';
   # };
 
-  # xdg.mimeApps.defaultApplications = {
-  #   "application/pdf" = "zathura.desktop";
-  #   "application/vnd.ms-powerpoint" = "zathura.desktop";
-  # };
+  # TODO: git https://github.com/saygo-png/nixos/blob/main/configuration.nix
+  # extraConfig = {
+  #           color.ui = "auto";
+  #           pull.rebase = true;
+  #           commit.gpgsign = true;
+  #           rerere.enabled = true;
+  #           pull.autoSquash = true;
+  #           push.autoSetupRemote = true;
+  #           branch.autosetupmerge = true;
+  #           merge.tool = "${lib.getExe pkgs.meld}";
+  #           core.excludesfile = "~/.gitignore_global";
+  #           push = {
+  #             default = "upstream";
+  #             useForceIfIncludes = true;
+  #           };
+  #           diff = {
+  #             tool = "vimdiff";
+  #             mnemonicprefix = true;
+  #           };
+  #         };
+  #       };
+
+  # TODO: git merger https://meld.app/
+  # TODO: Video viewer
+  # programs.mpv = {
+  #      enable = true;
+  #      bindings = {
+  #        l = "seek 20";
+  #        h = "seek -20";
+  #        "]" = "add speed 0.1";
+  #        "[" = "add speed -0.1";
+  #        j = "seek -4";
+  #        k = "seek 4";
+  #        K = "cycle sub";
+  #        J = "cycle sub down";
+  #        w = "add sub-pos -10"; # move subtitles up
+  #        W = "add sub-pos -1"; # move subtitles up
+  #        e = "add sub-pos +10"; # move subtitles down
+  #        E = "add sub-pos +1"; # move subtitles down
+  #        "=" = "add sub-scale +0.1";
+  #        "-" = "add sub-scale -0.1";
+  #      };
+
+  #      config = {
+  #        speed = 1;
+  #        hwdec = true;
+  #        sub-pos = 90;
+  #        keep-open = true;
+  #        sub-auto = "all";
+  #        sub-font-size = 40;
+  #        sub-border-size = 2;
+  #        sub-shadow-offset = 2;
+  #        sub-visibility = "yes";
+  #        sub-ass-line-spacing = 1;
+  #        sub-ass-hinting = "normal";
+  #        sub-ass-override = "force";
+  #        save-position-on-quit = true;
+  #        sub-auto-exts = "srt,ass,txt";
+  #        ytdl-format = "bestvideo+bestaudio/best";
+  #        slang = "fin,fi,fi-fi,eng,en,en-en,en-orig";
+  #        sub-font = "${config.stylix.fonts.serif.name}";
+  #        sub-ass-force-style = "${config.stylix.fonts.serif.name}";
+  #        sub-color = "${config.lib.stylix.colors.withHashtag.base07}";
+  #        sub-shadow-color = "${config.lib.stylix.colors.withHashtag.base00}";
+  #        watch-later-options-clr = true; # Dont save settings like brightness
+  #      };
+  #      scripts = [
+  #        pkgs.mpvScripts.uosc
+  #        pkgs.mpvScripts.acompressor
+  #      ];
+  #    };
+
+  # TODO: take a look at moar as a pager, https://github.com/walles/moar
+  # from https://github.com/saygo-png/nixos/blob/main/configuration.nix
+  # # Prevent default apps from being changed
+  #     xdg.configFile."mimeapps.list".force = true;
+  #     xdg.mimeApps = {
+  #       enable = true;
+  #       associations.added = config.xdg.mimeApps.defaultApplications;
+  #       defaultApplications = let
+  #         inherit (config.home.sessionVariables) EDITOR;
+  #         inherit (config.home.sessionVariables) BROWSER;
+  #       in {
+
 }
