@@ -17,6 +17,7 @@ in
       pkgs.zotero # research paper assitant, note that the betterbibtex extension was installed manually
       pkgs.gnome-disk-utility
       pkgs.gnome-calendar # calendar
+      pkgs.gnome-podcasts
 
       # media
       pkgs.smartmontools # smart mon
