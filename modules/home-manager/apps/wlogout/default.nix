@@ -56,7 +56,6 @@ in
           keybind = "r";
         }
       ];
-      # TODO: fix buttons
       style = mkForce ''
         * {
           font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
