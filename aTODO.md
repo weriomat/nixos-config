@@ -1,17 +1,11 @@
 # different todo's
 
 1. thunderbird intergration
-2. nixos-import -> base -> make it so u just import base; + base for hm
-3. asdf
-4. take a look at accounts home-manager
-5. look at new hm options
-6. proton bridge
-7. take a look at `https://github.com/hercules-ci/gitignore.nix`
-8. take a look at btop gpu options
-9. osx gpg config
-10. monitors setup `https://github.com/Guekka/nixos-server/blob/main/modules/home-manager/monitors.nix`
-11. harden nixos `https://xeiaso.net/blog/paranoid-nixos-2021-07-18/`
-12. gitlab runner on osx
+2. take a look at accounts home-manager
+3. look at new hm options
+4. take a look at btop gpu options
+5. osx gpg config
+6. gitlab runner on osx
 
 take a look at
 `https://github.com/poliorcetics/dotfiles/blob/main/home/helix/config.nix`
