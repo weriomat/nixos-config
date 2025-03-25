@@ -64,14 +64,22 @@ in
 
   # TODO: here https://wiki.hyprland.org/Useful-Utilities/Hyprland-desktop-portal/
   # portal for sharing (file pickers), gtk will be enabled by gnome
-  xdg.portal = {
-    enable = true;
-    wlr.enable = mkForce false; # hyprland has its own portal
-    xdgOpenUsePortal = true;
-    extraPortals = [
-      (pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; })
-    ];
-    configPackages = [ hyprland ];
+  xdg = {
+    portal = {
+      enable = true;
+      wlr.enable = mkForce false; # hyprland has its own portal
+      xdgOpenUsePortal = true;
+      extraPortals = [
+        (pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; })
+      ];
+      configPackages = [ hyprland ];
+    };
+    terminal-exec = {
+      enable = true;
+      settings.default = [
+        "kitty.desktop"
+      ];
+    };
   };
 
   # Enable polkit
