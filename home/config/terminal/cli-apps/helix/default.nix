@@ -157,17 +157,30 @@ in
         marksman.command = "${pkgs.marksman}/bin/marksman";
 
         clangd.args = [ "--enable-config" ];
+
+        terraform-ls = {
+          command = "${pkgs.terraform-ls}/bin/terraform-ls";
+          args = [ "serve" ];
+        };
       };
 
       language = [
         {
           name = "hcl";
           auto-format = true;
+          formatter = {
+            command = "${pkgs.opentofu}/bin/tofu";
+            args = [ "fmt -" ];
+          };
           language-servers = [ "terraform-ls" ];
         }
         {
           name = "tfvars";
           auto-format = true;
+          formatter = {
+            command = "${pkgs.opentofu}/bin/tofu";
+            args = [ "fmt -" ];
+          };
           language-servers = [ "terraform-ls" ];
         }
         {
