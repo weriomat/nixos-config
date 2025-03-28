@@ -33,6 +33,7 @@ in
     };
 
     networking = {
+      domain = "weriomat.com";
       # NOTE: DoT -> `https://shivering-isles.com/2021/01/configure-dot-on-systemd-resolved`
       nameservers = mkIf cfg.dns.enable [
         "1.1.1.1#one.one.one.one"
