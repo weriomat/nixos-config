@@ -309,6 +309,7 @@ in
           on-scroll-up = "${pkgs.playerctl}/bin/playerctl volume .05+";
           on-scroll-down = "${pkgs.playerctl}/bin/playerctl volume .05-";
         };
+
         memory = {
           format = "󰟜 {}%";
           format-alt = "󰟜 {used} GiB"; # 
@@ -365,9 +366,6 @@ in
           on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
           on-click-right = "${pkgs.pamixer}/bin/pamixer -t";
         };
-        # backlight = {
-        #   format = " {percent}%";
-        # };
         "custom/launcher" = {
           format = "";
           on-click = "${pkgs.toybox}/bin/pkill wofi || ${config.programs.wofi.package}/bin/wofi --show drun";
