@@ -1,6 +1,5 @@
 # from `https://github.com/fufexan/dotfiles/blob/main/system/programs/gamemode.nix`
-{ inputs, ... }:
-{
+_: {
   programs.gamemode = {
     enable = true;
     settings = {
@@ -12,8 +11,8 @@
   };
 
   # see https://github.com/fufexan/nix-gaming/#pipewire-low-latency
-  services.pipewire.lowLatency.enable = true;
-  imports = [
-    inputs.nix-gaming.nixosModules.pipewireLowLatency
-  ];
+  # services.pipewire.lowLatency.enable = true;
+  # imports = [
+  #   inputs.nix-gaming.nixosModules.pipewireLowLatency
+  # ];
 }
