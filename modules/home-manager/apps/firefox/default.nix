@@ -415,6 +415,10 @@ in
         };
 
         settings = {
+          # hw accel
+          "media.ffmpeg.vaapi.enabled" = true;
+          # widevine drm
+          "media.gmp-widevinecdm.enabled" = true;
           "browser.search.region" = "US";
           "browser.search.isUS" = true;
           "distribution.searchplugins.defaultLocale" = "en-US";
