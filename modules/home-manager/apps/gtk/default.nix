@@ -36,6 +36,7 @@ in
         package = pkgs.nordzy-cursor-theme;
         size = 22;
       };
+      gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
       #    gtk4 = {
       #      extraConfig = {
       #        gtk-application-prefer-dark-theme = true;
