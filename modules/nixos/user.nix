@@ -8,6 +8,7 @@
 
   users = {
     users.${globals.username} = {
+      inherit (globals) uid;
       isNormalUser = true;
       createHome = true;
       description = "${globals.username}";
@@ -24,7 +25,6 @@
         "input"
       ];
       hashedPassword = "$y$j9T$NbSJKRlQhIdwZauz4m2uX1$AdlYNcSkXN2DWZ0Q/kETh/lUrUGS5.3IMs.ReoLD2NB";
-      uid = 1000;
       homeMode = "755";
       group = globals.username;
     };
