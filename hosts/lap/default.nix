@@ -61,6 +61,7 @@ inputs.nixpkgs.lib.nixosSystem {
           inputs.arkenfox.hmModules.default
         ];
         users.${globals.username}.imports = [
+          ./config-home.nix
           ../../modules/home-manager
           ../../home/nixos
           ../../home/config
