@@ -336,6 +336,17 @@ in
           default = "DuckDuckGo";
           privateDefault = "DuckDuckGo";
           engines = {
+            "steam" = {
+              urls = [ { template = "https://store.steampowered.com/search/?term={searchTerms}"; } ];
+              definedAliases = [ "@steam" ];
+            };
+            "youtube" = {
+              urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
+              definedAliases = [
+                "@yt"
+                "@y"
+              ];
+            };
             "Crates" = {
               urls = [ { template = "https://crates.io/search?q={searchTerms}"; } ];
               definedAliases = [ "@rc" ];
@@ -396,7 +407,7 @@ in
               definedAliases = [ "@pd" ];
             };
             "NixOS Wiki" = {
-              urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
+              urls = [ { template = "https://wiki.nixos.org/index.php?search={searchTerms}"; } ];
               iconUpdateURL = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = [ "@nw" ];
