@@ -276,7 +276,7 @@ in
           darkreader
           auto-tab-discard
           canvasblocker
-          # clearurls
+          clearurls
           # add capuccin colors to firefox-color -> manual idk how to do that in nix
           # enable dark theme in about:addons under themes
           firefox-color
@@ -285,9 +285,13 @@ in
           return-youtube-dislikes
           user-agent-string-switcher
 
+          # rss stuff
+          # rsshub-radar # finds RSSHub stuff
+
           # passwords
           bitwarden
-          # keepassxc-browser
+
+          # links
           linkwarden
 
           # new
@@ -316,13 +320,7 @@ in
 
           #    privacy-badger
           # vimium-c
-          # darkreader
-          # proton-pass
-          # ublock-origin
-          # refined-github
           # gloc
-          # enhanced-github
-          # clearurls
           # adaptive-tab-bar-colour
           # unpaywall
           # simple-translate
