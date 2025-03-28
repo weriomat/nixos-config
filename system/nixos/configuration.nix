@@ -16,7 +16,11 @@
   ];
 
   hardware.keyboard.qmk.enable = true;
-  services.protonmail-bridge.enable = true;
+  services = {
+    # Firmware updates
+    fwupd.enable = true;
+    protonmail-bridge.enable = true;
+  };
 
   # NOTE: this will punch a hole through the firewall
   programs = {
