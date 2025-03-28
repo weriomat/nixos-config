@@ -53,19 +53,3 @@ in
 # ];
 # TODO: take a look at noisetorch
 # TODO: pulsemixer
-# TODO: here
-# hardware = {
-#       logitech.wireless.enable = true;
-#       logitech.wireless.enableGraphical = true; # Solaar.
-#     };
-#     environment.systemPackages = [
-#       pkgs.solaar
-#     ];
-#     services.udev.packages = [
-#       pkgs.logitech-udev-rules
-#       pkgs.solaar
-#     ];
-# logitech.wireless = { # Extra Logitech Support
-#   enable = true;
-#   enableGraphical = true;
-# };
