@@ -21,12 +21,12 @@ in
         "unstable=${inputs.nixpkgs-unstable}"
       ];
 
+      # stolen from https://git.cobalt.rocks/shared-configs/nixos-ng/-/blob/main/modules/nix.nix?ref_type=heads
       # enable local registry for better search
       # https://discourse.nixos.org/t/local-flake-based-nix-search-nix-run-and-nix-shell/13433/12
-      registry = {
-        nixpkgs.flake = inputs.nixpkgs;
-        nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
-      };
+      registry = lib.attrsets.genAttrs (builtins.attrNames inputs) (name: {
+        flake = inputs.${name};
+      });
 
       settings = {
         allowed-users = [
