@@ -419,6 +419,10 @@ in
           "media.ffmpeg.vaapi.enabled" = true;
           # widevine drm
           "media.gmp-widevinecdm.enabled" = true;
+
+          # disable firefox dns stuff
+          "network.trr.mode" = 5;
+
           "browser.search.region" = "US";
           "browser.search.isUS" = true;
           "distribution.searchplugins.defaultLocale" = "en-US";
