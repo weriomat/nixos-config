@@ -104,7 +104,7 @@
       # TODO: make seperate home module and move things around to make use of nixd
       # Full system build for x86
       nixosConfigurations = {
-        nixos = import ./hosts/default { inherit inputs outputs nix-colors; };
+        # nixos = import ./hosts/default { inherit inputs outputs nix-colors; };
         nixos-laptop = import ./hosts/lap { inherit inputs outputs nix-colors; };
       };
 
