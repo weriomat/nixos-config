@@ -137,7 +137,4 @@
     enableSshSupport = true;
     pinentryPackage = pkgs.pinentry-gtk2;
   };
-  home.sessionVariables = rec {
-    XDG_RUNTIME_DIR = "/run/user/1000";
-  };
 }
