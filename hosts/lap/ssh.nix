@@ -11,7 +11,11 @@
     gnome.gnome-keyring.enable = lib.mkForce false;
   };
 
-  programs.ssh.startAgent = false;
+  programs.ssh = {
+    enableAskPassword = true;
+    askPassword = pkgs.pinentry-gtk2 + "/bin/pinentry";
+    startAgent = false;
+  };
 
   environment.systemPackages = [
     pkgs.paperkey
