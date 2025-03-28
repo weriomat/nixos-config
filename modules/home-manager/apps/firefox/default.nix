@@ -337,21 +337,21 @@ in
           privateDefault = "DuckDuckGo";
           engines = {
             "Crates" = {
-              urls = [
-                {
-                  template = "https://crates.io/search?q={searchTerms}";
-                }
-              ];
-              definedAliases = [ "@c" ];
+              urls = [ { template = "https://crates.io/search?q={searchTerms}"; } ];
+              definedAliases = [ "@rc" ];
+            };
+            "Rust-Doc" = {
+              urls = [ { template = "https://docs.rs/{searchTerms}"; } ];
+              definedAliases = [ "@rd" ];
             };
             "Noogle" = {
-              urls = [
-                {
-                  template = "https://noogle.dev/q?term={searchTerms}";
-                }
-              ];
+              urls = [ { template = "https://noogle.dev/q?term={searchTerms}"; } ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
               definedAliases = [ "@n" ];
+            };
+            "Nixhub" = {
+              urls = [ { template = "https://www.nixhub.io/search?q={searchTerms}"; } ];
+              definedAliases = [ "@nix" ];
             };
             "Nix Options" = {
               urls = [
@@ -392,32 +392,24 @@ in
               definedAliases = [ "@np" ];
             };
             "ProtonDB" = {
-              urls = [
-                {
-                  template = "https://www.protondb.com/search?q={searchTerms}";
-                }
-              ];
+              urls = [ { template = "https://www.protondb.com/search?q={searchTerms}"; } ];
               definedAliases = [ "@pd" ];
             };
             "NixOS Wiki" = {
-              urls = [
-                {
-                  template = "https://nixos.wiki/index.php?search={searchTerms}";
-                }
-              ];
+              urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
               iconUpdateURL = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = [ "@nw" ];
             };
             "Home Manager Options" = {
-              urls = [
-                {
-                  template = "https://home-manager-options.extranix.com/?query={searchTerms}";
-                }
-              ];
+              urls = [ { template = "https://home-manager-options.extranix.com/?query={searchTerms}"; } ];
               definedAliases = [ "@hm" ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
+            "Bing".metaData.hidden = true;
+            "Google".metaData.hidden = true;
+            "Amazon.com".metaData.hidden = true;
+            "ebay".metaData.hidden = true;
           };
           force = true;
         };
