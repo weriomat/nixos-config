@@ -139,6 +139,5 @@
   };
   home.sessionVariables = rec {
     XDG_RUNTIME_DIR = "/run/user/1000";
-    SSH_AUTH_SOCK = "${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh";
   };
 }
