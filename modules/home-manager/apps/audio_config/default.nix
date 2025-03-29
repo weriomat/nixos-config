@@ -58,7 +58,7 @@ let
   };
 in
 {
-  options.audio_config.enable = mkEnableOption "Enable HomeManager audio setup";
+  options.audio_config.enable = mkEnableOption "HomeManager audio setup";
 
   # NOTE: this configures brightness stuff as well
   config = mkIf config.audio_config.enable {

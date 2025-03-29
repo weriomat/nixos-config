@@ -7,7 +7,7 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  options.hyprland.enable = mkEnableOption "Enable hyprland config";
+  options.hyprland.enable = mkEnableOption "hyprland config";
 
   config = mkIf config.hyprland.enable {
     clipboard.enable = true;
