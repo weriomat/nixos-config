@@ -82,6 +82,8 @@
         dig = "dog";
         du = "dust";
         grep = "rg --color=auto";
+        pdw = "pwd";
+        pwd = "pwd && pwd | wl-copy"; # print to stdout as well as copy it to clipboard
 
         wget = ''${pkgs.wget} --hsts-file="$XDG_DATA_HOME/wget-hsts"'';
 
