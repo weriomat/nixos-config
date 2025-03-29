@@ -99,6 +99,8 @@
 
         rebuild = lib.mkIf pkgs.stdenv.isDarwin "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4";
 
+        open = "xdg-open";
+
         # TODO: here
         # Set some aliases
         mkdir = "mkdir -vp";
