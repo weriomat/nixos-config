@@ -237,11 +237,11 @@ in
     home = {
       sessionVariables = {
         XDG_RUNTIME_DIR = "/run/user/${toString globals.uid}";
-        RUSTUP_HOME = ''"$XDG_DATA_HOME"/rustup'';
+        RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
         _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java'';
-        GOPATH = ''"$XDG_DATA_HOME"/go'';
-        GOBIN = ''"XDG_DATA_HOME"/go/bin'';
-        CARGO_HOME = ''"$XDG_DATA_HOME"/cargo'';
+        GOPATH = "${config.xdg.dataHome}/go";
+        GOBIN = "${config.xdg.dataHome}/go/bin";
+        CARGO_HOME = "${config.xdg.dataHome}/cargo";
         ZDOTDIR = ''"$HOME"/${config.programs.zsh.dotDir}'';
       };
       packages = [
