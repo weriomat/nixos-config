@@ -33,7 +33,7 @@ in
         }
         {
           label = "logout";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch exit";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/loginctl terminate-user $USER";
           text = "Exit";
           keybind = "e";
         }
