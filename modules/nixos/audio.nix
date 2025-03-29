@@ -29,6 +29,7 @@ in
     hardware = {
       pulseaudio.enable = false;
 
+      # TODO: take a look at pkgs.overskride instead of blueman-applet, no applet tho
       bluetooth = {
         enable = true;
         powerOnBoot = true;
