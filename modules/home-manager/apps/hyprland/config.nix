@@ -2,7 +2,6 @@
 # TODO: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/hyprland/config.nix
 # TODO: https://wiki.hyprland.org/Configuring/Binds/#switches
 {
-  inputs,
   config,
   pkgs,
   lib,
@@ -200,11 +199,6 @@ in
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-
-        # screenshot
-        ",Print, exec, ${
-          getExe inputs.hypr-contrib.packages.${pkgs.system}.grimblast
-        } --notify copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
       ];
 
       bindm = [

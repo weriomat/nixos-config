@@ -21,5 +21,6 @@ in
     swayidle.enable = true;
     wallpapers.enable = true;
     audio_config.enable = true;
+    screenshot.enable = true;
   };
 }

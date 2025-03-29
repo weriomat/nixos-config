@@ -15,6 +15,7 @@
     ./clipboard
     ./wallpapers
     ./audio_config
+    ./screenshots
 
     ./discord
     ./kitty
