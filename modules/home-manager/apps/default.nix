@@ -16,6 +16,7 @@
     ./wallpapers
     ./audio_config
     ./screenshots
+    ./hyprlock
 
     ./discord
     ./kitty

@@ -13,7 +13,6 @@ in
     clipboard.enable = true;
     my_gtk.enable = true;
     mako.enable = true;
-    swaylock.enable = true;
     wofi.enable = true;
     waybar.enable = true;
     my_hyprland.enable = true;
@@ -22,5 +21,6 @@ in
     wallpapers.enable = true;
     audio_config.enable = true;
     screenshot.enable = true;
+    hyprlock.enable = true;
   };
 }
