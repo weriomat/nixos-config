@@ -73,7 +73,9 @@ in
   # Enable polkit
   security = {
     polkit.enable = true;
-    pam.services.swaylock = { };
+    pam.services.hyprlock = {
+      # text = "auth include login";
+    };
   };
 
   # Enable polkit for system wide auth, required as part of gnome-compat
