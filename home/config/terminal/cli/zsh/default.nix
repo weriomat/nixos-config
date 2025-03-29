@@ -51,13 +51,6 @@
 
         # set list-colors to enable filename colorizing
         zstyle ':completion:*' list-colors ''${(s.:.)LS_COLORS}
-
-        # extra exports
-        export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
-        export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
-        export GOPATH="$XDG_DATA_HOME"/go
-        export CARGO_HOME="$XDG_DATA_HOME"/cargo
-        export ZDOTDIR="$HOME"/${config.programs.zsh.dotDir}
       '';
 
       shellAliases = {

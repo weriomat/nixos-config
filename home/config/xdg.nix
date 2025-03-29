@@ -235,7 +235,15 @@ in
 {
   config = mkIf pkgs.stdenv.isLinux {
     home = {
-      sessionVariables.XDG_RUNTIME_DIR = "/run/user/${toString globals.uid}";
+      sessionVariables = {
+        XDG_RUNTIME_DIR = "/run/user/${toString globals.uid}";
+        RUSTUP_HOME = ''"$XDG_DATA_HOME"/rustup'';
+        _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java'';
+        GOPATH = ''"$XDG_DATA_HOME"/go'';
+        GOBIN = ''"XDG_DATA_HOME"/go/bin'';
+        CARGO_HOME = ''"$XDG_DATA_HOME"/cargo'';
+        ZDOTDIR = ''"$HOME"/${config.programs.zsh.dotDir}'';
+      };
       packages = [
         pkgs.yazi
         pkgs.loupe
