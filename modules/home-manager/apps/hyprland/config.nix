@@ -73,10 +73,6 @@ in
         # "_JAVA_OPTIONS,-Dawt.useSystemAAFontSettings=on"
         # "JAVA_FONTS,/usr/share/fonts/TTF"
 
-        # Enabling firefox wayland
-        # "BROWSER,firefox"
-        # "MOZ_ENABLE_WAYLAND,1"
-
         # "ELECTRON_OZONE_PLATFORM_HINT,wayland"
 
         # "SWWW_TRANSITION_STEP,60"
@@ -214,11 +210,6 @@ in
         "noinitialfocus,class:^(xwaylandvideobridge)$"
         "maxsize 1 1,class:^(xwaylandvideobridge)$"
         "noblur,class:^(xwaylandvideobridge)$"
-
-        # idleinhibit
-        "idleinhibit fullscreen, class:^(firefox)$"
-        "idleinhibit focus, class:^(firefox)$"
-        "idleinhibit fullscreen, fullscreen:1"
 
         # Bitwarden extension
         "float, title:^(.*Bitwarden Password Manager.*)$"
@@ -535,9 +526,6 @@ in
     #   windowrule = tile, neovide
     #   windowrule = idleinhibit focus,mpv
     #   windowrule = float,udiskie
-    #   windowrule = float,title:^(Transmission)$
-    #   windowrule = float,title:^(Firefox — Sharing Indicator)$
-    #   windowrule = move 0 0,title:^(Firefox — Sharing Indicator)$
     #   windowrulev2 = float, title:^(Picture-in-Picture)$
     #   windowrulev2 = opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$
     #   # windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*YouTube.*)$
@@ -554,7 +542,6 @@ in
     #   windowrulev2 = opacity 1.0 override 1.0 override, class:(Unity)
     #   windowrule = size 1200 725,mpv
     #   windowrulev2 = idleinhibit focus, class:^(mpv)$
-    # windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
 
     #   windowrule = float,title:^(float_kitty)$
     #   windowrule = center,title:^(float_kitty)$
