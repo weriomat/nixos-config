@@ -17,10 +17,10 @@ in
     waybar.enable = true;
     my_hyprland.enable = true;
     wlogout.enable = true;
-    swayidle.enable = true;
     wallpapers.enable = true;
     audio_config.enable = true;
     screenshot.enable = true;
+    hypridle.enable = true;
     hyprlock.enable = true;
   };
 }
