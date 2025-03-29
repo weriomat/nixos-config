@@ -13,14 +13,21 @@ in
   options.screenshot.enable = mkEnableOption "screenshot setup";
 
   config = mkIf cfg.enable {
-    wayland.windowManager.hyprland.settings.bind = [
-      # screenshot
-      ",Print, exec, ${
-        getExe inputs.hypr-contrib.packages.${pkgs.system}.grimblast
-      } --notify copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
-      # edit screenshot
-      ''$mainMod, M, exec, ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.swappy} -f -''
-    ];
+    wayland.windowManager.hyprland.settings = {
+      bind = [
+        # screenshot
+        ",Print, exec, ${
+          getExe inputs.hypr-contrib.packages.${pkgs.system}.grimblast
+        } --notify copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+        # edit screenshot
+        ''$mainMod, M, exec, ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.swappy} -f -''
+      ];
+      windowrule = [
+        "opaque, swappy"
+        "center 1, swappy"
+        "stayfocused, swappy"
+      ];
+    };
 
     xdg.configFile."swappy/config".text = ''
       [Default]
