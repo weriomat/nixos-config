@@ -38,6 +38,8 @@ in
           # assist.importGranularity = "module";
           # cargo.extraEnv."CARGO_TARGET_DIR" = "${config.xdg.cacheHome}/rust-analyzer-target-dir";
           check.command = if pkgs.stdenv.isDarwin then "clippy" else "${pkgs.clippy}/bin/clippy";
+          config.checkOnSave.command = if pkgs.stdenv.isDarwin then "clippy" else "${pkgs.clippy}/bin/clippy";
+
           completion.fullFunctionSignatures.enable = true;
           hover.actions.references.enable = true;
           # lens.references = {
