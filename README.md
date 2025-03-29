@@ -56,6 +56,11 @@ Special thanks to [Redyf](https://github.com/redyf) for having a structured
 Special thanks to [XMN1](https://github.com/XNM1) for having a great security
 [configuration](https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/tree/main)
 
+### niksingh710
+
+Special thanks to [niksingh710](https://github.com/niksingh710) for having a great
+[configuration](https://github.com/niksingh710/ndots)
+
 ## The maker of fzf
 
 A special thanks goes out to the maker of [fzf](https://github.com/junegunn/fzf)
