@@ -1,11 +1,10 @@
 {
   lib,
   pkgs,
-  globals,
   ...
 }:
 let
-  inherit (lib) mkForce;
+  inherit (lib) mkForce getExe getExe';
   # NOTE: this is the version used by home-manager
   # hyprland = config.home-manager.users.${globals.username}.wayland.windowManager.hyprland.finalPackage;
   inherit (pkgs) hyprland;
@@ -39,26 +38,15 @@ in
     # display Manager
     greetd = {
       enable = true;
-      settings = rec {
-        #      regreet_session = {
-        #        command = "${lib.exe pkgs.cage} -s -- ${lib.exe pkgs.greetd.regreet}";
-        #        user = "greeter";
-        #      };
-        #      tuigreet_session =
-        #        let
-        #          session = "${pkgs.hyprland}/bin/Hyprland";
-        #          tuigreet = "${lib.exe pkgs.greetd.tuigreet}";
-        #        in
-        #        {
-        #          command = "${tuigreet} --time --remember --cmd ${session}";
-        #          user = "greeter";
-        #        };
-        initial_session = {
-          command = "${hyprland}/bin/Hyprland";
-          user = "${globals.username}";
+      settings.default_session =
+        let
+          session = "${getExe hyprland}";
+          tuigreet = "${getExe pkgs.greetd.tuigreet}";
+        in
+        {
+          command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' pkgs.systemd "systemctl"} poweroff' --power-reboot '${getExe' pkgs.systemd "systemctl"} poweroff' --cmd ${session}";
+          user = "greeter";
         };
-        default_session = initial_session;
-      };
     };
   };
 
