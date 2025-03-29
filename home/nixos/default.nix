@@ -23,6 +23,8 @@
     enable = true;
     accent = "mauve";
     flavor = "mocha";
+
+    obs.enable = true;
   };
 
   # git things to take a look at
