@@ -196,4 +196,19 @@
   services.fstrim.enable = lib.mkDefault true;
 
   system.stateVersion = "23.11";
+
+  # Take a look at https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/main/nixos/mac-randomize.nix
+  # # Enable MAC Randomize
+  # systemd.services.macchanger = {
+  #   enable = true;
+  #   description = "Change MAC address";
+  #   wantedBy = [ "multi-user.target" ];
+  #   after = [ "network.target" ];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     ExecStart = "${pkgs.macchanger}/bin/macchanger -r wlp0s20f3";
+  #     ExecStop = "${pkgs.macchanger}/bin/macchanger -p wlp0s20f3";
+  #     RemainAfterExit = true;
+  #   };
+  # };
 }
