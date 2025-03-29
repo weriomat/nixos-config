@@ -16,6 +16,7 @@
   programs = {
     bash = {
       enable = true;
+      enableCompletion = true;
       historyFile = "${config.xdg.stateHome}/bash/history";
     };
     zsh = {
