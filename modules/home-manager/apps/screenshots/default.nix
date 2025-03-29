@@ -19,8 +19,9 @@ in
         ",Print, exec, ${
           getExe inputs.hypr-contrib.packages.${pkgs.system}.grimblast
         } --notify copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
+        "$mainMod SHIFT, Print, exec, ${getExe pkgs.wl-ocr}" # alternative 'ocrfeeder'
         # edit screenshot
-        ''$mainMod, M, exec, ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.swappy} -f -''
+        ''$mainMod, Print, exec, ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.swappy} -f -''
       ];
       windowrule = [
         "opaque, swappy"
