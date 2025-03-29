@@ -11,6 +11,9 @@ let
   };
 in
 with inputs;
+# TODO: https://github.com/ivankovnatsky/nixos-config/tree/71f970431793b8bddd7ec9c40681d70fc3cc8a70/modules/darwin
+# TODO: https://github.com/ivankovnatsky/nixos-config/blob/71f970431793b8bddd7ec9c40681d70fc3cc8a70/machines/Ivans-Mac-mini/dns.nix
+# TODO: https://github.com/ryuheechul/dotfiles/blob/c84b700104a0d3de6c21648f56a938478f8fbd79/nix/darwin/configuration.nix
 nix-darwin.lib.darwinSystem {
   specialArgs = { inherit inputs nix-colors globals; };
   modules = [
