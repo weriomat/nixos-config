@@ -11,7 +11,7 @@ let
   inherit (lib) mkIf;
 
   browser = [ "firefox" ];
-  imageViewer = [ "org.gnome.Loupe" ];
+  imageViewer = [ "imv.desktop" ];
   videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
   audioPlayer = [ "io.bassi.Amberol" ];
   editorMain = [ "Helix" ];
@@ -246,11 +246,28 @@ in
       };
       packages = [
         pkgs.yazi
-        pkgs.loupe
         pkgs.evince
         pkgs.celluloid
       ];
     };
+
+    catppuccin.imv.enable = true;
+    programs.imv = {
+      enable = true;
+      settings = {
+        options = {
+          overlay_font = "Iosevka Nerd Font:10";
+        };
+        binds = {
+          # Rotate Clockwise by 90 degrees
+          "<Ctrl+r>" = "rotate by 90";
+        };
+      };
+    };
+
+    wayland.windowManager.hyprland.settings.windowrulev2 = [
+      "opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
+    ];
 
     # xdg.mimeApps = {
     #   enable = true;
