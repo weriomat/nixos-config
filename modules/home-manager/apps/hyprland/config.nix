@@ -128,7 +128,7 @@ in
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl setcursor Nordzy-cursors 22 &"
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace 1&"
         "${getExe' pkgs.systemd "systemctl"} --user restart kanshi.service waybar.service"
-        "${getExe pkgs.solaar} --window=hide" # Enable solaar applet, for more see keyboard config
+        "${getExe' pkgs.solaar "solaar"} --window=hide" # Enable solaar applet, for more see keyboard config
       ];
 
       # TODO: find an option to launch grettd for session switcher
