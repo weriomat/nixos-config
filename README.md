@@ -51,6 +51,11 @@ a great hyprland desktop [configuration](https://github.com/Frost-Phoenix/nixos-
 Special thanks to [Redyf](https://github.com/redyf) for having a structured
 [configuration](https://github.com/redyf/nixdots)
 
+### XNM1
+
+Special thanks to [XMN1](https://github.com/XNM1) for having a great security
+[configuration](https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/tree/main)
+
 ## The maker of fzf
 
 A special thanks goes out to the maker of [fzf](https://github.com/junegunn/fzf)
