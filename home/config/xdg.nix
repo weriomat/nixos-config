@@ -264,7 +264,6 @@ in
     xdg = {
       enable = true;
       cacheHome = config.home.homeDirectory + "/.local/cache";
-      # dataHome = "~/.local/share";
 
       mimeApps = {
         enable = true;
@@ -274,17 +273,7 @@ in
       userDirs = {
         enable = true;
         createDirectories = true;
-        extraConfig = {
-          XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
-        };
-        #   documents = "$HOME/stuff/other/";
-        #   download = "$HOME/stuff/other/";
-        #   videos = "$HOME/stuff/other/";
-        #   music = "$HOME/stuff/music/";
-        #   pictures = "$HOME/stuff/pictures/";
-        #   desktop = "$HOME/stuff/other/";
-        #   publicShare = "$HOME/stuff/other/";
-        #   templates = "$HOME/stuff/other/";
+        extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
       };
     };
 
