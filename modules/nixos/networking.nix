@@ -9,6 +9,7 @@ let
   cfg = config.networking;
 in
 {
+  # TODO: swithc to networkd? https://github.com/timon-schelling/timonos/tree/7b56ccb6e760ece2e60f99ce5765bc527f5c11e5/src/system/common/networking https://github.com/timon-schelling/timonos/blob/main/src/user/apps/settings/wifi/app.nix
   options.networking = {
     enable = mkEnableOption "Enable networking settings";
     dns.enable = mkEnableOption "Enable dns settings" // {
