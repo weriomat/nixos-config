@@ -34,6 +34,13 @@ in
       lm_sensors
       fanctl
 
+      # fetchers
+      ipfetch
+      cpufetch
+      ramfetch
+      zfxtop
+      kmon
+
       # learning git game
       oh-my-git
       unstable.libdrm
@@ -48,6 +55,8 @@ in
       nixpkgs-fmt
       nixpkgs-lint
       statix
+
+      # TODO: remove dev deps since we want to use devshells for this
 
       # build tools
       autoconf
