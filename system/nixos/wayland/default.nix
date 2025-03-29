@@ -79,20 +79,32 @@ in
   };
 
   # Enable polkit for system wide auth, required as part of gnome-compat
-  systemd.user = {
-    services.polkit-gnome-authentication-agent-1 = {
-      description = "Gnome polkit agent";
-      partOf = [ "graphical-session.target" ];
-      script = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      unitConfig = {
-        ConditionUser = "!@system";
-      };
+  systemd = {
+    services.greetd.serviceConfig = {
+      Type = "idle";
+      StandardInput = "tty";
+      StandardOutput = "tty";
+      StandardError = "journal"; # Without this errors will spam on screen
+      # Without these bootlogs will spam on screen
+      TTYReset = true;
+      TTYVHangup = true;
+      TTYVTDisallocate = true;
     };
+    user = {
+      services.polkit-gnome-authentication-agent-1 = {
+        description = "Gnome polkit agent";
+        partOf = [ "graphical-session.target" ];
+        script = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        unitConfig = {
+          ConditionUser = "!@system";
+        };
+      };
 
-    # Set default hyprland environment
-    extraConfig = ''
-      DefaultEnvironment="PATH=/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:$PATH"
-    '';
+      # Set default hyprland environment
+      extraConfig = ''
+        DefaultEnvironment="PATH=/run/wrappers/bin:/etc/profiles/per-user/%u/bin:/nix/var/nix/profiles/default/bin:/run/current-system/sw/bin:$PATH"
+      '';
+    };
   };
   environment.systemPackages = [ pkgs.polkit_gnome ];
 }
