@@ -81,6 +81,7 @@ in
         "${getExe pkgs.sway-audio-idle-inhibit} &"
       ];
 
+      # TODO: more keys to assign: "XF86Display", "XF86Favorites", "XF86WLAN" (assigned)
       # NOTE: the [e] means repeating
       binde = mkMerge [
         [

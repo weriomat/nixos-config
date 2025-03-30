@@ -9,6 +9,24 @@
 }:
 let
   inherit (lib) mkIf;
+  # TODO: switch to mpv
+  # https://kokomins.wordpress.com/2019/10/14/mpv-config-guide/
+  # https://www.reddit.com/r/mpv/comments/16nlrjh/new_quality_profiles_have_been_added_to_mpv/
+  # https://github.com/search?q=repo%3AFrost-Phoenix%2Fnixos-config%20imv&type=code
+  # https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/main/nixos/security-services.nix
+  # https://home-manager-options.extranix.com/?query=mpv&release=release-24.11
+  # https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/main/home/.config/hypr/hyprland.conf
+  # https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/main/nixos/rust.nix
+  # https://github.com/ivankovnatsky/nixos-config/blob/main/machines/beelink/journald.nix
+  # https://github.com/lpdkt/noise/blob/main/modules/home/programs/mpv.nix
+  # https://celluloid-player.github.io/
+  # https://github.com/niksingh710/ndots/blob/master/modules/home/nixos/mpv.nix
+  # https://github.com/stax76/awesome-mpv
+  # https://github.com/lpdkt/noise/blob/main/modules/home/programs/mpv.nix
+  # https://github.com/Vladimir-csp/uwsm?tab=readme-ov-file
+  # https://github.com/KaylorBen/nixcord
+  # https://github.com/niksingh710/ndots/blob/master/modules/home/programs/default.nix
+  # https://github.com/nomadics9/dotfiles/blob/main/scripts/keybind.sh
 
   browser = [ "firefox" ];
   imageViewer = [ "imv.desktop" ];
