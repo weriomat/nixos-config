@@ -13,6 +13,22 @@ in
   # This is going to be decided per host
   config = mkIf config.steam.enable {
     programs = {
+      pipewire.lowLatency.enable = true;
+      gamescope = {
+        enable = true;
+        capSysNice = true;
+        args = [
+          "--rt"
+          "--expose-wayland"
+        ];
+      };
+      gamemode = {
+        enable = true;
+        settings.general = {
+          softrealtime = "auto";
+          renice = 15;
+        };
+      };
       steam = {
         enable = true;
         remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
