@@ -61,22 +61,6 @@ in
       };
     };
 
-    # TODO:
-    #    registry.nixpkgs.flake = inputs.nixpkgs;
-    #   nixPath = [
-    #     "nixpkgs=/etc/nixpkgs/channels/nixpkgs"
-    #     "/nix/var/nix/profiles/per-user/root/channels"
-    #   ];
-    # };
-
-    # systemd.tmpfiles.rules =
-    #   [ "L+ /etc/nixpkgs/channels/nixpkgs - - - - ${pkgs.path}" ];
-
-    # TODO: here
-    # Nix shouldn't build in /tmp since it might compete for RAM for large builds and will quickly exhaust the 5 G limit
-    # systemd.services.nix-daemon.environment.TMPDIR = "/nix/tmp";
-    # systemd.tmpfiles.rules = [ "d /nix/tmp 0755 root root 1d" ];
-
     nixpkgs = {
       overlays = [
         outputs.overlays.additions
