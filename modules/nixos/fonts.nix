@@ -36,8 +36,10 @@ in
           # ["FiraGO"];
           serif = [ "DejaVu Serif" ];
           # ["Source Serif"];
-          monospace = [ "DejaVu Sans Mono" ];
-          # ["MonoLisa Nerd Font"];
+          monospace = [
+            "DejaVu Sans Mono"
+            "MonoLisa Nerd Font"
+          ];
           emoji = [ "apple-emoji" ];
         };
       };
