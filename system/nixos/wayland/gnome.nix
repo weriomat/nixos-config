@@ -15,11 +15,13 @@ in
     core-utilities.enable = mkForce false;
     games.enable = mkForce false;
     core-developer-tools.enable = mkForce false;
+    rygel.enable = false;
   };
 
   # castrate gnome
   environment.gnome.excludePackages =
     [
+      pkgs.rygel # home media solurtion for sharing video/audio etc.
       pkgs.tinysparql
       pkgs.localsearch
       pkgs.gnome-connections
