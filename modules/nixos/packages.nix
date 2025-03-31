@@ -103,6 +103,14 @@ in
       unstable.plasma5Packages.extra-cmake-modules
       unstable.mold
       unstable.valgrind
+      # TODO:  # -- Media Tools --
+      # gimp
+      # handbrake
+      # mplayer
+      # gthumb
+      # jellyfin-media-player
+      # jellyfin-mpv-shim
+      # graphviz
     ];
   };
 }
