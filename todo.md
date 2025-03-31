@@ -1,7 +1,10 @@
 # TODOS
 
-`https://github.com/kinzoku-dev/neovim
-https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles`
+`https://github.com/kinzoku-dev/neovim`
+
+## passthrough of pci card see
+
+`https://github.com/nomadics9/nixcfg`
 
 ## Config
 
@@ -51,18 +54,6 @@ https://www.wireguard.com/papers/wireguard.pdf
 https://ed25519.cr.yp.to/papers.html
 https://db.in.tum.de/~leis/papers/morsels.pdf
 https://edolstra.github.io/pubs/phd-thesis.pdf`
-
-## catppuccin nix
-
-`https://github.com/catppuccin/nix/blob/main/modules/home-manager/hyprland.nix
-https://github.com/catppuccin/nix/blob/main/modules/home-manager/helix.nix
-https://github.com/catppuccin/nix/blob/main/modules/home-manager/waybar.nix
-https://github.com/catppuccin/nix/blob/main/modules/home-manager/newsboat.nix
-https://github.com/catppuccin/nix/blob/main/modules/home-manager/mpv.nix
-https://github.com/catppuccin/nix/blob/main/modules/home-manager/delta.nix
-https://github.com/catppuccin/nix/blob/main/modules/home-manager/fzf.nix
-https://github.com/catppuccin/nix/blob/main/modules/home-manager/cursor.nix
-https://github.com/catppuccin/nix/blob/main/modules/home-manager/gtk.nix`
 
 ## programs
 
