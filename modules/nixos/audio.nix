@@ -29,6 +29,8 @@ in
     hardware = {
       pulseaudio.enable = false;
 
+      # TODO: headset helpers: headsetcontrol, headset-charge-indicator, pulsemixer, noisetorch
+      # TODO: if need for anc arrises, see https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/pipewire.nix
       # TODO: take a look at pkgs.overskride instead of blueman-applet, no applet tho
       bluetooth = {
         enable = true;
@@ -41,16 +43,3 @@ in
     };
   };
 }
-# pipewire
-# TODO: https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/pipewire.nix
-# TODO: here
-# services.udev.packages = [
-#   pkgs.headsetcontrol
-# ];
-# environment.systemPackages = [
-#   pkgs.headsetcontrol
-#   pkgs.headset-charge-indicator
-#   pkgs.pulsemixer
-# ];
-# TODO: take a look at noisetorch
-# TODO: pulsemixer

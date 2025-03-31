@@ -21,6 +21,7 @@ in
       layout = [
         {
           label = "lock";
+          # TODO: suspend
           action = "${pkgs.coreutils}/bin/sleep 0.25; ${config.programs.hyprlock.package}/bin/hyprlock";
           text = "Lock";
           keybind = "l";
