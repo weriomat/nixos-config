@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   config,
   ...
@@ -8,7 +7,6 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
-  imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
   options.audio.enable = mkEnableOption "Enable audio settings";
 
   config = mkIf config.audio.enable {
