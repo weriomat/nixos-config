@@ -69,7 +69,7 @@ inputs.nixpkgs.lib.nixosSystem {
           ../../home/config
           inputs.nix-colors.homeManagerModules.default
           inputs.nix-index-database.hmModules.nix-index
-          inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.catppuccin.homeModules.catppuccin
         ];
       };
     }
