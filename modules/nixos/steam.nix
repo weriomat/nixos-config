@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
@@ -8,12 +9,13 @@ let
   inherit (lib) mkEnableOption mkIf;
 in
 {
+  imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
   options.steam.enable = mkEnableOption "Enable Gaming thingies";
 
   # This is going to be decided per host
   config = mkIf config.steam.enable {
+    services.pipewire.lowLatency.enable = true;
     programs = {
-      pipewire.lowLatency.enable = true;
       gamescope = {
         enable = true;
         capSysNice = true;
