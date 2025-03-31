@@ -17,12 +17,6 @@ nixos-host: 192.168.178.180
 nas: 192.168.178.199 oder 192.168.178.198
 piserve: 192.168.178.21
 
-## Nix-colors
-
-apps not supported are: btop, starship, firefox, gtk
-might be buggy: kitty, helix, waybar
-todo: wofi
-
 ## Thank you notice
 
 ### Cobalt
