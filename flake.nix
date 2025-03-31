@@ -14,6 +14,10 @@
     };
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin.url = "github:catppuccin/nix";
+    nixcord = {
+      url = "github:kaylorben/nixcord";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     # Firefox addons
     firefox-addons = {

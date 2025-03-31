@@ -89,16 +89,6 @@
     };
   };
 
-  # css for discord
-  # programs.discocss = {
-  #   enable = true;
-  #   css = ''
-  #     @import url("https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css");
-  #   '';
-  #   discordAlias = true; # alias discocss to discord
-  #   discordPackage = pkgs.discord;
-  # };
-
   # TODO: if nextcloud
   # services.nextcloud-client = {};
 
