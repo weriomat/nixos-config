@@ -21,6 +21,7 @@ in
     # autostart files, so force them to run the service
     xserver.desktopManager.runXdgAutostartIfNone = lib.mkDefault true;
 
+    # TODO: ipp-usb (IPP protocol for usb printers)
     printing = {
       enable = true;
       drivers = [
@@ -64,9 +65,7 @@ in
     };
     terminal-exec = {
       enable = true;
-      settings.default = [
-        "kitty.desktop"
-      ];
+      settings.default = [ "kitty.desktop" ];
     };
   };
 
