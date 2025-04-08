@@ -1,7 +1,6 @@
 {
   inputs,
   outputs,
-  nix-colors,
   ...
 }:
 let
@@ -17,7 +16,6 @@ inputs.nixpkgs.lib.nixosSystem {
     inherit
       inputs
       outputs
-      nix-colors
       globals
       ;
   };
@@ -45,7 +43,6 @@ inputs.nixpkgs.lib.nixosSystem {
           inherit
             inputs
             outputs
-            nix-colors
             globals
             ;
         };
@@ -57,7 +54,6 @@ inputs.nixpkgs.lib.nixosSystem {
         users.${globals.username}.imports = [
           ../../home/nixos
           ../../modules/home-manager
-          inputs.nix-colors.homeManagerModules.default
           inputs.nix-index-database.hmModules.nix-index
           inputs.catppuccin.homeManagerModules.catppuccin
         ];

@@ -115,8 +115,6 @@
 
   # TODO: programs.yt-dlp = {}; # Dowoloader for yt files
 
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
-
   manual = {
     html.enable = true; # `home-manager-help`
     json.enable = true; # creates all hm options as a json

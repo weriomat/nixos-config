@@ -12,7 +12,6 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-colors.url = "github:misterio77/nix-colors";
     catppuccin.url = "github:catppuccin/nix";
     nixcord = {
       url = "github:kaylorben/nixcord";
@@ -93,7 +92,6 @@
       self,
       utils,
       nixpkgs,
-      nix-colors,
       pre-commit-hooks,
       ...
     }@inputs:
@@ -107,12 +105,12 @@
       # TODO: make seperate home module and move things around to make use of nixd
       # Full system build for x86
       nixosConfigurations = {
-        # nixos = import ./hosts/default { inherit inputs outputs nix-colors; };
-        nixos-laptop = import ./hosts/lap { inherit inputs outputs nix-colors; };
+        # nixos = import ./hosts/default { inherit inputs outputs; };
+        nixos-laptop = import ./hosts/lap { inherit inputs outputs; };
       };
 
       # Full hm build for aarch64
-      darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs nix-colors; };
+      darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs; };
 
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
