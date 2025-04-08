@@ -23,7 +23,7 @@ in
     };
     background = mkOption {
       type = types.str;
-      default = "11111B";
+      default = "#11111B";
     };
     opacity = mkOption {
       type = types.str;
@@ -31,23 +31,23 @@ in
     };
     primary_accent = mkOption {
       type = types.str;
-      default = "${config.colorScheme.palette.base0E}";
+      default = "#${config.colorScheme.palette.base0E}";
     };
     secondary_accent = mkOption {
       type = types.str;
-      default = "${config.colorScheme.palette.base0D}";
+      default = "#${config.colorScheme.palette.base0D}";
     };
     tertiary_accent = mkOption {
       type = types.str;
-      default = "${config.colorScheme.palette.base05}";
+      default = "#${config.colorScheme.palette.base05}";
     };
     lavender_accent = mkOption {
       type = types.str;
-      default = "${config.colorScheme.palette.base07}";
+      default = "#${config.colorScheme.palette.base07}";
     };
     tertiary_background_hex = mkOption {
       type = types.str;
-      default = "25253a";
+      default = "#25253a";
     };
   };
 
@@ -390,24 +390,24 @@ in
         }
 
         #workspaces {
-            background: #${config.waybar.tertiary_background_hex};
+            background: ${config.waybar.tertiary_background_hex};
             margin: 5px 5px;
             padding: 8px 12px;
             border-radius: 12px 12px 24px 24px;
-            color: #${config.waybar.primary_accent};
+            color: ${config.waybar.primary_accent};
         }
         #workspaces button {
             padding: 0px 5px;
             margin: 0px 3px;
             border-radius: 15px;
-            color: #${config.waybar.background};
-            background: #${config.waybar.secondary_accent};
+            color: ${config.waybar.background};
+            background: ${config.waybar.secondary_accent};
             transition: all 0.2s ease-in-out;
         }
 
         #workspaces button.active {
-            background-color: #${config.waybar.primary_accent};
-            color: #${config.waybar.background};
+            color: ${config.waybar.background};
+            background-color: ${config.waybar.primary_accent};
             border-radius: 15px;
             min-width: 35px;
             background-size: 200% 200%;
@@ -415,8 +415,8 @@ in
         }
 
         #workspaces button:hover {
-            background-color: #${config.waybar.lavender_accent};
-            color: #${config.waybar.background};
+            color: ${config.waybar.background};
+            background-color: ${config.waybar.lavender_accent};
             border-radius: 15px;
             min-width: 35px;
             background-size: 200% 200%;
@@ -424,13 +424,13 @@ in
 
         #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk, #custom-audio_idle_inhibitor
         #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward{
-            background: #${config.waybar.tertiary_background_hex};
+            background: ${config.waybar.tertiary_background_hex};
             font-weight: bold;
             margin: 5px 0px;
         }
 
         #battery {
-            color:#${config.waybar.tertiary_accent};
+            color:${config.waybar.tertiary_accent};
             border-radius: 0px 0 0px 0px;
             padding-left: 9px;
             padding-right: 9px;
@@ -445,56 +445,56 @@ in
         }
 
         #cpu {
-            color: #${config.waybar.tertiary_accent};
+            color: ${config.waybar.tertiary_accent};
             border-radius: 10px 0px 0px 24px;
             padding-left: 15px;
             padding-right: 9px;
             margin-left: 7px;
         }
         #memory {
-            color: #${config.waybar.tertiary_accent};
+            color: ${config.waybar.tertiary_accent};
             border-radius: 0px 0 0px 0px;
             padding-left: 9px;
             padding-right: 9px;
         }
         #disk {
-            color: #${config.waybar.tertiary_accent};
+            color: ${config.waybar.tertiary_accent};
             border-radius: 0px 24px 10px 0px;
             padding-left: 9px;
             padding-right: 15px;
         }
 
         #tray {
-            color: #${config.waybar.tertiary_accent};
+            color: ${config.waybar.tertiary_accent};
             border-radius: 10px 24px 10px 24px;
             padding: 0 20px;
             margin-left: 7px;
         }
 
         #pulseaudio {
-            color: #${config.waybar.tertiary_accent};
+            color: ${config.waybar.tertiary_accent};
             border-radius: 10px 0px 0px 24px;
             padding-left: 15px;
             padding-right: 9px;
             margin-left: 7px;
         }
         #network {
-            color: #${config.waybar.tertiary_accent};
+            color: ${config.waybar.tertiary_accent};
             border-radius: 0px 24px 10px 0px;
             padding-left: 9px;
             padding-right: 15px;
         }
 
         #custom-audio_idle_inhibitor{
-            color: #${config.waybar.tertiary_accent};
+            color: ${config.waybar.tertiary_accent};
             border-radius: 0px 24px 10px 0px;
             padding-left: 9px;
             padding-right: 15px;
         }
 
         #clock {
-            color: #${config.waybar.tertiary_accent};
-            background: #${config.waybar.tertiary_background_hex};
+            color: ${config.waybar.tertiary_accent};
+            background: ${config.waybar.tertiary_background_hex};
             border-radius: 0px 0px 0px 40px;
             padding: 10px 10px 15px 25px;
             margin-left: 7px;
@@ -502,8 +502,8 @@ in
             font-size: 16px;
         }
         #custom-launcher {
-            color: #${config.waybar.secondary_accent};
-            background: #${config.waybar.tertiary_background_hex};
+            color: ${config.waybar.secondary_accent};
+            background: ${config.waybar.tertiary_background_hex};
             border-radius: 0px 0px 40px 0px;
             margin: 0px;
             padding: 0px 30px 0px 10px;
@@ -511,30 +511,30 @@ in
         }
 
         #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward {
-            background: #${config.waybar.tertiary_background_hex};
+            background: ${config.waybar.tertiary_background_hex};
             font-size: 22px;
         }
         #custom-playerctl.backward:hover, #custom-playerctl.play:hover, #custom-playerctl.forward:hover{
-            color: #${config.waybar.tertiary_accent};
+            color: ${config.waybar.tertiary_accent};
         }
         #custom-playerctl.backward {
-            color: #${config.waybar.primary_accent};
+            color: ${config.waybar.primary_accent};
             border-radius: 24px 0px 0px 10px;
             padding-left: 16px;
             margin-left: 7px;
         }
         #custom-playerctl.play {
-            color: #${config.waybar.secondary_accent};
+            color: ${config.waybar.secondary_accent};
             padding: 0 5px;
         }
         #custom-playerctl.forward {
-            color: #${config.waybar.primary_accent};
+            color: ${config.waybar.primary_accent};
             border-radius: 0px 10px 24px 0px;
             padding-right: 12px;
             margin-right: 7px
         }
         #window{
-            background: #${config.waybar.tertiary_background_hex};
+            background: ${config.waybar.tertiary_background_hex};
             padding-left: 15px;
             padding-right: 15px;
             border-radius: 16px;
