@@ -16,6 +16,15 @@ in
   config = mkIf config.steam.enable {
     services.pipewire.lowLatency.enable = true;
     programs = {
+      gamemode = {
+        enable = true;
+        settings = {
+          general = {
+            softrealtime = "auto";
+            renice = 15;
+          };
+        };
+      };
       gamescope = {
         enable = true;
         capSysNice = true;
@@ -23,13 +32,6 @@ in
           "--rt"
           "--expose-wayland"
         ];
-      };
-      gamemode = {
-        enable = true;
-        settings.general = {
-          softrealtime = "auto";
-          renice = 15;
-        };
       };
       steam = {
         enable = true;
