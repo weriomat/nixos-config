@@ -6,18 +6,23 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
+  cfg = config.programs.wlogout;
 in
 {
   options.wlogout.enable = mkEnableOption "Enable wlogout";
 
   config = mkIf config.wlogout.enable {
     wayland.windowManager.hyprland.settings.bind = [
-      "$mainMod, Q, exec, ${config.programs.wlogout.package}/bin/wlogout"
+      (
+        "$mainMod, Q, exec, ${getExe cfg.package}"
+        + lib.strings.optionalString (cfg.package == pkgs.wleave) " -p layer-shell"
+      )
     ];
 
     programs.wlogout = {
       enable = true;
+      package = pkgs.wleave;
       layout = [
         {
           label = "lock";
@@ -60,6 +65,7 @@ in
     catppuccin.wlogout = {
       enable = true;
       flavor = "mocha";
+      # TODO: fix these png with the one from wleave
       extraStyle = ''
         * {
           font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
