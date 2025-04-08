@@ -33,7 +33,6 @@ in
       extraConfig = ''
         text-alignment=center
         [urgency=high]
-        border-color=#${config.colorScheme.palette.base09}
       '';
     };
   };
