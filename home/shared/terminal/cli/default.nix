@@ -3,7 +3,6 @@
   imports = [
     ./bat
     ./btop
-    ./cava
     ./eza
     ./fastfetch
     ./fzf
