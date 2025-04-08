@@ -300,11 +300,9 @@ in
       };
 
       keys.normal = {
-        # TODO: lazygit
         space = {
           w = ":w";
           q = ":q";
-          G = ":sh kitty @ launch --no-response --type=overlay --cwd $(pwd) --title gl lazygit";
         };
         "{" = "goto_prev_paragraph";
         "}" = "goto_next_paragraph";

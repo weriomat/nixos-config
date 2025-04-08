@@ -29,9 +29,6 @@ in
       shellIntegration.enableZshIntegration = true;
 
       settings = {
-        # allow remote control
-        allow_remote_control = "yes";
-
         # tab bar janked from https://github.com/catppuccin/kitty
         tab_bar_min_tabs = 1;
         tab_bar_edge = "bottom";
