@@ -2,10 +2,7 @@
 {
   imports = [
     ./cli
-    ./cli-apps
-    ./nix-index
+    ./tui
     ./packages
-    ./manix
-    ./bat.nix
   ];
 }

@@ -57,7 +57,6 @@ inputs.nixpkgs.lib.nixosSystem {
         users.${globals.username}.imports = [
           ../../home/nixos
           ../../modules/home-manager
-          ../../home/config
           inputs.nix-colors.homeManagerModules.default
           inputs.nix-index-database.hmModules.nix-index
           inputs.catppuccin.homeManagerModules.catppuccin

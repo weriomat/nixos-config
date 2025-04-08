@@ -11,7 +11,5 @@ _: {
   };
 
   # set picker per default to fzf
-  home.sessionVariables = {
-    COMMA_PICKER = "fzf";
-  };
+  home.sessionVariables.COMMA_PICKER = "fzf";
 }

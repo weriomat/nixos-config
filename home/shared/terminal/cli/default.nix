@@ -1,14 +1,17 @@
 { ... }:
 {
   imports = [
+    ./bat
     ./btop
+    ./cava
     ./eza
+    ./fastfetch
+    ./fzf
+    ./manix
+    ./nh
+    ./nix-index
+    ./ripgrep
     ./starship
     ./zsh
-    ./cava
-    ./fzf
-    ./fastfetch
-    ./nh
-    ./ripgrep
   ];
 }

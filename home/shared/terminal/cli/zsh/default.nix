@@ -4,6 +4,9 @@
   lib,
   ...
 }:
+let
+  inherit (lib) mkIf getExe;
+in
 {
   catppuccin.zsh-syntax-highlighting = {
     enable = true;
@@ -20,7 +23,6 @@
       historyFile = "${config.xdg.stateHome}/bash/history";
     };
     zsh = {
-      # dotDir = "${config.xdg.configHome}/zsh";
       dotDir = ".config/zsh";
       enable = true;
       autocd = true;
@@ -66,9 +68,6 @@
 
         ssh = "TERM=xterm-256color /usr/bin/env ssh";
 
-        # format nix flake
-        format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
-
         # alternative to cmds
         ping = "${pkgs.prettyping}/bin/prettyping";
         df = "duf --all --theme dark";
@@ -82,6 +81,8 @@
 
         # check nix flake
         check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
+        # format nix flake
+        format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
 
         # nix shell
         nd = "nix develop -c zsh";
@@ -92,9 +93,9 @@
         # no
         no = "nh os switch -u";
 
-        rebuild = lib.mkIf pkgs.stdenv.isDarwin "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4";
+        rebuild = mkIf pkgs.stdenv.isDarwin "darwin-rebuild switch --flake ~/.nixos/nixos#Eliass-MacBook-Pro-4";
 
-        open = "xdg-open";
+        open = mkIf pkgs.stdenv.isLinux "xdg-open";
 
         # TODO: here
         # Set some aliases
@@ -103,11 +104,9 @@
         mv = "mv -iv";
         # cp = "cp -riv";
         # cat = "bat --paging=never --style=plain";
-        # ls = "exa -a --icons";
-        # tree = "exa --tree --icons";
         # nd = "nix develop -c $SHELL";
         # isodate = ''date -u "+%Y-%m-%dT%H:%M:%SZ"'';
-        mime = "xdg-mime query filetype"; # check mimetype of a file
+        mime = mkIf pkgs.stdenv.isLinux "xdg-mime query filetype"; # check mimetype of a file
       };
 
       # # basically aliases for directories:
@@ -135,7 +134,7 @@
       historySubstringSearch.enable = true;
 
       initExtraBeforeCompInit = ''
-        export LS_COLORS="$(${lib.getExe pkgs.vivid} generate catppuccin-mocha)"
+        export LS_COLORS="$(${getExe pkgs.vivid} generate catppuccin-mocha)"
       '';
 
       plugins = [

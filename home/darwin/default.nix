@@ -1,10 +1,7 @@
+{ ... }:
 {
-  inputs,
-  pkgs,
-  ...
-}:
-{
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  imports = [ ../shared ];
+
   # we dont have to disable anything since it is disables by default
   kitty.enable = true;
 
@@ -13,9 +10,7 @@
     accent = "mauve";
     flavor = "mocha";
   };
-  home = {
-    packages = [ pkgs.ripgrep ];
-    stateVersion = "23.11";
-  };
+
+  home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 }

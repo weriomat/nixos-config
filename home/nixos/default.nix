@@ -5,6 +5,10 @@
   ...
 }:
 {
+  imports = [
+    ../shared
+    ./xdg.nix
+  ];
   # TODO: sytembus notify
   # services.systembus-notify = {};
 
@@ -123,7 +127,7 @@
     inherit (globals) username;
     homeDirectory = "/home/${username}";
     stateVersion = "23.11"; # Has not to be changed
-    packages = builtins.attrValues (import ../config/scripts { inherit pkgs globals inputs; });
+    packages = builtins.attrValues (import ./scripts { inherit pkgs globals inputs; });
     # Add ./local/bin to $PATH
     sessionPath = [
       "$HOME/.cargo/bin"

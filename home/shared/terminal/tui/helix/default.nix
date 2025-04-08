@@ -20,7 +20,6 @@ in
     pkgs.pyright # python
     pkgs.terraform-ls
   ];
-  # TODO: https://gitlab.com/hmajid2301/nixicle/-/blob/main/modules/home/cli/terminals/kitty/default.nix
 
   catppuccin.helix = {
     enable = true;
@@ -37,8 +36,10 @@ in
           # stolen from https://github.com/poliorcetics/dotfiles/blob/main/home/helix/languages.nix
           # assist.importGranularity = "module";
           # cargo.extraEnv."CARGO_TARGET_DIR" = "${config.xdg.cacheHome}/rust-analyzer-target-dir";
-          check.command = if pkgs.stdenv.isDarwin then "clippy" else "${pkgs.clippy}/bin/clippy";
-          config.checkOnSave.command = if pkgs.stdenv.isDarwin then "clippy" else "${pkgs.clippy}/bin/clippy";
+          # check.command = if pkgs.stdenv.isDarwin then "clippy" else "${pkgs.clippy}/bin/clippy";
+          # config.checkOnSave.command = if pkgs.stdenv.isDarwin then "clippy" else "${pkgs.clippy}/bin/clippy";
+          check.command = "${pkgs.clippy}/bin/clippy";
+          config.checkOnSave.command = "${pkgs.clippy}/bin/clippy";
 
           completion.fullFunctionSignatures.enable = true;
           hover.actions.references.enable = true;
