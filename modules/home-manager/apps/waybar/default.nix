@@ -31,19 +31,19 @@ in
     };
     primary_accent = mkOption {
       type = types.str;
-      default = "#${config.colorScheme.palette.base0E}";
+      default = "@mauve"; # cba6f7
     };
     secondary_accent = mkOption {
       type = types.str;
-      default = "#${config.colorScheme.palette.base0D}";
+      default = "@blue"; # 89b4fa
     };
     tertiary_accent = mkOption {
       type = types.str;
-      default = "#${config.colorScheme.palette.base05}";
+      default = "@text"; # cdd6f4
     };
     lavender_accent = mkOption {
       type = types.str;
-      default = "#${config.colorScheme.palette.base07}";
+      default = "@lavender"; # b4befe
     };
     tertiary_background_hex = mkOption {
       type = types.str;
@@ -51,7 +51,6 @@ in
     };
   };
 
-  # TODO: waybar, nix-catppuccin
   # https://gist.github.com/genofire/07234e810fcd16f9077710d4303f9a9e
   # TODO: waybar modules like upower and stuff
   # TODO: take a look at https://github.com/niksingh710/ndots/blob/master/home/optional/wm/hyprland/waybar/default.nix
@@ -150,6 +149,11 @@ in
     wayland.windowManager.hyprland.settings.bind = [
       "$mainMod SHIFT, B, exec, ${pkgs.toybox}/bin/pkill -SIGUSR1 .waybar-wrapped"
     ];
+
+    catppuccin.waybar = {
+      enable = true;
+      flavor = "mocha";
+    };
 
     programs.waybar = {
       enable = true;
