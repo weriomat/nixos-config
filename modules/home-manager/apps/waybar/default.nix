@@ -524,7 +524,7 @@ in
         #custom-playerctl.backward {
             color: ${config.waybar.primary_accent};
             border-radius: 24px 0px 0px 10px;
-            padding-left: 16px;
+            padding-left: 12px;
             margin-left: 7px;
         }
         #custom-playerctl.play {
