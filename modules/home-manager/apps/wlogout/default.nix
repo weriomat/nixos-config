@@ -21,7 +21,7 @@ in
       layout = [
         {
           label = "lock";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${config.programs.hyprlock.package}/bin/hyprlock";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/loginctl lock-session";
           text = "Lock";
           keybind = "l";
         }
