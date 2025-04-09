@@ -5,11 +5,7 @@
 }:
 # TODO: laptop power management
 {
-  imports = [
-    ./wayland
-    ./borg.nix
-    ./sops.nix
-  ];
+  imports = [ ./wayland ];
 
   hardware.keyboard.qmk.enable = true;
   services = {

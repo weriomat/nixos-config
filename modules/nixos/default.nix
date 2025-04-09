@@ -15,6 +15,8 @@
     ./languagetool.nix
     ./user.nix
     ./steam.nix
+    ./borg.nix
+    ./sops.nix
 
     # TODO: here
     ./smartd.nix
