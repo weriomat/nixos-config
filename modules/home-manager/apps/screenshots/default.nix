@@ -20,6 +20,7 @@ in
           getExe inputs.hypr-contrib.packages.${pkgs.system}.grimblast
         } --notify copysave area ~/Pictures/Screenshots/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').png"
         ",XF86Display, exec, ${getExe pkgs.wl-ocr}"
+        ''$mainMod, XF86Display, exec, ${getExe pkgs.wl-screenrec} -g "$(${getExe pkgs.slurp})" -f ~/Pictures/Screenrecs/$(date +'%Y-%m-%d-At-%Ih%Mm%Ss').mp4''
         "$mainMod SHIFT, Print, exec, ${getExe pkgs.wl-ocr}" # alternative 'ocrfeeder'
         # edit screenshot
         ''$mainMod, Print, exec, ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.swappy} -f -''
