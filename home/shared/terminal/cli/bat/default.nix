@@ -31,7 +31,7 @@
         ho = "hx $(${config.programs.fzf.package}/bin/fzf --preview '${config.programs.bat.package} --color=always --style=numbers --line-range=:500 {}')";
 
         # kill a process
-        kp = "ps aux | ${config.programs.fzf.package}/bin/fzf | ${pkgs.gawk}/bin/awk '{print$2}' | ${pkgs.coreutils}/bin/xargs kill PID";
+        kp = "ps aux | ${config.programs.fzf.package}/bin/fzf | ${pkgs.gawk}/bin/awk '{print$2}' | ${pkgs.toybox}/bin/xargs kill PID";
       };
     };
   };
