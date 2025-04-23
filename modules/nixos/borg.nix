@@ -106,6 +106,14 @@ in
           "**/target"
           "/home/*/go/bin"
           "/home/*/go/pkg"
+          "**/iso"
+          "*.img"
+          "*.iso" # dont backup iso images
+          "/home/*/Pictures/icloud_bak" # dont backup foto backup
+          "/home/*/P/nix/nixpkgs" # dont backup nixpkgs
+          "**/node_modules" # node modules
+          "**/dist" # electron stuff i think
+          "/home/*/.arduino15" # dont need arudinio libs to be backed up
         ];
 
         # Name of the archive. Borg placeholders can be used. See the
