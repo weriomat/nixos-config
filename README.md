@@ -17,6 +17,32 @@ nixos-host: 192.168.178.180
 nas: 192.168.178.199 oder 192.168.178.198
 piserve: 192.168.178.21
 
+### Switch to iwd from wpa_supplicant
+
+```nix
+networking.iwd.enable = true # own option
+```
+
+migrate the connections
+
+```bash
+sudo su
+cd /etc/NetworkManager/system-connections
+mkdir ../system-connections-iwd
+for f in *; do grep -v \
+'^\(mac-address\|interface-name\|permissions\|bssid\)=' "$f" \
+> ../system-connections-iwd/"$f"; done
+chmod 0600 ../system-connections-iwd/*
+cd /etc/NetworkManager
+mv system-connections system-connections-backup
+dbus-send --system --print-reply --dest=org.freedesktop.NetworkManager \
+/org/freedesktop/NetworkManager/Settings org.freedesktop.NetworkManager.Settings.ReloadConnections
+sleep 1
+mv system-connections-iwd system-connections
+dbus-send --system --print-reply --dest=org.freedesktop.NetworkManager \
+/org/freedesktop/NetworkManager/Settings org.freedesktop.NetworkManager.Settings.ReloadConnections
+```
+
 ## Thank you notice
 
 ### Cobalt

@@ -6,6 +6,9 @@
 {
   # NOTE: disbale virtualiziation
   virt.enable = lib.mkForce false;
+  networking = {
+    iwd.enable = true;
+  };
 
   # TODO: for every host a vpn as a split tunnel for email relay or sth: https://ssh.sshslowdns.com/wireguard-split-tunnel-config/
   # TODO: setup email with host
