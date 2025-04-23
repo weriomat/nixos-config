@@ -65,7 +65,7 @@
   '';
 
   # TODO: make a new name sceme for custom options + incorperate globals
-  flatpack.enable = true;
+  # flatpack.enable = true; # NOTE: disable flatpak by default
   borg.enable = true;
   sops.enable = true;
 
