@@ -55,8 +55,8 @@ in
       # TODO: provision workspaces better -> use enable options
       workspace = [
         "1, monitor: HDMI-A-1, default:true, on-created-empty:kitty"
-        "2, monitor: HDMI-A-1"
-        "3, monitor: HDMI-A-1, on-created-empty:cider"
+        "2, monitor: HDMI-A-1, on-created-empty:vikunja-desktop"
+        "3, monitor: HDMI-A-1, on-created-empty:thunderbird"
         "4, monitor: HDMI-A-1, on-created-empty:discord"
         "5, monitor: HDMI-A-1, on-created-empty:keepassxc"
         "6, monitor: DP-1, default:true, on-created-empty:firefox"
