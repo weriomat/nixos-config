@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf getExe;
 in
 {
   home.packages = [
@@ -19,6 +19,7 @@ in
     pkgs.yaml-language-server # yaml
     pkgs.pyright # python
     pkgs.terraform-ls
+    pkgs.jdt-language-server
   ];
 
   catppuccin.helix = {
@@ -176,6 +177,17 @@ in
             args = [ "fmt -" ];
           };
           language-servers = [ "terraform-ls" ];
+        }
+        {
+          name = "java";
+          auto-format = true;
+          formatter = {
+            command = "${getExe pkgs.google-java-format}";
+            args = [
+              "-a"
+              "-"
+            ];
+          };
         }
         {
           name = "tfvars";
