@@ -50,6 +50,10 @@ in
     settings = {
       # TODO: here
       # bindl = [",switch:Lid Switch, exec, ${pkgs.laptop_lid_switch}"];
+      bindl = [
+        ", switch:on:Lid Switch, exec, hyprctl dispatch dpms off"
+        ", switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
+      ];
 
       # TODO: package name
       # TODO: provision workspaces better -> use enable options
