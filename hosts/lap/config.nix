@@ -8,6 +8,10 @@
   virt.enable = lib.mkForce false;
   networking = {
     iwd.enable = true;
+    networkd = {
+      wlan.mac = "b8:1e:a4:46:37:3d";
+      lan.mac = "74:5d:22:c4:4e:75";
+    };
   };
 
   # TODO: for every host a vpn as a split tunnel for email relay or sth: https://ssh.sshslowdns.com/wireguard-split-tunnel-config/
