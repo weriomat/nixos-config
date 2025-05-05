@@ -9,7 +9,7 @@ let
 in
 {
   imports = [
-    inputs.nixcord.homeManagerModules.nixcord
+    inputs.nixcord.homeModules.nixcord
   ];
   options.discord.enable = mkEnableOption "Enable discord overlay";
 
