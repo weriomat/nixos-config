@@ -24,11 +24,10 @@ in
       };
 
       blueman.enable = true;
+      pulseaudio.enable = false;
     };
 
     hardware = {
-      pulseaudio.enable = false;
-
       # TODO: headset helpers: headsetcontrol, headset-charge-indicator, pulsemixer, noisetorch
       # TODO: if need for anc arrises, see https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/pipewire.nix
       # TODO: take a look at pkgs.overskride instead of blueman-applet, no applet tho

@@ -17,10 +17,7 @@ in
 {
   options.waybar = {
     enable = mkEnableOption "Enable waybar config";
-    font = mkOption {
-      type = types.str;
-      default = "JetBrainsMono Nerd Font";
-    };
+    font = mkOption { type = types.str; };
     background = mkOption {
       type = types.str;
       default = "#11111B";

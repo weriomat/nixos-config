@@ -87,11 +87,11 @@
 
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
-        mesa.drivers
+        mesa
         mesa.opencl
       ];
       extraPackages32 = with pkgs.driversi686Linux; [
-        mesa.drivers
+        mesa
         mesa.opencl
       ];
     };

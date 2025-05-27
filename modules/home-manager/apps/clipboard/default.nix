@@ -18,7 +18,7 @@ in
     services.cliphist = {
       enable = true;
       allowImages = true;
-      systemdTarget = "hyprland-session.target";
+      systemdTargets = [ "hyprland-session.target" ];
       extraOptions = [
         "-max-items"
         "1000"

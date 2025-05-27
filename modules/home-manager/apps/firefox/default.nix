@@ -27,7 +27,7 @@ in
         #   windowrule = float,title:^(Firefox — Sharing Indicator)$
         #   windowrule = move 0 0,title:^(Firefox — Sharing Indicator)$
         #
-        "opaque, firefox"
+        "opaque, class:^(firefox)"
       ];
       windowrulev2 = [
         # idleinhibit
@@ -285,7 +285,7 @@ in
           }
         ];
 
-        extensions = with inputs.firefox-addons.packages.${pkgs.system}; [
+        extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
           ublock-origin
           darkreader
           auto-tab-discard
@@ -347,8 +347,8 @@ in
           # })
         ];
         search = {
-          default = "DuckDuckGo";
-          privateDefault = "DuckDuckGo";
+          default = "ddg";
+          privateDefault = "ddg";
           engines = {
             "steam" = {
               urls = [ { template = "https://store.steampowered.com/search/?term={searchTerms}"; } ];
@@ -424,7 +424,7 @@ in
               urls = [
                 { template = "https://wiki.nixos.org/w/index.php?title=Special:Search&search={searchTerms}"; }
               ];
-              iconUpdateURL = "https://nixos.wiki/favicon.png";
+              icon = "https://nixos.wiki/favicon.png";
               updateInterval = 24 * 60 * 60 * 1000; # every day
               definedAliases = [ "@nw" ];
             };
@@ -433,9 +433,9 @@ in
               definedAliases = [ "@hm" ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             };
-            "Bing".metaData.hidden = true;
-            "Google".metaData.hidden = true;
-            "Amazon.com".metaData.hidden = true;
+            "bing".metaData.hidden = true;
+            "google".metaData.hidden = true;
+            "amazondotcom-us".metaData.hidden = true;
             "ebay".metaData.hidden = true;
           };
           force = true;

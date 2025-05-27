@@ -12,10 +12,4 @@
       config.allowUnfree = true;
     };
   };
-
-  borg = _final: prev: {
-    borgmatic = prev.borgmatic.overrideAttrs (old: {
-      patches = (old.patches or [ ]) ++ [ ./borgmatic.patch ];
-    });
-  };
 }

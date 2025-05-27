@@ -6,17 +6,30 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf getExe;
-  cfg = config.programs.wlogout;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    getExe
+    mkOption
+    types
+    ;
+  wlo = config.programs.wlogout;
+  cfg = config.wlogout;
 in
 {
-  options.wlogout.enable = mkEnableOption "Enable wlogout";
+  options.wlogout = {
+    enable = mkEnableOption "Enable wlogout";
+    font = mkOption {
+      description = "Font to use for wlogout";
+      type = types.str;
+    };
+  };
 
-  config = mkIf config.wlogout.enable {
+  config = mkIf cfg.enable {
     wayland.windowManager.hyprland.settings.bind = [
       (
-        "$mainMod, Q, exec, ${getExe cfg.package}"
-        + lib.strings.optionalString (cfg.package == pkgs.wleave) " -p layer-shell"
+        "$mainMod, Q, exec, ${getExe wlo.package}"
+        + lib.strings.optionalString (wlo.package == pkgs.wleave) " -p layer-shell"
       )
     ];
 
@@ -66,48 +79,49 @@ in
       enable = true;
       flavor = "mocha";
       # TODO: fix these png with the one from wleave
-      extraStyle = ''
-        * {
-          font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-        	transition: 20ms;
-        }
+      extraStyle = # css
+        ''
+          * {
+            font-family: ${cfg.font};
+          	transition: 20ms;
+          }
 
-        #lock {
-        	margin: 10px;
-        	border-radius: 20px;
-          background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/lock.png"));
-        }
+          #lock {
+          	margin: 10px;
+          	border-radius: 20px;
+            /* background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/lock.png")); */
+          }
 
-        #logout {
-        	margin: 10px;
-        	border-radius: 20px;
-          background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/logout.png"));
-        }
+          #logout {
+          	margin: 10px;
+          	border-radius: 20px;
+            /*background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/logout.png"));*/
+          }
 
-        #suspend {
-        	margin: 10px;
-        	border-radius: 20px;
-          background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/suspend.png"));
-        }
+          #suspend {
+          	margin: 10px;
+          	border-radius: 20px;
+            /*background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/suspend.png"));*/
+          }
 
-        #hibernate {
-        	margin: 10px;
-        	border-radius: 20px;
-          background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/hibernate.png"));
-        }
+          #hibernate {
+          	margin: 10px;
+          	border-radius: 20px;
+            /*background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/hibernate.png"));*/
+          }
 
-        #shutdown {
-        	margin: 10px;
-        	border-radius: 20px;
-          background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/shutdown.png"));
-        }
+          #shutdown {
+          	margin: 10px;
+          	border-radius: 20px;
+            /*background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/shutdown.png"));*/
+          }
 
-        #reboot {
-        	margin: 10px;
-        	border-radius: 20px;
-          background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/reboot.png"));
-        }
-      '';
+          #reboot {
+          	margin: 10px;
+          	border-radius: 20px;
+            /*background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/reboot.png"));*/
+          }
+        '';
     };
   };
 }

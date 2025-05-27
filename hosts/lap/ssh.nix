@@ -19,7 +19,7 @@
 
   environment.systemPackages = [
     pkgs.paperkey
-    pkgs.yubikey-manager-qt
+    pkgs.yubioath-flutter
   ];
 
 }

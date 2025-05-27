@@ -26,9 +26,9 @@ in
         ''$mainMod, Print, exec, ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.swappy} -f -''
       ];
       windowrule = [
-        "opaque, swappy"
-        "center 1, swappy"
-        "stayfocused, swappy"
+        "opaque, class:swappy"
+        "center 1, class:swappy"
+        "stayfocused, class:swappy"
       ];
     };
 

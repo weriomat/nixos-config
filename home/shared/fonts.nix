@@ -15,7 +15,18 @@
     #   monospace = ["MonoLisa Nerd Font"];
     #   emoji = ["apple-emoji"];
     # };
+    defaultFonts = {
+      sansSerif = [ "FiraGO" ];
+      serif = [ "DejaVu Serif" ];
+      monospace = [ "MonoLisa Nerd Font" ];
+      emoji = [ "apple-emoji" ];
+    };
   };
+  waybar.font = "MonoLisa Nerd Font";
+  hyprlock.font = "FiraMono Nerd Font";
+  wlogout.font = "Fira Sans Semibold, FontAwesome, Roboto, Helvetica, Arial, sans-serif";
+
+  services.mako.settings.font = "FiraGO";
 
   # fonts:
   # https://fonts.google.com/noto/specimen/Noto+Emoji
@@ -24,12 +35,15 @@
   home.packages = [
     inputs.monoLisa.packages.${pkgs.system}.default
     pkgs.apple-emoji
-
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    pkgs.fira-go
+    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.nerd-fonts.symbols-only
+    pkgs.nerd-fonts.fira-mono
   ];
 
   gtk.font = {
-    name = "JetBrainsMono Nerd Font";
+    name = "MonoLisa Nerd Font";
+    # name = "JetBrainsMono Nerd Font";
     size = 11;
   };
 
@@ -58,9 +72,6 @@
     #   "font.name.serif.x-western" = config.stylix.fonts.serif.name;
     # };
   };
-
-  # services.mako.font = "Name size";
-  # TODO: firefox, wofi, mako, swaylock, helix, wlogout
 
   # in normal nixos options
   # fonts.packages = [

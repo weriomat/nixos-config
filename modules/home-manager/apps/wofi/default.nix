@@ -4,12 +4,24 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    mkOption
+    types
+    ;
+  cfg = config.wofi;
 in
 {
-  options.wofi.enable = mkEnableOption "Enable wofi";
+  options.wofi = {
+    enable = mkEnableOption "Enable wofi";
+    font = mkOption {
+      description = "Font for wofi to use";
+      type = types.str;
+    };
+  };
 
-  config = mkIf config.wofi.enable {
+  config = mkIf cfg.enable {
     wayland.windowManager.hyprland.settings.bind = [
       "$mainMod, R, exec, ${config.programs.wofi.package}/bin/wofi --show drun"
     ];
@@ -45,7 +57,7 @@ in
         @define-color bg2 #494d64;
 
          * {
-            font-family: 'JetBrains Mono Nerd Font', monospace;
+            font-family: ${cfg.font};
             font-size: 14px;
          }
 

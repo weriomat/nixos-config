@@ -13,9 +13,9 @@ in
   options.nix-settings.enable = mkEnableOption "Enable nix settings";
 
   config = mkIf config.nix-settings.enable {
+    system.rebuild.enableNg = true;
     nix = {
       channel.enable = false;
-
       nixPath = [
         "nixpkgs=${inputs.nixpkgs}"
         "unstable=${inputs.nixpkgs-unstable}"
@@ -65,7 +65,6 @@ in
       overlays = [
         outputs.overlays.additions
         outputs.overlays.unstable-packages
-        outputs.overlays.borg
       ];
       config = {
         allowUnfree = true;

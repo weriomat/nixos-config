@@ -21,7 +21,7 @@ in
       pkgs.libnotify
       pkgs.brightnessctl
       # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
-      pkgs.xwaylandvideobridge
+      # pkgs.kdePackages.xwaylandvideobridge
       pkgs.wf-recorder
       pkgs.wayland
     ];

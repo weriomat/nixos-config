@@ -14,6 +14,7 @@ in
     # TODO: remove ++ unify with hm packages
     # TODO: take a look at zenmonitor
     environment.systemPackages = with pkgs; [
+      # vikunja-desktop # TODO: fix this
       devenv # nix shell
 
       duf # df alternative

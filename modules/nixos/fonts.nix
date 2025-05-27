@@ -10,7 +10,7 @@ let
 in
 {
   options.myfont.enable = mkEnableOption "Enable my fontconfiguration" // {
-    default = true;
+    default = false;
   };
   config = mkIf cfg.enable {
     fonts = {
@@ -37,7 +37,7 @@ in
           serif = [ "DejaVu Serif" ];
           # ["Source Serif"];
           monospace = [
-            "DejaVu Sans Mono"
+            # "DejaVu Sans Mono"
             "MonoLisa Nerd Font"
           ];
           emoji = [ "apple-emoji" ];

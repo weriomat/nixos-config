@@ -74,7 +74,8 @@
         numbers = "0;36";
         strings = "0;33";
         arrays = "1;35";
-        objects = "1;37";
+        objects = "1;35";
+        objectKeys = "1;37";
       };
     };
 

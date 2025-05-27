@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf getExe mkOrder;
 in
 {
   catppuccin.zsh-syntax-highlighting = {
@@ -30,9 +30,7 @@ in
       autosuggestion.enable = true;
 
       # adds 0.15 sek to startup time
-      syntaxHighlighting = {
-        enable = true;
-      };
+      syntaxHighlighting.enable = true;
 
       envExtra = ''
         # # If not running interactively, don't do anything and return early
@@ -133,7 +131,7 @@ in
 
       historySubstringSearch.enable = true;
 
-      initExtraBeforeCompInit = ''
+      initContent = mkOrder 550 ''
         export LS_COLORS="$(${getExe pkgs.vivid} generate catppuccin-mocha)"
       '';
 

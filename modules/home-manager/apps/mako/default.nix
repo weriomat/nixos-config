@@ -20,20 +20,16 @@ in
     services.mako = {
       enable = true;
 
-      # TODO: font here, pango format
-      font = "JetBrainsMono Nerd Font 12";
-      # TODO: icon paths
-      # services.mako.iconPath
-      padding = "15";
-      defaultTimeout = 5000;
-      borderSize = 2;
-      borderRadius = 5;
-      icons = true;
-      actions = true;
-      extraConfig = ''
-        text-alignment=center
-        [urgency=high]
-      '';
+      settings = {
+        padding = "15";
+        default-timeout = 5000;
+        border-size = 2;
+        border-radius = 5;
+        icons = true;
+        actions = true;
+        text-alignment = "center";
+        # urgency = "high";
+      };
     };
   };
 }

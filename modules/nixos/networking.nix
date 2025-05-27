@@ -319,9 +319,10 @@ in
         settings = {
           General = {
             # EnableNetworkConfiguration = !cfg.networkd.enable; # let networkd handle dhcp/ ip assignment, if need for static mac for a specific network is needed, this is a good option since https://insanity.industries/post/simple-networking/
-            UseDefaultInterface = true;
             AddressRandomization = mkIf cfg.networkd.mac-random "once";
           };
+          DriverQuirks.UseDefaultInterface = true;
+
           # General.
           Network = {
             EnableIPv6 = true;

@@ -12,7 +12,7 @@ in
 
   services.gnome = {
     core-shell.enable = mkForce true; # Need for basic version of gnome
-    core-utilities.enable = mkForce false;
+    core-apps.enable = mkForce false;
     games.enable = mkForce false;
     core-developer-tools.enable = mkForce false;
     rygel.enable = false;

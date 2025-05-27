@@ -81,13 +81,12 @@ in
           # ];
         };
         ruff = {
-          command = "${pkgs.ruff-lsp}/bin/ruff-lsp";
-          config.settings = {
-            args = [
-              "--ignore"
-              "E501"
-            ];
-          };
+          command = "${pkgs.ruff}/bin/ruff";
+          args = [
+            "server"
+            "--ignore"
+            "E501"
+          ];
         };
 
         pyright.config.analysis = {
@@ -103,7 +102,7 @@ in
             onEdit = true;
           };
           forwardSearch = {
-            executable = "${pkgs.okular}/bin/okular";
+            executable = "${pkgs.kdePackages.okular}/bin/okular";
             args = [
               "--unique"
               "file:%p#src:%l%f"
