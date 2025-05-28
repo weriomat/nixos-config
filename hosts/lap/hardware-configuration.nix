@@ -106,7 +106,16 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   swapDevices = [ { device = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8"; } ];
+
   zramSwap.enable = true;
+
+  # As per https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 180;
+    "vm.watermark_boost_factor" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.page-cluster" = 0;
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
