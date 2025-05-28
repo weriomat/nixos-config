@@ -26,7 +26,6 @@ in
       windowrule = [
         #   windowrule = float,title:^(Firefox — Sharing Indicator)$
         #   windowrule = move 0 0,title:^(Firefox — Sharing Indicator)$
-        #
         "opaque, class:^(firefox)"
       ];
       windowrulev2 = [
@@ -113,6 +112,7 @@ in
     #   '';
 
     home.sessionVariables.BROWSER = "firefox";
+
     programs.firefox = {
       enable = true;
 
@@ -127,8 +127,8 @@ in
       profiles.${globals.username} = {
         # potentially problematic: 0703, 0820 (color visited links)
         # see: nix build "github:dwarfmaster/arkenfox-nixos#arkenfox-v103_0-doc-static" && firefox result
+        # TODO: here
         arkenfox = mkIf cfg.arkenfox.enable {
-          # TODO: here
           enable = true;
           "0000".enable = true;
           "0100".enable = true;
@@ -171,182 +171,191 @@ in
           "8000".enable = true;
         };
 
-        bookmarks = [
-          {
-            name = "Home-Manager Wiki";
-            tags = [ "wiki" ];
-            keyword = "homemanager";
-            url = "https://nix-community.github.io/home-manager/options.xhtml";
-          }
-          {
-            name = "Nix - A One Pager -> Nix Language";
-            tags = [ "wiki" ];
-            keyword = "nix";
-            url = "https://github.com/tazjin/nix-1p";
-          }
-          {
-            name = "nixos-manual";
-            tags = [ "wiki" ];
-            keyword = "nixos";
-            url = "https://nixos.org/manual/nix/stable/introduction";
-          }
-          {
-            name = "NixOS - Book";
-            tags = [ "Books" ];
-            keyword = "nixbook";
-            url = "https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration";
-          }
-          {
-            name = "Install guide of steam";
-            tags = [ "wiki" ];
-            keyword = "steam";
-            url = "https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html";
-          }
-          {
-            name = "rust flake";
-            tags = [ "rust" ];
-            url = "https://www.tweag.io/blog/2022-09-22-rust-nix/";
-          }
-          {
-            name = "rust flake with hercules ci";
-            tags = [ "rust" ];
-            url = "https://github.com/cpu/rust-flake/blob/main/README.md";
-          }
-          {
-            name = "noogle";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "noogle";
-                tags = [ "nix" ];
-                url = "https://noogle.dev/";
-              }
-            ];
-          }
-          {
-            name = "Utils";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "Chmod calc";
-                url = "https://chmod-calculator.com/";
-              }
-              {
-                name = "Nixhub";
-                url = "https://www.nixhub.io/";
-              }
-              {
-                name = "gpg cheat-sheet";
-                url = "https://gock.net/blog/2020/gpg-cheat-sheet";
-              }
-            ];
-          }
-          {
-            name = "Grafana - Dashboard";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "dashboard raspi doc";
-                url = "https://github.com/rfmoz/grafana-dashboards";
-              }
-            ];
-          }
-          {
-            name = "Rust";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "rust programming lang book";
-                url = "https://doc.rust-lang.org/stable/book/";
-              }
-            ];
-          }
-          {
-            name = "Category Theory";
-            toolbar = true;
-            bookmarks = [
-              {
-                name = "Stanford summary";
-                url = "https://plato.stanford.edu/entries/category-theory/";
-              }
-              {
-                name = "auburn summary";
-                url = "https://web.auburn.edu/holmerr/8970/Textbook/CategoryTheory.pdf";
-              }
-              {
-                name = "ucsb script";
-                url = "https://web.math.ucsb.edu/~atrisal/category%20theory.pdf";
-              }
-              {
-                name = "Standford book recommendations";
-                url = "https://plato.stanford.edu/entries/category-theory/bib.html";
-              }
-            ];
-          }
-        ];
+        bookmarks = {
+          force = true;
+          settings = [
+            {
+              name = "Home-Manager Wiki";
+              tags = [ "wiki" ];
+              keyword = "homemanager";
+              url = "https://nix-community.github.io/home-manager/options.xhtml";
+            }
+            {
+              name = "Nix - A One Pager -> Nix Language";
+              tags = [ "wiki" ];
+              keyword = "nix";
+              url = "https://github.com/tazjin/nix-1p";
+            }
+            {
+              name = "nixos-manual";
+              tags = [ "wiki" ];
+              keyword = "nixos";
+              url = "https://nixos.org/manual/nix/stable/introduction";
+            }
+            {
+              name = "NixOS - Book";
+              tags = [ "Books" ];
+              keyword = "nixbook";
+              url = "https://nixos-and-flakes.thiscute.world/nixos-with-flakes/modularize-the-configuration";
+            }
+            {
+              name = "Install guide of steam";
+              tags = [ "wiki" ];
+              keyword = "steam";
+              url = "https://jmglov.net/blog/2022-06-20-installing-steam-on-nixos.html";
+            }
+            {
+              name = "rust flake";
+              tags = [ "rust" ];
+              url = "https://www.tweag.io/blog/2022-09-22-rust-nix/";
+            }
+            {
+              name = "rust flake with hercules ci";
+              tags = [ "rust" ];
+              url = "https://github.com/cpu/rust-flake/blob/main/README.md";
+            }
+            {
+              name = "noogle";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "noogle";
+                  tags = [ "nix" ];
+                  url = "https://noogle.dev/";
+                }
+              ];
+            }
+            {
+              name = "Utils";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "Chmod calc";
+                  url = "https://chmod-calculator.com/";
+                }
+                {
+                  name = "Nixhub";
+                  url = "https://www.nixhub.io/";
+                }
+                {
+                  name = "gpg cheat-sheet";
+                  url = "https://gock.net/blog/2020/gpg-cheat-sheet";
+                }
+              ];
+            }
+            {
+              name = "Grafana - Dashboard";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "dashboard raspi doc";
+                  url = "https://github.com/rfmoz/grafana-dashboards";
+                }
+              ];
+            }
+            {
+              name = "Rust";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "rust programming lang book";
+                  url = "https://doc.rust-lang.org/stable/book/";
+                }
+              ];
+            }
+            {
+              name = "Category Theory";
+              toolbar = true;
+              bookmarks = [
+                {
+                  name = "Stanford summary";
+                  url = "https://plato.stanford.edu/entries/category-theory/";
+                }
+                {
+                  name = "auburn summary";
+                  url = "https://web.auburn.edu/holmerr/8970/Textbook/CategoryTheory.pdf";
+                }
+                {
+                  name = "ucsb script";
+                  url = "https://web.math.ucsb.edu/~atrisal/category%20theory.pdf";
+                }
+                {
+                  name = "Standford book recommendations";
+                  url = "https://plato.stanford.edu/entries/category-theory/bib.html";
+                }
+              ];
+            }
+          ];
+        };
 
-        extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
-          ublock-origin
-          darkreader
-          auto-tab-discard
-          canvasblocker
-          clearurls
-          # add capuccin colors to firefox-color -> manual idk how to do that in nix
-          # enable dark theme in about:addons under themes
-          firefox-color
-          facebook-container
-          decentraleyes
-          return-youtube-dislikes
-          user-agent-string-switcher
+        # TODO: configure...
+        extensions = {
+          force = true;
+          packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+            ublock-origin
+            darkreader
+            auto-tab-discard
+            canvasblocker
+            clearurls
+            # add capuccin colors to firefox-color -> manual idk how to do that in nix
+            # enable dark theme in about:addons under themes
+            firefox-color
+            facebook-container
+            decentraleyes
+            return-youtube-dislikes
+            user-agent-string-switcher
 
-          # rss stuff
-          # rsshub-radar # finds RSSHub stuff
+            # rss stuff
+            # rsshub-radar # finds RSSHub stuff
 
-          # passwords
-          bitwarden
+            # passwords
+            bitwarden
 
-          # links
-          linkwarden
+            # links
+            linkwarden
 
-          # new
-          censor-tracker # https://censortracker.org/en.html
-          consent-o-matic # https://consentomatic.au.dk/
-          dearrow # https://dearrow.ajay.app/
-          deutsch-de-language-pack
-          dictionary-german
+            # new
+            censor-tracker # https://censortracker.org/en.html
+            consent-o-matic # https://consentomatic.au.dk/
+            dearrow # https://dearrow.ajay.app/
+            deutsch-de-language-pack
+            dictionary-german
 
-          enhanced-github # https://github.com/softvar/enhanced-github
-          foxytab # https://github.com/erosman/support
-          h264ify
-          native-mathml # https://github.com/fred-wang/webextension-native-mathml
-          sponsorblock # https://sponsor.ajay.app/
-          web-archives # https://github.com/dessant/web-archives#readme
+            enhanced-github # https://github.com/softvar/enhanced-github
+            foxytab # https://github.com/erosman/support
+            h264ify
+            native-mathml # https://github.com/fred-wang/webextension-native-mathml
+            sponsorblock # https://sponsor.ajay.app/
+            web-archives # https://github.com/dessant/web-archives#readme
 
-          buster-captcha-solver # https://github.com/dessant/buster#readme
-          # bypass-paywalls-clean # https://twitter.com/Magnolia1234B
-          vimium # https://github.com/philc/vimium
+            buster-captcha-solver # https://github.com/dessant/buster#readme
+            # bypass-paywalls-clean # https://twitter.com/Magnolia1234B
+            vimium # https://github.com/philc/vimium
 
-          # TODO: here
-          (languagetool.overrideAttrs { meta.license = licenses.free; })
-          # languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
+            # TODO: here
+            (languagetool.overrideAttrs { meta.license = licenses.free; })
+            # languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
 
-          zotero-connector
+            zotero-connector
 
-          #    privacy-badger
-          # vimium-c
-          # gloc
-          # adaptive-tab-bar-colour
-          # unpaywall
-          # simple-translate
+            #    privacy-badger
+            # vimium-c
+            # gloc
+            # adaptive-tab-bar-colour
+            # unpaywall
+            # simple-translate
 
-          # # NOTE: Hacky solution here will change when get time
-          # (languagetool.overrideAttrs { meta.license = lib.licenses.free; })
-          # (tampermonkey.overrideAttrs { meta.license = lib.licenses.free; })
-          # (enhancer-for-youtube.overrideAttrs {
-          #   meta.license = lib.licenses.free;
-          # })
-        ];
+            # # NOTE: Hacky solution here will change when get time
+            # (languagetool.overrideAttrs { meta.license = lib.licenses.free; })
+            # (tampermonkey.overrideAttrs { meta.license = lib.licenses.free; })
+            # (enhancer-for-youtube.overrideAttrs {
+            #   meta.license = lib.licenses.free;
+            # })
+          ];
+        };
+
         search = {
+          force = true;
           default = "ddg";
           privateDefault = "ddg";
           engines = {
@@ -438,7 +447,6 @@ in
             "amazondotcom-us".metaData.hidden = true;
             "ebay".metaData.hidden = true;
           };
-          force = true;
         };
 
         settings = {
