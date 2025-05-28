@@ -298,6 +298,23 @@ in
       description = "S.M.A.R.T. Daemon";
       wantedBy = [ "multi-user.target" ];
       serviceConfig.ExecStart = "${pkgs.smartmontools}/sbin/smartd ${lib.concatStringsSep " " cfg.extraOptions} --no-fork --configfile=${smartdConf}";
+      serviceConfig = {
+        LockPersonality = true;
+        NoNewPrivileges = true;
+        PrivateTmp = true;
+        ProtectControlGroups = true;
+        ProtectHome = true;
+        ProtectHostname = true;
+        ProtectKernelLogs = true;
+        ProtectKernelModules = true;
+        ProtectKernelTunables = true;
+        ProtectProc = "invisible";
+        ProtectSystem = "strict";
+        RestrictNamespaces = true;
+        RestrictRealtime = true;
+        RestrictSUIDSGID = true;
+        SystemCallArchitectures = "native";
+      };
     };
 
     services.systembus-notify.enable = mkDefault ns.enable;
