@@ -34,7 +34,7 @@
   # NOTE: some fonts to keep in mind "IBMPlexMono" (nerfont), pkgs.twemoji-color-font, pkgs.iosevka-comfy.comfy
   home.packages = [
     inputs.monoLisa.packages.${pkgs.system}.default
-    pkgs.apple-emoji
+    pkgs.apple-color-emoji
     pkgs.fira-go
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.nerd-fonts.symbols-only

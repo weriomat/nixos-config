@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   weriomat-wallpapers = pkgs.callPackage ./weriomat-wallpapers { };
-  apple-emoji = pkgs.callPackage ./apple-color-emoji { };
+  apple-color-emoji = pkgs.callPackage ./apple-color-emoji { };
   cf-terraforming = pkgs.callPackage ./cf-terraforming { };
   wl-ocr = pkgs.callPackage ./wl-ocr { };
   vikunja-desktop = pkgs.callPackage ./vikunja-desktop { };
