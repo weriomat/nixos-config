@@ -1,43 +1,30 @@
 {
-  lib,
   stdenv,
-  fetchFromGitHub,
-  which,
-  imagemagick,
-  pngquant,
-  zopfli,
-  python312Packages,
+  fetchurl,
+  lib,
   ...
 }:
-stdenv.mkDerivation {
-  pname = "apple-emoji";
-  version = "0.0.1";
-
-  src = fetchFromGitHub {
-    owner = "samuelngs";
-    repo = "apple-emoji-linux";
-    rev = "e40e6d35657b908f473faed8f6461e8c54d01420";
-    hash = "sha256-liklPjOJhHOBWQH8AQwkLfIG0KIqdnZcVAa7oMrVZMk=";
+stdenv.mkDerivation rec {
+  pname = "apple-color-emoji";
+  version = "18.4";
+  src = fetchurl {
+    name = "${pname}-${version}";
+    url = "https://github.com/samuelngs/apple-emoji-linux/releases/download/v${version}/AppleColorEmoji.ttf";
+    sha256 = "sha256-pP0He9EUN7SUDYzwj0CE4e39SuNZ+SVz7FdmUviF6r0=";
   };
 
-  buildInputs = [
-    which
-    imagemagick
-    pngquant
-    zopfli
-    python312Packages.fonttools
-    python312Packages.nototools
-  ];
+  unpackPhase = ''
+    runHook preUnpack
 
-  buildPhase = ''
-    make -j
+    cp $src AppleColorEmoji.ttf
+
+    runHook postUnpack
   '';
-
   installPhase = ''
     runHook preInstall
 
     mkdir -p $out/share/fonts/truefont
-    install -Dm644 AppleColorEmoji.ttf -t $out/share/fonts/truefont
+    install -Dm444 AppleColorEmoji.ttf -t $out/share/fonts/truetype
 
     runHook postInstall
   '';
@@ -47,7 +34,6 @@ stdenv.mkDerivation {
     homepage = "https://github.com/samuelngs/apple-emoji-linux";
     license = lib.licenses.asl20;
     maintainers = [ lib.maintainers.weriomat ];
-    mainProgram = "apple-emoji-linux";
     platforms = lib.platforms.all;
   };
 }
