@@ -1,35 +1,44 @@
 {
   inputs,
+  globals,
   pkgs,
   ...
 }:
 {
   fonts.fontconfig = {
     enable = true;
-    # TODO: fonts -> fira code
-    # NOTE: this config is for the hm user, we just configure it via nixos
-    # defaultFonts = {
-    #   serif = ["Source Serif"];
-    #   sansSerif = ["FiraGO"];
-    #   #   sansSerif = ["Fira Sans" "FiraGO" "Noto Color Emoji"];
-    #   monospace = ["MonoLisa Nerd Font"];
-    #   emoji = ["apple-emoji"];
-    # };
+    # TODO: sync with nixos option
     defaultFonts = {
-      sansSerif = [ "FiraGO" ];
-      serif = [ "DejaVu Serif" ];
-      monospace = [ "MonoLisa Nerd Font" ];
-      emoji = [ "apple-emoji" ];
+      sansSerif = [
+        "FiraGO"
+        #"Fira Sans"
+        # "DejaVu Sans"
+      ];
+      serif = [
+        "DejaVu Serif"
+        # "Source Serif"
+      ];
+      monospace = [
+        "MonoLisa Nerd Font"
+        # "DejaVu Sans Mono"
+        # "FiraCode"
+      ];
+      emoji = [
+        "Apple Color Emoji"
+        # "Noto Color Emoji"
+      ];
     };
   };
+
+  # TODO: set fallback
   waybar.font = "MonoLisa Nerd Font";
   hyprlock.font = "FiraMono Nerd Font";
+  wofi.font = "MonoLisa Nerd Font, monospace";
+
+  # TODO: fix this
   wlogout.font = "Fira Sans Semibold, FontAwesome, Roboto, Helvetica, Arial, sans-serif";
 
-  services.mako.settings.font = "FiraGO";
-
-  # fonts:
-  # https://fonts.google.com/noto/specimen/Noto+Emoji
+  services.mako.settings.font = "FiraGO"; # "JetBrainsMono Nerd Font 12";
 
   # NOTE: some fonts to keep in mind "IBMPlexMono" (nerfont), pkgs.twemoji-color-font, pkgs.iosevka-comfy.comfy
   home.packages = [
@@ -40,6 +49,11 @@
     pkgs.nerd-fonts.symbols-only
     pkgs.nerd-fonts.fira-mono
   ];
+
+  # NOTE: font.name.<kind>.x-western ist set to default set by fontconfig, so dont touch
+  # Test browser emoji via https://unicode.org/emoji/charts/full-emoji-list.html
+  programs.firefox.profiles.${globals.username}.settings.font.name-list.emoji =
+    "Apple Color Emoji, Twemoji Mozilla";
 
   gtk.font = {
     name = "MonoLisa Nerd Font";
@@ -65,12 +79,6 @@
         font_size 16
       ''; # Stolen from https://github.com/redyf/nixdots/blob/main/home/desktop/addons/kitty/default.nix
     };
-
-    # firefox.profiles.profileSettings.settings = {
-    #   "font.name.monospace.x-western" = config.stylix.fonts.monospace.name;
-    #   "font.name.sans-serif.x-western" = config.stylix.fonts.sansSerif.name;
-    #   "font.name.serif.x-western" = config.stylix.fonts.serif.name;
-    # };
   };
 
   # in normal nixos options
