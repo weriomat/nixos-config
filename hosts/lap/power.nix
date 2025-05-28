@@ -32,6 +32,9 @@
         PLATFORM_PROFILE_ON_AC = "performance";
         PLATFORM_PROFILE_ON_BAT = "balanced";
 
+        SCHED_POWERSAVE_ON_AC = 0;
+        SCHED_POWERSAVE_ON_BAT = 1;
+
         # Battery care
         START_CHARGE_THRESH_BAT0 = 70;
         STOP_CHARGE_THRESH_BAT0 = 80;
