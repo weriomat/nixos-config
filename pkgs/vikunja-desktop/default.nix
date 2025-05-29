@@ -8,7 +8,6 @@
   electron,
   unstableGitUpdater,
   fetchFromGitHub,
-  # vikunja,
   pnpm,
 }:
 
@@ -26,16 +25,22 @@ let
     pname = "vikunja-frontend";
     inherit version src;
 
+    patches = [
+      ./nodejs-22.12-tailwindcss-update.patch
+      ./0001-chore-pnpm-install-no-frozen-lockfile.patch
+      ./0001-chore-switch-API_URL-to-own-instance.patch
+    ];
     sourceRoot = "${finalAttrs.src.name}/frontend";
 
     pnpmDeps = pnpm.fetchDeps {
       inherit (finalAttrs)
         pname
         version
+        patches
         src
         sourceRoot
         ;
-      hash = "sha256-D2dOyYsdsNV1ZSQdjpy6rfoix7yBACEHj/2XyHb7HWE=";
+      hash = "sha256-DZ+qhIAPHjZb7uC70sXAvNsuZqSgfjb0fYZJ7gQBLX4=";
     };
 
     nativeBuildInputs = [
@@ -83,11 +88,9 @@ stdenv.mkDerivation (finalAttrs: {
     makeWrapper
     nodejs
     pnpm_9.configHook
-    # vikunja.passthru.frontend
     frontend
   ];
 
-  # ln -s '${vikunja.passthru.frontend}' frontend
   buildPhase = ''
     runHook preBuild
     sed -i "s/\$${version}/${version}/g" package.json
@@ -117,9 +120,7 @@ stdenv.mkDerivation (finalAttrs: {
   '';
 
   # Do not attempt generating a tarball for vikunja-frontend again.
-  distPhase = ''
-    true
-  '';
+  distPhase = ''true '';
 
   passthru.updateScript = unstableGitUpdater {
     url = "${src.meta.homepage}.git";
