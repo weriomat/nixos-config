@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+let
+  inherit (lib) getExe;
+in
 {
   catppuccin.lazygit = {
     enable = true;
@@ -9,9 +12,6 @@
   # Git helper
   programs = {
     lazygit.enable = true;
-    zsh.shellAliases = {
-      gl = "${pkgs.lazygit}/bin/lazygit";
-    };
+    zsh.shellAliases.gl = getExe pkgs.lazygit;
   };
-
 }
