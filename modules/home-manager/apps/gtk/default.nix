@@ -25,6 +25,8 @@ in
     };
     gtk = {
       enable = true;
+      gtk3.extraConfig.Settings = ''gtk-application-prefer-dark-theme=1 '';
+      gtk4.extraConfig.Settings = ''gtk-application-prefer-dark-theme=1 '';
       # Alternative     name = "BeautyLine"; package = pkgs.beauty-line-icon-theme;
       # iconTheme = {
       #   name = "Papirus-Dark";
@@ -50,10 +52,6 @@ in
         size = 22;
       };
       gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-      #    gtk4 = {
-      #      extraConfig = {
-      #        gtk-application-prefer-dark-theme = true;
-      #      };
       #      # the dark files are not copied by default, as not all themes have separate files
       #      # see: https://github.com/nix-community/home-manager/blob/afcedcf2c8e424d0465e823cf833eb3adebe1db7/modules/misc/gtk.nix#L238
       #      extraCss = ''
