@@ -37,17 +37,8 @@ in
     };
 
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
-    # TODO: take a look at https://github.com/fufexan/dotfiles/blob/main/home/programs/browsers/firefox.nix
-    # TODO: Take a look at https://github.com/gvolpe/nix-config/blob/b9ff455faaf5a4890985305e5c7a5a01606d20f3/home/programs/firefox/addons.nix
     # TODO: take a look at https://github.com/gvolpe/nix-config/blob/b9ff455faaf5a4890985305e5c7a5a01606d20f3/home/programs/firefox/default.nix
-    # TODO:  fonts
-    #   profileSettings = {
-    #   settings = {
-    #     "font.name.monospace.x-western" = config.stylix.fonts.monospace.name;
-    #     "font.name.sans-serif.x-western" = config.stylix.fonts.sansSerif.name;
-    #     "font.name.serif.x-western" = config.stylix.fonts.serif.name;
-    #   };
-    # };
+    # https://github.com/Sly-Harvey/NixOS/blob/master/modules/programs/browser/firefox/default.nix
 
     # TODO: darkreader
     # home.file.".config/darkreader/config.json".text =
@@ -288,7 +279,7 @@ in
           ];
         };
 
-        # TODO: configure...
+        # TODO: configure,automaticcly accept, set permisisons, confiugre settings, https://mozilla.github.io/policy-templates/
         extensions = {
           force = true;
           packages = with inputs.firefox-addons.packages.${pkgs.system}; [
@@ -345,8 +336,6 @@ in
             # unpaywall
             # simple-translate
 
-            # # NOTE: Hacky solution here will change when get time
-            # (languagetool.overrideAttrs { meta.license = lib.licenses.free; })
             # (tampermonkey.overrideAttrs { meta.license = lib.licenses.free; })
             # (enhancer-for-youtube.overrideAttrs {
             #   meta.license = lib.licenses.free;
