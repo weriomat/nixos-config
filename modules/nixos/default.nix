@@ -15,6 +15,7 @@
     ./languagetool.nix
     ./user.nix
     ./steam.nix
+    ./security.nix
     ./borg.nix
     ./sops.nix
 
