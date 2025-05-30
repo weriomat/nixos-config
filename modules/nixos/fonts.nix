@@ -9,6 +9,7 @@ let
   cfg = config.myfont;
 in
 {
+  # TODO: sync with HM and enable again
   options.myfont.enable = mkEnableOption "Enable my fontconfiguration" // {
     default = false;
   };
@@ -28,6 +29,7 @@ in
         pkgs.unifont
       ];
 
+      fontDir.enable = true; # xwayland
       fontconfig = {
         enable = true;
         defaultFonts = {
