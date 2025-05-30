@@ -5,42 +5,53 @@
   ...
 }:
 {
+  # TODO: set fallback, sync with nixos option, fix some fonts, let alls apps use the default font?
   fonts.fontconfig = {
     enable = true;
-    # TODO: sync with nixos option
     defaultFonts = {
       sansSerif = [
         "FiraGO"
         #"Fira Sans"
         # "DejaVu Sans"
+        #         "UbuntuSans Nerd Font"
+        #         "Roboto"
+        #         "Ubuntu"
       ];
       serif = [
         "DejaVu Serif"
         # "Source Serif"
+        #         "Ubuntu Nerd Font"
+        #         "Roboto"
+        #         "Ubuntu"
       ];
       monospace = [
         "MonoLisa Nerd Font"
+        # "JetBrainsMonoNL Nerd Font"
         # "DejaVu Sans Mono"
         # "FiraCode"
+        #         "LiberationMono Nerd Font"
+        #         "UbuntuMono Nerd Font"
+        #         "BlexMono Nerd Font"
+        #         "JetBrainsMono"
       ];
       emoji = [
         "Apple Color Emoji"
         # "Noto Color Emoji"
+        # emoji = with pkgs; [ noto-fonts, noto-fonts-cjk, noto-fonts-emoji, noto-fonts-cjk-sans, noto-fonts-cjk-serif, noto-fonts-extra ];
       ];
     };
   };
+  # nerd = with pkgs; [ carlito, ipafont, kochi-substitute, source-code-pro, ttf_bitstream_vera, (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "DroidSansMono" ]; }) ];
 
-  # TODO: set fallback
   waybar.font = "MonoLisa Nerd Font";
+  # waybar.font = "JetBrainsMonoNL Nerd Font";
   hyprlock.font = "FiraMono Nerd Font";
   wofi.font = "MonoLisa Nerd Font, monospace";
 
   # TODO: fix this
   wlogout.font = "Fira Sans Semibold, FontAwesome, Roboto, Helvetica, Arial, sans-serif";
 
-  services.mako.settings.font = "FiraGO"; # "JetBrainsMono Nerd Font 12";
-
-  # NOTE: some fonts to keep in mind "IBMPlexMono" (nerfont), pkgs.twemoji-color-font, pkgs.iosevka-comfy.comfy
+  # NOTE: some fonts to keep in mind "IBMPlexMono" (nerfont), pkgs.twemoji-color-font, pkgs.iosevka-comfy.comfy, "JetBrainsMono", "Iosevka", corefonts, "Ubuntu".nerd, "UbuntuMono".nerd, "UbuntuSans".nerd, terminus_font, iosevka-comfy.comfy, ubuntu_font_family, helvetica-neue-lt-std, "IBMPlexMono", ibm-plex
   home.packages = [
     inputs.monoLisa.packages.${pkgs.system}.default
     pkgs.apple-color-emoji
@@ -50,18 +61,18 @@
     pkgs.nerd-fonts.fira-mono
   ];
 
-  # NOTE: font.name.<kind>.x-western ist set to default set by fontconfig, so dont touch
-  # Test browser emoji via https://unicode.org/emoji/charts/full-emoji-list.html
-  programs.firefox.profiles.${globals.username}.settings.font.name-list.emoji =
-    "Apple Color Emoji, Twemoji Mozilla";
-
   gtk.font = {
     name = "MonoLisa Nerd Font";
     # name = "JetBrainsMono Nerd Font";
     size = 11;
   };
 
+  services.mako.settings.font = "FiraGO"; # "JetBrainsMono Nerd Font 12";
   programs = {
+    # NOTE: font.name.<kind>.x-western ist set to default set by fontconfig, so dont touch
+    # Test browser emoji via https://unicode.org/emoji/charts/full-emoji-list.html
+    firefox.profiles.${globals.username}.settings.font.name-list.emoji =
+      "Apple Color Emoji, Twemoji Mozilla";
     kitty = {
       # NOTE: alternative "'BlexMono Nerd Font'"
       extraConfig = ''
@@ -80,103 +91,4 @@
       ''; # Stolen from https://github.com/redyf/nixdots/blob/main/home/desktop/addons/kitty/default.nix
     };
   };
-
-  # in normal nixos options
-  # fonts.packages = [
-  #   (pkgs.nerdfonts.override {fonts = ["JetBrainsMono" "Iosevka" "FiraCode"];})
-  #   cm_unicode
-  #   corefonts
-  # ];
-
-  # TODO: fonts
-  # emoji = with pkgs; [ noto-fonts, noto-fonts-cjk, noto-fonts-emoji, noto-fonts-cjk-sans, noto-fonts-cjk-serif, noto-fonts-extra ];
-  # nerd = with pkgs; [ carlito, ipafont, kochi-substitute, source-code-pro, ttf_bitstream_vera, (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "DroidSansMono" ]; }) ];
-
-  # Configure fonts
-  # fonts = {
-  #   enableDefaultPackages = true;
-  #   packages = with pkgs; [
-  #     (nerdfonts.override {
-  #       fonts = [
-  #         "LiberationMono"
-  #         "Terminus"
-  #         "Ubuntu"
-  #         "UbuntuMono"
-  #         "UbuntuSans"
-  #       ];
-  #     })
-  #     arphic-ukai
-  #     arphic-uming
-  #     gohufont
-  #     noto-fonts
-  #     noto-fonts-emoji
-  #     noto-fonts-cjk
-  #     # symbola
-  #     terminus_font
-  #     # ubuntu_font_family
-  #     wqy_microhei
-  #     wqy_zenhei
-  #   ];
-  #   fontconfig = {
-  #     defaultFonts = {
-  #       serif = [
-  #         "Ubuntu Nerd Font"
-  #         "Roboto"
-  #         "Ubuntu"
-  #       ];
-  #       sansSerif = [
-  #         "UbuntuSans Nerd Font"
-  #         "Roboto"
-  #         "Ubuntu"
-  #       ];
-  #       monospace = [
-  #         "LiberationMono Nerd Font"
-  #         "UbuntuMono Nerd Font"
-  #         "BlexMono Nerd Font"
-  #         "JetBrainsMono"
-  #       ];
-  #     };
-  #   };
-
-  #   enableDefaultPackages = true;
-  #   packages = with pkgs; [
-  #     # General stuff that supports most languages
-  #     iosevka-comfy.comfy
-  #     noto-fonts
-  #     noto-fonts-cjk
-  #     noto-fonts-emoji
-  #     roboto
-  #     ubuntu_font_family
-  #     source-han-sans
-  #     source-han-sans-japanese
-  #     source-han-serif-japanese
-  #     helvetica-neue-lt-std
-  #     # Icon fonts
-  #     font-awesome
-  #     (nerdfonts.override {
-  #       fonts = [
-  #         "JetBrainsMono"
-  #         "IBMPlexMono"
-  #       ];
-  #     })
-
-  #     # Coding fonts
-  #     powerline-fonts
-  #     ibm-plex
-  #     jetbrains-mono
-  #   ];
-  # TODO: fonots
-  # Making fonts accessible to applications.
-  # fonts.packages = with pkgs; [
-  #   customFonts
-  #   font-awesome
-  #   myfonts.flags-world-color
-  #   myfonts.icomoon-feather
-  # ];
-  #  customFonts = pkgs.nerdfonts.override {
-  #   fonts = [
-  #     "JetBrainsMono"
-  #     "Iosevka"
-  #   ];
-  # }; # };
 }
