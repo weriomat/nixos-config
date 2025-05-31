@@ -1,5 +1,78 @@
-# TODOS
+# NEW TODO's
 
+## TODO take a look at
+
+iftop
+nload
+netstat
+nstat
+nslookup
+
+## NIX
+
+- Proper nixd setup with hm integration
+- take a look at hm scripts and evaluate if i keep them
+
+## DEV
+
+- better way to see lazygit -> inside of helix -> maybe write sth on my own
+- helix popup panes for lazygit/ test runner ...
+- todo git rerere
+- lazygit better overview of features -> talks, yt, blogs
+- git maintinance start -> cron jobs conflict nix?
+
+- markdown spell checking
+- helix tree of todo's
+- helix better panel navigation keys
+- take a look at other options
+- take a look at [here](https://unix.stackexchange.com/a/750200)
+- helix jump list
+
+## LENOVO
+
+If the current fix for wland does not work take a look at
+`https://github.com/nicball/nicpkgs/blob/e1cc11d9f7ba893ac9d3f3950179606100535867/flake.nix#L202
+https://github.com/nicball/nicpkgs/blob/main/pkgs/rtw89.nix
+https://github.com/nicball/nixos-configuration/blob/main/amd.nix
+https://github.com/nicball/nixos-configuration/blob/main/lenovo.nix
+https://bbs.archlinux.org/viewtopic.php?id=286109
+https://bugs.launchpad.net/ubuntu/+source/linux-oem-6.1/+bug/2017277
+https://duckduckgo.com/?t=ffab&q=wifi+7+cards+working+well+with+linux&ia=web`
+
+## different todo's
+
+1. thunderbird intergration
+2. take a look at accounts home-manager
+3. look at new hm options
+4. take a look at btop gpu options
+5. osx gpg config
+6. gitlab runner on osx
+
+take a look at
+`https://github.com/poliorcetics/dotfiles/blob/main/home/helix/config.nix`
+
+-> nix catppuccin
+
+-> dotfiles to take look at
+`https://github.com/Mic92/dotfiles/blob/main/machines/eva/configuration.nix
+https://github.com/nix-community/srvos/blob/main/nixos/roles/prometheus/default.nix
+https://gitlab.com/misuzu/nixos-configuration/-/blob/main/common/laptop.nix?ref_type=heads`
+-> libinput
+
+zramswap
+`https://gitlab.com/misuzu/nixos-configuration/-/blob/main/common/zramSwap.nix?ref_type=heads`
+
+## pipewire
+
+`https://gitlab.com/misuzu/nixos-configuration/-/blob/main/common/pipewire-roc-sink.nix?ref_type=heads
+https://gitlab.com/misuzu/nixos-configuration/-/blob/main/common/pipewire-roc-source.nix?ref_type=heads
+https://gitlab.com/misuzu/nixos-configuration/-/blob/main/common/pipewire-system-wide.nix?ref_type=heads`
+
+nix run github:Mic92/flake-linter --
+
+## TODOS
+
+`https://insanity.industries/post/safeshell/`
 `https://github.com/kinzoku-dev/neovim`
 
 ## passthrough of pci card see
