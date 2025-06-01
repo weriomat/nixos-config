@@ -25,9 +25,6 @@ in
 
       sysz # systemctl thingie
       clerk # mpd client
-
-      emojify # emoji on shell
-
       powertop
       pdfarranger
       ethtool
