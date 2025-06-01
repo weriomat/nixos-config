@@ -43,15 +43,8 @@ in
       unstable.libdrm
       ffmpeg
 
-      nixos-rebuild
       vim
       wget
-
-      # nix
-      nixfmt-classic
-      nixpkgs-fmt
-      nixpkgs-lint
-      statix
 
       # TODO: remove dev deps since we want to use devshells for this
 
