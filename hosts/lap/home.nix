@@ -20,7 +20,6 @@ in
             inputs
             outputs
             globals
-            # g
             ;
         };
         useUserPackages = true;
