@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -45,7 +46,7 @@ in
           tuigreet = "${getExe pkgs.greetd.tuigreet}";
         in
         {
-          command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' pkgs.systemd "systemctl"} poweroff' --power-reboot '${getExe' pkgs.systemd "systemctl"} poweroff' --cmd ${session}";
+          command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' config.systemd.package "systemctl"} poweroff' --power-reboot '${getExe' config.systemd.package "systemctl"} poweroff' --cmd ${session}";
           user = "greeter";
         };
     };

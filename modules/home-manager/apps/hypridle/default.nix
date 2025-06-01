@@ -2,10 +2,16 @@
   config,
   lib,
   pkgs,
+  globals,
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    getExe
+    getExe'
+    ;
 in
 {
   options.hypridle.enable = mkEnableOption "Enable hypridle";
@@ -17,7 +23,7 @@ in
       settings =
         let
           timeout = 300;
-          loginctl = "${lib.getExe' pkgs.systemd "loginctl"}";
+          loginctl = "${getExe' globals.systemd "loginctl"}";
         in
         {
           general = {
@@ -51,7 +57,7 @@ in
 
             {
               timeout = timeout + 60;
-              on-timeout = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
+              on-timeout = "${getExe' globals.systemd "systemctl"} suspend";
             }
           ];
         };

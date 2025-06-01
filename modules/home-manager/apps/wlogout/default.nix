@@ -3,6 +3,7 @@
   pkgs,
   config,
   lib,
+  globals,
   ...
 }:
 let
@@ -10,6 +11,7 @@ let
     mkEnableOption
     mkIf
     getExe
+    getExe'
     mkOption
     types
     ;
@@ -39,37 +41,37 @@ in
       layout = [
         {
           label = "lock";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/loginctl lock-session";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${getExe' globals.systemd "loginctl"} lock-session";
           text = "Lock";
           keybind = "l";
         }
         {
           label = "hibernate";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl hibernate";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${getExe' globals.systemd "systemctl"} hibernate";
           text = "Hibernate";
           keybind = "h";
         }
         {
           label = "logout";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/loginctl terminate-user $USER";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${getExe' globals.systemd "loginctl"} terminate-user $USER";
           text = "Exit";
           keybind = "e";
         }
         {
           label = "shutdown";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl poweroff";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${getExe' globals.systemd "systemctl"} poweroff";
           text = "Shutdown";
           keybind = "s";
         }
         {
           label = "suspend";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl suspend";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${getExe' globals.systemd "systemctl"} suspend";
           text = "Suspend";
           keybind = "u";
         }
         {
           label = "reboot";
-          action = "${pkgs.coreutils}/bin/sleep 0.25; ${pkgs.systemd}/bin/systemctl reboot";
+          action = "${pkgs.coreutils}/bin/sleep 0.25; ${getExe' globals.systemd "systemctl"} reboot";
           text = "Reboot";
           keybind = "r";
         }

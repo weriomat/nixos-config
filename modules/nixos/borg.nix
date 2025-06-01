@@ -173,7 +173,7 @@ in
         };
 
         path = [
-          pkgs.systemd # for stopping services
+          config.systemd.package # for stopping services
           pkgs.borgmatic # borgmatic itself, for good measure
         ];
       };

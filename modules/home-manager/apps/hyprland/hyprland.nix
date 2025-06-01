@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  globals,
   ...
 }:
 let
@@ -38,7 +39,7 @@ in
         enable = true;
         enableXdgAutostart = true;
         extraCommands = [
-          "${getExe' pkgs.systemd "systemctl"} --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
+          "${getExe' globals.systemd "systemctl"} --user restart pipewire polkit-gnome-authentication-agent-1 xdg-desktop-portal xdg-desktop-portal-wlr"
         ];
         variables = [
           "--all"

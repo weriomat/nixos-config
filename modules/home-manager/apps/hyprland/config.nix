@@ -5,6 +5,7 @@
   config,
   pkgs,
   lib,
+  globals,
   ...
 }:
 let
@@ -126,7 +127,7 @@ in
 
       # TODO: steal from zayneyos/ cobalt
       exec-once = [
-        "${getExe' pkgs.systemd "systemctl"} --user import-environment &"
+        "${getExe' globals.systemd "systemctl"} --user import-environment &"
         "hash dbus-update-activation-environment 2>/dev/null &"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
         # TODO: maybe --all
@@ -135,7 +136,7 @@ in
         # "xwaylandvideobridge" # TODO: here
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl setcursor Nordzy-cursors 22 &"
         "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace 1&"
-        "${getExe' pkgs.systemd "systemctl"} --user restart kanshi.service waybar.service"
+        "${getExe' globals.systemd "systemctl"} --user restart kanshi.service waybar.service"
         "${getExe' pkgs.solaar "solaar"} --window=hide" # Enable solaar applet, for more see keyboard config
       ];
 

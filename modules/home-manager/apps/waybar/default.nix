@@ -12,6 +12,7 @@ let
     mkOption
     types
     mkIf
+    getExe'
     ;
 in
 {
@@ -215,7 +216,7 @@ in
           };
           interval = 30; # set interval to check every 30sek instead of 1min
           tooltip-format = "{}\nClick to reload Waybar";
-          on-click = "${pkgs.systemd}/bin/systemctl restart --user waybar";
+          on-click = "${getExe' globals.systemd "systemdctl"} restart --user waybar";
           format = ''<span color="#fab387">{icon}</span> {capacity}%'';
           format-charging = ''<span color="#a6e3a1">{icon}/span> {capacity}%'';
           format-warning = ''<span color="#a6e3a1"></span> {capacity}%'';
@@ -278,9 +279,7 @@ in
             default = "";
             sort-by-number = true;
           };
-          persistent-workspaces = {
-            "*" = 5;
-          };
+          persistent-workspaces."*" = 5;
         };
 
         "custom/playerctl#backward" = {

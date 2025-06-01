@@ -116,8 +116,8 @@ in
     # from https://insanity.industries/post/simple-networking/
     services.udev.extraRules = builtins.concatStringsSep "\n" [
       (optionalString cfg.iwd.enable ''
-        SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="1", RUN+="${getExe' pkgs.systemd "systemctl"} --no-block start iwd.service"
-        SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="0", RUN+="${getExe' pkgs.systemd "systemctl"} --no-block stop iwd.service"
+        SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="1", RUN+="${getExe' config.systemd.package "systemctl"} --no-block start iwd.service"
+        SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="0", RUN+="${getExe' config.systemd.package "systemctl"} --no-block stop iwd.service"
       '')
       (optionalString cfg.networkd.mac-random ''
         SUBSYSTEM=="rfkill", ATTR{name}=="phy0", ACTION=="change", ATTR{soft}=="1", RUN+="${getExe pkgs.macchanger} -ab ${wlan-name}"

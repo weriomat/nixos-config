@@ -2,10 +2,16 @@
   config,
   lib,
   pkgs,
+  globals,
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib)
+    mkEnableOption
+    mkIf
+    getExe'
+    getExe
+    ;
 in
 {
   options.swayidle.enable = mkEnableOption "Enable swayidle";
@@ -23,7 +29,7 @@ in
         }
         {
           timeout = 580;
-          command = "${config.programs.swaylock.package}/bin/swaylock -f --grace 20 --fade-in 20";
+          command = "${getExe config.programs.swaylock.package} -f --grace 20 --fade-in 20";
         }
         {
           timeout = 600;
@@ -32,7 +38,7 @@ in
         }
         {
           timeout = 900;
-          command = "${pkgs.systemd}/bin/systemctl suspend";
+          command = "${getExe' globals.systemd "systemctl"} suspend";
         }
       ];
     };
