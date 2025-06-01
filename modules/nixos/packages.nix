@@ -44,9 +44,6 @@ in
       ffmpeg
 
       vim
-      # TODO: remove dev deps since we want to use devshells for this
-
-      python3
 
       # TODO:  # -- Media Tools --
       # gimp
@@ -56,6 +53,7 @@ in
       # jellyfin-media-player
       # jellyfin-mpv-shim
       # graphviz
+      python3 # python is handy sometimes
     ];
   };
 }
