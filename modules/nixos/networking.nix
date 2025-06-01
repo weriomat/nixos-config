@@ -160,6 +160,24 @@ in
         "2620:fe::fe#dns.quad9.net"
         "2620:fe::9#dns.quad9.net"
       ];
+      timeServers = [
+        "0.de.pool.ntp.org" # https://www.ntppool.org/zone/de
+        "1.de.pool.ntp.org"
+        "2.de.pool.ntp.org"
+        "3.de.pool.ntp.org"
+        "times.tu-berlin.de" # https://www.tu.berlin/campusmanagement/angebot/zeitserver
+        "time.cloudflare.com" # https://developers.cloudflare.com/time-services/ntp/usage/
+        "ptbtime1.ptb.de" # https://www.ptb.de/cms/en/ptb/fachabteilungen/abt9/gruppe-95/ref-952/time-synchronization-of-computers-using-the-network-time-protocol-ntp.html
+        "ptbtime2.ptb.de"
+        "ptbtime3.ptb.de"
+        "ptbtime4.ptb.de"
+        "time.fu-berlin.de" # https://old.zedat.fu-berlin.de/Time-Service
+        "zeit.fu-berlin.de"
+        "0.nixos.pool.ntp.org" # nixos default
+        "1.nixos.pool.ntp.org"
+        "2.nixos.pool.ntp.org"
+        "3.nixos.pool.ntp.org"
+      ];
       dhcpcd.extraConfig = mkIf cfg.dns.enable "nohook resolv.conf";
       resolvconf.enable = mkIf cfg.dns.enable (mkForce false);
 
