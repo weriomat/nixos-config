@@ -58,51 +58,8 @@ in
 
       # TODO: remove dev deps since we want to use devshells for this
 
-      # build tools
-      autoconf
-      gnumake
-
-      # -- Dev tools --
-      ansible
-      nodejs
-      go
-      openjdk
-      (pkgs.python3.withPackages (
-        p: with p; [
-          pandas
-          ffmpeg-python
-          isort
-          pygments
-          requests
-          keyring
-          numpy
-          dnslib
-          pytest
-          scipy
-          git-filter-repo
-          yt-dlp
-          matplotlib
-        ]
-      ))
       python3
 
-      gcc
-      llvm
-      clang_15
-      clang-tools
-      extra-cmake-modules
-      llvmPackages_latest.lldb
-      plasma5Packages.extra-cmake-modules
-      mold
-      valgrind
-      unstable.llvm
-      unstable.clang_15
-      unstable.clang-tools_15
-      unstable.cmake
-      unstable.extra-cmake-modules
-      unstable.plasma5Packages.extra-cmake-modules
-      unstable.mold
-      unstable.valgrind
       # TODO:  # -- Media Tools --
       # gimp
       # handbrake
