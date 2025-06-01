@@ -93,6 +93,7 @@
       utils,
       nixpkgs,
       pre-commit-hooks,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -144,8 +145,12 @@
           default = deploy;
           deploy = pkgs.mkShell {
             inherit (self.checks.${system}.default) shellHook;
+            sopsPGPKeyDirs = [ ./secrets/pgp ];
+
             buildInputs = [
               self.checks.${system}.default.enabledPackages
+              sops-nix.packages.${system}.sops-import-keys-hook
+
               pkgs.sops
               pkgs.nixfmt-rfc-style
               pkgs.nix

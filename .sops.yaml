@@ -1,7 +1,11 @@
 keys:
   - &primary age1a4ghye8tkasqnua2vqst7k9e9erdu6w204zratgk9z7e6dl7hgvqyhpehj
+  - &weriomat 7D617EBCC5952F8233B7C6BCE64AE4E613602685
+
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
+    - pgp:
+      - *weriomat
     - age:
       - *primary
