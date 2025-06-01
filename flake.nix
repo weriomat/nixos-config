@@ -82,7 +82,7 @@
 
     # darwin
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-app-util = {
@@ -108,8 +108,6 @@
     {
       overlays = import ./overlays { inherit inputs; };
 
-      # TODO: nixd https://www.youtube.com/watch?v=M_zMoHlbZBY
-      # TODO: make separate home module and move things around to make use of nixd
       # Full system build for x86
       nixosConfigurations = {
         # nixos = import ./hosts/default { inherit inputs outputs; };
@@ -118,8 +116,6 @@
 
       # Full hm build for aarch64
       darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs; };
-
-      # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
     }
     // utils.lib.eachDefaultSystem (
