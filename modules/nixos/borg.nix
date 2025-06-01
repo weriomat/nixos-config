@@ -13,7 +13,7 @@ in
 {
   options.borg.enable = mkEnableOption "Enable borg settings";
   config = mkIf config.borg.enable {
-    environment.systemPackages = [ pkgs.vorta ];
+    environment.systemPackages = [ pkgs.vorta ]; # graphical borg frontend
 
     # NOTE: idea from: https://gitlab.cobalt.rocks/shared-configs/nixos-ng/-/blob/b41b04b8d1dbcfe536c4fa175cb13f80fb484e1d/hosts/carbon/backups/shared.nix#L5
     # borgmatic shared configuration to provide repositories for per-application backups
@@ -84,16 +84,6 @@ in
             "fail"
           ];
         };
-
-        # TODO: update this when borgmatic 1.8.13 lands in 24.11
-        # uptime_kuma = {
-        #   push_url = "https://uptime.weriomat.com/api/push/8F2k6eYa9X?status=up&msg=OK&ping=";
-        #   states = [
-        #     "start"
-        #     "finish"
-        #     "fail"
-        #   ];
-        # };
 
         source_directories = [
           "/var/lib"
