@@ -3,7 +3,10 @@
   projectRootFile = "flake.nix";
   programs = {
     terraform.enable = true;
-    yamlfmt.enable = true;
+    yamlfmt = {
+      enable = true;
+      excludes = [ "secrets/*" ];
+    };
     jsonfmt.enable = true;
     deadnix.enable = true;
     actionlint.enable = true;
