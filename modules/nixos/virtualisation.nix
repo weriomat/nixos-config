@@ -15,13 +15,13 @@ in
     programs.virt-manager.enable = true;
     virtualisation.libvirtd = {
       enable = true;
+      qemu.vhostUserPackages = [ pkgs.virtiofsd ];
     };
-    users.users.${globals.username} = {
-      extraGroups = [
-        "libvirtd"
-        "docker"
-      ]; # docker new
-    };
+
+    users.users.${globals.username}.extraGroups = [
+      "libvirtd"
+      "docker"
+    ];
 
     virtualisation = {
       podman = {
@@ -45,20 +45,4 @@ in
       pkgs.docker-compose # start group of containers for dev
     ];
   };
-
-  # TODO: here
-  # environment.systemPackages = [ pkgs.virtiofsd ];
-  #   programs.virt-manager.enable = true;
-  #   services = {
-  #     qemuGuest.enable = true;
-  #     spice-vdagentd.enable = true;
-  #   };
-
-  #   virtualisation.libvirtd.enable = true;
-  # config = mkIf cfg.qemu {
-  #   dconf.settings."org/virt-manager/virt-manager/connections" = {
-  #     autoconnect = [ "qemu:///system" ];
-  #     uris = [ "qemu:///system" ];
-  #   };
-  # };
 }
