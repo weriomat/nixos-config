@@ -44,8 +44,6 @@ in
       ffmpeg
 
       vim
-      wget
-
       # TODO: remove dev deps since we want to use devshells for this
 
       python3
