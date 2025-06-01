@@ -39,6 +39,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # hyprland
     hyprland = {
       url = "github:hyprwm/Hyprland";
@@ -94,6 +99,7 @@
       nixpkgs,
       pre-commit-hooks,
       sops-nix,
+      treefmt-nix,
       ...
     }@inputs:
     let
@@ -116,55 +122,65 @@
       # Expose the package set, including overlays, for convenience.
       darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
     }
-    // utils.lib.eachDefaultSystem (system: {
-      packages = import ./pkgs nixpkgs.legacyPackages.${system};
-      formatter = nixpkgs.legacyPackages.${system}.nixfmt-rfc-style;
-      checks.default = pre-commit-hooks.lib.${system}.run {
-        src = self.outPath;
-        hooks = {
-          nixfmt-rfc-style.enable = true;
-          deadnix.enable = true;
-          statix.enable = true;
-          nil.enable = true;
+    // utils.lib.eachDefaultSystem (
+      system:
+      let
+        treefmtEval = treefmt-nix.lib.evalModule nixpkgs.legacyPackages.${system} ./treefmt.nix;
+      in
+      {
+        packages = import ./pkgs nixpkgs.legacyPackages.${system};
+        formatter = treefmtEval.config.build.wrapper;
+        checks = {
+          default = pre-commit-hooks.lib.${system}.run {
+            src = self.outPath;
+            hooks = {
+              nixfmt-rfc-style.enable = true;
+              deadnix.enable = true;
+              statix.enable = true;
+              nil.enable = true;
 
-          # not nix
-          shellcheck.enable = true;
-          markdownlint.enable = true;
-          check-toml.enable = true;
-          check-json.enable = true;
+              # not nix
+              shellcheck.enable = true;
+              markdownlint.enable = true;
+              check-toml.enable = true;
+              check-json.enable = true;
 
-          # commits
-          convco.enable = true;
-        };
-      };
-      devShells =
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
-        rec {
-          default = deploy;
-          deploy = pkgs.mkShell {
-            inherit (self.checks.${system}.default) shellHook;
-            sopsPGPKeyDirs = [ ./secrets/pgp ];
-
-            buildInputs = [
-              self.checks.${system}.default.enabledPackages
-              sops-nix.packages.${system}.sops-import-keys-hook
-
-              pkgs.sops
-              pkgs.nixfmt-rfc-style
-              pkgs.nix
-              pkgs.nurl # simple nix prefetch
-              pkgs.nix-init # packaging helper
-
-              # TODO: take a look at this: https://github.com/louib/nix2sbom
-              # TODO: flake checker
-              # see parts of derivations
-              pkgs.nix-tree
-              pkgs.graphviz
-              pkgs.nix-du
-            ];
+              # commits
+              convco.enable = true;
+            };
           };
+          formatting = treefmtEval.${system}.config.build.check self;
         };
-    });
+        devShells =
+          let
+            pkgs = import nixpkgs { inherit system; };
+          in
+          rec {
+            default = deploy;
+            deploy = pkgs.mkShell {
+              inherit (self.checks.${system}.default) shellHook;
+              sopsPGPKeyDirs = [ ./secrets/pgp ];
+
+              buildInputs = [
+                self.checks.${system}.default.enabledPackages
+                sops-nix.packages.${system}.sops-import-keys-hook
+
+                pkgs.sops
+                pkgs.nixfmt-rfc-style
+                pkgs.nix
+                pkgs.nurl # simple nix prefetch
+                pkgs.nix-init # packaging helper
+
+
+                # TODO: take a look at this: https://github.com/louib/nix2sbom
+                # TODO: flake checker
+                # see parts of derivations
+                pkgs.nix-tree
+                pkgs.graphviz
+                pkgs.nix-du
+              ];
+            };
+          };
+      }
+    );
 }
