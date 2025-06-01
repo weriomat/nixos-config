@@ -19,7 +19,7 @@ nslookup
 - helix popup panes for lazygit/ test runner ...
 - todo git rerere
 - lazygit better overview of features -> talks, yt, blogs
-- git maintinance start -> cron jobs conflict nix?
+- git maintenance start -> cron jobs conflict nix?
 
 - markdown spell checking
 - helix tree of todo's
@@ -41,7 +41,7 @@ https://duckduckgo.com/?t=ffab&q=wifi+7+cards+working+well+with+linux&ia=web`
 
 ## different todo's
 
-1. thunderbird intergration
+1. thunderbird integration
 2. take a look at accounts home-manager
 3. look at new hm options
 4. take a look at btop gpu options
@@ -136,7 +136,7 @@ https://haseebmajid.dev/posts/2023-06-20-til-how-to-declaratively-setup-mullvad-
 
 1. fix config imports
    -> modules to modules, home manager to home...
-   -> cleanup pkgs thingie, idk why pkgs.callPackage is not here
+   -> cleanup pkgs thingy, idk why pkgs.callPackage is not here
    -> laptop hibernate
    -> laptop borg
    -> vaultwarden
@@ -196,7 +196,7 @@ immich`
 -> generate a secret key
 `openssl rand -base64 64`
 
-## mosquitto
+## mosquito
 
 `https://nixos.org/manual/nixos/unstable/#module-services-mosquitto
 -> switch to tls
