@@ -3,7 +3,6 @@ let
   inherit (lib) getExe;
 in
 {
-  # TODO: make this a module with cacheSize
   services.languagetool = {
     # NOTE: do not forget to set this server as source in firefox
     enable = true;

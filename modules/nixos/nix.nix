@@ -66,9 +66,7 @@ in
         outputs.overlays.additions
         outputs.overlays.unstable-packages
       ];
-      config = {
-        allowUnfree = true;
-      };
+      config.allowUnfree = true;
     };
   };
 }

@@ -17,10 +17,7 @@ in
 
       age.keyFile = "/keys.txt";
 
-      # TODO: passwd file + mutableusers
-      secrets.borg-key = {
-        owner = "${globals.username}";
-      };
+      secrets.borg-key.owner = "${globals.username}";
     };
   };
 }
