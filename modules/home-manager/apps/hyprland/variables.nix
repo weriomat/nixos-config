@@ -1,5 +1,5 @@
 _: {
-  # TODO: migrate to conifg env
+  # TODO: migrate to config env
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     __GL_GSYNC_ALLOWED = "0";

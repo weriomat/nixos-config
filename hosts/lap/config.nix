@@ -4,7 +4,7 @@
   ...
 }:
 {
-  # NOTE: disbale virtualiziation
+  # NOTE: disable virtualization
   virt.enable = lib.mkForce false;
   networking = {
     iwd.enable = true;
@@ -32,7 +32,7 @@
       trim.enable = true;
       autoScrub.enable = true;
       # TODO: here -> probably needs a patch
-      # TODO: upsteam a patch?
+      # TODO: upstream a patch?
       # zed.settings = {
       #   ZED_NTFY_TOPIC = "zfs";
       #   ZED_NTFY_URL = "https://ntfy.weriomat.com";

@@ -11,7 +11,7 @@
   services = {
     fwupd.enable = true; # Firmware updates
     protonmail-bridge.enable = true;
-    fstrim.enable = lib.mkDefault true; # ssd thingie
+    fstrim.enable = lib.mkDefault true; # ssd thingy
     # TODO: kdeconnect.enable = true;
     # TODO: libinput = { # enabled by default, handles input
     #   enable = true;
@@ -64,7 +64,7 @@
     Defaults lecture_file=${./lecture.txt}
   '';
 
-  # TODO: make a new name sceme for custom options + incorperate globals
+  # TODO: make a new name scheme for custom options + incorporate globals
   # flatpack.enable = true; # NOTE: disable flatpak by default
   borg.enable = true;
   sops.enable = true;

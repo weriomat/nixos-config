@@ -5,7 +5,7 @@
   ...
 }:
 {
-  # TODO: set fallback, sync with nixos option, fix some fonts, let alls apps use the default font?
+  # TODO: set fallback, sync with nixos option, fix some fonts, let all apps use the default font?
   fonts.fontconfig = {
     enable = true;
     defaultFonts = {
@@ -69,7 +69,7 @@
 
   services.mako.settings.font = "FiraGO"; # "JetBrainsMono Nerd Font 12";
   programs = {
-    # NOTE: font.name.<kind>.x-western ist set to default set by fontconfig, so dont touch
+    # NOTE: font.name.<kind>.x-western is set to default set by fontconfig, so dont touch
     # Test browser emoji via https://unicode.org/emoji/charts/full-emoji-list.html
     firefox.profiles.${globals.username}.settings.font.name-list.emoji =
       "Apple Color Emoji, Twemoji Mozilla";

@@ -21,7 +21,7 @@ let
   lan-name = cfg.networkd.lan.name;
 in
 {
-  # TODO: this namespace already exist, move all options to seperate namespace?
+  # TODO: this namespace already exist, move all options to separate namespace?
   # TODO: switch to networkd? https://github.com/timon-schelling/timonos/tree/7b56ccb6e760ece2e60f99ce5765bc527f5c11e5/src/system/common/networking https://github.com/timon-schelling/timonos/blob/main/src/user/apps/settings/wifi/app.nix
   options.networking = {
     enable = mkEnableOption "networking settings";

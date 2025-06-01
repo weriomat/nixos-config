@@ -279,7 +279,7 @@ in
           ];
         };
 
-        # TODO: configure,automaticcly accept, set permisisons, confiugre settings, https://mozilla.github.io/policy-templates/
+        # TODO: configure,automaticcly accept, set permissions, configure settings, https://mozilla.github.io/policy-templates/
         extensions = {
           force = true;
           packages = with inputs.firefox-addons.packages.${pkgs.system}; [
@@ -487,7 +487,7 @@ in
           "toolkit.telemetry.bhrPing.enabled" = false;
           "toolkit.telemetry.firstShutdownPing.enabled" = false;
           "toolkit.telemetry.hybridcontent.enabled" = false;
-          "toolkit.telementry.newprofileping.enabled" = false;
+          "toolkit.telemetry.newprofileping.enabled" = false;
           "toolkit.telemetry.unified.enabled" = false;
           "toolkit.telemetry.updatePing.enabled" = false;
           "toolkit.telemetry.shutdownPingSender.enabled" = false;

@@ -12,7 +12,7 @@
 
   # Enable upower for bat management
   # the specific scheduler/ handling will be different on work and rw due to differences
-  # in the CPU archictectures
+  # in the CPU architectures
   services = {
     power-profiles-daemon.enable = false;
     upower.enable = true;

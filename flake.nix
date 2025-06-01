@@ -103,7 +103,7 @@
       overlays = import ./overlays { inherit inputs; };
 
       # TODO: nixd https://www.youtube.com/watch?v=M_zMoHlbZBY
-      # TODO: make seperate home module and move things around to make use of nixd
+      # TODO: make separate home module and move things around to make use of nixd
       # Full system build for x86
       nixosConfigurations = {
         # nixos = import ./hosts/default { inherit inputs outputs; };

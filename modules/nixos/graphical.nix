@@ -14,7 +14,7 @@ in
     environment.systemPackages = [
       # to categorize
       pkgs.unstable.cider # apple music player
-      pkgs.zotero # research paper assitant, note that the betterbibtex extension was installed manually
+      pkgs.zotero # research paper assistant, note that the betterbibtex extension was installed manually
       pkgs.gnome-disk-utility
       pkgs.gnome-calendar # calendar
       pkgs.gnome-podcasts
@@ -30,7 +30,7 @@ in
       pkgs.vikunja-desktop # todo-app
       pkgs.libreoffice # office
       pkgs.pandoc # convert between documents
-      pkgs.keepassxc # passowrd manager
+      pkgs.keepassxc # password manager
       pkgs.evince # pdf viewer
     ];
   };

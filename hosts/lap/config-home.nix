@@ -14,7 +14,7 @@
         disable-ccid = "";
       };
     };
-    # TODO: take a look at hm opitons
+    # TODO: take a look at hm options
     git = {
       enable = true;
       userName = "weriomat";

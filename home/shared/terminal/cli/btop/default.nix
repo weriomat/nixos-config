@@ -3,7 +3,7 @@ let
   inherit (lib) mkForce;
 in
 {
-  # is beeing overwritten
+  # is been overwritten
   catppuccin.btop = {
     enable = true;
     flavor = "mocha";
