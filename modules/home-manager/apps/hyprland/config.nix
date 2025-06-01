@@ -134,14 +134,11 @@ in
         # TODO: fix this -> gnone auth agent
         # "gnome-keyring-daemon --start &"
         # "xwaylandvideobridge" # TODO: here
-        "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl setcursor Nordzy-cursors 22 &"
-        "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace 1&"
+        "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} setcursor Nordzy-cursors 22 &"
+        "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} dispatch workspace 1&"
         "${getExe' globals.systemd "systemctl"} --user restart kanshi.service waybar.service"
         "${getExe' pkgs.solaar "solaar"} --window=hide" # Enable solaar applet, for more see keyboard config
       ];
-
-      # TODO: find an option to launch grettd for session switcher
-      # TODO: gnome
 
       "$mainMod" = "SUPER";
       bind = [
@@ -151,9 +148,7 @@ in
         "$mainMod, D, togglesplit, # dwindle"
 
         # emoji picker
-        "$mainMod, E, exec, ${
-          pkgs.rofimoji.override { x11Support = false; }
-        }/bin/rofimoji --selector wofi --clipboarder wl-copy --action copy --typer wtype"
+        "$mainMod, E, exec, ${getExe pkgs.rofimoji} --selector wofi --clipboarder wl-copy --action copy --typer wtype"
 
         # Thunderbird
         "$mainMod, T, exec, ${getExe pkgs.thunderbird}"

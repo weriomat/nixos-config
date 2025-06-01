@@ -27,22 +27,22 @@ in
         in
         {
           general = {
-            lock_cmd = "${pkgs.toybox}/bin/pidof hyprlock || ${lib.getExe config.programs.hyprlock.package}";
-            unlock_cmd = "${lib.getExe pkgs.killall} -q -s SIGUSR1 hyprlock";
+            lock_cmd = "${getExe' pkgs.toybox "pidof"} hyprlock || ${getExe config.programs.hyprlock.package}";
+            unlock_cmd = "${getExe pkgs.killall} -q -s SIGUSR1 hyprlock";
             before_sleep_cmd = "${loginctl} lock-session";
-            after_sleep_cmd = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch dpms on";
+            after_sleep_cmd = "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} dispatch dpms on";
             ignore_dbus_inhibit = false;
           };
 
           listener = [
             {
               timeout = timeout - 120;
-              on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 15%";
-              on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r";
+              on-timeout = "${getExe pkgs.brightnessctl} -s set 15%";
+              on-resume = "${getExe pkgs.brightnessctl} -r";
             }
             {
               timeout = timeout - 30;
-              on-timeout = "${pkgs.libnotify}/bin/notify-send -u critical --app-name=screenlockwarning 'Screen will lock in 30 seconds'";
+              on-timeout = "${getExe pkgs.libnotify} -u critical --app-name=screenlockwarning 'Screen will lock in 30 seconds'";
             }
             {
               timeout = timeout - 10;
@@ -51,8 +51,8 @@ in
 
             {
               inherit timeout;
-              on-timeout = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch dpms off";
-              on-resume = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch dpms on";
+              on-timeout = "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} dispatch dpms off";
+              on-resume = "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} dispatch dpms on";
             }
 
             {

@@ -12,6 +12,7 @@ let
     mkOption
     types
     mkIf
+    getExe
     getExe'
     ;
 in
@@ -53,7 +54,6 @@ in
   # TODO: waybar modules like upower and stuff
   # TODO: take a look at https://github.com/niksingh710/ndots/blob/master/home/optional/wm/hyprland/waybar/default.nix
   # TODO: https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/waybar/default.nix
-  # TODO:
   # "custom/battery" = {
   #       exec = "${scripts.battery}/bin/script";
   #       format = " 󰁹 {}";
@@ -142,10 +142,11 @@ in
   #     spacing = 5;
   #   };
   # };
+
   config = mkIf config.waybar.enable {
     # kill waybar
     wayland.windowManager.hyprland.settings.bind = [
-      "$mainMod SHIFT, B, exec, ${pkgs.toybox}/bin/pkill -SIGUSR1 .waybar-wrapped"
+      "$mainMod SHIFT, B, exec, ${getExe' pkgs.toybox "pkill"} -SIGUSR1 .waybar-wrapped"
     ];
 
     catppuccin.waybar = {
@@ -253,8 +254,8 @@ in
         # stolen from https://github.com/ErikReider/SwayAudioIdleInhibit
         "custom/audio_idle_inhibitor" = {
           format = "{icon}";
-          exec = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit --dry-print-both-waybar";
-          exec-if = "${pkgs.toybox}/bin/which sway-audio-idle-inhibit";
+          exec = "${getExe pkgs.sway-audio-idle-inhibit} --dry-print-both-waybar";
+          exec-if = "${getExe' pkgs.toybox "which"} sway-audio-idle-inhibit";
           return-type = "json";
           tooltip = true;
           format-icons = {
@@ -269,8 +270,8 @@ in
           active-only = false;
           all-outputs = false;
           disable-scroll = false;
-          on-scroll-up = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace e-1";
-          on-scroll-down = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch workspace e+1";
+          on-scroll-up = "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} dispatch workspace e-1";
+          on-scroll-down = "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} dispatch workspace e+1";
           format = "{name}";
           on-click = "activate";
           format-icons = {
@@ -284,20 +285,19 @@ in
 
         "custom/playerctl#backward" = {
           format = "󰙣 ";
-          on-click = "${pkgs.playerctl}/bin/playerctl previous";
-          on-scroll-up = "${pkgs.playerctl}/bin/playerctl volume .05+";
-          on-scroll-down = "${pkgs.playerctl}/bin/playerctl volume .05-";
+          on-click = "${getExe pkgs.playerctl} previous";
+          on-scroll-up = "${getExe pkgs.playerctl} volume .05+";
+          on-scroll-down = "${getExe pkgs.playerctl} volume .05-";
         };
         "custom/playerctl#play" = {
           format = "{icon}";
-          # TODO: here make full paths
           return-type = "json";
           exec = ''
-            ${pkgs.playerctl}/bin/playerctl -a metadata --format '{"text": "{{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F
+            ${getExe pkgs.playerctl} -a metadata --format '{"text": "{{artist}} - {{markup_escape(title)}}", "tooltip": "{{playerName}} : {{markup_escape(title)}}", "alt": "{{status}}", "class": "{{status}}"}' -F
           '';
-          on-click = "${pkgs.playerctl}/bin/playerctl play-pause";
-          on-scroll-up = "${pkgs.playerctl}/bin/playerctl volume .05+";
-          on-scroll-down = "${pkgs.playerctl}/bin/playerctl volume .05-";
+          on-click = "${getExe pkgs.playerctl} play-pause";
+          on-scroll-up = "${getExe pkgs.playerctl} volume .05+";
+          on-scroll-down = "${getExe pkgs.playerctl} volume .05-";
           format-icons = {
             Playing = "<span>󰏥 </span>";
             Paused = "<span> </span>";
@@ -306,9 +306,9 @@ in
         };
         "custom/playerctl#forward" = {
           format = "󰙡 ";
-          on-click = "${pkgs.playerctl}/bin/playerctl next";
-          on-scroll-up = "${pkgs.playerctl}/bin/playerctl volume .05+";
-          on-scroll-down = "${pkgs.playerctl}/bin/playerctl volume .05-";
+          on-click = "${getExe pkgs.playerctl} next";
+          on-scroll-up = "${getExe pkgs.playerctl} volume .05+";
+          on-scroll-down = "${getExe pkgs.playerctl} volume .05-";
         };
 
         memory = {
@@ -334,7 +334,7 @@ in
           tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
           format-linked = "{ifname} (No IP)";
           format-disconnected = "󰖪 ";
-          on-click = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
+          on-click = "${getExe' pkgs.networkmanagerapplet "nm-connection-editor"}";
         };
         tray = {
           icon-size = 20;
@@ -364,12 +364,12 @@ in
             default = [ " " ];
           };
           scroll-step = 5;
-          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
-          on-click-right = "${pkgs.pamixer}/bin/pamixer -t";
+          on-click = "${getExe pkgs.pavucontrol}";
+          on-click-right = "${getExe pkgs.pamixer} -t";
         };
         "custom/launcher" = {
           format = "";
-          on-click = "${pkgs.toybox}/bin/pkill wofi || ${config.programs.wofi.package}/bin/wofi --show drun";
+          on-click = "${getExe' pkgs.toybox "pkill"} wofi || ${getExe config.programs.wofi.package} --show drun";
           tooltip = "false";
         };
       };

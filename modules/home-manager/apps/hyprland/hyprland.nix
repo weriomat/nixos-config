@@ -61,11 +61,7 @@ in
         automount = true;
         notify = true;
         tray = "auto";
-        settings = {
-          program_options = {
-            terminal = "${getExe config.programs.kitty.package}";
-          };
-        };
+        settings.program_options.terminal = "${getExe config.programs.kitty.package}";
       };
 
       # Support for a redlight filter
