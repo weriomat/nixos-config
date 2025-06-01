@@ -4,13 +4,7 @@
   ...
 }:
 let
-  globals = rec {
-    username = "marts";
-    uid = 1000;
-    host = "nixos-laptop";
-    hostname = host;
-    laptop = true;
-  };
+  globals = import ./globals.nix { };
 in
 inputs.nixpkgs.lib.nixosSystem {
   specialArgs = {
@@ -43,30 +37,7 @@ inputs.nixpkgs.lib.nixosSystem {
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
     inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
 
-    inputs.home-manager.nixosModules.home-manager
-    {
-      home-manager = {
-        extraSpecialArgs = {
-          inherit
-            inputs
-            outputs
-            globals
-            ;
-        };
-        useUserPackages = true;
-        useGlobalPkgs = true;
-        sharedModules = [
-          inputs.arkenfox.hmModules.default
-        ];
-        users.${globals.username}.imports = [
-          ./ssh-home.nix
-          ./config-home.nix
-          ../../modules/home-manager
-          ../../home/nixos
-          inputs.nix-index-database.hmModules.nix-index
-          inputs.catppuccin.homeModules.catppuccin
-        ];
-      };
-    }
+    # home manager config
+    ./home.nix
   ];
 }
