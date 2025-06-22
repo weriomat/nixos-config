@@ -283,51 +283,45 @@ in
         extensions = {
           force = true;
           packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+            # privacy
             ublock-origin
-            darkreader
             auto-tab-discard
             canvasblocker
             clearurls
-            # add capuccin colors to firefox-color -> manual idk how to do that in nix
-            # enable dark theme in about:addons under themes
-            firefox-color
             facebook-container
             decentraleyes
-            return-youtube-dislikes
             user-agent-string-switcher
 
-            # rss stuff
-            # rsshub-radar # finds RSSHub stuff
+            # ui
+            # TODO: configure via settings
+            firefox-color # add capuccin colors to firefox-color -> manual idk how to do that in nix, enable dark theme in about:addons under themes
+            darkreader
 
-            # passwords
+            # util
+            (languagetool.overrideAttrs { meta.license = licenses.free; })
+            return-youtube-dislikes
+            refined-github # cleaner github interface
             bitwarden
-
-            # links
             linkwarden
+            zotero-connector
 
             # new
-            censor-tracker # https://censortracker.org/en.html
-            consent-o-matic # https://consentomatic.au.dk/
-            dearrow # https://dearrow.ajay.app/
-            deutsch-de-language-pack
-            dictionary-german
+            # censor-tracker # https://censortracker.org/en.html
+            # consent-o-matic # https://consentomatic.au.dk/
+            # dearrow # https://dearrow.ajay.app/
+            # deutsch-de-language-pack
+            # dictionary-german
 
-            enhanced-github # https://github.com/softvar/enhanced-github
-            foxytab # https://github.com/erosman/support
-            h264ify
-            native-mathml # https://github.com/fred-wang/webextension-native-mathml
-            sponsorblock # https://sponsor.ajay.app/
-            web-archives # https://github.com/dessant/web-archives#readme
+            # foxytab # https://github.com/erosman/support
+            # native-mathml # https://github.com/fred-wang/webextension-native-mathml
+            # sponsorblock # https://sponsor.ajay.app/
+            # web-archives # https://github.com/dessant/web-archives#readme
 
-            buster-captcha-solver # https://github.com/dessant/buster#readme
+            # buster-captcha-solver # https://github.com/dessant/buster#readme
             # bypass-paywalls-clean # https://twitter.com/Magnolia1234B
-            vimium # https://github.com/philc/vimium
+            # vimium # https://github.com/philc/vimium
 
             # TODO: here
-            (languagetool.overrideAttrs { meta.license = licenses.free; })
-            # languagetool # https://languagetool.org/  https://github.com/nschang/languagetool-101
-
-            zotero-connector
 
             #    privacy-badger
             # vimium-c
