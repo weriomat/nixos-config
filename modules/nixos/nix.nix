@@ -59,6 +59,12 @@ in
           "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
         ];
       };
+
+      # Ensure we can still build when missing-server is not accessible
+      extraOptions = ''
+        fallback = true
+      '';
+
     };
 
     nixpkgs = {
