@@ -72,6 +72,21 @@
             hostname = "192.168.178.105";
             port = 2077;
           };
+          by = {
+            user = "weriomat";
+            hostname = "192.168.178.114";
+            port = 2077;
+          };
+          ber = {
+            user = "weriomat";
+            hostname = "192.168.178.111";
+            port = 2077;
+          };
+          bb = {
+            user = "weriomat";
+            hostname = "192.168.178.110";
+            port = 2077;
+          };
           big = {
             user = "weriomat";
             hostname = "10.100.0.5";
