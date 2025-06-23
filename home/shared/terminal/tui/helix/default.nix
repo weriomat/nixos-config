@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf getExe getExe';
 in
 {
   home.packages = [
@@ -269,7 +269,7 @@ in
             "texlab"
             "ltex"
           ];
-          formatter.command = getExe pkgs.texlivePackages.latexindent;
+          formatter.command = getExe' pkgs.texlivePackages.latexindent "latexindent";
         }
         {
           name = "python";
