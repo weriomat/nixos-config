@@ -115,7 +115,7 @@
       };
 
       # Full hm build for aarch64
-      darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs; };
+      darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs outputs; };
       darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
     }
     // utils.lib.eachDefaultSystem (
@@ -166,7 +166,6 @@
                 pkgs.nix
                 pkgs.nurl # simple nix prefetch
                 pkgs.nix-init # packaging helper
-
 
                 # TODO: take a look at this: https://github.com/louib/nix2sbom
                 # TODO: flake checker

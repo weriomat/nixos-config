@@ -37,6 +37,7 @@ _: {
       "avrdude"
       "screenresolution"
       "borgbackup/tap/borgbackup-fuse"
+      "apache-activemq"
     ];
     casks = [
       # "scroll-reverser" # Different scroll style for mouse vs. trackpad
@@ -47,7 +48,7 @@ _: {
       "balenaetcher"
       "mqtt-explorer"
       "qmk-toolbox"
-      "skim"
+      # "skim" # bad pdf reader, prefer firefox
       "wireshark-chmodbpf"
       # "vorta"
       "macfuse"

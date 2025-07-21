@@ -9,7 +9,7 @@
     # calibre
     automake
     python311Full
-    swiProlog
+    swi-prolog
     z3
     yubikey-manager
     yubikey-personalization
@@ -51,7 +51,7 @@
     clang-tools_15
     extra-cmake-modules
     plasma5Packages.extra-cmake-modules
-    mold
+    # mold
     #valgrind
 
     nixfmt-classic
