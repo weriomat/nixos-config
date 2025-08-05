@@ -135,6 +135,12 @@
               statix.enable = true;
               nil.enable = true;
 
+              # TODO: https://github.com/DeterminateSystems/flake-checker?tab=readme-ov-file
+              # typos.enable = true;
+              tflint.enable = true;
+
+              # treefmt.enable = true;
+
               # not nix
               shellcheck.enable = true;
               markdownlint.enable = true;
@@ -167,6 +173,8 @@
                 pkgs.nurl # simple nix prefetch
                 pkgs.nix-init # packaging helper
 
+                # TODO: cleanup
+                pkgs.vulnix # a security scanner
 
                 # TODO: take a look at this: https://github.com/louib/nix2sbom
                 # TODO: flake checker
