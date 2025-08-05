@@ -19,6 +19,13 @@ in
   # TODO: https://github.com/gvolpe/nix-config/blob/b9ff455faaf5a4890985305e5c7a5a01606d20f3/home/shared/default.nix
 
   config = mkIf cfg.enable {
+    catppuccin.firefox.profiles.${globals.username} = {
+      enable = true;
+      force = true;
+      accent = "mauve";
+      flavor = "mocha";
+    };
+
     wayland.windowManager.hyprland.settings = {
       bind = [
         "$mainMod SHIFT, M, exec, ${config.programs.firefox.finalPackage}/bin/firefox"
@@ -108,7 +115,7 @@ in
       enable = true;
 
       arkenfox = mkIf cfg.arkenfox.enable {
-        enable = true;
+        enable = false;
         version = "master";
       };
 
