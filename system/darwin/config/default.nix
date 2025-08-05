@@ -1,4 +1,9 @@
-{ inputs, ... }:
+{
+  inputs,
+  outputs,
+  lib,
+  ...
+}:
 {
   # inputs.self, inputs.nix-darwin, and inputs.nixpkgs can be accessed here
 
@@ -11,17 +16,36 @@
     info.enable = true;
   };
 
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.unstable-packages
+    ];
+  };
   # Necessary for using flakes on this system.
   nix = {
+    channel.enable = false;
+
+    nixPath = [
+      "nixpkgs=${inputs.nixpkgs}"
+      "unstable=${inputs.nixpkgs-unstable}"
+    ];
+
+    # stolen from https://git.cobalt.rocks/shared-configs/nixos-ng/-/blob/main/modules/nix.nix?ref_type=heads
+    # enable local registry for better search
+    # https://discourse.nixos.org/t/local-flake-based-nix-search-nix-run-and-nix-shell/13433/12
+    registry = lib.attrsets.genAttrs (builtins.attrNames inputs) (name: {
+      flake = inputs.${name};
+    });
     settings.experimental-features = "nix-command flakes";
     # checks config for data type mismatches
     checkConfig = true;
     # is the default -> all users are allowed -> privileged users always are allowed
     settings = {
       allowed-users = [ "*" ];
-      auto-optimise-store = true;
       sandbox = true;
     };
+    optimise.automatic = true;
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
@@ -52,9 +76,12 @@
     man.enable = true;
   };
 
+  nix.enable = true;
+  system.primaryUser = "eliasengel";
+
   services = {
     # Auto upgrade nix package and the daemon service.
-    nix-daemon.enable = true;
+    # nix-daemon.enable = true;
 
     # TODO: windowmanager to take a look at, take a look at kwm wm
     chunkwm.enable = false;

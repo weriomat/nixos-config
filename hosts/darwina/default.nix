@@ -1,6 +1,7 @@
 # Inspired by https://github.com/nmasur/dotfiles/blob/c53f1470ee04890f461796ba0d14cce393f2b5c3/hosts/lookingglass/default.nix
 {
   inputs,
+  outputs,
   ...
 }:
 let
@@ -14,7 +15,7 @@ with inputs;
 # TODO: https://github.com/ivankovnatsky/nixos-config/blob/71f970431793b8bddd7ec9c40681d70fc3cc8a70/machines/Ivans-Mac-mini/dns.nix
 # TODO: https://github.com/ryuheechul/dotfiles/blob/c84b700104a0d3de6c21648f56a938478f8fbd79/nix/darwin/configuration.nix
 nix-darwin.lib.darwinSystem {
-  specialArgs = { inherit inputs globals; };
+  specialArgs = { inherit inputs outputs globals; };
   modules = [
     ../../system/darwin
     ./ssh.nix
@@ -33,7 +34,7 @@ nix-darwin.lib.darwinSystem {
           ../../modules/home-manager
           inputs.mac-app-util.homeManagerModules.default
           inputs.nix-index-database.hmModules.nix-index
-          inputs.catppuccin.homeManagerModules.catppuccin
+          inputs.catppuccin.homeModules.catppuccin
         ];
       };
     }

@@ -9,6 +9,7 @@
     enable = true;
     enableSSHSupport = true;
   };
+
   home-manager.users.${globals.username} = {
     home.packages = [
       # yubikey-manager4
@@ -32,11 +33,14 @@
         extraConfig = {
           safe.directory = "*";
           init.defaultBranch = "main";
+          tag.gpgSign = true;
+          # NOTE: do not rebase by default
+          pull.rebase = false;
         };
-        # signing = {
-        #   signByDefault = true;
-        #   key = "008F5FA7F0C2803D";
-        # };
+        signing = {
+          signByDefault = true;
+          key = "E64AE4E613602685";
+        };
       };
       ssh = {
         enable = true;

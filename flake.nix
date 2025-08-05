@@ -115,7 +115,7 @@
       };
 
       # Full hm build for aarch64
-      darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs; };
+      darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs outputs; };
       darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
     }
     // utils.lib.eachDefaultSystem (
