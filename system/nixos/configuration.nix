@@ -22,12 +22,6 @@
     #   nssmdns4 = true;
     #   openFirewall = true;
     # };
-    activemq = {
-      enable = true;
-      configurationDir = "/home/marts/.nixos/nixos/activemq";
-      baseDir = "/var/lib/activemq";
-      javaProperties."org.apache.activemq.SERIALIZABLE_PACKAGES" = "java.lang";
-    };
   };
 
   programs = {
