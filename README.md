@@ -43,6 +43,16 @@ dbus-send --system --print-reply --dest=org.freedesktop.NetworkManager \
 /org/freedesktop/NetworkManager/Settings org.freedesktop.NetworkManager.Settings.ReloadConnections
 ```
 
+## CAPTCHA PORTAL DB
+
+By default their dns server is `172.18.0.1`.
+
+```bash
+dig login.wifionice.de @172.18.0.1
+firefox https://<ans>
+firefox https://10.101.64.121
+```
+
 ## Thank you notice
 
 ### Cobalt
