@@ -45,7 +45,7 @@ in
       };
 
       keybindings = {
-        "ctrl+c" = "copy_or_interrupt";
+        # "ctrl+c" = "copy_or_interrupt";
         "ctrl+shift+t" = "new_tab_with_cwd";
         # new window with same pwd
         "ctrl+shift+enter" = "launch --cwd=current";
@@ -59,6 +59,7 @@ in
         # window layouts
         "ctrl+a" = "toggle_layout horizontal";
         "ctrl+x" = "toggle_layout stack";
+        # "ctrl+o" = "toggle_layout grid";
         "ctrl+shift+o" = "next_layout";
         # resizing
         "ctrl+left" = "resize_window wider";
