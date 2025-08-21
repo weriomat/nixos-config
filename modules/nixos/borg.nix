@@ -93,6 +93,8 @@ in
         ];
         exclude_patterns = [
           "/home/*/.cache"
+          "/home/*/.local"
+          "/home/*/.mozilla"
           "**/target"
           "/home/*/go/bin"
           "/home/*/go/pkg"
@@ -100,6 +102,7 @@ in
           "*.img"
           "*.iso" # dont backup iso images
           "/home/*/Pictures/icloud_bak" # dont backup photo backup
+          "/home/*/Documents/exports_cloud" # dont backup backups
           "/home/*/P/nix/nixpkgs" # dont backup nixpkgs
           "**/node_modules" # node modules
           "**/dist" # electron stuff i think

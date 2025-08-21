@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkIf getExe;
+  inherit (lib) mkIf getExe getExe';
 in
 {
   home.packages = [
@@ -138,7 +138,7 @@ in
 
         # LTeX LSP for grammar and spellchecking
         ltex = {
-          command = pkgs.ltex-ls + "/bin/ltex-ls";
+          command = getExe pkgs.ltex-ls;
           config.ltex = {
             completionEnabled = true;
             ltex-ls.logLevel = "warning";
@@ -269,12 +269,18 @@ in
           auto-format = true;
         }
         {
+          name = "bibtex";
+          auto-format = true;
+          formatter.command = getExe pkgs.bibtex-tidy;
+        }
+        {
           name = "latex";
           auto-format = true;
           language-servers = [
             "texlab"
             "ltex"
           ];
+          formatter.command = getExe' pkgs.texlivePackages.latexindent "latexindent";
         }
         {
           name = "python";

@@ -422,7 +422,7 @@ in
             background-size: 200% 200%;
         }
 
-        #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk, #custom-audio_idle_inhibitor
+        #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk, #custom-audio_idle_inhibitor,
         #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward{
             background: ${config.waybar.tertiary_background_hex};
             font-weight: bold;
