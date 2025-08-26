@@ -98,6 +98,12 @@
     amdgpu = {
       opencl.enable = true;
       initrd.enable = true;
+      overdrive.enable = true;
+
+      amdvlk = {
+        enable = true;
+        support32Bit.enable = true;
+      };
     };
   };
 
