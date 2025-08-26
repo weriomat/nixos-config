@@ -4,6 +4,7 @@
   # TODO: merge with nixos conf
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = with pkgs; [
+    localsend
     # packages from homebrew
     cadical
     # calibre

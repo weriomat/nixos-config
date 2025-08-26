@@ -104,11 +104,22 @@ in
             onEdit = true;
           };
           forwardSearch = {
-            executable = "${pkgs.kdePackages.okular}/bin/okular";
-            args = [
-              "--unique"
-              "file:%p#src:%l%f"
-            ];
+            executable =
+              if pkgs.stdenv.isDarwin then
+                "${pkgs.evince}/bin/evince"
+              else
+                "${pkgs.kdePackages.okular}/bin/okular";
+            args =
+              if pkgs.stdenv.isDarwin then
+                [
+                  "-o"
+                  "file:%p#src:%l%f"
+                ]
+              else
+                [
+                  "--unique"
+                  "file:%p#src:%l%f"
+                ];
           };
 
           build = {
