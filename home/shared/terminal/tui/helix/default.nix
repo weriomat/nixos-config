@@ -5,6 +5,8 @@
   ...
 }:
 let
+  # TODO: https://github.com/tekumara/typos-lsp
+  # https://github.com/tekumara/typos-lsp/blob/main/docs/helix-config.md
   inherit (lib) mkIf getExe getExe';
 in
 {
@@ -280,7 +282,13 @@ in
             "texlab"
             "ltex"
           ];
-          formatter.command = getExe' pkgs.texlivePackages.latexindent "latexindent";
+          formatter = {
+            command = getExe' pkgs.texlivePackages.latexindent "latexindent";
+            # TODO: so that no indent.log is displayed
+            # args = [
+            #   "-g /dev/null"
+            # ];
+          };
         }
         {
           name = "python";
