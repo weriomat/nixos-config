@@ -198,6 +198,17 @@ in
           language-servers = [ "terraform-ls" ];
         }
         {
+          name = "toml";
+          auto-format = true;
+          formatter = {
+            command = "${getExe pkgs.taplo}";
+            args = [
+              "fmt"
+              "-"
+            ];
+          };
+        }
+        {
           name = "c";
           auto-format = true;
         }
