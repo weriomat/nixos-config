@@ -18,8 +18,8 @@ in
     pkgs.nodePackages.bash-language-server # bash
     pkgs.yaml-language-server # yaml
     pkgs.pyright # python
-    pkgs.terraform-ls
-    pkgs.jdt-language-server
+    pkgs.terraform-ls # terraform lsp
+    pkgs.jdt-language-server # java lsp
   ];
 
   catppuccin.helix = {
