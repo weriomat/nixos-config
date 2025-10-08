@@ -33,7 +33,7 @@ nix-darwin.lib.darwinSystem {
           ../../home/darwin
           ../../modules/home-manager
           inputs.mac-app-util.homeManagerModules.default
-          inputs.nix-index-database.hmModules.nix-index
+          inputs.nix-index-database.homeModules.nix-index
           inputs.catppuccin.homeModules.catppuccin
         ];
       };
