@@ -14,6 +14,6 @@ in
       if pkgs.stdenv.isLinux then
         "NH_FLAKE=/home/${globals.username}/.nixos/nixos ${getExe pkgs.nh}"
       else
-        "";
+        "NH_FLAKE=/Users/${globals.username}/.nixos/nixos ${getExe pkgs.nh}";
   };
 }
