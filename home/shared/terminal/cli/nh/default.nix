@@ -5,11 +5,15 @@
   ...
 }:
 let
-  inherit (lib) mkIf getExe;
+  inherit (lib) getExe;
 in
 {
-  config = mkIf pkgs.stdenv.isLinux {
+  config = {
     home.packages = [ pkgs.nh ];
-    programs.zsh.shellAliases.nh = "NH_FLAKE=/home/${globals.username}/.nixos/nixos ${getExe pkgs.nh}";
+    programs.zsh.shellAliases.nh =
+      if pkgs.stdenv.isLinux then
+        "NH_FLAKE=/home/${globals.username}/.nixos/nixos ${getExe pkgs.nh}"
+      else
+        "";
   };
 }
