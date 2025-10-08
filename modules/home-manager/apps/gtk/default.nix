@@ -10,19 +10,8 @@ in
 {
   options.my_gtk.enable = mkEnableOption "Enable gtk settings";
 
+  # TODO: theme gtk
   config = mkIf config.my_gtk.enable {
-    catppuccin.gtk = {
-      enable = true;
-      flavor = "mocha";
-      size = "compact";
-      accent = "lavender";
-      gnomeShellTheme = true;
-      icon = {
-        enable = true;
-        flavor = "mocha";
-        accent = "lavender";
-      };
-    };
     gtk = {
       enable = true;
       gtk3.extraConfig.Settings = ''gtk-application-prefer-dark-theme=1 '';

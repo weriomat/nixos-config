@@ -28,10 +28,7 @@
     # TODO: mtr.enable = true;
 
     # Corectrl support - for managing CPU/GPU freq via a GUI
-    corectrl = {
-      enable = true;
-      gpuOverclock.enable = true;
-    };
+    corectrl.enable = true;
 
     dconf.enable = true; # dconf -> edit system preferences
     # NOTE: this will punch a hole through the firewall
@@ -45,6 +42,7 @@
     nix-ld = {
       enable = true;
       libraries = [
+        pkgs.stdenv.cc.cc.lib
         pkgs.zlib
         pkgs.gmp
         pkgs.mpfr

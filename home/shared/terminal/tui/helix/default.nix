@@ -5,6 +5,8 @@
   ...
 }:
 let
+  # TODO: https://github.com/tekumara/typos-lsp
+  # https://github.com/tekumara/typos-lsp/blob/main/docs/helix-config.md
   inherit (lib) mkIf getExe getExe';
 in
 {
@@ -18,8 +20,8 @@ in
     pkgs.nodePackages.bash-language-server # bash
     pkgs.yaml-language-server # yaml
     pkgs.pyright # python
-    pkgs.terraform-ls
-    pkgs.jdt-language-server
+    pkgs.terraform-ls # terraform lsp
+    pkgs.jdt-language-server # java lsp
   ];
 
   catppuccin.helix = {
@@ -209,6 +211,17 @@ in
           language-servers = [ "terraform-ls" ];
         }
         {
+          name = "toml";
+          auto-format = true;
+          formatter = {
+            command = "${getExe pkgs.taplo}";
+            args = [
+              "fmt"
+              "-"
+            ];
+          };
+        }
+        {
           name = "c";
           auto-format = true;
         }
@@ -280,7 +293,13 @@ in
             "texlab"
             "ltex"
           ];
-          formatter.command = getExe' pkgs.texlivePackages.latexindent "latexindent";
+          formatter = {
+            command = getExe' pkgs.texlivePackages.latexindent "latexindent";
+            # TODO: so that no indent.log is displayed
+            # args = [
+            #   "-g /dev/null"
+            # ];
+          };
         }
         {
           name = "python";
