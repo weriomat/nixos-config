@@ -10,7 +10,7 @@ let
 in
 {
   imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
-  options.steam.enable = mkEnableOption "Enable Gaming thingies";
+  options.steam.enable = mkEnableOption "Gaming thingies";
 
   # This is going to be decided per host
   config = mkIf config.steam.enable {
@@ -47,22 +47,12 @@ in
       pkgs.winetricks
 
       pkgs.protonup # instead of ge
-      # mangohud
     ];
     # ++ [
     #   inputs.nix-gaming.packages.${pkgs.system}.proton-ge
     #   inputs.nix-gaming.packages.${pkgs.system}.wine-ge
     # ];
-    # TODO: here
-    # gamemode.enable = true;
   };
-
-  # https://github.com/danth/stylix/blob/master/modules/mangohud/hm.nix
-  # home.sessionVariables = {
-  #   STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
-  # };
-
-  # programs.mangohud.enable = true;
 
   # home.packages = with pkgs; [
   #   lutris
