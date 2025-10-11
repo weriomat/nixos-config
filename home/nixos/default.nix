@@ -9,8 +9,6 @@
     ../shared
     ./xdg.nix
   ];
-  # TODO: sytembus notify
-  # services.systembus-notify = {};
 
   # NOTE: vscodium disabled since tex stuff works
   discord.enable = true;
@@ -38,13 +36,6 @@
 
   # TODO: nice hud to see gpu stats; with steam
   # programs.mangohud = {};
-
-  # TODO: entweder vlc or mpv
-  #  programs.mpv = {
-  #   enable = true;
-  #   defaultProfiles = ["gpu-hq"];
-  #   scripts = [pkgs.mpvScripts.mpris];
-  # };
 
   services = {
     # NOTE: notifications about power
@@ -94,27 +85,8 @@
     };
   };
 
-  # TODO: if nextcloud
-  # services.nextcloud-client = {};
-
   # TODO: all good things with pdf
   # services.signaturepdf = {};
-
-  # TODO: fusuma
-  # services.fusuma = {}; # gestures for trackpad
-
-  # TODO: yt
-  # programs.freetube = {
-  #   enable = true;
-  #   settings = {
-  #     allowDashAv1Formats = true;
-  #     checkForUpdates = false;
-  #     defaultQuality = "1080";
-  #     baseTheme = "catppuccinMocha";
-  #   };
-  # };
-
-  # TODO: programs.yt-dlp = {}; # Dowoloader for yt files
 
   manual = {
     html.enable = true; # `home-manager-help`
