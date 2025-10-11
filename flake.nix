@@ -12,7 +12,7 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
     nixcord = {
       url = "github:kaylorben/nixcord";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -151,7 +151,7 @@
               convco.enable = true;
             };
           };
-          formatting = treefmtEval.${system}.config.build.check self;
+          formatting = treefmtEval.config.build.check self;
         };
         devShells =
           let
