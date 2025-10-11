@@ -18,6 +18,8 @@ in
   hardware.graphics.enable = lib.mkDefault true;
 
   services = {
+    displayManager.defaultSession = "hyprland";
+
     # Window manager only sessions (unlike DEs) don't handle XDG
     # autostart files, so force them to run the service
     xserver.desktopManager.runXdgAutostartIfNone = lib.mkDefault true;
