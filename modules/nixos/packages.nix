@@ -13,20 +13,25 @@ in
   config = mkIf config.packages.enable {
     # TODO: remove ++ unify with hm packages
     # TODO: take a look at zenmonitor
+    # TODO: take a loojk at https://github.com/mfontanini/presenterm
+    # trash-cli
+    # procs
+    # https://gitlab.freedesktop.org/mstoeckl/waypipe
     environment.systemPackages = with pkgs; [
-      devenv # nix shell
-
+      # CLI
+      devenv # nix shell -> TODO: contribute
       duf # df alternative
       ncdu # du alternative
       dust # du alternative
       dogdns # dig alternative
+      vim
+      powertop # system power thingie
 
+      # TUI
       glow # view markdown on cli
+      # sysz # systemctl thingy
+      # clerk # mpd client
 
-      sysz # systemctl thingie
-      clerk # mpd client
-      powertop
-      pdfarranger
       ethtool
       lm_sensors
       fanctl
@@ -38,21 +43,6 @@ in
       zfxtop
       kmon
 
-      # learning git game
-      oh-my-git
-      unstable.libdrm
-      ffmpeg
-
-      vim
-
-      # TODO:  # -- Media Tools --
-      # gimp
-      # handbrake
-      # mplayer
-      # gthumb
-      # jellyfin-media-player
-      # jellyfin-mpv-shim
-      # graphviz
       python3 # python is handy sometimes
     ];
   };
