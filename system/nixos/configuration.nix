@@ -25,7 +25,7 @@
   };
 
   programs = {
-    # TODO: mtr.enable = true;
+    mtr.enable = true;
 
     # Corectrl support - for managing CPU/GPU freq via a GUI
     corectrl.enable = true;
