@@ -52,7 +52,6 @@ in
     };
   };
 
-  # TODO: here https://wiki.hyprland.org/Useful-Utilities/Hyprland-desktop-portal/
   # portal for sharing (file pickers), gtk will be enabled by gnome
   xdg = {
     portal = {
@@ -73,9 +72,7 @@ in
   # Enable polkit
   security = {
     polkit.enable = true;
-    pam.services.hyprlock = {
-      # text = "auth include login";
-    };
+    pam.services.hyprlock = { };
   };
 
   # Enable polkit for system wide auth, required as part of gnome-compat
