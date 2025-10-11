@@ -5,8 +5,6 @@
   ...
 }:
 let
-  # TODO: https://github.com/tekumara/typos-lsp
-  # https://github.com/tekumara/typos-lsp/blob/main/docs/helix-config.md
   inherit (lib) mkIf getExe getExe';
 in
 {
@@ -178,6 +176,12 @@ in
           command = "${pkgs.terraform-ls}/bin/terraform-ls";
           args = [ "serve" ];
         };
+
+        typos = {
+          command = "${getExe pkgs.typos-lsp}";
+          environment.RUST_LOG = "error";
+          config.diagnosticSeverity = "Warning";
+        };
       };
 
       language = [
@@ -188,7 +192,10 @@ in
             command = "${pkgs.opentofu}/bin/tofu";
             args = [ "fmt -" ];
           };
-          language-servers = [ "terraform-ls" ];
+          language-servers = [
+            "terraform-ls"
+            "typos"
+          ];
         }
         {
           name = "java";
@@ -200,6 +207,10 @@ in
               "-"
             ];
           };
+          language-servers = [
+            "jdtls"
+            "typos"
+          ];
         }
         {
           name = "tfvars";
@@ -208,7 +219,10 @@ in
             command = "${pkgs.opentofu}/bin/tofu";
             args = [ "fmt -" ];
           };
-          language-servers = [ "terraform-ls" ];
+          language-servers = [
+            "terraform-ls"
+            "typos"
+          ];
         }
         {
           name = "toml";
@@ -220,23 +234,25 @@ in
               "-"
             ];
           };
+          language-servers = [
+            "taplo"
+            "typos"
+          ];
         }
         {
           name = "c";
           auto-format = true;
+          # TODO: setup clangd + typos
         }
         {
           name = "cpp";
           auto-format = true;
+          # TODO: setup clangd + typos
         }
 
         {
           name = "markdown";
           auto-format = true;
-          language-servers = [
-            "marksman"
-            "ltex"
-          ];
           formatter = {
             command = "${pkgs.dprint}/bin/dprint";
             args =
@@ -262,10 +278,16 @@ in
               ];
           };
           rulers = [ 120 ];
+          language-servers = [
+            "marksman"
+            "ltex"
+            "typos"
+          ];
         }
         {
           name = "haskell";
           auto-format = true;
+          # TODO: lsp
         }
         {
           name = "nix";
@@ -275,11 +297,18 @@ in
             args = [ "-q" ];
           };
           # NOTE: removed nil
-          language-servers = [ "nixd" ];
+          language-servers = [
+            "nixd"
+            "typos"
+          ];
         }
         {
           name = "go";
           auto-format = true;
+          language-servers = [
+            "gopls"
+            "typos"
+          ];
         }
         {
           name = "bibtex";
@@ -289,10 +318,6 @@ in
         {
           name = "latex";
           auto-format = true;
-          language-servers = [
-            "texlab"
-            "ltex"
-          ];
           formatter = {
             command = getExe' pkgs.texlivePackages.latexindent "latexindent";
             # TODO: so that no indent.log is displayed
@@ -300,14 +325,15 @@ in
             #   "-g /dev/null"
             # ];
           };
+          language-servers = [
+            "texlab"
+            "ltex"
+            "typos"
+          ];
         }
         {
           name = "python";
           auto-format = true;
-          language-servers = [
-            "ruff"
-            "pyright"
-          ];
           formatter = {
             command = "${pkgs.black}/bin/black";
             args = [
@@ -317,6 +343,11 @@ in
               "-"
             ];
           };
+          language-servers = [
+            "ruff"
+            "pyright"
+            "typos"
+          ];
         }
       ];
     };
