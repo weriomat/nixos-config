@@ -16,14 +16,18 @@ in
     arkenfox.enable = mkEnableOption "Enable arkenfox";
   };
 
-  # TODO: https://github.com/gvolpe/nix-config/blob/b9ff455faaf5a4890985305e5c7a5a01606d20f3/home/shared/default.nix
-
   config = mkIf cfg.enable {
-    catppuccin.firefox.profiles.${globals.username} = {
+    catppuccin.firefox = {
       enable = true;
       force = true;
       accent = "mauve";
       flavor = "mocha";
+      profiles.${globals.username} = {
+        enable = true;
+        force = true;
+        accent = "mauve";
+        flavor = "mocha";
+      };
     };
 
     wayland.windowManager.hyprland.settings = {
@@ -31,9 +35,9 @@ in
         "$mainMod SHIFT, M, exec, ${config.programs.firefox.finalPackage}/bin/firefox"
       ];
       windowrule = [
-        #   windowrule = float,title:^(Firefox — Sharing Indicator)$
-        #   windowrule = move 0 0,title:^(Firefox — Sharing Indicator)$
         "opaque, class:^(firefox)"
+        "float,title:^(Firefox — Sharing Indicator)$"
+        "move 0 0,title:^(Firefox — Sharing Indicator)$"
       ];
       windowrulev2 = [
         # idleinhibit
@@ -43,84 +47,15 @@ in
       ];
     };
 
-    # TODO: take a look at https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
-    # TODO: take a look at https://github.com/gvolpe/nix-config/blob/b9ff455faaf5a4890985305e5c7a5a01606d20f3/home/programs/firefox/default.nix
-    # https://github.com/Sly-Harvey/NixOS/blob/master/modules/programs/browser/firefox/default.nix
-
-    # TODO: darkreader
-    # home.file.".config/darkreader/config.json".text =
-    #   # json
-    #   ''
-    #     {
-    #       "schemeVersion": 2,
-    #       "enabled": true,
-    #       "fetchNews": true,
-    #       "theme": {
-    #         "mode": 1,
-    #         "brightness": 100,
-    #         "contrast": 100,
-    #         "grayscale": 0,
-    #         "sepia": 0,
-    #         "useFont": false,
-    #         "fontFamily": "Open Sans",
-    #         "textStroke": 0,
-    #         "engine": "dynamicTheme",
-    #         "stylesheet": "",
-    #         "darkSchemeBackgroundColor": "#${colors.base00}",
-    #         "darkSchemeTextColor": "#${colors.base0F}",
-    #         "lightSchemeBackgroundColor": "#${colors.base0F}",
-    #         "lightSchemeTextColor": "#${colors.base00}",
-    #         "scrollbarColor": "auto",
-    #         "selectionColor": "auto",
-    #         "styleSystemControls": false,
-    #         "lightColorScheme": "Default",
-    #         "darkColorScheme": "Default",
-    #         "immediateModify": false
-    #       },
-    #       "presets": [],
-    #       "customThemes": [],
-    #       "enabledByDefault": true,
-    #       "enabledFor": [],
-    #       "disabledFor": [],
-    #       "changeBrowserTheme": false,
-    #       "syncSettings": false,
-    #       "syncSitesFixes": true,
-    #       "automation": {
-    #         "enabled": false,
-    #         "mode": "",
-    #         "behavior": "OnOff"
-    #       },
-    #       "time": {
-    #         "activation": "18:00",
-    #         "deactivation": "9:00"
-    #       },
-    #       "location": {
-    #         "latitude": null,
-    #         "longitude": null
-    #       },
-    #       "previewNewDesign": true,
-    #       "enableForPDF": true,
-    #       "enableForProtectedPages": true,
-    #       "enableContextMenus": false,
-    #       "detectDarkTheme": false,
-    #       "displayedNews": [
-    #         "thanks-2023"
-    #       ]
-    #     }
-    #   '';
-
     home.sessionVariables.BROWSER = "firefox";
 
     programs.firefox = {
       enable = true;
 
       arkenfox = mkIf cfg.arkenfox.enable {
-        enable = false;
+        enable = true;
         version = "master";
       };
-
-      # TODO: languagepacks
-      # `https://nix-community.github.io/home-manager/options.xhtml#opt-programs.firefox.languagePacks`
 
       profiles.${globals.username} = {
         # potentially problematic: 0703, 0820 (color visited links)
@@ -172,6 +107,15 @@ in
         bookmarks = {
           force = true;
           settings = [
+            {
+              name = "kernel history";
+              tags = [ "kernel" ];
+              url = "https://elixir.bootlin.com/linux/";
+            }
+            {
+              name = "Postmarket OS";
+              url = "https://wiki.postmarketos.org/wiki/Main_Page";
+            }
             {
               name = "Home-Manager Wiki";
               tags = [ "wiki" ];
@@ -300,9 +244,9 @@ in
             user-agent-string-switcher
 
             # ui
-            # TODO: configure via settings
-            firefox-color # add capuccin colors to firefox-color -> manual idk how to do that in nix, enable dark theme in about:addons under themes
+            firefox-color
             darkreader
+            adaptive-tab-bar-colour
 
             # util
             (languagetool.overrideAttrs { meta.license = licenses.free; })
@@ -311,6 +255,11 @@ in
             bitwarden
             linkwarden
             zotero-connector
+
+            # unpaywall
+            # to-deepl
+            # privacy-badger + i-dont-care-about-cookies
+            # link-cleaner
 
             # new
             # censor-tracker # https://censortracker.org/en.html
@@ -332,16 +281,73 @@ in
 
             #    privacy-badger
             # vimium-c
-            # gloc
-            # adaptive-tab-bar-colour
-            # unpaywall
             # simple-translate
 
-            # (tampermonkey.overrideAttrs { meta.license = lib.licenses.free; })
             # (enhancer-for-youtube.overrideAttrs {
             #   meta.license = lib.licenses.free;
             # })
           ];
+
+          settings."addon@darkreader.org" = {
+            force = true;
+            settings = {
+              schemeVersion = 2;
+              enabled = true;
+              fetchNews = true;
+              theme = {
+                mode = 1;
+                brightness = 100;
+                contrast = 100;
+                grayscale = 0;
+                sepia = 0;
+                useFont = false;
+                fontFamily = "Open Sans";
+                textStroke = 0;
+                engine = "dynamicTheme";
+                stylesheet = "";
+                darkSchemeBackgroundColor = "#1e1e2e"; # 181a1b
+                darkSchemeTextColor = "#cdd6f4"; # e8e6e3
+                lightSchemeBackgroundColor = "#eff1f5"; # dcdad7
+                lightSchemeTextColor = "#4c4f69"; # 181a1b
+                scrollbarColor = "auto";
+                selectionColor = "#585b70"; # auto
+                styleSystemControls = false;
+                lightColorScheme = "Default";
+                darkColorScheme = "Default";
+                immediateModify = false;
+              };
+              presets = [ ];
+              customThemes = [ ];
+              enabledByDefault = true;
+              enabledFor = [ ];
+              disabledFor = [ ];
+              changeBrowserTheme = false;
+              syncSettings = true;
+              syncSitesFixes = true; # changed
+              automation = {
+                enabled = false;
+                mode = "";
+                behavior = "OnOff";
+              };
+              time = {
+                activation = "18:00";
+                deactivation = "9:00";
+              };
+              location = {
+                latitude = null;
+                longitude = null;
+              };
+              previewNewDesign = true; # changed
+              previewNewestDesign = false;
+              enableForPDF = true; # changed
+              enableForProtectedPages = true; # changed
+              enableContextMenus = false;
+              detectDarkTheme = false;
+              displayedNews = [
+                "thanks-2023"
+              ];
+            };
+          };
         };
 
         search = {
