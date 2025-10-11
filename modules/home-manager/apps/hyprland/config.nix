@@ -200,6 +200,11 @@ in
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+
+        # from https://github.com/Sly-Harvey/NixOS/blob/master/modules/desktop/hyprland/default.nix
+        # to switch between windows in a floating workspace
+        "$mainMod, Tab, cyclenext"
+        "$mainMod, Tab, bringactivetotop"
       ];
 
       bindm = [
