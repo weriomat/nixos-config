@@ -205,6 +205,9 @@ in
         # to switch between windows in a floating workspace
         "$mainMod, Tab, cyclenext"
         "$mainMod, Tab, bringactivetotop"
+
+        # move to the first empty workspace instantly with mainMod + CTRL + [↓]
+        "$mainMod CTRL, down, workspace, empty"
       ];
 
       bindm = [
