@@ -62,7 +62,7 @@ in
         "1, monitor: HDMI-A-1, default:true, on-created-empty:kitty"
         "2, monitor: HDMI-A-1, on-created-empty:vikunja-desktop"
         "3, monitor: HDMI-A-1, on-created-empty:thunderbird"
-        "4, monitor: HDMI-A-1, on-created-empty:discord"
+        "4, monitor: HDMI-A-1, on-created-empty:${config.discord.executable}"
         "5, monitor: HDMI-A-1, on-created-empty:keepassxc"
         "6, monitor: DP-1, default:true, on-created-empty:firefox"
         "7, monitor: DP-1"
