@@ -3,7 +3,6 @@
   pkgs,
   ...
 }:
-# TODO: laptop power management
 {
   imports = [ ./wayland ];
 
@@ -12,16 +11,6 @@
     fwupd.enable = true; # Firmware updates
     protonmail-bridge.enable = true;
     fstrim.enable = lib.mkDefault true; # ssd thingy
-    # TODO: kdeconnect.enable = true;
-    # TODO: libinput = { # enabled by default, handles input
-    #   enable = true;
-    #   touchpad.disableWhileTyping = true;
-    # };
-    # TODO: avahi = {
-    #   enable = true;
-    #   nssmdns4 = true;
-    #   openFirewall = true;
-    # };
   };
 
   programs = {
