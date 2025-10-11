@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
-  cfg = config.steam.enable;
+  cfg = config.steam;
 in
 {
   options.steam.enable = mkEnableOption "gaming hm setup";
