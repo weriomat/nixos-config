@@ -14,6 +14,7 @@ in
 
     services = {
       pipewire = {
+        # TODO: noisetorch -> noice reduction for pipewire
         enable = true;
         alsa = {
           enable = true;
@@ -27,17 +28,12 @@ in
       pulseaudio.enable = false;
     };
 
-    hardware = {
-      # TODO: headset helpers: headsetcontrol, headset-charge-indicator, pulsemixer, noisetorch
-      # TODO: if need for anc arrises, see https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/pipewire.nix
-      # TODO: take a look at pkgs.overskride instead of blueman-applet, no applet tho
-      bluetooth = {
-        enable = true;
-        powerOnBoot = true;
-        settings.General = {
-          Enable = "Source,Sink,Media,Socket";
-          Experimental = true;
-        };
+    hardware.bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings.General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true;
       };
     };
   };
