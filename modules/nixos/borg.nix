@@ -107,6 +107,7 @@ in
           "**/node_modules" # node modules
           "**/dist" # electron stuff i think
           "/home/*/.arduino15" # dont need arudinio libs to be backed up
+          "/home/*/Leben"
         ];
 
         # Name of the archive. Borg placeholders can be used. See the
