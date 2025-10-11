@@ -18,6 +18,7 @@
     ./screenshots
     ./hypridle
     ./hyprlock
+    ./steam
 
     ./discord
     ./kitty
