@@ -10,8 +10,6 @@ in
 {
   options.kitty.enable = mkEnableOption "Enable my kitty options";
 
-  # TODO: broewser : https://github.com/chase/awrit
-  # TODO: take a look at shortcuts
   config = mkIf config.kitty.enable {
     wayland.windowManager.hyprland.settings.bind = [
       "$mainMod SHIFT, K, exec, ${config.programs.kitty.package}/bin/kitty"
@@ -45,7 +43,6 @@ in
       };
 
       keybindings = {
-        # "ctrl+c" = "copy_or_interrupt";
         "ctrl+shift+t" = "new_tab_with_cwd";
         # new window with same pwd
         "ctrl+shift+enter" = "launch --cwd=current";
@@ -59,7 +56,6 @@ in
         # window layouts
         "ctrl+a" = "toggle_layout horizontal";
         "ctrl+x" = "toggle_layout stack";
-        # "ctrl+o" = "toggle_layout grid";
         "ctrl+shift+o" = "next_layout";
         # resizing
         "ctrl+left" = "resize_window wider";
