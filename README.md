@@ -91,6 +91,16 @@ Special thanks to [XMN1](https://github.com/XNM1) for having a great security
 Special thanks to [niksingh710](https://github.com/niksingh710) for having a great
 [configuration](https://github.com/niksingh710/ndots)
 
+### different-name
+
+Special thanks to [different-name](https://github.com/different-name) for having
+a great [configuration](https://github.com/different-name/nix-files)
+
+### Sly-Harvey
+
+Special thanks to [Sly-Harvey](https://github.com/Sly-Harvey) for having a great
+[configuration](https://github.com/Sly-Harvey/NixOS)
+
 ## The maker of fzf
 
 A special thanks goes out to the maker of [fzf](https://github.com/junegunn/fzf)
