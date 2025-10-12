@@ -10,7 +10,6 @@ let
 in
 {
   home.packages = [
-    pkgs.helix
     pkgs.cmake-language-server # cmake
     pkgs.lua-language-server # lua
     pkgs.taplo # toml
@@ -19,7 +18,6 @@ in
     pkgs.nodePackages.bash-language-server # bash
     pkgs.yaml-language-server # yaml
     pkgs.pyright # python
-    pkgs.terraform-ls # terraform lsp
     pkgs.jdt-language-server # java lsp
   ];
 
@@ -40,8 +38,8 @@ in
           # cargo.extraEnv."CARGO_TARGET_DIR" = "${config.xdg.cacheHome}/rust-analyzer-target-dir";
           # check.command = if pkgs.stdenv.isDarwin then "clippy" else "${pkgs.clippy}/bin/clippy";
           # config.checkOnSave.command = if pkgs.stdenv.isDarwin then "clippy" else "${pkgs.clippy}/bin/clippy";
-          check.command = "${pkgs.clippy}/bin/clippy";
-          config.checkOnSave.command = "${pkgs.clippy}/bin/clippy";
+          check.command = getExe pkgs.clippy;
+          config.checkOnSave.command = getExe pkgs.clippy;
 
           completion.fullFunctionSignatures.enable = true;
           hover.actions.references.enable = true;
@@ -82,7 +80,7 @@ in
           # ];
         };
         ruff = {
-          command = "${pkgs.ruff}/bin/ruff";
+          command = getExe pkgs.ruff;
           args = [
             "server"
             "--ignore"
@@ -96,18 +94,14 @@ in
 
         # NOTE: LaTeX
         texlab = {
-          command = "${pkgs.texlab}/bin/texlab";
+          command = getExe pkgs.texlab;
           auxDirectory = "auz";
           chktex = {
             onOpenAndSave = true;
             onEdit = true;
           };
           forwardSearch = {
-            executable =
-              if pkgs.stdenv.isDarwin then
-                "${pkgs.evince}/bin/evince"
-              else
-                "${pkgs.kdePackages.okular}/bin/okular";
+            executable = if pkgs.stdenv.isDarwin then getExe pkgs.evince else getExe pkgs.kdePackages.okular;
             args =
               if pkgs.stdenv.isDarwin then
                 [
@@ -125,7 +119,7 @@ in
             forwardSearchAfter = true;
             onSave = true;
 
-            executable = "${pkgs.texlive.withPackages (ps: [ ps.latexmk ])}/bin/latexmk";
+            executable = getExe' (pkgs.texlive.withPackages (ps: [ ps.latexmk ])) "latexmk";
             args = [
               "-pdf"
               "-interaction=nonstopmode"
@@ -164,17 +158,17 @@ in
         };
 
         # markdown
-        marksman.command = "${pkgs.marksman}/bin/marksman";
+        marksman.command = getExe pkgs.marksman;
 
         clangd.args = [ "--enable-config" ];
 
         terraform-ls = {
-          command = "${pkgs.terraform-ls}/bin/terraform-ls";
+          command = getExe pkgs.terraform-ls;
           args = [ "serve" ];
         };
 
         typos = {
-          command = "${getExe pkgs.typos-lsp}";
+          command = getExe pkgs.typos-lsp;
           environment.RUST_LOG = "error";
           config.diagnosticSeverity = "Warning";
         };
@@ -185,7 +179,7 @@ in
           name = "hcl";
           auto-format = true;
           formatter = {
-            command = "${pkgs.opentofu}/bin/tofu";
+            command = getExe pkgs.opentofu;
             args = [ "fmt -" ];
           };
           language-servers = [
@@ -197,7 +191,7 @@ in
           name = "java";
           auto-format = true;
           formatter = {
-            command = "${getExe pkgs.google-java-format}";
+            command = getExe pkgs.google-java-format;
             args = [
               "-a"
               "-"
@@ -212,7 +206,7 @@ in
           name = "tfvars";
           auto-format = true;
           formatter = {
-            command = "${pkgs.opentofu}/bin/tofu";
+            command = getExe pkgs.opentofu;
             args = [ "fmt -" ];
           };
           language-servers = [
@@ -224,7 +218,7 @@ in
           name = "toml";
           auto-format = true;
           formatter = {
-            command = "${getExe pkgs.taplo}";
+            command = getExe pkgs.taplo;
             args = [
               "fmt"
               "-"
@@ -250,7 +244,7 @@ in
           name = "markdown";
           auto-format = true;
           formatter = {
-            command = "${pkgs.dprint}/bin/dprint";
+            command = getExe pkgs.dprint;
             args =
               let
                 config = pkgs.writeText "config.json" ''
@@ -289,7 +283,7 @@ in
           name = "nix";
           auto-format = true;
           formatter = {
-            command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+            command = getExe pkgs.nixfmt-rfc-style;
             args = [ "-q" ];
           };
           # NOTE: removed nil
@@ -331,7 +325,7 @@ in
           name = "python";
           auto-format = true;
           formatter = {
-            command = "${pkgs.black}/bin/black";
+            command = getExe pkgs.black;
             args = [
               "--line-length"
               "88"
