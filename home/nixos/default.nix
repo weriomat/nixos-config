@@ -8,6 +8,7 @@
   imports = [
     ../shared
     ./xdg.nix
+    ./obs.nix
   ];
 
   # NOTE: vscodium disabled since tex stuff works
