@@ -13,9 +13,6 @@ in
     flavor = "mocha";
   };
 
-  # TODO: paths
-  # TODO: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/zsh/zsh.nix
-  # TODO: add shortcut to set off history
   programs = {
     bash = {
       enable = true;
@@ -95,26 +92,14 @@ in
 
         open = mkIf pkgs.stdenv.isLinux "xdg-open";
 
-        # TODO: here
         # Set some aliases
         mkdir = "mkdir -vp";
-        # rm = "rm -rifv";
         mv = "mv -iv";
-        # cp = "cp -riv";
-        # cat = "bat --paging=never --style=plain";
-        # nd = "nix develop -c $SHELL";
-        # isodate = ''date -u "+%Y-%m-%dT%H:%M:%SZ"'';
+        cp = "cp -riv";
+        rm = "rm -rifv";
+        isodate = ''date -u "+%Y-%m-%dT%H:%M:%SZ"'';
         mime = mkIf pkgs.stdenv.isLinux "xdg-mime query filetype"; # check mimetype of a file
       };
-
-      # # basically aliases for directories:
-      # # `cd ~dots` will cd into ~/.config/nixos
-      # dirHashes = {
-      #   dots = "$HOME/.config/nixos";
-      #   stuff = "$HOME/stuff";
-      #   media = "/run/media/$USER";
-      #   junk = "$HOME/stuff/other";
-      # };
 
       shellGlobalAliases = {
         UUID = "$(uuidgen | tr -d \\n)";
