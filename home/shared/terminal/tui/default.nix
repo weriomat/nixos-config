@@ -5,5 +5,6 @@
     ./lazygit
     ./yazi
     ./imv
+    ./mpv
   ];
 }
