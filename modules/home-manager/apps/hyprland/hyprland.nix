@@ -48,6 +48,7 @@ in
       };
     };
 
+    # TODO: https://github.com/Duckonaut/split-monitor-workspaces?tab=readme-ov-file -> pin workspaces to monitors and independent numbering
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -86,7 +87,6 @@ in
       };
 
       # Support for a redlight filter
-      # TODO: switch to hyprsunset?
       wlsunset = {
         enable = true;
         latitude = "52.5";
