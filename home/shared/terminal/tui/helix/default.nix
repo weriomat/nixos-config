@@ -162,8 +162,8 @@ in
 
         clangd.args = [ "--enable-config" ];
 
-        terraform-ls = {
-          command = getExe pkgs.terraform-ls;
+        tofu-ls = {
+          command = getExe pkgs.opentofu-ls;
           args = [ "serve" ];
         };
 
@@ -183,7 +183,7 @@ in
             args = [ "fmt -" ];
           };
           language-servers = [
-            "terraform-ls"
+            "tofu-ls"
             "typos"
           ];
         }
@@ -210,7 +210,7 @@ in
             args = [ "fmt -" ];
           };
           language-servers = [
-            "terraform-ls"
+            "tofu-ls"
             "typos"
           ];
         }
