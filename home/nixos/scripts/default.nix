@@ -1,20 +1,6 @@
 { pkgs, ... }:
 {
   # TODO: document all shortcuts
-  # TODO: here
-  # stolen from https://haseebmajid.dev/posts/2023-11-15-part-3-hyprland-as-part-of-your-development-workflow/
-  laptop_lid_switch = pkgs.writeShellScriptBin "laptop_lid_switch" ''
-    #!/usr/bin/env bash
-
-    if grep open /proc/acpi/button/lid/LID0/state; then
-        hyprctl keyword monitor "eDP-1, 2256x1504@60, 0x0, 1"
-    else
-        if [[ `hyprctl monitors | grep "Monitor" | wc -l` != 1 ]]; then
-            hyprctl keyword monitor "eDP-1, disable"
-        fi
-    fi
-  '';
-
   fshow = pkgs.writeShellApplication {
     name = "fshow";
     runtimeInputs = [
