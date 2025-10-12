@@ -263,7 +263,6 @@ in
         ZDOTDIR = ''"$HOME"/${config.programs.zsh.dotDir}'';
       };
       packages = [
-        pkgs.yazi
         pkgs.evince
         pkgs.celluloid
       ];
