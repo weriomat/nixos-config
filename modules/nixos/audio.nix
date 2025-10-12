@@ -14,7 +14,7 @@ in
 
     services = {
       pipewire = {
-        # TODO: noisetorch -> noice reduction for pipewire
+        # TODO: noisetorch -> noise reduction for pipewire
         enable = true;
         alsa = {
           enable = true;
