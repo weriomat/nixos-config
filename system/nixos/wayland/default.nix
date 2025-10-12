@@ -5,9 +5,6 @@
   ...
 }:
 let
-  # NOTE: this is the version used by home-manager
-  # hyprland = config.home-manager.users.${globals.username}.wayland.windowManager.hyprland.finalPackage;
-  inherit (pkgs) hyprland;
   inherit (lib) getExe getExe';
 in
 {
@@ -44,7 +41,7 @@ in
       enable = true;
       settings.default_session =
         let
-          session = "${getExe hyprland}";
+          session = "${getExe pkgs.hyprland}";
           tuigreet = "${getExe pkgs.greetd.tuigreet}";
         in
         {
