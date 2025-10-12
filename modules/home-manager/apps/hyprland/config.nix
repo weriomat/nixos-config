@@ -248,6 +248,12 @@ in
         "stayfocused, class:^(Pinentry).*"
         "dimaround, class:^(Pinentry).*"
         "center, class:^(Pinentry).*"
+
+        # hyprland share picker
+        "float, title:MainPicker"
+        "stayfocused, title:MainPicker"
+        "dimaround, title:MainPicker"
+        "center, title:MainPicker"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
