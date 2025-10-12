@@ -7,13 +7,18 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf;
+  cfg = config.steam;
 in
 {
-  imports = [ inputs.nix-gaming.nixosModules.pipewireLowLatency ];
+  imports = [
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
+    inputs.nix-gaming.nixosModules.platformOptimizations
+  ];
+
   options.steam.enable = mkEnableOption "Gaming thingies";
 
   # This is going to be decided per host
-  config = mkIf config.steam.enable {
+  config = mkIf cfg.enable {
     services.pipewire.lowLatency.enable = true;
     programs = {
       gamemode = {
@@ -38,6 +43,7 @@ in
         remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
         dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
         gamescopeSession.enable = true;
+        platformOptimizations.enable = true; # from nix-gaming
       };
     };
     environment.systemPackages = [
