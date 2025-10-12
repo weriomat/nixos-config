@@ -1,5 +1,10 @@
-_: {
-  wayland.windowManager.hyprland.settings = {
+{ config, lib, ... }:
+let
+  inherit (lib) mkIf;
+  cfg = config.my_hyprland;
+in
+{
+  wayland.windowManager.hyprland.settings = mkIf cfg.enable {
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
     input = {
       kb_layout = "us";

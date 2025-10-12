@@ -1,5 +1,10 @@
-_: {
-  wayland.windowManager.hyprland.settings.windowrulev2 = [
+{ config, lib, ... }:
+let
+  inherit (lib) mkIf;
+  cfg = config.my_hyprland;
+in
+{
+  wayland.windowManager.hyprland.settings.windowrulev2 = mkIf cfg.enable [
     "opacity 0.0 override 0.0 override,class:^(xwaylandvideobridge)$"
     "noanim,class:^(xwaylandvideobridge)$"
     "noinitialfocus,class:^(xwaylandvideobridge)$"
@@ -44,7 +49,6 @@ _: {
   #   windowrule = float,wofi
   #   windowrule = noborder,wofi
   #   windowrule = tile, neovide
-  #   windowrule = idleinhibit focus,mpv
   #   windowrule = float,udiskie
   #   windowrulev2 = float, title:^(Picture-in-Picture)$
   #   windowrulev2 = opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$

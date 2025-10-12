@@ -1,9 +1,15 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  inherit (lib) getExe;
+  inherit (lib) getExe mkIf;
+  cfg = config.my_hyprland;
 in
 {
-  wayland.windowManager.hyprland.settings = {
+  wayland.windowManager.hyprland.settings = mkIf cfg.enable {
     bindm = [
       # Move/resize windows with mainMod + LMB/RMB and dragging
       "$mainMod, mouse:272, movewindow"
