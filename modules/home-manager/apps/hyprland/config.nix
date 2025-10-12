@@ -246,7 +246,8 @@ in
 
         # pinentry
         "stayfocused, class:^(Pinentry).*"
-        "fullscreen, class:^(Pinentry).*"
+        "dimaround, class:^(Pinentry).*"
+        "center, class:^(Pinentry).*"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
