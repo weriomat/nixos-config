@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -9,17 +10,25 @@ let
   cfg = config.myfont;
 in
 {
-  # TODO: sync with HM and enable again
   options.myfont.enable = mkEnableOption "Enable my fontconfiguration" // {
-    default = false;
+    default = true;
   };
+
   config = mkIf cfg.enable {
     fonts = {
       enableDefaultPackages = mkForce false;
       packages = [
-        # pkgs.source-sans
-        # pkgs.apple-emoji
+        inputs.monoLisa.packages.${pkgs.system}.default
+        pkgs.apple-color-emoji
+        pkgs.fira
         pkgs.fira-go
+        pkgs.roboto-serif
+        pkgs.nerd-fonts.iosevka
+        pkgs.nerd-fonts.blex-mono
+        pkgs.nerd-fonts.jetbrains-mono
+        pkgs.nerd-fonts.symbols-only
+        pkgs.nerd-fonts.fira-mono
+        pkgs.noto-fonts-emoji
 
         # default fonts, without emoji
         pkgs.dejavu_fonts
@@ -33,16 +42,24 @@ in
       fontconfig = {
         enable = true;
         defaultFonts = {
-          # TODO: set default fonts
-          sansSerif = [ "DejaVu Sans" ];
-          # ["FiraGO"];
-          serif = [ "DejaVu Serif" ];
-          # ["Source Serif"];
-          monospace = [
-            # "DejaVu Sans Mono"
-            "MonoLisa Nerd Font"
+          sansSerif = [
+            "FiraGO"
+            "Fira Sans"
+            "Iosevka Nerd Font"
           ];
-          emoji = [ "apple-emoji" ];
+          serif = [
+            "DejaVu Serif"
+            "Roboto Serif"
+          ];
+          monospace = [
+            "MonoLisa Nerd Font"
+            "JetBrainsMonoNL Nerd Font"
+            "BlexMono Nerd Font Mono"
+          ];
+          emoji = [
+            "Apple Color Emoji"
+            "Noto Color Emoji"
+          ];
         };
       };
     };
