@@ -4,5 +4,6 @@
     ./helix
     ./lazygit
     ./yazi
+    ./imv
   ];
 }
