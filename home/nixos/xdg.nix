@@ -261,6 +261,20 @@ in
         GOBIN = "${config.xdg.dataHome}/go/bin";
         CARGO_HOME = "${config.xdg.dataHome}/cargo";
         ZDOTDIR = ''"$HOME"/${config.programs.zsh.dotDir}'';
+        IPYTHONDIR = "${config.xdg.dataHome}/ipython";
+        JUPYTER_CONFIG_DIR = "${config.xdg.cacheHome}/jupyter";
+        ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
+        TEXMFHOME = "${config.xdg.stateHome}/texmf";
+        TEXMFVAR = "${config.xdg.cacheHome}/texmf";
+        TEXMFCONFIG = "${config.xdg.stateHome}/texmf";
+        CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+        NPM_CONFIG_USERCONFIG = "${config.xdg.dataHome}/npm/npmrc";
+        NPM_CONFIG_CACHE = "${config.xdg.dataHome}/npm";
+        NPM_CONFIG_PREFIX = "${config.xdg.stateHome}/npm";
+        GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
+        BUNDLE_USER_CONFIG = "${config.xdg.stateHome}/bundle";
+        BUNDLE_USER_CACHE = "${config.xdg.cacheHome}/bundle";
+        BUNDLE_USER_PLUGIN = "${config.xdg.dataHome}/bundle";
       };
       packages = [
         pkgs.evince
