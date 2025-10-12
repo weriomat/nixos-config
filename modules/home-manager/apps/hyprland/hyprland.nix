@@ -51,10 +51,8 @@ in
     # TODO: https://github.com/Duckonaut/split-monitor-workspaces?tab=readme-ov-file -> pin workspaces to monitors and independent numbering
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # portalPackage =
-      #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # NOTE: this options will be used by the nixos-module as well
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
       xwayland.enable = true;
 
       systemd = {
