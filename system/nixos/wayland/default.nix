@@ -5,10 +5,10 @@
   ...
 }:
 let
-  inherit (lib) mkForce getExe getExe';
   # NOTE: this is the version used by home-manager
   # hyprland = config.home-manager.users.${globals.username}.wayland.windowManager.hyprland.finalPackage;
   inherit (pkgs) hyprland;
+  inherit (lib) getExe getExe';
 in
 {
   imports = [ ./gnome.nix ];
@@ -54,21 +54,10 @@ in
     };
   };
 
-  # portal for sharing (file pickers), gtk will be enabled by gnome
-  xdg = {
-    portal = {
-      enable = true;
-      wlr.enable = mkForce false; # hyprland has its own portal
-      xdgOpenUsePortal = true;
-      extraPortals = [
-        (pkgs.xdg-desktop-portal-hyprland.override { inherit hyprland; })
-      ];
-      configPackages = [ hyprland ];
-    };
-    terminal-exec = {
-      enable = true;
-      settings.default = [ "kitty.desktop" ];
-    };
+  # portals managed by hm
+  xdg.terminal-exec = {
+    enable = true;
+    settings.default = [ "kitty.desktop" ];
   };
 
   # Enable polkit

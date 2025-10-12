@@ -27,6 +27,27 @@ in
       pkgs.wayland
     ];
 
+    # from https://github.com/Sly-Harvey/NixOS/commit/6c47a6d22ad09f93d9bf62bdb69387e7762f2c92
+    # portal for sharing (file pickers), gtk will be enabled by gnome
+    xdg.portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+      ];
+
+      xdgOpenUsePortal = true;
+      configPackages = [ config.wayland.windowManager.hyprland.package ];
+      config.hyprland = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.OpenURI" = "gtk";
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+        "org.freedesktop.impl.portal.Print" = "gtk";
+      };
+    };
+
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;

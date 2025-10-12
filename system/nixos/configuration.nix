@@ -58,7 +58,7 @@
 
   environment.pathsToLink = [
     "/share/zsh"
-    "/share/xdg-desktop-portal"
+    "/share/xdg-desktop-portal" # hm portals
     "/share/applications"
   ]; # for zsh.enableCompletion
 
