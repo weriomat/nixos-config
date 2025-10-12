@@ -10,7 +10,6 @@ in
       "$mainMod, mouse:273, resizewindow"
     ];
 
-    # bindl = [",switch:Lid Switch, exec, ${pkgs.laptop_lid_switch}"];
     bindl = [
       ", switch:on:Lid Switch, exec, hyprctl dispatch dpms off"
       ", switch:off:Lid Switch, exec, hyprctl dispatch dpms on"
