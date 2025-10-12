@@ -63,7 +63,6 @@ in
     pam.services.hyprlock = { };
   };
 
-  # Enable polkit for system wide auth, required as part of gnome-compat
   systemd = {
     services.greetd.serviceConfig = {
       Type = "idle";
@@ -76,6 +75,7 @@ in
       TTYVTDisallocate = true;
     };
     user = {
+      # Enable polkit for system wide auth, required as part of gnome-compat
       services.polkit-gnome-authentication-agent-1 = {
         description = "Gnome polkit agent";
         partOf = [ "graphical-session.target" ];
