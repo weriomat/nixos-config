@@ -79,7 +79,7 @@
           };
           ber = {
             user = "weriomat";
-            hostname = "192.168.178.111";
+            hostname = "192.168.178.128";
             port = 2077;
           };
           bb = {
@@ -87,9 +87,39 @@
             hostname = "192.168.178.110";
             port = 2077;
           };
+          bw = {
+            user = "weriomat";
+            hostname = "192.168.178.106";
+            port = 2077;
+          };
+          sl = {
+            user = "weriomat";
+            hostname = "192.168.178.124";
+            port = 2077;
+          };
+          sn = {
+            user = "weriomat";
+            hostname = "192.168.178.127";
+            port = 2077;
+          };
+          mv = {
+            user = "weriomat";
+            hostname = "192.168.178.129";
+            port = 2077;
+          };
+          th = {
+            user = "weriomat";
+            hostname = "192.168.178.136";
+            port = 2077;
+          };
           big = {
             user = "weriomat";
             hostname = "10.100.0.5";
+            port = 2077;
+          };
+          big-local = {
+            user = "weriomat";
+            hostname = "192.168.178.79";
             port = 2077;
           };
         };
