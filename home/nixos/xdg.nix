@@ -8,27 +8,6 @@
 }:
 let
   inherit (lib) mkIf;
-  # TODO: yt
-  # programs.freetube = {
-  #   enable = true;
-  #   settings = {
-  #     allowDashAv1Formats = true;
-  #     checkForUpdates = false;
-  #     defaultQuality = "1080";
-  #     baseTheme = "catppuccinMocha";
-  #   };
-  # };
-
-  # TODO: programs.yt-dlp = {}; # Dowoloader for yt files  # TODO: switch to mpv
-  # https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/main/nixos/security-services.nix
-  # https://home-manager-options.extranix.com/?query=mpv&release=release-24.11
-  # https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/main/home/.config/hypr/hyprland.conf
-  # https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/main/nixos/rust.nix
-  # https://github.com/ivankovnatsky/nixos-config/blob/main/machines/beelink/journald.nix
-  # https://celluloid-player.github.io/
-  # https://github.com/Vladimir-csp/uwsm?tab=readme-ov-file
-  # https://github.com/niksingh710/ndots/blob/master/modules/home/programs/default.nix
-  # https://github.com/nomadics9/dotfiles/blob/main/scripts/keybind.sh
 
   browser = [ "firefox" ];
   imageViewer = [ "imv.desktop" ];
@@ -294,40 +273,5 @@ in
         music = null;
       };
     };
-
-    # services = {
-    #      flameshot = {
-    #        enable = true;
-    #        settings.General.showStartupLaunchMessage = false;
-    #      };
-    #      gnome-keyring = {
-    #        enable = false;
-    #        components = [ "pkcs11" "secrets" "ssh" ];
-    #      };
-    #    };
-
-    # TODO: git https://github.com/saygo-png/nixos/blob/main/configuration.nix
-    # extraConfig = {
-    #           color.ui = "auto";
-    #           pull.rebase = true;
-    #           commit.gpgsign = true;
-    #           rerere.enabled = true;
-    #           pull.autoSquash = true;
-    #           push.autoSetupRemote = true;
-    #           branch.autosetupmerge = true;
-    #           merge.tool = "${lib.getExe pkgs.meld}";
-    #           core.excludesfile = "~/.gitignore_global";
-    #           push = {
-    #             default = "upstream";
-    #             useForceIfIncludes = true;
-    #           };
-    #           diff = {
-    #             tool = "vimdiff";
-    #             mnemonicprefix = true;
-    #           };
-    #         };
-    #       };
-
-    # TODO: git merger https://meld.app/
   };
 }
