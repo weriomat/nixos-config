@@ -1,5 +1,6 @@
 # to get helix running in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
 {
+  config,
   lib,
   pkgs,
   ...
@@ -158,13 +159,8 @@ in
         };
 
         nixd = {
-          # TODO: here
-          # nil # nix
-          # nixd # nix
-          command = "${pkgs.nixd}/bin/nixd";
-          # nixpkgs.expr = "import (builtins.getFlake \"/home/brisingr05/nixos-config\").inputs.nixpkgs { }";
-          # formatting.command = ["nixfmt"]; # Currently doesn't work
-          # options.nixos.expr = "(builtins.getFlake \"/home/brisingr05/nixos-config\").nixosConfigurations.hpaio.options";
+          command = getExe pkgs.nixd;
+          options.nixos.expr = "(builtins.getFlake \"${config.programs.nh.flake}\").nixosConfigurations.<name>.options";
         };
 
         # markdown
