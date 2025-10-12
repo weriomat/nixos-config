@@ -8,13 +8,9 @@ in
     programs.imv = {
       enable = true;
       settings = {
-        options = {
-          overlay_font = "Iosevka Nerd Font:10";
-        };
-        binds = {
-          # Rotate Clockwise by 90 degrees
-          "<Ctrl+r>" = "rotate by 90";
-        };
+        options.overlay_font = "Iosevka Nerd Font:10";
+        # Rotate Clockwise by 90 degrees
+        binds."<Ctrl+r>" = "rotate by 90";
       };
     };
 
