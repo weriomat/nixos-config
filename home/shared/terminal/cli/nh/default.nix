@@ -1,19 +1,11 @@
 {
-  globals,
-  pkgs,
-  lib,
+  config,
   ...
 }:
-let
-  inherit (lib) getExe;
-in
 {
-  config = {
-    home.packages = [ pkgs.nh ];
-    programs.zsh.shellAliases.nh =
-      if pkgs.stdenv.isLinux then
-        "NH_FLAKE=/home/${globals.username}/.nixos/nixos ${getExe pkgs.nh}"
-      else
-        "NH_FLAKE=/Users/${globals.username}/.nixos/nixos ${getExe pkgs.nh}";
+  # idea from https://github.com/different-name/nix-files/blob/master/dyad/nixos/programs/nh.nix
+  programs.nh = {
+    enable = true;
+    flake = "${config.home.homeDirectory}/.nixos/nixos";
   };
 }
