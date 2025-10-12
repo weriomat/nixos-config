@@ -1,6 +1,7 @@
 { config, ... }:
 {
   # stolen from: https://gitlab.com/Zaney/zaneyos/-/blob/main/config/fastfetch/default.nix?ref_type=heads
+  # TODO: nix run nixpkgs#microfetch
   programs = {
     # TODO: here
     zsh.shellAliases = {
