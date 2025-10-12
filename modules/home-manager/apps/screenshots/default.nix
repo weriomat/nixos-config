@@ -24,12 +24,22 @@ in
         "$mainMod SHIFT, Print, exec, ${getExe pkgs.wl-ocr}" # alternative 'ocrfeeder'
         # edit screenshot
         ''$mainMod, Print, exec, ${getExe pkgs.grim} -g "$(${getExe pkgs.slurp})" - | ${getExe pkgs.swappy} -f -''
+        "$mainMod SHIFT, Print, exec, ${getExe config.services.flameshot.package}" # alternative screenshot
       ];
       windowrule = [
         "opaque, class:swappy"
         "center 1, class:swappy"
         "stayfocused, class:swappy"
       ];
+    };
+
+    services.flameshot = {
+      enable = true;
+      settings.General = {
+        savePath = config.xdg.userDirs.extraConfig.XDG_SCREENSHOTS_DIR;
+        showStartupLaunchMessage = false;
+        useGrimAdapter = true;
+      };
     };
 
     xdg.configFile."swappy/config".text = ''
