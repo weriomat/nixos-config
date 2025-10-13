@@ -6,6 +6,7 @@
     ./eza
     ./fastfetch
     ./fzf
+    ./jq
     ./manix
     ./nh
     ./nix-index
