@@ -12,6 +12,7 @@
     ./nix-index
     ./ripgrep
     ./starship
+    ./tealdeer
     ./zsh
   ];
 }
