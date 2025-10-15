@@ -33,7 +33,7 @@
   hyprlock.font = "FiraMono Nerd Font";
   wofi.font = "MonoLisa Nerd Font, monospace";
 
-  wlogout.font = "Fira Sans, monospace";
+  wlogout.font = "Fira Sans Semibold, monospace";
 
   # NOTE: some fonts to keep in mind "IBMPlexMono" (nerfont), pkgs.twemoji-color-font, pkgs.iosevka-comfy.comfy, "JetBrainsMono", "Iosevka", corefonts, "Ubuntu".nerd, "UbuntuMono".nerd, "UbuntuSans".nerd, terminus_font, iosevka-comfy.comfy, ubuntu_font_family, helvetica-neue-lt-std, "IBMPlexMono", ibm-plex
   home.packages = [
