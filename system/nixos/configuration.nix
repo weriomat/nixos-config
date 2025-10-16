@@ -14,6 +14,10 @@
   };
 
   programs = {
+    # detect when a yubikey needs a touch -> via notify-send/ waybar module
+    yubikey-touch-detector.enable = true;
+
+    # traceroute + ping tool
     mtr.enable = true;
 
     # Corectrl support - for managing CPU/GPU freq via a GUI

@@ -175,6 +175,7 @@ in
           "custom/playerctl#play"
           "custom/playerctl#forward"
           "custom/audio_idle_inhibitor"
+          "custom/yubikey"
         ];
         modules-center = [ "hyprland/workspaces" ];
         modules-right =
@@ -206,6 +207,11 @@ in
             <big>{:%Y %B}</big>
             <tt><small>{calendar}</small></tt>'';
           format-alt = " {:%d/%m}";
+        };
+
+        "custom/yubikey" = {
+          exec = getExe pkgs.waybar-yubikey;
+          return-type = "json";
         };
 
         # TODO: upower
@@ -423,7 +429,7 @@ in
         }
 
         #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk, #custom-audio_idle_inhibitor,
-        #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward{
+        #custom-yubikey, #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward {
             background: ${config.waybar.tertiary_background_hex};
             font-weight: bold;
             margin: 5px 0px;
@@ -485,9 +491,16 @@ in
             padding-right: 15px;
         }
 
-        #custom-audio_idle_inhibitor{
+        #custom-audio_idle_inhibitor {
             color: ${config.waybar.tertiary_accent};
             border-radius: 0px 24px 10px 0px;
+            padding-left: 9px;
+            padding-right: 15px;
+        }
+
+        #custom-yubikey {
+            color: ${config.waybar.tertiary_accent};
+            border-radius: 24px 10px 24px 10px;
             padding-left: 9px;
             padding-right: 15px;
         }
