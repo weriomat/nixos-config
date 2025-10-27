@@ -18,6 +18,17 @@ in
     "workspace special silent, title:^(Firefox — Sharing Indicator)$"
     "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
 
+    # thunderbird confirm window to next inbox
+    "stayfocused, title:^(Confirm).*, class:^(thunderbird).*"
+    "dimaround, title:^(Confirm).*, class:^(thunderbird).*"
+    "center, title:^(Confirm).*, class:^(thunderbird).*"
+
+    # thunderbird filter rules window
+    "float, title:^(Filter Rules).*, class:^(thunderbird).*"
+    # "stayfocused, title:^(Filter Rules).*, class:^(thunderbird).*"
+    "dimaround, title:^(Filter Rules).*, class:^(thunderbird).*"
+    "center, title:^(Filter Rules).*, class:^(thunderbird).*"
+
     # idle inhibit while watching videos
     "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
     "idleinhibit focus, class:^(firefox)$, title:^(.*YouTube.*)$"
