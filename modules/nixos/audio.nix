@@ -30,7 +30,7 @@ in
 
     hardware.bluetooth = {
       enable = true;
-      powerOnBoot = true;
+      powerOnBoot = false; # manual enable
       settings.General = {
         Enable = "Source,Sink,Media,Socket";
         Experimental = true;
