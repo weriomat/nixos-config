@@ -9,6 +9,7 @@
     ../shared
     ./xdg.nix
     ./obs.nix
+    ./supersonic.nix
   ];
 
   # NOTE: vscodium disabled since tex stuff works
