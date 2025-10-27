@@ -99,6 +99,8 @@
   #     sleep 1
   #   '';
   # };
+
+  # TODO: use this
   toggle_toggle_blur = pkgs.writeShellApplication {
     name = "toggle_blur";
     runtimeInputs = [ pkgs.hyprland ];

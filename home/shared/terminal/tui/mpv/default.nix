@@ -3,7 +3,8 @@ let
   inherit (lib) mkIf;
 in
 {
-  home.packages = mkIf pkgs.stdenv.isLinux [ pkgs.celluloid ];
+  # https://celluloid-player.github.io/
+  home.packages = mkIf pkgs.stdenv.isLinux [ pkgs.celluloid ]; # gtk wrapper from gnome around mpv
   # TODO: https://github.com/Sly-Harvey/NixOS/blob/master/modules/programs/media/mpv/default.nix
   # https://kokomins.wordpress.com/2019/10/14/mpv-config-guide/
   # https://www.reddit.com/r/mpv/comments/16nlrjh/new_quality_profiles_have_been_added_to_mpv/

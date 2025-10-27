@@ -17,6 +17,7 @@
   };
 
   networking = {
+    # TODO: applicationFirefall
     wakeOnLan.enable = false;
     dns = [
       # see https://developers.cloudflare.com/1.1.1.1/ip-addresses/#1111

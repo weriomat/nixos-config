@@ -91,7 +91,7 @@ in
           ",XF86AudioPrev, exec, ${getExe pkgs.playerctl} previous"
         ]
         (mkIf globals.laptop [
-          ",XF86MonBrightnessUp, exec, ${getExe pkgs.brightnessctl} set +5%"
+          ",XF86MonBrightnessUp, exec, ${getExe pkgs.brightnessctl} set +5%" # TODO: https://github.com/ErikReider/SwayOSD + https://github.com/basecamp/omarchy/blob/f5cd7a4237ca4aad549a6225c472e97d58a825dd/default/hypr/bindings/media.conf
           ",XF86MonBrightnessDown, exec, ${getExe pkgs.brightnessctl} set 5%-"
 
         ])
