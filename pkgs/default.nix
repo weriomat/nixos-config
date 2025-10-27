@@ -7,5 +7,4 @@
   vikunja-desktop = pkgs.callPackage ./vikunja-desktop { };
   languagetool-ngram-ende = pkgs.callPackage ./languagetool-ngrams { };
   languagetool-ff-model = pkgs.callPackage ./languagetool-ff-model { };
-  catppuccin-supersonic = pkgs.callPackage ./catppuccin-supersonic { };
 }
