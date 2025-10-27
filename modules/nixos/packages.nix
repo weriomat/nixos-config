@@ -18,6 +18,7 @@ in
     # procs
     # https://gitlab.freedesktop.org/mstoeckl/waypipe
     environment.systemPackages = with pkgs; [
+      gnome-terminal # replacement terminal if kitty fails
       # CLI
       devenv # nix shell -> TODO: contribute
       duf # df alternative
