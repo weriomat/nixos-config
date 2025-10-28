@@ -51,6 +51,17 @@ in
     };
   };
 
+  # from: https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/208dc6d96520c96136932e6b5a339b7112e3f2fb/nixos/display-manager.nix
+  users.users.greeter = {
+    isNormalUser = false;
+    description = "greetd greeter user";
+    extraGroups = [
+      "video"
+      "audio"
+    ];
+    linger = true;
+  };
+
   # portals managed by hm
   xdg.terminal-exec = {
     enable = true;
