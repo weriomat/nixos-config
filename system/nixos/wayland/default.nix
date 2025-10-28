@@ -78,10 +78,16 @@ in
       # Enable polkit for system wide auth, required as part of gnome-compat
       services.polkit-gnome-authentication-agent-1 = {
         description = "Gnome polkit agent";
+        wantedBy = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
         partOf = [ "graphical-session.target" ];
         script = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         unitConfig = {
           ConditionUser = "!@system";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+          Type = "simple";
         };
       };
 
