@@ -1,0 +1,4 @@
+{ ... }:
+{
+  imports = [ ./usbguard-dbus.nix ];
+}

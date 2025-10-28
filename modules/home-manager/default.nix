@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ./apps ];
+  imports = [
+    ./apps
+    ./services
+  ];
 }

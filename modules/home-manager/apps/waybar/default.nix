@@ -149,6 +149,8 @@ in
       "$mainMod SHIFT, B, exec, ${getExe' pkgs.toybox "pkill"} -SIGUSR1 .waybar-wrapped"
     ];
 
+    services.usbguard-dbus.enable = true;
+
     catppuccin.waybar = {
       enable = true;
       flavor = "mocha";
@@ -187,6 +189,7 @@ in
               "memory"
               "disk"
               "pulseaudio"
+              "custom/usbguard"
               "network"
               "clock"
             ]
@@ -197,6 +200,7 @@ in
               "memory"
               "disk"
               "pulseaudio"
+              "custom/usbguard"
               "network"
               "clock"
             ];
@@ -212,6 +216,15 @@ in
         "custom/yubikey" = {
           exec = getExe pkgs.waybar-yubikey;
           return-type = "json";
+        };
+
+        # from: https://github.com/max-baz/dotfiles/blob/77d345632ff6b5970612147db71da64361a6df3e/modules/linux/waybar.nix
+        "custom/usbguard" = {
+          format = "  {text}";
+          exec = getExe pkgs.waybar-usbguard-wrapped + " -listen";
+          return-type = "json";
+          on-click = getExe pkgs.waybar-usbguard-wrapped + " -accept";
+          on-click-right = getExe pkgs.waybar-usbguard-wrapped + " -reject";
         };
 
         # TODO: upower
@@ -429,13 +442,20 @@ in
         }
 
         #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk, #custom-audio_idle_inhibitor,
-        #custom-yubikey, #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward {
+        #custom-yubikey, #custom-usbguard, #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward {
             background: ${config.waybar.tertiary_background_hex};
             font-weight: bold;
             margin: 5px 0px;
         }
 
         #battery {
+            color:${config.waybar.tertiary_accent};
+            border-radius: 0px 0 0px 0px;
+            padding-left: 9px;
+            padding-right: 9px;
+        }
+
+        #custom-usbguard {
             color:${config.waybar.tertiary_accent};
             border-radius: 0px 0 0px 0px;
             padding-left: 9px;
@@ -457,12 +477,14 @@ in
             padding-right: 9px;
             margin-left: 7px;
         }
+
         #memory {
             color: ${config.waybar.tertiary_accent};
             border-radius: 0px 0 0px 0px;
             padding-left: 9px;
             padding-right: 9px;
         }
+
         #disk {
             color: ${config.waybar.tertiary_accent};
             border-radius: 0px 24px 10px 0px;
