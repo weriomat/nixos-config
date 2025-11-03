@@ -11,8 +11,8 @@ buildGoModule {
   src = fetchFromGitHub {
     owner = "weriomat";
     repo = "usbguard-dbus";
-    rev = "3d8332b0c203025ea84e8e057e2a062c163db5d7";
-    hash = "sha256-CC4HV1clRPz3ljetm+Oaz1Sc+F2OXxgHlunKBGv4Q0U=";
+    rev = "533ffe1271894c94c13af0a0a1ed95c16f2d5ed7";
+    hash = "sha256-UUt24EPTLg3qEe5pLwMk3DfLxyCltemvVV07jLFPVSc=";
   };
 
   vendorHash = null;
