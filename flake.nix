@@ -5,7 +5,12 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    utils.url = "github:numtide/flake-utils";
+
+    systems.url = "github:nix-systems/default";
+    utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
+    };
 
     # hm
     home-manager = {
