@@ -17,7 +17,7 @@
   # TODO: setup email with host
 
   # TODO: smartd for other hosts
-  # TODO: upstream
+
   # TODO: https://rair.dev/zfs-smart-ntfy/
   sops.secrets."ntfy" = { };
 
