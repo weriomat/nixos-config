@@ -5,6 +5,7 @@
     ./borg.nix
     ./dictionaries.nix
     ./documentation.nix
+    ./element.nix
     ./flatpak.nix
     ./fonts.nix
     ./graphical.nix
