@@ -10,6 +10,7 @@
     ./fonts.nix
     ./graphical.nix
     ./keyboard.nix
+    ./keyring.nix
     ./languagetool.nix
     ./networking.nix
     ./nix.nix
