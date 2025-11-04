@@ -238,7 +238,7 @@ in
           tooltip-format = "{}\nClick to reload Waybar";
           on-click = "${getExe' globals.systemd "systemdctl"} restart --user waybar";
           format = ''<span color="#fab387">{icon}</span> {capacity}%'';
-          format-charging = ''<span color="#a6e3a1">{icon}/span> {capacity}%'';
+          format-charging = ''<span color="#a6e3a1">{icon}</span> {capacity}%'';
           format-warning = ''<span color="#a6e3a1"></span> {capacity}%'';
           format-full = "Charged ";
           format-plugged = "󱘖 {capacity}%";
