@@ -18,7 +18,6 @@
     usbguard-notifier.enable = true; # notifications when a new usb device appears/ disappears
 
     fwupd.enable = true; # Firmware updates
-    protonmail-bridge.enable = true;
     fstrim.enable = lib.mkDefault true; # ssd thingy
   };
 
