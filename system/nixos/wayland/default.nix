@@ -33,7 +33,10 @@ in
       ];
     };
 
-    dbus.enable = true;
+    dbus = {
+      enable = true;
+      implementation = "broker";
+    };
     gvfs.enable = true;
 
     # display Manager
