@@ -22,6 +22,8 @@
   sops.secrets."ntfy" = { };
 
   services = {
+    element-desktop.enable = true;
+
     # TODO: setup mail as a relay though vps
     msmartd.enable = true;
 
