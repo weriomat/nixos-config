@@ -45,18 +45,11 @@
     pueue = {
       enable = true;
       settings = {
-        daemon = {
-          default_parallel_tasks = 2;
-        };
-        client = {
-          dark_mode = true;
-        };
+        daemon.default_parallel_tasks = 2;
+        client.dark_mode = true;
       };
     };
   };
-
-  # TODO: all good things with pdf
-  # services.signaturepdf = {};
 
   manual = {
     html.enable = true; # `home-manager-help`
