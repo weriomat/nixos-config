@@ -347,9 +347,8 @@ in
           tooltip = true;
         };
         network = {
-          #         format-icons = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
-          format-wifi = "  {signalStrength}% <span color='#589df6'>⇵</span>";
-          format-ethernet = "󰀂  <span color='#589df6'>⇵</span> {bandwidthUpBits}/{bandwidthDownBits}";
+          format-wifi = "  {signalStrength}%";
+          format-ethernet = "󰀂 ";
           tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
           format-linked = "{ifname} (No IP)";
           format-disconnected = "󰖪 ";
