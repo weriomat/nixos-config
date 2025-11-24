@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -21,7 +22,13 @@
     fstrim.enable = lib.mkDefault true; # ssd thingy
   };
 
+  # set path for nix builds
+  nix.settings.extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
+
   programs = {
+    # cache c compilations
+    ccache.enable = true;
+
     # detect when a yubikey needs a touch -> via notify-send/ waybar module
     yubikey-touch-detector.enable = true;
 
