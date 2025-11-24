@@ -367,6 +367,7 @@ in
         };
       };
 
+      # keep in mind that kitty will intercept inputs
       keys.normal = {
         space = {
           w = ":w";
@@ -375,7 +376,6 @@ in
         "{" = "goto_prev_paragraph";
         "}" = "goto_next_paragraph";
         # better window naivgation
-        # TODO: fix this
         "C-h" = "jump_view_left";
         "C-j" = "jump_view_down";
         "C-k" = "jump_view_up";

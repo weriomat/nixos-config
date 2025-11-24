@@ -47,15 +47,15 @@ in
         # new window with same pwd
         "ctrl+shift+enter" = "launch --cwd=current";
         # Vim movement in windows
-        "ctrl+h" = "neighboring_window left";
-        "ctrl+l" = "neighboring_window right";
-        "ctrl+j" = "neighboring_window down";
-        "ctrl+k" = "neighboring_window up";
+        "ctrl+shift+h" = "neighboring_window left";
+        "ctrl+shift+l" = "neighboring_window right";
+        "ctrl+shift+j" = "neighboring_window down";
+        "ctrl+shift+k" = "neighboring_window up";
         # prev active window
-        "ctrl+p" = "nth_window -1";
+        "ctrl+shift+p" = "nth_window -1";
         # window layouts
-        "ctrl+a" = "toggle_layout horizontal";
-        "ctrl+x" = "toggle_layout stack";
+        "ctrl+shift+a" = "toggle_layout horizontal";
+        "ctrl+shift+x" = "toggle_layout stack";
         "ctrl+shift+o" = "next_layout";
         # resizing
         "ctrl+left" = "resize_window wider";
@@ -65,8 +65,8 @@ in
         # reset all windows in the tab to default sizes
         "ctrl+home" = "resize_window reset";
         # move through windows
-        "ctrl+shift+l" = "next_tab";
-        "ctrl+shift+h" = "previous_tab";
+        # "ctrl+shift+l" = "next_tab";
+        # "ctrl+shift+h" = "previous_tab";
       };
     };
   };
