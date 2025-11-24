@@ -3,6 +3,7 @@
   imports = [
     ./bat
     ./btop
+    ./direnv
     ./eza
     ./fastfetch
     ./fzf
