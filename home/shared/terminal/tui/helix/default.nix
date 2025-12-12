@@ -11,6 +11,7 @@ in
 {
   home.packages = [
     pkgs.cmake-language-server # cmake
+    pkgs.neocmakelsp
     pkgs.lua-language-server # lua
     pkgs.taplo # toml
     pkgs.delve # go debugger
