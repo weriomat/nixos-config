@@ -149,11 +149,12 @@
               check-json.enable = true;
 
               # commits
-              convco.enable = true;
+              # convco.enable = true;
             };
           };
           formatting = treefmtEval.config.build.check self;
         };
+        # TODO: templates https://github.com/Sly-Harvey/NixOS/blob/master/dev-shells/rust/flake.nix
         devShells =
           let
             pkgs = import nixpkgs { inherit system; };
