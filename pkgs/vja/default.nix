@@ -1,21 +1,46 @@
 {
-  buildPythonPackage,
-  fetchPypi,
   lib,
+  python3Packages,
+  fetchPypi,
+  installShellFiles,
+  stdenv,
 }:
-buildPythonPackage rec {
+python3Packages.buildPythonApplication rec {
   pname = "vja";
   version = "4.10.1";
+  pyproject = true;
 
   src = fetchPypi {
     inherit pname version;
-    hash = lib.fakeHash;
+    hash = "sha256-TST+r5GGhylxTYcD+mDYlx89cuw25gn4Zgft7gsFVuw=";
   };
-  # src = fetchFromGitLab {
-  #   owner = "ce72";
-  #   repo = "vja";
-  #   rev = "c409c102fcc026d2fd7b349ad75c8bb7832d0ea2";
-  #   hash = "sha256-Jiuw13cjK1usnlllnMDWv8EFPe813HmwjhAsuMnNozU=";
-  # };
-  pyproject = true;
+
+  build-system = [ python3Packages.setuptools ];
+
+  dependencies = with python3Packages; [
+    click
+    click-aliases
+    requests
+    parsedatetime
+    python-dateutil
+  ];
+
+  nativeBuildInputs = [ installShellFiles ];
+
+  postInstall = lib.optionalString (stdenv.hostPlatform == stdenv.buildPlatform) ''
+    installShellCompletion --cmd vja \
+      --bash <(_VJA_COMPLETE=bash_source $out/bin/vja) \
+      --zsh <(_VJA_COMPLETE=zsh_source $out/bin/vja) \
+      --fish <(_VJA_COMPLETE=fish_source $out/bin/vja)
+  '';
+
+  meta = {
+    changelog = "https://gitlab.com/ce72/vja/-/blob/${version}/CHANGELOG.md?ref_type=tags";
+    description = "CLI client for Vikunja";
+    homepage = "https://gitlab.com/ce72/vja";
+    license = lib.licenses.gpl3Plus;
+    maintainers = with lib.maintainers; [ weriomat ];
+    mainProgram = "vja";
+    platforms = lib.platforms.linux;
+  };
 }
