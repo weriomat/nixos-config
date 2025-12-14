@@ -15,6 +15,7 @@
     ./networking.nix
     ./nix.nix
     ./packages.nix
+    ./power.nix
     ./protonmail.nix
     ./security.nix
     ./sops.nix
