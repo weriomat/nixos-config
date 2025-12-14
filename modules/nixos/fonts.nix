@@ -18,7 +18,7 @@ in
     fonts = {
       enableDefaultPackages = mkForce false;
       packages = [
-        inputs.monoLisa.packages.${pkgs.system}.default
+        inputs.monoLisa.packages.${pkgs.stdenv.hostPlatform.system}.default
         pkgs.apple-color-emoji
         pkgs.fira
         pkgs.fira-go

@@ -15,7 +15,7 @@ in
     # TODO: configure,automaticcly accept, set permissions, configure settings, https://mozilla.github.io/policy-templates/
     programs.firefox.profiles.${globals.username}.extensions = {
       force = true;
-      packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+      packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
         # privacy
         ublock-origin
         auto-tab-discard

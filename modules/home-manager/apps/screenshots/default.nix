@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkEnableOption mkIf getExe;
-  inherit (inputs.hypr-contrib.packages.${pkgs.system})
+  inherit (inputs.hypr-contrib.packages.${pkgs.stdenv.hostPlatform.system})
     grimblast
     ;
   cfg = config.screenshot;
