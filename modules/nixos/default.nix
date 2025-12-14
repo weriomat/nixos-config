@@ -19,6 +19,7 @@
     ./protonmail.nix
     ./security.nix
     ./sops.nix
+    ./ssh.nix
     ./steam.nix
     ./usbguard-notifier.nix
     ./user.nix

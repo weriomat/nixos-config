@@ -19,7 +19,6 @@ inputs.nixpkgs.lib.nixosSystem {
     ../../system/nixos/configuration.nix
 
     ./hardware-configuration.nix
-    ./ssh.nix
     ./config.nix
 
     # sops
