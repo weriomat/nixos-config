@@ -13,13 +13,15 @@ in
   config = mkIf config.graphical.enable {
     environment.systemPackages = [
       # to categorize
-      pkgs.unstable.cider # apple music player
+      pkgs.unstable.cider-2 # apple music player
+      pkgs.pdfarranger
       pkgs.zotero # research paper assistant, note that the betterbibtex extension was installed manually
       pkgs.gnome-disk-utility
       pkgs.gnome-calendar # calendar
       pkgs.gnome-podcasts
 
       # media
+      pkgs.gimp
       pkgs.smartmontools # smart mon
       pkgs.inkscape # drawing
       pkgs.vlc # video watching
