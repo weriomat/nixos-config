@@ -29,10 +29,6 @@
     flavor = "mocha";
   };
 
-  # git things to take a look at
-  # TODO: git.delta; git.diff-so-fancy; git.hooks
-  # NOTE: maybe this works with githooks nix
-  # TODO: global search git -> what do i have ...
 
   # TODO: nice hud to see gpu stats; with steam
   # programs.mangohud = {};
