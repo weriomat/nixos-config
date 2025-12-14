@@ -47,7 +47,7 @@
     pkgs.nerd-fonts.jetbrains-mono
     pkgs.nerd-fonts.symbols-only
     pkgs.nerd-fonts.fira-mono
-    pkgs.noto-fonts-emoji
+    pkgs.noto-fonts-color-emoji
   ];
 
   gtk.font = {

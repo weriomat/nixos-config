@@ -40,7 +40,8 @@ let
         src
         sourceRoot
         ;
-      hash = "sha256-DZ+qhIAPHjZb7uC70sXAvNsuZqSgfjb0fYZJ7gQBLX4=";
+      fetcherVersion = 2;
+      hash = "sha256-5m+8VChZwC+C0+WBsthHowh0rUM6DSqcC2WOyYvSlCI=";
     };
 
     nativeBuildInputs = [
@@ -79,7 +80,8 @@ stdenv.mkDerivation (finalAttrs: {
       sourceRoot
       pnpmInstallFlags
       ;
-    hash = "sha256-KDi2DGOTdWJNwEabEImHgDTaeqRguE1k/kbqEV9nh3k=";
+    fetcherVersion = 2;
+    hash = "sha256-6SrUyrI+dUSUw3nhqHoNZDHo4nK8RqqdjeWnuRuS8RU=";
   };
 
   env.ELECTRON_SKIP_BINARY_DOWNLOAD = 1;

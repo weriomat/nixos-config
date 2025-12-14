@@ -237,7 +237,6 @@ in
       GOPATH = "${config.xdg.dataHome}/go";
       GOBIN = "${config.xdg.dataHome}/go/bin";
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
-      ZDOTDIR = ''"$HOME"/${config.programs.zsh.dotDir}'';
       IPYTHONDIR = "${config.xdg.dataHome}/ipython";
       JUPYTER_CONFIG_DIR = "${config.xdg.cacheHome}/jupyter";
       ANDROID_USER_HOME = "${config.xdg.dataHome}/android";

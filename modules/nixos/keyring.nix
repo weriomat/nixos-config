@@ -14,7 +14,10 @@ in
     # login.enableGnomeKeyring = true;
 
     # To store the token for auth
-    services.gnome.gnome-keyring.enable = true;
+    services.gnome = {
+      gnome-keyring.enable = true;
+      gcr-ssh-agent.enable = false;
+    };
 
     # viewer of secrets
     programs.seahorse.enable = true;

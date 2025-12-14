@@ -25,7 +25,7 @@ in
       pkgs.smartmontools # smart mon
       pkgs.inkscape # drawing
       pkgs.vlc # video watching
-      pkgs.glxinfo # info about glx
+      pkgs.mesa-demos # info about glx
       pkgs.vdpauinfo # info on vdpau drivers -> which media codecs are supported
 
       # office

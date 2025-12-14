@@ -74,9 +74,7 @@
     };
   };
 
-  # TODO: use https://github.com/NixOS/nixpkgs/blob/release-24.11/nixos/modules/services/hardware/amdvlk.nix
   # TODO: use https://github.com/NixOS/nixpkgs/blob/release-24.11/nixos/modules/services/hardware/amdgpu.nix
-  # TODO: amdvlk?
   hardware = {
     graphics = {
       enable = true;
@@ -96,11 +94,6 @@
       opencl.enable = true;
       initrd.enable = true;
       overdrive.enable = true;
-
-      amdvlk = {
-        enable = true;
-        support32Bit.enable = true;
-      };
     };
   };
 
@@ -111,7 +104,6 @@
   swapDevices = [ { device = "/dev/disk/by-uuid/a1e33eb4-590f-4a58-8d01-97297fa740f8"; } ];
 
   zramSwap.enable = true;
-
   # As per https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
   boot.kernel.sysctl = {
     "vm.swappiness" = 180;

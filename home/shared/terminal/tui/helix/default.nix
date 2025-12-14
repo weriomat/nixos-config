@@ -164,7 +164,7 @@ in
         clangd.args = [ "--enable-config" ];
 
         tofu-ls = {
-          command = getExe pkgs.opentofu-ls;
+          command = getExe pkgs.tofu-ls;
           args = [ "serve" ];
         };
 

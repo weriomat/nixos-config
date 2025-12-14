@@ -45,7 +45,7 @@ in
       settings.default_session =
         let
           session = "${getExe pkgs.hyprland}";
-          tuigreet = "${getExe pkgs.greetd.tuigreet}";
+          tuigreet = "${getExe pkgs.tuigreet}";
         in
         {
           command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' config.systemd.package "systemctl"} poweroff' --power-reboot '${getExe' config.systemd.package "systemctl"} poweroff' --cmd ${session}";

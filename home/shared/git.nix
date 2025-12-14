@@ -58,12 +58,12 @@ in
         git = {
           enable = true;
 
-          userName = cfg.username;
-          userEmail = cfg.email;
+          settings = {
+            user = {
+              inherit (cfg) email;
+              name = cfg.username;
+            };
 
-          lfs.enable = true;
-
-          extraConfig = {
             safe.directory = "*";
             merge.tool = "meld";
             init.defaultBranch = "main";
@@ -85,14 +85,7 @@ in
             merge.conflictStyle = "zdiff3";
           };
 
-          delta = {
-            enable = true;
-            options = {
-              line-numbers = true;
-              hyprlinks = true;
-              true-color = "always";
-            };
-          };
+          lfs.enable = true;
 
           ignores = [
             "result/"
@@ -110,22 +103,48 @@ in
           };
         };
       };
+      programs = {
+        delta = {
+          enable = true;
+          enableGitIntegration = true;
+          options = {
+            line-numbers = true;
+            hyprlinks = true;
+            true-color = "always";
+          };
+        };
+      };
     }
 
     {
       programs.ssh = {
         enable = true;
-        compression = true;
-        controlMaster = "auto";
-        controlPersist = "10m";
-        serverAliveInterval = 60;
-        serverAliveCountMax = 3;
-        extraOptionOverrides.IdentityFile = "${config.home.homeDirectory}/.ssh/id_rsa_yubikey.pub";
 
-        extraConfig = "IdentitiesOnly yes";
+        enableDefaultConfig = false;
 
         matchBlocks = mkMerge [
-          { "github.com".user = "git"; }
+          {
+            "*" = {
+              # this applies to every config
+              compression = true;
+              controlMaster = "auto";
+              controlPersist = "10m";
+              serverAliveInterval = 60;
+              serverAliveCountMax = 3;
+
+              identitiesOnly = true;
+              identityFile = "${config.home.homeDirectory}/.ssh/id_rsa_yubikey.pub";
+
+              # other default values
+              forwardAgent = false;
+              addKeysToAgent = "no";
+              hashKnownHosts = false;
+              userKnownHostsFile = "~/.ssh/known_hosts";
+              controlPath = "~/.ssh/master-%r@%n:%p";
+            };
+
+            "github.com".user = "git";
+          }
           (mkIf cfg.ssh-selfhosted.enable {
             # git services
             "git.tu-berlin.de".user = "git";

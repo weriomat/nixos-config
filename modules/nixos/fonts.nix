@@ -28,7 +28,7 @@ in
         pkgs.nerd-fonts.jetbrains-mono
         pkgs.nerd-fonts.symbols-only
         pkgs.nerd-fonts.fira-mono
-        pkgs.noto-fonts-emoji
+        pkgs.noto-fonts-color-emoji
 
         # default fonts, without emoji
         pkgs.dejavu_fonts
