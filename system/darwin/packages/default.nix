@@ -9,7 +9,6 @@
     cadical
     # calibre
     automake
-    python311Full
     swi-prolog
     z3
     yubikey-manager
@@ -48,13 +47,7 @@
 
     llvm
     llvmPackages_latest.lldb
-    clang_15
-    clang-tools_15
     extra-cmake-modules
     plasma5Packages.extra-cmake-modules
-    # mold
-    #valgrind
-
-    nixfmt-classic
   ];
 }
