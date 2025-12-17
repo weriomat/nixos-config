@@ -20,7 +20,6 @@ in
       pkgs.curl
       pkgs.delta
       pkgs.screen
-      pkgs.dig
       pkgs.netcat-gnu
       pkgs.fd
       pkgs.fzf
