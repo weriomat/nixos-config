@@ -89,7 +89,6 @@
     mac-app-util = {
       url = "github:hraban/mac-app-util";
       inputs.flake-utils.follows = "utils";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
