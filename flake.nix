@@ -156,7 +156,7 @@
         # TODO: templates https://github.com/Sly-Harvey/NixOS/blob/master/dev-shells/rust/flake.nix
         devShells =
           let
-            pkgs = import nixpkgs { inherit system; };
+            pkgs = nixpkgs.legacyPackages.${system};
           in
           rec {
             default = deploy;
