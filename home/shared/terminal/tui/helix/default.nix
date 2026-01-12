@@ -89,8 +89,16 @@ in
           ];
         };
 
-        pyright.config.analysis = {
-          typeCheckingMode = "basic";
+        codebook = {
+          command = lib.getExe pkgs.codebook;
+          args = [ "serve" ];
+        };
+
+        pyright.config.analysis.typeCheckingMode = "basic";
+
+        tinymist = {
+          command = getExe pkgs.tinymist;
+          config.preview.background.enabled = true;
         };
 
         # NOTE: LaTeX
@@ -161,7 +169,12 @@ in
         # markdown
         marksman.command = getExe pkgs.marksman;
 
-        clangd.args = [ "--enable-config" ];
+        clangd.args = [
+          "--enable-config"
+          "--clang-tidy"
+          "--experimental-modules-support"
+          "--background-index"
+        ];
 
         tofu-ls = {
           command = getExe pkgs.tofu-ls;
@@ -185,6 +198,7 @@ in
           };
           language-servers = [
             "tofu-ls"
+            "codebook"
             "typos"
           ];
         }
@@ -201,6 +215,7 @@ in
           language-servers = [
             "jdtls"
             "typos"
+            "codebook"
           ];
         }
         {
@@ -213,6 +228,7 @@ in
           language-servers = [
             "tofu-ls"
             "typos"
+            "codebook"
           ];
         }
         {
@@ -228,17 +244,26 @@ in
           language-servers = [
             "taplo"
             "typos"
+            "codebook"
           ];
         }
         {
           name = "c";
           auto-format = true;
-          # TODO: setup clangd + typos
+          language-servers = [
+            "clangd"
+            "typos"
+            "codebook"
+          ];
         }
         {
           name = "cpp";
           auto-format = true;
-          # TODO: setup clangd + typos
+          language-servers = [
+            "clangd"
+            "typos"
+            "codebook"
+          ];
         }
 
         {
@@ -273,6 +298,7 @@ in
             "marksman"
             "ltex"
             "typos"
+            "codebook"
           ];
         }
         {
@@ -287,10 +313,10 @@ in
             command = getExe pkgs.nixfmt-rfc-style;
             args = [ "-q" ];
           };
-          # NOTE: removed nil
           language-servers = [
             "nixd"
             "typos"
+            "codebook"
           ];
         }
         {
@@ -299,6 +325,7 @@ in
           language-servers = [
             "gopls"
             "typos"
+            "codebook"
           ];
         }
         {
@@ -320,6 +347,17 @@ in
             "texlab"
             "ltex"
             "typos"
+            "codebook"
+          ];
+        }
+        {
+          name = "typst";
+          formatter.command = getExe pkgs.typstyle;
+          language-servers = [
+            "tinymist"
+            "ltex"
+            "typos"
+            "codebook"
           ];
         }
         {
@@ -338,6 +376,7 @@ in
             "ruff"
             "pyright"
             "typos"
+            "codebook"
           ];
         }
       ];
@@ -370,6 +409,8 @@ in
 
       # keep in mind that kitty will intercept inputs
       keys.normal = {
+        "C-p" = '':lsp-workspace-command tinymist.pinMain "%sh{realpath %{buffer_name}}"''; # see https://forum.typst.app/t/what-is-the-best-setup-for-using-typst-in-helix-editor/5867/3
+        "C-m" = ":lsp-workspace-command tinymist.startDefaultPreview";
         space = {
           w = ":w";
           q = ":q";
