@@ -10,28 +10,23 @@ let
     laptop = true;
   };
 in
-with inputs;
 # TODO: https://github.com/ivankovnatsky/nixos-config/tree/71f970431793b8bddd7ec9c40681d70fc3cc8a70/modules/darwin
 # TODO: https://github.com/ivankovnatsky/nixos-config/blob/71f970431793b8bddd7ec9c40681d70fc3cc8a70/machines/Ivans-Mac-mini/dns.nix
 # TODO: https://github.com/ryuheechul/dotfiles/blob/c84b700104a0d3de6c21648f56a938478f8fbd79/nix/darwin/configuration.nix
-nix-darwin.lib.darwinSystem {
+inputs.nix-darwin.lib.darwinSystem {
   specialArgs = { inherit inputs outputs globals; };
   modules = [
     ../../system/darwin
-    inputs.mac-app-util.darwinModules.default
     inputs.home-manager.darwinModules.home-manager
     {
       home-manager = {
         extraSpecialArgs = { inherit inputs globals; };
         useGlobalPkgs = true;
         useUserPackages = true;
-        sharedModules = [
-          inputs.arkenfox.hmModules.default
-        ];
+        sharedModules = [ inputs.arkenfox.hmModules.default ];
         users.eliasengel.imports = [
           ../../home/darwin
           ../../modules/home-manager
-          inputs.mac-app-util.homeManagerModules.default
           inputs.nix-index-database.homeModules.nix-index
           inputs.catppuccin.homeModules.catppuccin
         ];
