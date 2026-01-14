@@ -5,6 +5,11 @@
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = with pkgs; [
     localsend
+    rectangle
+    keepassxc
+    bartender
+    aldente
+    dust
     # packages from homebrew
     cadical
     # calibre
