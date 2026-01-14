@@ -153,6 +153,14 @@ in
     }
 
     {
+      services.gpg-agent = {
+        enable = true;
+        enableZshIntegration = true;
+        enableScDaemon = true;
+        enableSshSupport = true;
+        pinentry.package = pkgs.pinentry-gtk2;
+      };
+
       programs.ssh = {
         enable = true;
 
@@ -261,15 +269,5 @@ in
         ];
       };
     }
-
-    (mkIf pkgs.stdenv.hostPlatform.isLinux {
-      services.gpg-agent = {
-        enable = true;
-        enableZshIntegration = true;
-        enableScDaemon = true;
-        enableSshSupport = true;
-        pinentry.package = pkgs.pinentry-gtk2;
-      };
-    })
   ];
 }

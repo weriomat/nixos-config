@@ -18,7 +18,6 @@ nix-darwin.lib.darwinSystem {
   specialArgs = { inherit inputs outputs globals; };
   modules = [
     ../../system/darwin
-    ./ssh.nix
     inputs.mac-app-util.darwinModules.default
     inputs.home-manager.darwinModules.home-manager
     {
