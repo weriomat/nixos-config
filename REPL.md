@@ -4,6 +4,8 @@
 nix repl
 
 nixos-rebuild repl # instance config
+nh darwin repl # nh does provide the same facilities
+nh os repl
 ```
 
 ```nix
