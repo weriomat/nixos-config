@@ -29,7 +29,7 @@ in
       pkgs.vdpauinfo # info on vdpau drivers -> which media codecs are supported
 
       # office
-      pkgs.vikunja-desktop # todo-app
+      pkgs.unstable.vikunja-desktop # todo-app
       pkgs.libreoffice # office
       pkgs.pandoc # convert between documents
       pkgs.keepassxc # password manager
