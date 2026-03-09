@@ -53,6 +53,9 @@ in
     "stayfocused, title:MainPicker"
     "dimaround, title:MainPicker"
     "center, title:MainPicker"
+
+    # ghidra
+    "tile, class:ghidra-Ghidra"
   ];
 
   #   # windowrule
