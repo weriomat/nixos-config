@@ -20,6 +20,7 @@ in
     environment.systemPackages = with pkgs; [
       gnome-terminal # replacement terminal if kitty fails
       unixtools.netstat
+      wireguard-tools
       # CLI
       devenv # nix shell -> TODO: contribute
       duf # df alternative
