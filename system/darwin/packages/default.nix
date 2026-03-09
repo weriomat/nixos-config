@@ -1,15 +1,43 @@
 { pkgs, ... }:
 {
-  # TODO: enable documentation
+  ###
+  # Not installed via nix
+  # Not available: cisco (tu vpn), powerpoint, pearcleaner, qmk toolbox, radio silence, via, vivid, vorta, wireguard
+  # Broken package: mullvad-vpn
+  # All licences can be found in the vaultwarden
+  ###
+
   # TODO: merge with nixos conf
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = with pkgs; [
-    localsend
-    rectangle
-    keepassxc
-    bartender
-    aldente
-    dust
+    # macos only
+    alt-tab-macos # alt tab with windows like overview
+    stats # stats in bar
+    monitorcontrol # control brightness of attached monitors
+    (airbuddy.overrideAttrs (_: {
+      src = fetchurl {
+        name = "AirBuddy.dmg";
+        url = "https://download.airbuddy.app/WebDownload/AirBuddy_v2.7.4.dmg";
+        hash = "sha256-envrZqcWASJN8j7LTdbOpE9RjOe3yeX8FzFYCxU/QlQ=";
+      };
+    })) # infos about ble devices
+    rectangle # window manager
+    bartender # bar manager
+    aldente # battery saver
+    (coconutbattery.overrideAttrs (_: {
+      src = fetchzip {
+        url = "https://coconut-flavour.com/downloads/coconutBattery_${
+          lib.replaceStrings [ "." "," ] [ "" "_" ] "4.2.0,192"
+        }.zip";
+        hash = "sha256-pzfg+RAlCbEaBHiU/ZQcBf0Tg0BCfs0UHh62dFQVbz0=";
+      };
+    })) # battery info
+
+    # shared
+    localsend # airdrop
+    keepassxc # password manager
+    dust # newer "du"
+
     # packages from homebrew
     cadical
     # calibre
@@ -35,7 +63,6 @@
     gnupg
 
     # now other packages
-    kitty
     vim
     wget
     btop
