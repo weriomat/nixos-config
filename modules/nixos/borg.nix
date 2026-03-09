@@ -102,7 +102,7 @@ in
           "*.img"
           "*.iso" # dont backup iso images
           "/home/*/Pictures/icloud_bak" # dont backup photo backup
-          "/home/*/Documents/exports_cloud" # dont backup backups
+          "/home/*/Documents/backups" # dont backup backups
           "/home/*/P/nix/nixpkgs" # dont backup nixpkgs
           "**/node_modules" # node modules
           "**/dist" # electron stuff i think
