@@ -23,6 +23,7 @@ in
       wireguard-tools
       # CLI
       devenv # nix shell -> TODO: contribute
+      unstable.siomon
       duf # df alternative
       ncdu # du alternative
       dust # du alternative
