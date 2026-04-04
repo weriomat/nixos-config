@@ -232,22 +232,33 @@ in
   config = mkIf pkgs.stdenv.isLinux {
     home.sessionVariables = {
       XDG_RUNTIME_DIR = "/run/user/${toString globals.uid}";
-      RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
+
       _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java'';
+      GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
+
       GOPATH = "${config.xdg.dataHome}/go";
       GOBIN = "${config.xdg.dataHome}/go/bin";
+
+      RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
       CARGO_HOME = "${config.xdg.dataHome}/cargo";
+      CARGO_TARGET_DIR = "${config.xdg.stateHome}/cargo";
+      CARGO_BUILD_BUILD_DIR = "${config.xdg.stateHome}/cargo";
+
       IPYTHONDIR = "${config.xdg.dataHome}/ipython";
       JUPYTER_CONFIG_DIR = "${config.xdg.cacheHome}/jupyter";
+
       ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
+
       TEXMFHOME = "${config.xdg.stateHome}/texmf";
       TEXMFVAR = "${config.xdg.cacheHome}/texmf";
       TEXMFCONFIG = "${config.xdg.stateHome}/texmf";
+
       CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+
       NPM_CONFIG_USERCONFIG = "${config.xdg.dataHome}/npm/npmrc";
       NPM_CONFIG_CACHE = "${config.xdg.dataHome}/npm";
       NPM_CONFIG_PREFIX = "${config.xdg.stateHome}/npm";
-      GRADLE_USER_HOME = "${config.xdg.dataHome}/gradle";
+
       BUNDLE_USER_CONFIG = "${config.xdg.stateHome}/bundle";
       BUNDLE_USER_CACHE = "${config.xdg.cacheHome}/bundle";
       BUNDLE_USER_PLUGIN = "${config.xdg.dataHome}/bundle";
