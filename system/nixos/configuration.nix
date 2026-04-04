@@ -42,9 +42,6 @@
     # NOTE: this will punch a hole through the firewall
     localsend.enable = true;
 
-    # nice gui for cooling temps
-    coolercontrol.enable = true;
-
     # the shared of objects of the listed libs will be provided
     # via the environment variable `NIX_LD_LIBRARY_PATH`
     nix-ld = {
