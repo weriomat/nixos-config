@@ -74,11 +74,6 @@ in
 
         wget = ''${pkgs.wget} --hsts-file="$XDG_DATA_HOME/wget-hsts"'';
 
-        # check nix flake
-        check-flake = "cd $HOME/.nixos/nixos && nix flake check && cd -";
-        # format nix flake
-        format-flake = "cd $HOME/.nixos/nixos && nix fmt && cd -";
-
         # nix shell
         nd = "nix develop -c zsh";
 
