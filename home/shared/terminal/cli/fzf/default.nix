@@ -35,9 +35,6 @@
 
     };
     zsh.envExtra = lib.mkAfter ''
-      # Man without options will use fzf to select a page
-      zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-
       function fzf-man(){
         MAN="${pkgs.bat-extras.batman}/bin/batman"
         if [ -n "$1" ]; then
