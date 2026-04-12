@@ -89,11 +89,6 @@ in
           ];
         };
 
-        codebook = {
-          command = lib.getExe pkgs.codebook;
-          args = [ "serve" ];
-        };
-
         pyright.config.analysis.typeCheckingMode = "basic";
 
         tinymist = {
@@ -198,7 +193,6 @@ in
           };
           language-servers = [
             "tofu-ls"
-            "codebook"
             "typos"
           ];
         }
@@ -215,7 +209,6 @@ in
           language-servers = [
             "jdtls"
             "typos"
-            "codebook"
           ];
         }
         {
@@ -228,7 +221,6 @@ in
           language-servers = [
             "tofu-ls"
             "typos"
-            "codebook"
           ];
         }
         {
@@ -244,7 +236,6 @@ in
           language-servers = [
             "taplo"
             "typos"
-            "codebook"
           ];
         }
         {
@@ -253,7 +244,6 @@ in
           language-servers = [
             "clangd"
             "typos"
-            "codebook"
           ];
         }
         {
@@ -262,7 +252,6 @@ in
           language-servers = [
             "clangd"
             "typos"
-            "codebook"
           ];
         }
 
@@ -298,7 +287,6 @@ in
             "marksman"
             "ltex"
             "typos"
-            "codebook"
           ];
         }
         {
@@ -316,7 +304,6 @@ in
           language-servers = [
             "nixd"
             "typos"
-            "codebook"
           ];
         }
         {
@@ -325,7 +312,6 @@ in
           language-servers = [
             "gopls"
             "typos"
-            "codebook"
           ];
         }
         {
@@ -347,7 +333,6 @@ in
             "texlab"
             "ltex"
             "typos"
-            "codebook"
           ];
         }
         {
@@ -357,7 +342,6 @@ in
             "tinymist"
             "ltex"
             "typos"
-            "codebook"
           ];
         }
         {
@@ -376,7 +360,6 @@ in
             "ruff"
             "pyright"
             "typos"
-            "codebook"
           ];
         }
       ];
