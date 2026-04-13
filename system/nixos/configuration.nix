@@ -23,6 +23,8 @@
     ddccontrol.enable = true; # control external screens
   };
 
+  environment.systemPackages = [ pkgs.ddcutil ];
+
   # set path for nix builds
   nix.settings.extra-sandbox-paths = [ config.programs.ccache.cacheDir ];
 
