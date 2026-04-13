@@ -20,6 +20,7 @@
 
     fwupd.enable = true; # Firmware updates
     fstrim.enable = lib.mkDefault true; # ssd thingy
+    ddccontrol.enable = true; # control external screens
   };
 
   # set path for nix builds

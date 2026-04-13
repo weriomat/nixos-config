@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   globals,
   ...
@@ -23,6 +24,7 @@
         "video"
         "disk"
         "input"
+        config.hardware.i2c.group
       ];
       hashedPassword = "$y$j9T$NbSJKRlQhIdwZauz4m2uX1$AdlYNcSkXN2DWZ0Q/kETh/lUrUGS5.3IMs.ReoLD2NB";
       homeMode = "755";
