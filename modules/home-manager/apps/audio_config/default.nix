@@ -33,10 +33,7 @@ in
     # services.pasystray = {};
     # services.easyeffects = {};
 
-    services.swayosd = {
-      enable = true;
-      package = pkgs.unstable.swayosd;
-    };
+    services.swayosd.enable = true;
 
     wayland.windowManager.hyprland.settings = {
       exec-once = [
