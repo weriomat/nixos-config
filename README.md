@@ -45,12 +45,24 @@ dbus-send --system --print-reply --dest=org.freedesktop.NetworkManager \
 
 ## CAPTCHA PORTAL DB
 
-By default their dns server is `172.18.0.1`.
+By default, their dns server is `172.18.0.1`.
 
 ```bash
 dig login.wifionice.de @172.18.0.1
 firefox https://<ans>
 firefox https://10.101.64.121
+```
+
+## Captacha ODEG
+
+```bash
+sudo resolvectl dns wlan0 10.2.12.2
+sudo resolvectl dnsovertls wlan0 no
+
+firefox https://hotspot-local.unwired.at
+
+sudo resolvectl dnsovertls wlan0 yes
+sudo resolvectl dns wlan0 ''
 ```
 
 ## Thank you notice
