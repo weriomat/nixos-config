@@ -11,7 +11,7 @@ in
     allowOrigin = "*";
     settings = {
       fasttextModel = "${pkgs.languagetool-ff-model}/share/languagetool/fasttextmodel/lid.176.bin";
-      fasttextBinary = "${getExe pkgs.fasttext}";
+      fasttextBinary = getExe pkgs.fasttext;
       cacheSize = 2056;
       languageModel = "${pkgs.languagetool-ngram-ende}/share/languagetool/ngrams";
     };
