@@ -55,11 +55,18 @@ in
         ])
       ];
 
-      bind = [
-        ",XF86AudioMute, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --output-volume mute-toggle"
-        ",XF86AudioMicMute, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --input-volume mute-toggle"
-        ",XF86AudioPlay, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --playerctl play-pause"
-        ",XF86AudioStop, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --playerctl stop"
+      bind = mkMerge [
+        [
+          ",XF86AudioMute, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --output-volume mute-toggle"
+          ",XF86AudioMicMute, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --input-volume mute-toggle"
+          ",XF86AudioPlay, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --playerctl play-pause"
+          ",XF86AudioStop, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --playerctl stop"
+        ]
+
+        (mkIf globals.laptop [
+          "CTRL,XF86MonBrightnessUp, exec, ${getExe pkgs.external-monitor-brightness} -s --inc 5"
+          "CTRL,XF86MonBrightnessDown, exec, ${getExe pkgs.external-monitor-brightness} -s --dec 5"
+        ])
       ];
 
       # TODO: maybe this in per host config as well? `hyprctl clients`

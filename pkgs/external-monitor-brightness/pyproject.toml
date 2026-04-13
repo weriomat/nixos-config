@@ -1,0 +1,14 @@
+[project]
+name = "external-monitor-brightness"
+version = "0.1.0"
+description = "Add your description here"
+authors = [{ name = "weriomat", email = "engel@weriomat.com" }]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+external-monitor-brightness = "external_monitor_brightness.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9.2"]
+build-backend = "uv_build"

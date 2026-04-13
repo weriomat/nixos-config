@@ -3,6 +3,7 @@ rec {
   apple-color-emoji = pkgs.callPackage ./apple-color-emoji { };
   catppuccin-supersonic = pkgs.callPackage ./catppuccin-supersonic { };
   cf-terraforming = pkgs.callPackage ./cf-terraforming { };
+  external-monitor-brightness = pkgs.callPackage ./external-monitor-brightness { };
   languagetool-ff-model = pkgs.callPackage ./languagetool-ff-model { };
   languagetool-ngram-ende = pkgs.callPackage ./languagetool-ngrams { };
   usbguard-dbus = pkgs.callPackage ./usbguard-dbus { };
