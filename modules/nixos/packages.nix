@@ -18,11 +18,14 @@ in
     # procs
     # https://gitlab.freedesktop.org/mstoeckl/waypipe
     environment.systemPackages = with pkgs; [
+      sqlite # if nix db fails
+      iotop
       gnome-terminal # replacement terminal if kitty fails
       unixtools.netstat
       wireguard-tools
       # CLI
       devenv # nix shell -> TODO: contribute
+      caligula
       unstable.siomon
       duf # df alternative
       ncdu # du alternative
