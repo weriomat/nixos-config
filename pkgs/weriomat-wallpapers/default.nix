@@ -42,7 +42,6 @@ stdenv.mkDerivation {
     homepage = "https://github.com/weriomat/wallpapers";
     license = lib.licenses.mit;
     maintainers = [ lib.maintainers.weriomat ];
-    mainProgram = "wallpapers";
     platforms = lib.platforms.all;
   };
 }
