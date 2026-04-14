@@ -1,4 +1,3 @@
-# TODO: https://github.com/niksingh710/ndots/blob/master/home/optional/wm/hyprland/waybar/default.nix
 {
   globals,
   config,
@@ -50,99 +49,6 @@ in
     };
   };
 
-  # https://gist.github.com/genofire/07234e810fcd16f9077710d4303f9a9e
-  # TODO: waybar modules like upower and stuff
-  # TODO: take a look at https://github.com/niksingh710/ndots/blob/master/home/optional/wm/hyprland/waybar/default.nix
-  # TODO: https://github.com/Goxore/nixconf/blob/main/homeManagerModules/features/waybar/default.nix
-  # "custom/battery" = {
-  #       exec = "${scripts.battery}/bin/script";
-  #       format = " 󰁹 {}";
-  #       interval = 10;
-  #     };  battery = pkgs.writeShellScriptBin "script" ''
-  #   cat /sys/class/power_supply/BAT0/capacity
-  # '';
-
-  # bluetooth = {
-  #     format = "";
-  #     format-connected = " {num_connections}";
-  #     format-disabled = "";
-  #     tooltip-format = " {device_alias}";
-  #     tooltip-format-connected = "{device_enumerate}";
-  #     tooltip-format-enumerate-connected = " {device_alias}";
-  #   };
-
-  #   mpris = {
-  #     format = "DEFAULT: {player_icon} {dynamic}";
-  #     format-paused = "DEFAULT: {status_icon} <i>{dynamic}</i>";
-  #     player-icons = {
-  #       "default" = "▶";
-  #       "mpv" = "🎵";
-  #     };
-  #     status-icons = {
-  #       "paused" = "⏸";
-  #     };
-  #     # "ignored-players": ["firefox"]
-  #   };
-
-  # TODO: https://github.com/danth/stylix/blob/master/modules/waybar/hm.nix
-
-  # TODO: here
-  #  memory = {
-  #     format = "󰾆 {percentage}%";
-  #     format-alt = "󰾅 {used}GB";
-  #     interval = 30;
-  #     max-length = 10;
-  #     tooltip = true;
-  #     tooltip-format = " {used:0.1f}GB/{total:0.1f}GB";
-  #   };
-
-  #   network = {
-  #     format-disconnected = " Disconnected";
-  #     format-ethernet = "󱘖 Wired";
-  #     format-linked = "󱘖 {ifname} (No IP)";
-  #     format-wifi = "󰤨 {essid}";
-  #     interval = 5;
-  #     max-length = 30;
-  #     tooltip-format = "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
-  #   };
-
-  #   pulseaudio = {
-  #     format = "{icon}  {volume}%";
-  #     format-icons = {
-  #       car = " ";
-  #       default = ["" "" ""];
-  #       hands-free = " ";
-  #       headphone = " ";
-  #       headset = " ";
-  #       phone = " ";
-  #       portable = " ";
-  #     };
-  #     format-muted = "婢 {volume}%";
-  #     on-click = "pavucontrol -t 3";
-  #     on-click-middle = "pamixer -t";
-  #     on-scroll-down = "pamixer -d 5";
-  #     on-scroll-up = "pamixer -i 5";
-  #     scroll-step = 5;
-  #     tooltip-format = "{icon} {desc} {volume}%";
-  #   };
-
-  #   "pulseaudio#microphone" = {
-  #     format = "{format_source}";
-  #     format-source = "  {volume}%";
-  #     format-source-muted = "  {volume}%";
-  #     on-click = "pavucontrol -t 4";
-  #     on-click-middle = "pamixer --default-source -t";
-  #     on-scroll-down = "pamixer --default-source -d 5";
-  #     on-scroll-up = "pamixer --default-source -i 5";
-  #     scroll-step = 5;
-  #   };
-
-  #   tray = {
-  #     icon-size = 15;
-  #     spacing = 5;
-  #   };
-  # };
-
   config = mkIf config.waybar.enable {
     # kill waybar
     wayland.windowManager.hyprland.settings.bind = [
@@ -178,32 +84,23 @@ in
           "custom/playerctl#forward"
           "custom/audio_idle_inhibitor"
           "custom/yubikey"
+          "cpu"
+        ]
+        ++ lib.optional globals.laptop "battery"
+        ++ [
+          "memory"
+          "disk"
         ];
         modules-center = [ "hyprland/workspaces" ];
-        modules-right =
-          if globals.laptop then
-            [
-              "tray"
-              "cpu"
-              "battery"
-              "memory"
-              "disk"
-              "pulseaudio"
-              "custom/usbguard"
-              "network"
-              "clock"
-            ]
-          else
-            [
-              "tray"
-              "cpu"
-              "memory"
-              "disk"
-              "pulseaudio"
-              "custom/usbguard"
-              "network"
-              "clock"
-            ];
+        modules-right = [
+          "tray"
+          "pulseaudio"
+          "pulseaudio#microphone"
+          "custom/usbguard"
+          "network"
+          "clock"
+        ];
+
         clock = {
           format = " {:%H:%M}";
           tooltip = "true";
@@ -227,8 +124,6 @@ in
           on-click-right = getExe pkgs.waybar-usbguard-wrapped + " -reject";
         };
 
-        # TODO: upower
-        # TODO: color
         battery = {
           states = {
             warning = 30;
@@ -334,57 +229,70 @@ in
           format = "󰟜 {}%";
           format-alt = "󰟜 {used} GiB"; # 
           interval = 2;
+          tooltip = true;
+          tooltip-format = "󰟜 {used:0.1f}GB/{total:0.1f}GB";
         };
+
         cpu = {
           format = "  {usage}%";
           format-alt = "  {avg_frequency} GHz";
           interval = 2;
         };
+
         disk = {
           path = if globals.laptop then "/home" else "/";
           format = "󰋊 {percentage_used}%";
           interval = 60;
           tooltip = true;
         };
+
         network = {
-          format-wifi = "  {signalStrength}%";
+          format-wifi = "  {essid}";
           format-ethernet = "󰀂 ";
-          tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
+          tooltip-format = "{ifname} ({ipaddr}) via {gwaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}";
           format-linked = "{ifname} (No IP)";
           format-disconnected = "󰖪 ";
-          on-click = "${getExe' pkgs.networkmanagerapplet "nm-connection-editor"}";
+          on-click = "${getExe' pkgs.util-linux "rfkill"} block wlan && ${getExe' pkgs.util-linux "rfkill"} unblock wlan";
+          max-length = 30;
+          interval = 5;
         };
+
         tray = {
           icon-size = 20;
           spacing = 8;
         };
-        #       "pulseaudio" = {
-        #         format = "{icon} {volume}% {format_source}";
-        #         format-bluetooth = "{volume}% {icon} {format_source}";
-        #         format-bluetooth-muted = " {icon} {format_source}";
-        #         format-muted = " {format_source}";
-        #         format-source = " {volume}%";
-        #         format-source-muted = "";
-        #         format-icons = {
-        #           headphone = "";
-        #           hands-free = "";
-        #           headset = "";
-        #           phone = "";
-        #           portable = "";
-        #           car = "";
-        #           default = ["" "" ""];
-        #         };
-        #       };
+
         pulseaudio = {
           format = "{icon} {volume}%";
-          format-muted = "󰖁 ";
-          format-icons = {
-            default = [ " " ];
-          };
+          format-muted = "󰖁";
+          format-bluetooth = "{volume}% {icon} {format_source}";
+          format-bluetooth-muted = " {icon} {format_source}";
+
+          format-icons.default = [ " " ];
+
           scroll-step = 5;
-          on-click = "${getExe pkgs.pavucontrol}";
+
+          on-click = "${getExe pkgs.pavucontrol} -t 3";
+          # these do the same thing, as muscle memory
+          on-click-middle = "${getExe pkgs.pamixer} -t";
           on-click-right = "${getExe pkgs.pamixer} -t";
         };
+
+        "pulseaudio#microphone" = {
+          format = "{format_source}";
+          format-source = " {volume}%";
+          format-source-muted = "";
+
+          scroll-step = 5;
+          on-scroll-down = "${getExe pkgs.pamixer} --default-source -d 5";
+          on-scroll-up = "${getExe pkgs.pamixer} --default-source -i 5";
+
+          on-click = "${getExe pkgs.pavucontrol} -t 4";
+          # these do the same thing, as muscle memory
+          on-click-middle = "${getExe pkgs.pamixer} --default-source -t";
+          on-click-right = "${getExe pkgs.pamixer} --default-source -t";
+        };
+
         "custom/launcher" = {
           format = "";
           on-click = "${getExe' pkgs.toybox "pkill"} wofi || ${getExe config.programs.wofi.package} --show drun";
@@ -441,7 +349,7 @@ in
         }
 
         #tray, #pulseaudio, #network, #battery, #cpu, #memory, #disk, #custom-audio_idle_inhibitor,
-        #custom-yubikey, #custom-usbguard, #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward {
+        #custom-yubikey, #custom-usbguard, #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.forward, #pulseaudio.microphone {
             background: ${config.waybar.tertiary_background_hex};
             font-weight: bold;
             margin: 5px 0px;
@@ -454,7 +362,7 @@ in
             padding-right: 9px;
         }
 
-        #custom-usbguard {
+        #custom-usbguard, #pulseaudio.microphone {
             color:${config.waybar.tertiary_accent};
             border-radius: 0px 0 0px 0px;
             padding-left: 9px;
