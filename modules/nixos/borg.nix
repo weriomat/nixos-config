@@ -74,6 +74,7 @@ in
           "/var/log"
           "/etc"
           "/home/${globals.username}"
+          "/nix/var"
         ];
         exclude_patterns = [
           "/home/*/.cache"
@@ -144,11 +145,7 @@ in
     };
     systemd = {
       services.borgmatic = {
-        serviceConfig = {
-          EnvironmentFile = templates.borgmaticCredentials.path;
-          User = "root";
-          Group = "root";
-        };
+        serviceConfig.EnvironmentFile = templates.borgmaticCredentials.path;
 
         path = [
           config.systemd.package # for stopping services
