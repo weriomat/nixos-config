@@ -1,12 +1,15 @@
 {
+  inputs,
   globals,
   pkgs,
   lib,
   config,
   ...
-}: let
-  inherit (lib) mkEnableOption mkIf;
-in {
+}:
+let
+  inherit (lib) mkEnableOption mkIf licenses;
+in
+{
   options.thunderbird.enable = mkEnableOption "Enable Thunderbird";
 
   config = mkIf config.thunderbird.enable {
@@ -167,9 +170,14 @@ in {
     };
 
     home.packages = with pkgs; [protonmail-bridge pass-wayland];
+    catppuccin.thunderbird = {
+      enable = true;
+      profile = globals.username;
+    };
 
     programs.thunderbird = {
       enable = true;
+
       profiles = {
         ${globals.username} = {
           extraConfig = ""; # add to user.js
@@ -178,9 +186,13 @@ in {
           userChrome = ""; # add to user crome css
           userContent = "";
           withExternalGnupg = true;
+          extensions =
+            with inputs.thunderbird-addons.legacyPackages.${pkgs.stdenv.hostPlatform.system}.thunderbird-addons; [
+              (grammar-and-spell-checker.overrideAttrs { meta.license = licenses.free; })
+            ];
         };
       };
-      settings = {};
+      settings = { };
     };
   };
 }
@@ -240,4 +252,3 @@ in {
 #   thunderbird = {enable = true;};
 #   # userName = "";
 # };
-
