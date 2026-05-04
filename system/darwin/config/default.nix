@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   outputs,
   lib,
@@ -45,6 +46,7 @@
       outputs.overlays.unstable-packages
     ];
   };
+
   # Necessary for using flakes on this system.
   nix = {
     channel.enable = false;
@@ -60,16 +62,40 @@
     registry = lib.attrsets.genAttrs (builtins.attrNames inputs) (name: {
       flake = inputs.${name};
     });
-    settings.experimental-features = "nix-command flakes";
-    # checks config for data type mismatches
-    checkConfig = true;
-    # is the default -> all users are allowed -> privileged users always are allowed
+
     settings = {
+      experimental-features = "nix-command flakes";
+
+      use-xdg-base-directories = true;
+      warn-dirty = false;
+
+      # is the default -> all users are allowed -> privileged users always are allowed
       allowed-users = [ "*" ];
       sandbox = true;
+
+      substituters = [
+        "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+        "https://helix.cachix.org"
+        "https://devenv.cachix.org/"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      ];
+
+      extra-substituters = [ "https://devenv.cachix.org" ];
+      extra-trusted-public-keys = [ "" ];
     };
+
+    # checks config for data type mismatches
+    checkConfig = true;
+
     optimise.automatic = true;
     gc.automatic = true;
+  };
 
     linux-builder = {
       enable = true;
