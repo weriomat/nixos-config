@@ -140,6 +140,12 @@
   system.primaryUser = "eliasengel";
 
   services = {
+    # NOTE: self packaged modules
+    protonmail-bridge = {
+      enable = true;
+      logDir = config.users.users.eliasengel.home;
+    };
+
     # Auto upgrade nix package and the daemon service.
     # nix-daemon.enable = true;
 
