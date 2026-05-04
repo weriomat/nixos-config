@@ -17,6 +17,7 @@ inputs.nix-darwin.lib.darwinSystem {
   specialArgs = { inherit inputs outputs globals; };
   modules = [
     ../../system/darwin
+    ../../modules/darwin
     inputs.home-manager.darwinModules.home-manager
     {
       home-manager = {

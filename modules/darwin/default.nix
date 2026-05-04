@@ -1,0 +1,4 @@
+{ ... }:
+{
+  imports = [ ./proton-bridge.nix ];
+}
