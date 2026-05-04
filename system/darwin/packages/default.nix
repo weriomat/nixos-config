@@ -11,6 +11,8 @@
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = with pkgs; [
     # macos only
+    lima
+    dogdns
     alt-tab-macos # alt tab with windows like overview
     stats # stats in bar
     monitorcontrol # control brightness of attached monitors
@@ -34,9 +36,13 @@
     })) # battery info
 
     # shared
+    unstable.devenv
     localsend # airdrop
     keepassxc # password manager
     dust # newer "du"
+    glow # fancy markdown viewer
+    duf # df -> TODO: size is not reported right
+    zotero
 
     # packages from homebrew
     cadical
