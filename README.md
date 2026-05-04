@@ -45,7 +45,7 @@ dbus-send --system --print-reply --dest=org.freedesktop.NetworkManager \
 
 ## CAPTCHA PORTAL DB
 
-By default, their dns server is `172.18.0.1`.
+By default their dns server is `172.18.0.1`.
 
 ```bash
 dig login.wifionice.de @172.18.0.1
