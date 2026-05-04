@@ -122,6 +122,7 @@
     // utils.lib.eachDefaultSystem (
       system:
       let
+        pkgs = nixpkgs.legacyPackages.${system};
         treefmtEval = treefmt-nix.lib.evalModule nixpkgs.legacyPackages.${system} ./treefmt.nix;
       in
       {
@@ -154,39 +155,31 @@
           };
           formatting = treefmtEval.config.build.check self;
         };
-        # TODO: templates https://github.com/Sly-Harvey/NixOS/blob/master/dev-shells/rust/flake.nix
-        devShells =
-          let
-            pkgs = nixpkgs.legacyPackages.${system};
-          in
-          rec {
-            default = deploy;
-            deploy = pkgs.mkShell {
-              inherit (self.checks.${system}.default) shellHook;
-              sopsPGPKeyDirs = [ ./secrets/pgp ];
+        devShells.default = pkgs.mkShell {
+          inherit (self.checks.${system}.default) shellHook;
+          sopsPGPKeyDirs = [ ./secrets/pgp ];
 
-              buildInputs = [
-                self.checks.${system}.default.enabledPackages
-                sops-nix.packages.${system}.sops-import-keys-hook
+          buildInputs = [
+            self.checks.${system}.default.enabledPackages
+            sops-nix.packages.${system}.sops-import-keys-hook
 
-                pkgs.sops
-                pkgs.nixfmt-rfc-style
-                pkgs.nix
-                pkgs.nurl # simple nix prefetch
-                pkgs.nix-init # packaging helper
+            pkgs.sops
+            pkgs.nixfmt
+            pkgs.nurl # simple nix prefetch
+            pkgs.nix-init # packaging helper
+            pkgs.pre-commit
 
-                # TODO: cleanup
-                pkgs.vulnix # a security scanner
+            # TODO: cleanup
+            pkgs.vulnix # a security scanner
 
-                # TODO: take a look at this: https://github.com/louib/nix2sbom
-                # TODO: flake checker
-                # see parts of derivations
-                pkgs.nix-tree
-                pkgs.graphviz
-                pkgs.nix-du
-              ];
-            };
-          };
+            # TODO: take a look at this: https://github.com/louib/nix2sbom
+            # TODO: flake checker
+            # see parts of derivations
+            pkgs.nix-tree
+            pkgs.graphviz
+            pkgs.nix-du
+          ];
+        };
       }
     );
 }
