@@ -11,7 +11,7 @@
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = with pkgs; [
     # macos only
-    lima
+    unstable.lima
     dogdns
     alt-tab-macos # alt tab with windows like overview
     stats # stats in bar
