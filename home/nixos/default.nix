@@ -7,7 +7,6 @@
 {
   imports = [
     ../shared
-    ./xdg.nix
     ./obs.nix
     ./supersonic.nix
   ];
@@ -28,7 +27,6 @@
     accent = "mauve";
     flavor = "mocha";
   };
-
 
   # TODO: nice hud to see gpu stats; with steam
   # programs.mangohud = {};
