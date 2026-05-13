@@ -48,7 +48,6 @@ _: {
       "balenaetcher"
       "mqtt-explorer"
       "qmk-toolbox"
-      # "skim" # bad pdf reader, prefer firefox
       "wireshark-chmodbpf"
       # "vorta"
       "macfuse"
