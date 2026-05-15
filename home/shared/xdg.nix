@@ -248,6 +248,12 @@ in
         JUPYTER_CONFIG_DIR = "${config.xdg.cacheHome}/jupyter";
 
         ANDROID_USER_HOME = "${config.xdg.dataHome}/android";
+        DOCKER_CONFIG = "${config.xdg.configHome}/docker";
+        TLDR_CACHE_DIR = "${config.xdg.cacheHome}/tldr";
+        SQLITE_HISTORY = "${config.xdg.cacheHome}/sqlite_history";
+        PYENV_ROOT = "${config.xdg.dataHome}/pyenv";
+        LESSHISTFILE = "${config.xdg.stateHome}/lesshst";
+        GHCUP_USE_XDG_DIRS = "true";
 
         TEXMFHOME = "${config.xdg.stateHome}/texmf";
         TEXMFVAR = "${config.xdg.cacheHome}/texmf";
