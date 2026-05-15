@@ -158,7 +158,7 @@ in
         enableZshIntegration = true;
         enableScDaemon = true;
         enableSshSupport = true;
-        pinentry.package = pkgs.pinentry-gtk2;
+        pinentry.package = if pkgs.stdenv.isLinux then pkgs.pinentry-gtk2 else pkgs.pinentry_mac;
       };
 
       programs.ssh = {
