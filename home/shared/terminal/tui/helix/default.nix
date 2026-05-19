@@ -95,7 +95,11 @@ in
 
         tinymist = {
           command = getExe pkgs.tinymist;
-          config.preview.background.enabled = true;
+          config = {
+            preview.background.enabled = true;
+            lint.enabled = true;
+            exportPdf = "onSave";
+          };
         };
 
         # NOTE: LaTeX
