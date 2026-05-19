@@ -374,7 +374,6 @@ in
 
     settings = {
       editor = {
-        # auto-save = true;
         bufferline = "always";
         line-number = "relative";
         true-color = true;
