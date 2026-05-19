@@ -343,6 +343,7 @@ in
         }
         {
           name = "typst";
+          auto-format = true;
           formatter.command = getExe pkgs.typstyle;
           language-servers = [
             "tinymist"
