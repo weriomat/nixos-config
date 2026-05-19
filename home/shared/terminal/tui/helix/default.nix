@@ -9,18 +9,6 @@ let
   inherit (lib) mkIf getExe getExe';
 in
 {
-  home.packages = [
-    pkgs.cmake-language-server # cmake
-    pkgs.neocmakelsp
-    pkgs.lua-language-server # lua
-    pkgs.taplo # toml
-    pkgs.delve # go debugger
-    pkgs.gopls # go lsp
-    pkgs.nodePackages.bash-language-server # bash
-    pkgs.yaml-language-server # yaml
-    pkgs.pyright # python
-    pkgs.jdt-language-server # java lsp
-  ];
 
   catppuccin.helix = {
     enable = true;
@@ -31,6 +19,20 @@ in
   programs.helix = {
     enable = true;
     defaultEditor = true;
+
+    extraPackages = [
+      pkgs.cmake-language-server # cmake
+      pkgs.neocmakelsp
+      pkgs.lua-language-server # lua
+      pkgs.taplo # toml
+      pkgs.delve # go debugger
+      pkgs.gopls # go lsp
+      pkgs.nodePackages.bash-language-server # bash
+      pkgs.yaml-language-server # yaml
+      pkgs.pyright # python
+      pkgs.jdt-language-server # java lsp
+    ];
+
     languages = {
       language-server = {
         rust-analyzer = {
