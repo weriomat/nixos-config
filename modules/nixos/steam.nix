@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.steam;
 in
 {
@@ -27,6 +27,11 @@ in
           general = {
             softrealtime = "auto";
             renice = 15;
+            inhibit_screensaver = 0;
+          };
+          custom = {
+            start = "${getExe pkgs.libnotify} 'GameMode started'";
+            end = "${getExe pkgs.libnotify} 'GameMode ended'";
           };
         };
       };
