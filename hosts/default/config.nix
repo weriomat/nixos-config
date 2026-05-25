@@ -23,4 +23,5 @@
     hostId = "88f8e989";
   };
 
+  services.pmail.enable = true; # protonmail with gnome-secrets
 }
