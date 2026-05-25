@@ -1,4 +1,3 @@
-# TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix
 {
   description = "Marts - Nixos config flake";
   inputs = {
@@ -111,7 +110,7 @@
 
       # Full system build for x86
       nixosConfigurations = {
-        # nixos = import ./hosts/default { inherit inputs outputs; };
+        nixos = import ./hosts/default { inherit inputs outputs; };
         nixos-laptop = import ./hosts/lap { inherit inputs outputs; };
       };
 
