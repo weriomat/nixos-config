@@ -84,15 +84,6 @@ in
       interface = wlan-name;
     };
 
-    # DNS resolver
-    services.resolved = mkIf cfg.dns.enable {
-      enable = true;
-      dnsovertls = "true";
-      dnssec = "false";
-      domains = [ "~." ];
-      fallbackDns = config.networking.nameservers;
-    };
-
     # NOTE: dont wait for network to be online while booting
     systemd = {
       # From https://insanity.industries/post/racefree-iwd/
@@ -201,16 +192,26 @@ in
     # };
 
     # from https://insanity.industries/post/simple-networking/
-    services.udev.extraRules = builtins.concatStringsSep "\n" [
-      # disable iwd when rfkill'ing wifi `rfkill list all`, `rfkill block wlan`, `rfkill unblock wlan` (hard block -> hardware) (TLP has `wifi <on|off|toggle>` utility)
-      (optionalString (cfg.iwd.enable && cfg.networkd.wlan.enable) ''
-        SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="1", RUN+="${getExe' config.systemd.package "systemctl"} --no-block restart iwd.service"
-        SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="0", RUN+="${getExe' config.systemd.package "systemctl"} --no-block stop iwd.service"
-      '')
-      (optionalString (cfg.networkd.mac-random && cfg.networkd.wlan.enable) ''
-        SUBSYSTEM=="rfkill", ATTR{name}=="phy0", ACTION=="change", ATTR{soft}=="1", RUN+="${getExe pkgs.macchanger} -ab ${wlan-name}"
-      '')
-    ];
+    services = {
+      udev.extraRules = builtins.concatStringsSep "\n" [
+        # disable iwd when rfkill'ing wifi `rfkill list all`, `rfkill block wlan`, `rfkill unblock wlan` (hard block -> hardware) (TLP has `wifi <on|off|toggle>` utility)
+        (optionalString (cfg.iwd.enable && cfg.networkd.wlan.enable) ''
+          SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="1", RUN+="${getExe' config.systemd.package "systemctl"} --no-block restart iwd.service"
+          SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="0", RUN+="${getExe' config.systemd.package "systemctl"} --no-block stop iwd.service"
+        '')
+        (optionalString (cfg.networkd.mac-random && cfg.networkd.wlan.enable) ''
+          SUBSYSTEM=="rfkill", ATTR{name}=="phy0", ACTION=="change", ATTR{soft}=="1", RUN+="${getExe pkgs.macchanger} -ab ${wlan-name}"
+        '')
+      ];
+      # DNS resolver
+      services.resolved = mkIf cfg.dns.enable {
+        enable = true;
+        dnsovertls = "true";
+        dnssec = "false";
+        domains = [ "~." ];
+        fallbackDns = config.networking.nameservers;
+      };
+    };
 
     environment.systemPackages = mkIf (cfg.iwd.enable && cfg.networkd.wlan.enable) [
       pkgs.iwgtk # applet is automatically included
