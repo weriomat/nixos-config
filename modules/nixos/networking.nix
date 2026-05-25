@@ -250,6 +250,15 @@ in
         "1.nixos.pool.ntp.org"
         "2.nixos.pool.ntp.org"
         "3.nixos.pool.ntp.org"
+
+        "ntp.ripe.net"
+        "ntps1-0.cs.tu-berlin.de"
+        "ntps1-1.cs.tu-berlin.de"
+        "time.esa.int"
+        "time1.esa.int"
+        "ntppool1.time.nl"
+        "ntppool2.time.nl"
+        "europe.pool.ntp.org"
       ];
       dhcpcd.extraConfig = mkIf cfg.dns.enable "nohook resolv.conf";
       resolvconf.enable = mkIf cfg.dns.enable (mkForce false);
