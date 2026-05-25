@@ -117,6 +117,25 @@
       # Full hm build for aarch64
       darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs outputs; };
       darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
+
+      templates = {
+        c = {
+          path = ./templates/c;
+          description = "A simple C/CPP template";
+        };
+        go = {
+          path = ./templates/go;
+          description = "A simple Go template";
+        };
+        rust = {
+          path = ./templates/rust;
+          description = "A simple Rust template";
+        };
+        typst = {
+          path = ./templates/typst;
+          description = "A simple Typst template";
+        };
+      };
     }
     // utils.lib.eachDefaultSystem (
       system:
