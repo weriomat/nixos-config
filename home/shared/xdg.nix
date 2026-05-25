@@ -268,6 +268,12 @@ in
         BUNDLE_USER_CONFIG = "${config.xdg.stateHome}/bundle";
         BUNDLE_USER_CACHE = "${config.xdg.cacheHome}/bundle";
         BUNDLE_USER_PLUGIN = "${config.xdg.dataHome}/bundle";
+
+        MPLAYER_HOME = "${config.xdg.configHome}/mplayer";
+        DVDCSS_CACHE = "${config.xdg.dataHome}/dvdcss";
+        KODI_DATA = "${config.xdg.dataHome}/kodi";
+        ANSIBLE_HOME = "${config.xdg.dataHome}/ansible";
+        JULIA_DEPOT_PATH = "${config.xdg.dataHome}/julia";
       };
 
       xdg = {
