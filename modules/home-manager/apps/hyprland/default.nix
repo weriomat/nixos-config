@@ -41,9 +41,7 @@ in
     # portal for sharing (file pickers), gtk will be enabled by gnome
     xdg.portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-      ];
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
       xdgOpenUsePortal = true;
       configPackages = [ config.wayland.windowManager.hyprland.package ];
