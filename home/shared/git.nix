@@ -232,7 +232,7 @@ in
             };
             bw = {
               user = "weriomat";
-              hostname = "192.168.178.106";
+              hostname = "192.168.178.55";
               port = 2077;
             };
             sl = {
