@@ -97,14 +97,13 @@
     gc.automatic = true;
   };
 
-    linux-builder = {
-      enable = true;
-      config.virtualisation.cores = 8;
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
-    };
+  linux-builder = {
+    enable = true;
+    config.virtualisation.cores = 8;
+    systems = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
   };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
