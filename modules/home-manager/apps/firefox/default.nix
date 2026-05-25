@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.firefox;
 in
 {
@@ -19,6 +19,7 @@ in
     enable = mkEnableOption "Enable firefox config";
     arkenfox.enable = mkEnableOption "Enable arkenfox";
   };
+
 
   config = mkIf cfg.enable {
     catppuccin.firefox = {
@@ -35,9 +36,7 @@ in
     };
 
     wayland.windowManager.hyprland.settings = {
-      bind = [
-        "$mainMod SHIFT, M, exec, ${config.programs.firefox.finalPackage}/bin/firefox"
-      ];
+      bind = [ "$mainMod SHIFT, M, exec, ${getExe config.programs.firefox.finalPackage}" ];
       windowrule = [
         "opaque, class:^(firefox)"
         "float,title:^(Firefox — Sharing Indicator)$"
@@ -113,6 +112,8 @@ in
 
 
         settings = {
+          "identity.sync.tokenserver.uri" = "https://sync.weriomat.com/1.0/sync/1.5";
+
           # hw accel
           "media.ffmpeg.vaapi.enabled" = true;
           # widevine drm
