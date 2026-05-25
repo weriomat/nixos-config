@@ -14,8 +14,8 @@ in
   config = mkIf config.my_gtk.enable {
     gtk = {
       enable = true;
-      gtk3.extraConfig.Settings = ''gtk-application-prefer-dark-theme=1 '';
-      gtk4.extraConfig.Settings = ''gtk-application-prefer-dark-theme=1 '';
+      gtk3.extraConfig.Settings = "gtk-application-prefer-dark-theme=1 ";
+      gtk4.extraConfig.Settings = "gtk-application-prefer-dark-theme=1 ";
       # Alternative     name = "BeautyLine"; package = pkgs.beauty-line-icon-theme;
       # iconTheme = {
       #   name = "Papirus-Dark";
