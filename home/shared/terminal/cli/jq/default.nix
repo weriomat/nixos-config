@@ -1,4 +1,5 @@
-_: {
+{ pkgs, ... }:
+{
   programs.jq = {
     enable = true;
     colors = {
@@ -13,4 +14,5 @@ _: {
     };
   };
 
+  home.packages = [ pkgs.fq ]; # JQ for binaries
 }
