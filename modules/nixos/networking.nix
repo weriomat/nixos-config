@@ -204,7 +204,7 @@ in
         '')
       ];
       # DNS resolver
-      services.resolved = mkIf cfg.dns.enable {
+      resolved = mkIf cfg.dns.enable {
         enable = true;
         dnsovertls = "true";
         dnssec = "false";
