@@ -79,7 +79,6 @@ in
         exclude_patterns = [
           "/home/*/.cache"
           "/home/*/.local"
-          "/home/*/.mozilla"
           "**/target"
           "/home/*/go/bin"
           "/home/*/go/pkg"
