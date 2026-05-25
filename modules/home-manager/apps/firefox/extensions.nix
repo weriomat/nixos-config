@@ -16,6 +16,10 @@ in
     programs.firefox.profiles.${globals.username}.extensions = {
       force = true;
       packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+        kagi-privacy-pass
+        kagi-search
+        (kagi-translate.overrideAttrs { meta.license = licenses.free; })
+
         # privacy
         ublock-origin
         auto-tab-discard
