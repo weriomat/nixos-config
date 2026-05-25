@@ -15,6 +15,7 @@
   networking = {
     iwd.enable = false;
     networkd = {
+      enable = true;
       wlan.enable = false;
       lan.mac = "00:d8:61:d8:e8:7b";
     };
