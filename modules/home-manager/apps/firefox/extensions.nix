@@ -24,12 +24,13 @@ in
         facebook-container
         decentraleyes
         user-agent-string-switcher
+        tab-session-manager
 
         # ui
         firefox-color
         darkreader
         adaptive-tab-bar-colour
-        stylus # for catppuccin userstyles
+        stylus # for catppuccin userstyles; when installing see: https://userstyles.catppuccin.com/getting-started/usage/ ;  TODO: automate https://github.com/different-name/nix-files/commit/d74207533e04fa7fb5c32e8fe10a0931b590371c
 
         # util
         (languagetool.overrideAttrs { meta.license = licenses.free; })
