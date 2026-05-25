@@ -9,15 +9,6 @@
 
   hardware.keyboard.qmk.enable = true;
   services = {
-    # prevent rubber-ducker attack
-    usbguard = {
-      enable = true;
-      presentControllerPolicy = "apply-policy";
-      IPCAllowedGroups = [ "wheel" ];
-      dbus.enable = true;
-    };
-    usbguard-notifier.enable = true; # notifications when a new usb device appears/ disappears
-
     fwupd.enable = true; # Firmware updates
     fstrim.enable = lib.mkDefault true; # ssd thingy
     ddccontrol.enable = true; # control external screens

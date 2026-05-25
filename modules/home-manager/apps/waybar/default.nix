@@ -55,7 +55,7 @@ in
       "$mainMod SHIFT, B, exec, ${getExe' pkgs.toybox "pkill"} -SIGUSR1 .waybar-wrapped"
     ];
 
-    services.usbguard-dbus.enable = true;
+    services.usbguard-dbus.enable = globals.laptop;
 
     catppuccin.waybar = {
       enable = true;
@@ -77,20 +77,21 @@ in
         margin-bottom = 0;
         margin-left = 0;
         margin-right = 0;
-        modules-left = [
-          "custom/launcher"
-          "custom/playerctl#backward"
-          "custom/playerctl#play"
-          "custom/playerctl#forward"
-          "custom/audio_idle_inhibitor"
-          "custom/yubikey"
-          "cpu"
-        ]
-        ++ lib.optional globals.laptop "battery"
-        ++ [
-          "memory"
-          "disk"
-        ];
+        modules-left =
+          [
+            "custom/launcher"
+            "custom/playerctl#backward"
+            "custom/playerctl#play"
+            "custom/playerctl#forward"
+            "custom/audio_idle_inhibitor"
+            "custom/yubikey"
+            "cpu"
+          ]
+          ++ lib.optional globals.laptop "battery"
+          ++ [
+            "memory"
+            "disk"
+          ];
         modules-center = [ "hyprland/workspaces" ];
         modules-right = [
           "tray"
@@ -116,7 +117,7 @@ in
         };
 
         # from: https://github.com/max-baz/dotfiles/blob/77d345632ff6b5970612147db71da64361a6df3e/modules/linux/waybar.nix
-        "custom/usbguard" = {
+        "custom/usbguard" = mkIf globals.laptop {
           format = "  {text}";
           exec = getExe pkgs.waybar-usbguard-wrapped + " -listen";
           return-type = "json";
