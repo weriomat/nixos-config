@@ -52,11 +52,11 @@ in
       pkgs.gamescope
       pkgs.winetricks
 
-      pkgs.protonup # instead of ge
+      pkgs.protonup-ng # instead of ge
     ];
     # ++ [
-    #   inputs.nix-gaming.packages.${pkgs.system}.proton-ge
-    #   inputs.nix-gaming.packages.${pkgs.system}.wine-ge
+    #   inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge
+    #   inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-ge
     # ];
   };
 
@@ -64,7 +64,6 @@ in
   #   lutris
   #   steam
   #   steam-run
-  #   protonup-ng
   #   gamemode
   #   dxvk
   #   # parsec-bin
