@@ -20,6 +20,11 @@ in
     arkenfox.enable = mkEnableOption "Enable arkenfox";
   };
 
+  # TODO: https://github.com/JohnRTitor/nix-conf/blob/7980277ccaff863ab3ca2808b98a814e9eea211d/modules/system/browsers.nix
+  # TODO: https://github.com/Sly-Harvey/NixOS/blob/master/modules/programs/browser/firefox/default.nix
+  # TODO: https://github.com/Sly-Harvey/NixOS/blob/master/modules/programs/browser/firefox/policies.nix#L179
+  # TODO: catppuccin user styles https://addons.mozilla.org/en-GB/firefox/addon/styl-us/ + https://userstyles.catppuccin.com/getting-started/usage/
+  # TODO: https://git.grimmauld.de/Grimmauld/grimm-nixos-laptop/src/branch/main/common/firefox.nix
 
   config = mkIf cfg.enable {
     catppuccin.firefox = {
@@ -110,9 +115,13 @@ in
           "8000".enable = true;
         };
 
+        # # TODO: https://github.com/Sly-Harvey/NixOS/blob/master/modules/programs/browser/firefox/default.nix
+        # extraConfig = "";
 
         settings = {
           "identity.sync.tokenserver.uri" = "https://sync.weriomat.com/1.0/sync/1.5";
+          # TODO: https://github.com/Sly-Harvey/NixOS/blob/master/modules/programs/browser/firefox/settings.nix
+          # TODO: https://github.com/different-name/nix-files/blob/master/dyad/home/applications/firefox/settings.nix
 
           # hw accel
           "media.ffmpeg.vaapi.enabled" = true;

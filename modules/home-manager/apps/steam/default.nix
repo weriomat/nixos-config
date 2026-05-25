@@ -5,6 +5,7 @@ let
 in
 {
   options.steam.enable = mkEnableOption "gaming hm setup";
+  # TODO: https://github.com/Sly-Harvey/NixOS/blob/master/modules/core/games.nix
 
   config = mkIf cfg.enable {
     catppuccin.mangohud.enable = true;

@@ -17,10 +17,12 @@ in
 
   options.steam.enable = mkEnableOption "Gaming thingies";
 
+  # TODO: https://github.com/JohnRTitor/nix-conf/blob/hyprland/modules/system/services/ananicy-cpp.nix + https://github.com/chaotic-cx/nyx/blob/035a14f12abe016db315413480fb913196c4ed14/pkgs/ananicy-cpp-rules/default.nix
   # This is going to be decided per host
   config = mkIf cfg.enable {
     services.pipewire.lowLatency.enable = true;
     programs = {
+      # TODO: https://github.com/Alexays/Waybar/wiki/Module:-Gamemode
       gamemode = {
         enable = true;
         settings = {

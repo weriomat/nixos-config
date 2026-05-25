@@ -22,6 +22,11 @@ let
   lan-name = cfg.networkd.lan.name;
 in
 {
+  # TODO: networkd dispatch script, if lan is present disable wlan, siehe 5.2.5 https://wiki.archlinux.org/title/NetworkManager
+  # TODO: figure out how this behaves with both lan + wlan -> maybe need to set route metric lower for wlan interface
+  # TODO: wireguard with https://unix.stackexchange.com/questions/554107/set-routing-metrics-for-static-ips-with-systemd-networkd -> RouteMetric
+  # TODO: see https://github.com/timon-schelling/timonos/blob/7b56ccb6e760ece2e60f99ce5765bc527f5c11e5/src/system/common/networking/system.nix
+
   # TODO: this namespace already exist, move all options to separate namespace?
   # TODO: switch to networkd? https://github.com/timon-schelling/timonos/tree/7b56ccb6e760ece2e60f99ce5765bc527f5c11e5/src/system/common/networking https://github.com/timon-schelling/timonos/blob/main/src/user/apps/settings/wifi/app.nix
   options.networking = {

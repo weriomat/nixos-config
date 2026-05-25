@@ -11,6 +11,21 @@
     ./supersonic.nix
   ];
 
+  # TODO: yt
+  # programs.freetube = {
+  #   enable = true;
+  #   settings = {
+  #     allowDashAv1Formats = true;
+  #     checkForUpdates = false;
+  #     defaultQuality = "1080";
+  #     baseTheme = "catppuccinMocha";
+  #   };
+  # };
+
+  # TODO: all good things with pdf
+  # services.signaturepdf = {};
+  # TODO: programs.yt-dlp = {}; # Dowoloader for yt files
+
   # NOTE: vscodium disabled since tex stuff works
   discord.enable = true;
   firefox = {

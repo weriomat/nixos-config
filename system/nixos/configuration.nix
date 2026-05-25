@@ -5,6 +5,9 @@
   ...
 }:
 {
+  # TODO: https://github.com/linyinfeng/angrr, https://tuned-project.org/, https://search.nixos.org/options?channel=25.11&show=services.tuned.enable&query=tuned
+  # TODO: keyboard shortcuts https://github.com/espanso/espanso
+
   imports = [ ./wayland ];
 
   hardware.keyboard.qmk.enable = true;

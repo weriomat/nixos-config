@@ -6,9 +6,7 @@
   ...
 }:
 {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   # NOTE: https://bugs.launchpad.net/ubuntu/+source/linux-oem-6.1/+bug/2017277
   # https://bugs.launchpad.net/ubuntu/+source/linux-oem-6.1/+bug/2017277/comments/4
@@ -75,6 +73,19 @@
   };
 
   # TODO: use https://github.com/NixOS/nixpkgs/blob/release-24.11/nixos/modules/services/hardware/amdgpu.nix
+  # TODO: make this a module + https://github.com/JohnRTitor/nix-conf/blob/hyprland/modules/system/hardware/disk.nix
+  # Pearlless https://git.grimmauld.de/Grimmauld/grimm-nixos-laptop/src/branch/main/perlless.nix
+  # https://git.grimmauld.de/Grimmauld/grimm-nixos-laptop/src/branch/main/overlays/perlless.nix
+
+  # TODO: check out the fingerprint reader
+  # https://github.com/ramaureirac/thinkpad-e14-linux/blob/main/tweaks/fingerprint/README.md
+  # https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/main/nixos/fingerprint-scanner.nix
+
+  # TODO: hardware: https://github.com/JohnRTitor/nix-conf/blob/hyprland/modules/system/hardware/graphics.nix
+  # TODO: https://github.com/nix-community/srvos/commit/623dc2f83cccb7ceaf987a8700884d4bf9e63f02
+  # TODO: take a look at https://blog.tiserbox.com/posts/2025-03-10-enable-hibernation-on-nix-os.html
+  # TODO: secureboot: https://github.com/JohnRTitor/nix-conf/blob/hyprland/modules/system/hardware/tpm.nix + https://github.com/JohnRTitor/nix-conf/blob/hyprland/modules/system/boot/bootloader.nix
+
   hardware = {
     graphics = {
       enable = true;
@@ -97,7 +108,18 @@
     };
   };
 
-  environment.sessionVariables.VDPAU_DRIVER = "radeonsi";
+  environment.sessionVariables = {
+    VDPAU_DRIVER = "radeonsi";
+    DPAU_DRIVER = "radeonsi";
+    GSK_RENDERER = "ngl";
+  };
+
+  hardware.trackpoint = {
+    enable = true;
+    emulateWheel = true;
+    sensitivity = 64;
+    speed = 40;
+  };
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 

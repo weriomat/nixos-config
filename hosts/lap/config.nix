@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   ...
 }:
@@ -23,7 +24,10 @@ in
   # TODO: smartd for other hosts
 
   # TODO: https://rair.dev/zfs-smart-ntfy/
-  sops.secrets."ntfy" = { };
+  sops.secrets = {
+    "ntfy-token" = { };
+    "ntfy" = { };
+  };
 
   services = {
     element-desktop.enable = true;
@@ -31,17 +35,17 @@ in
 
     # TODO: setup mail as a relay though vps
     msmartd.enable = true;
+    # TODO: https://codeberg.org/8bitbuddhist/nix-configuration/src/branch/main/modules/system/default.nix
 
     zfs = {
       trim.enable = true;
       autoScrub.enable = true;
-      # TODO: here -> probably needs a patch
-      # TODO: upstream a patch?
-      # zed.settings = {
-      #   ZED_NTFY_TOPIC = "zfs";
-      #   ZED_NTFY_URL = "https://ntfy.weriomat.com";
-      #   ZED_NTFY_ACCESS_TOKEN = "$(cat ${config.sops.secrets."ntfy".path})";
-      # };
+      # TODO: test this
+      zed.settings = {
+        ZED_NTFY_TOPIC = "zfs";
+        ZED_NTFY_URL = "https://ntfy.weriomat.com";
+        ZED_NTFY_ACCESS_TOKEN = "$(cat ${config.sops.secrets."ntfy-token".path})";
+      };
     };
 
     # set cache size for laglanguagetool to 8gb

@@ -24,4 +24,6 @@
   };
 
   services.pmail.enable = true; # protonmail with gnome-secrets
+
+  # FIXME: enable smartd
 }
