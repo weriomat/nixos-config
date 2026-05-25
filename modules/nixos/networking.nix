@@ -211,6 +211,11 @@ in
         domains = [ "~." ];
         fallbackDns = config.networking.nameservers;
       };
+
+      chrony = {
+        enable = true;
+        enableNTS = true;
+      };
     };
 
     environment.systemPackages = mkIf (cfg.iwd.enable && cfg.networkd.wlan.enable) [
