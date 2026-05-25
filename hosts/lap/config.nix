@@ -2,12 +2,16 @@
   lib,
   ...
 }:
+let
+  inherit (lib) mkForce;
+in
 {
   # NOTE: disable virtualization
-  virt.enable = lib.mkForce false;
+  virt.enable = mkForce false;
   networking = {
     iwd.enable = true;
     networkd = {
+      enable = true;
       wlan.mac = "b8:1e:a4:46:37:3d";
       lan.mac = "74:5d:22:c4:4e:75";
     };
@@ -23,6 +27,7 @@
 
   services = {
     element-desktop.enable = true;
+    pmail.enable = true; # protonmail with gnome-secrets
 
     # TODO: setup mail as a relay though vps
     msmartd.enable = true;
