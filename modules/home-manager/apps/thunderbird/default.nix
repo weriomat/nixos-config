@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf licenses;
 in
 {
   options.thunderbird.enable = mkEnableOption "Enable Thunderbird";
