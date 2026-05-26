@@ -30,11 +30,22 @@
           overlays = [ rust-overlay.overlays.default ];
         };
 
-        # this includes: rustc, rust-analyzer, clippy, cargo, rustfmt, rustsrc, rust-docs
-        rust-bin = pkgs.rust-bin.stable.latest.default;
+        rust-bin = pkgs.rust-bin.stable.latest.default.override {
+          extensions = [
+            "rust-src"
+            "cargo"
+            "rustc"
+            "rust-analyzer"
+            "clippy"
+            "rustfmt"
+            "rust-docs"
+          ];
+        };
       in
       {
         devShells.default = pkgs.mkShell {
+          RUST_SRC_PATH = "${rust-bin}/lib/rustlib/src/rust/library";
+
           buildInputs = [
             rust-bin
 
@@ -45,7 +56,6 @@
             pkgs.cargo-deny
             pkgs.cargo-edit
             pkgs.cargo-watch
-            pkgs.rustup
             pkgs.mold
 
             # other tooling
