@@ -1,10 +1,17 @@
 keys:
   - &primary age1a4ghye8tkasqnua2vqst7k9e9erdu6w204zratgk9z7e6dl7hgvqyhpehj
   - &weriomat 7D617EBCC5952F8233B7C6BCE64AE4E613602685
+  - &nixos_desktop age1hlaquz8jf64klf2hncy9sqvcudgp2lc8l6yan3uzvtwzqel4cyuqu5423z
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
           - *primary
+        pgp:
+          - *weriomat
+  - path_regex: secrets/desktop.yaml$
+    key_groups:
+      - age:
+          - *nixos_desktop
         pgp:
           - *weriomat
