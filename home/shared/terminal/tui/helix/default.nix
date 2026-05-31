@@ -157,28 +157,13 @@ in
               forwardSearchAfter = true;
               onSave = true;
 
-              # executable = getExe' (pkgs.texlive.withPackages (ps: [ ps.latexmk ])) "latexmk";
-              # args = [
-              #   "-pdf"
-              #   "-interaction=nonstopmode"
-              #   "-synctex=1"
-              #   "-shell-escape"
-              #   "-output-directory=build"
-              #   "%f"
-              # ];
-
               executable = "${getExe pkgs.tectonic}";
               args = [
-                # "-X"
-                # "compile"
-                # "%f"
-                # "--synctex"
-                # "--keep-logs"
-                # "--keep-intermediates"
-                # "--outdir"
-                # "output"
                 "-X"
                 "build"
+                "--synctex"
+                "--keep-logs"
+                "--keep-intermediates"
               ];
             };
           };
@@ -380,13 +365,7 @@ in
         {
           name = "latex";
           auto-format = true;
-          formatter = {
-            command = getExe' pkgs.texlivePackages.latexindent "latexindent";
-            # TODO: so that no indent.log is displayed
-            # args = [
-            #   "-g /dev/null"
-            # ];
-          };
+          formatter.command = getExe' pkgs.texlivePackages.latexindent "latexindent";
           language-servers = [
             "texlab"
             "ltex"
