@@ -98,16 +98,6 @@
     };
   };
 
-  # imports = [ inputs.nix-rosetta-builder.darwinModules.default ]; # a nix builder (aarch64/x86_64-linux) with lima
-  # TODO: ask to upstream/ bump (rebase patch)
-  # we use an old lima version with custom patches
-  # nixpkgs.config.permittedInsecurePackages = [ "lima-1.2.2" ];
-
-  # nix-rosetta-builder = {
-  #   enable = true;
-  #   onDemand = true; # socket activation
-  #   onDemandLingerMinutes = 60;
-  # };
 
   # Set Git commit hash for darwin-version.
   system = {
