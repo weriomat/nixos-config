@@ -13,5 +13,4 @@ rec {
   weriomat-wallpapers = pkgs.callPackage ./weriomat-wallpapers { };
   wl-ocr = pkgs.callPackage ./wl-ocr { };
 
-  vorta-darwin = pkgs.callPackage ./vorta-darwin { };
 }
