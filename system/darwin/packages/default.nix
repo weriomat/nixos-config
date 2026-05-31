@@ -29,13 +29,6 @@
     alt-tab-macos # alt tab with windows like overview
     stats # stats in bar
     monitorcontrol # control brightness of attached monitors
-    # (airbuddy.overrideAttrs (_: {
-    #   src = fetchurl {
-    #     name = "AirBuddy.dmg";
-    #     url = "https://download.airbuddy.app/WebDownload/AirBuddy_v2.7.4.dmg";
-    #     hash = "sha256-envrZqcWASJN8j7LTdbOpE9RjOe3yeX8FzFYCxU/QlQ=";
-    #   };
-    # })) # infos about ble devices
     rectangle # window manager
     bartender # bar manager
     aldente # battery saver
