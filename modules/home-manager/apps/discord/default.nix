@@ -10,6 +10,7 @@ let
     mkIf
     mkOption
     types
+    mkMerge
     ;
 in
 {
@@ -25,32 +26,34 @@ in
     };
   };
 
-  config = mkIf config.discord.enable {
-    home.packages = [ pkgs.discord ];
-    # catppuccin.vesktop.enable = true;
+  config = mkMerge [
+    (mkIf (pkgs.stdenv.isDarwin && config.discord.enable) { home.packages = [ pkgs.discord ]; })
+    (mkIf (pkgs.stdenv.isLinux && config.discord.enable) {
+      catppuccin.vesktop.enable = true;
 
-    # programs = {
-    #   zsh.shellAliases.discord = "vesktop";
-    #   vesktop = {
-    #     enable = true;
-    #     vencord = {
-    #       settings = {
-    #         autoUpdate = false;
-    #         useQuickCss = true;
-    #         frameless = true;
-    #         plugins = {
-    #           messageLogger = {
-    #             enable = true;
-    #             collapseDeleted = true;
-    #           };
-    #           clearURLs.enable = true;
-    #           memberCount.enable = true;
-    #           showMeYourName.enable = true;
-    #           fakeNitro.enable = true;
-    #         };
-    #       };
-    #     };
-    #   };
-    # };
-  };
+      programs = {
+        zsh.shellAliases.discord = "vesktop";
+        vesktop = {
+          enable = true;
+          vencord = {
+            settings = {
+              autoUpdate = false;
+              useQuickCss = true;
+              frameless = true;
+              plugins = {
+                messageLogger = {
+                  enable = true;
+                  collapseDeleted = true;
+                };
+                clearURLs.enable = true;
+                memberCount.enable = true;
+                showMeYourName.enable = true;
+                fakeNitro.enable = true;
+              };
+            };
+          };
+        };
+      };
+    })
+  ];
 }
