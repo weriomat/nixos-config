@@ -211,7 +211,7 @@ in
         };
 
         # markdown
-        # marksman.command = getExe pkgs.marksman;
+        marksman.command = getExe pkgs.marksman;
 
         clangd.args = [
           "--enable-config"
