@@ -87,18 +87,29 @@
 
     optimise.automatic = true;
     gc.automatic = true;
-  };
 
     linux-builder = {
       enable = true;
-      config.virtualisation.cores = 8;
+      ephemeral = true;
+      maxJobs = 6;
+
+      package = pkgs.darwin.linux-builder-x86_64;
+
+      config.virtualisation = {
+        cores = 8;
+
+        darwin-builder = {
+          diskSize = 60 * 1024;
+          memorySize = 8 * 1024;
+        };
+      };
+
       systems = [
         "x86_64-linux"
         "aarch64-linux"
       ];
     };
   };
-
 
   # Set Git commit hash for darwin-version.
   system = {
