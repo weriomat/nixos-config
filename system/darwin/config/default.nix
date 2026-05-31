@@ -3,6 +3,7 @@
   inputs,
   outputs,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -88,13 +89,17 @@
     gc.automatic = true;
   };
 
-    linux-builder = {
-      enable = true;
-      config.virtualisation.cores = 8;
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-      ];
+  nix.linux-builder = {
+    enable = true;
+    ephemeral = true;
+    maxJobs = 6;
+    package = pkgs.darwin.linux-builder-x86_64;
+    config.virtualisation = {
+      cores = 6;
+      darwin-builder = {
+        diskSize = 60 * 1024;
+        memorySize = 8 * 1024;
+      };
     };
   };
 
