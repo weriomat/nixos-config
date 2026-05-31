@@ -13,12 +13,16 @@ in
   config = mkIf cfg.enable {
     programs.firefox.profiles.${globals.username}.search = {
       force = true;
-      default = "ddg";
+      default = "kagi";
       privateDefault = "ddg";
       engines = {
         "steam" = {
           urls = [ { template = "https://store.steampowered.com/search/?term={searchTerms}"; } ];
           definedAliases = [ "@steam" ];
+        };
+        "kagi" = {
+          urls = [ { template = "https://kagi.com/search?q={searchTerms}"; } ];
+          definedAliases = [ "@k" ];
         };
         "youtube" = {
           urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];

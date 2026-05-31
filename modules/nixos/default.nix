@@ -21,6 +21,7 @@
     ./sops.nix
     ./ssh.nix
     ./steam.nix
+    ./usbguard.nix
     ./usbguard-notifier.nix
     ./user.nix
     ./virtualisation.nix

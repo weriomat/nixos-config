@@ -5,19 +5,13 @@
   ...
 }:
 {
+  # TODO: https://github.com/linyinfeng/angrr, https://tuned-project.org/, https://search.nixos.org/options?channel=25.11&show=services.tuned.enable&query=tuned
+  # TODO: keyboard shortcuts https://github.com/espanso/espanso
+
   imports = [ ./wayland ];
 
   hardware.keyboard.qmk.enable = true;
   services = {
-    # prevent rubber-ducker attack
-    usbguard = {
-      enable = true;
-      presentControllerPolicy = "apply-policy";
-      IPCAllowedGroups = [ "wheel" ];
-      dbus.enable = true;
-    };
-    usbguard-notifier.enable = true; # notifications when a new usb device appears/ disappears
-
     fwupd.enable = true; # Firmware updates
     fstrim.enable = lib.mkDefault true; # ssd thingy
     ddccontrol.enable = true; # control external screens

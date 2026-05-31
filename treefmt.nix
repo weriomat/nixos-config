@@ -13,8 +13,8 @@
     statix.enable = true;
     nixfmt.enable = true;
     # TODO: markdownlint -> markdownformat?
-    shellcheck.enable = pkgs.hostPlatform.system != "riscv64-linux";
-    shfmt.enable = pkgs.hostPlatform.system != "riscv64-linux";
+    shellcheck.enable = pkgs.stdenv.hostPlatform.system != "riscv64-linux";
+    shfmt.enable = pkgs.stdenv.hostPlatform.system != "riscv64-linux";
     typos = {
       # TODO: dont format in place
       # enable = true;

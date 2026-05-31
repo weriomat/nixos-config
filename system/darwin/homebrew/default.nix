@@ -25,6 +25,7 @@ in
     casks = [
       "vorta" # TODO: package or use with brew
       "macfuse"
+      "nvidia-nsight-compute"
     ];
   };
 }

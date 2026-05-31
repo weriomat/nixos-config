@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
   cfg = config.steam;
 in
 {
@@ -17,16 +17,23 @@ in
 
   options.steam.enable = mkEnableOption "Gaming thingies";
 
+  # TODO: https://github.com/JohnRTitor/nix-conf/blob/hyprland/modules/system/services/ananicy-cpp.nix + https://github.com/chaotic-cx/nyx/blob/035a14f12abe016db315413480fb913196c4ed14/pkgs/ananicy-cpp-rules/default.nix
   # This is going to be decided per host
   config = mkIf cfg.enable {
     services.pipewire.lowLatency.enable = true;
     programs = {
+      # TODO: https://github.com/Alexays/Waybar/wiki/Module:-Gamemode
       gamemode = {
         enable = true;
         settings = {
           general = {
             softrealtime = "auto";
             renice = 15;
+            inhibit_screensaver = 0;
+          };
+          custom = {
+            start = "${getExe pkgs.libnotify} 'GameMode started'";
+            end = "${getExe pkgs.libnotify} 'GameMode ended'";
           };
         };
       };
@@ -52,11 +59,11 @@ in
       pkgs.gamescope
       pkgs.winetricks
 
-      pkgs.protonup # instead of ge
+      pkgs.protonup-ng # instead of ge
     ];
     # ++ [
-    #   inputs.nix-gaming.packages.${pkgs.system}.proton-ge
-    #   inputs.nix-gaming.packages.${pkgs.system}.wine-ge
+    #   inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.proton-ge
+    #   inputs.nix-gaming.packages.${pkgs.stdenv.hostPlatform.system}.wine-ge
     # ];
   };
 
@@ -64,7 +71,6 @@ in
   #   lutris
   #   steam
   #   steam-run
-  #   protonup-ng
   #   gamemode
   #   dxvk
   #   # parsec-bin

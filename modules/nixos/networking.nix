@@ -15,12 +15,18 @@ let
     getExe'
     getExe
     optionalString
+    mkMerge
     ;
   cfg = config.networking;
   wlan-name = cfg.networkd.wlan.name;
   lan-name = cfg.networkd.lan.name;
 in
 {
+  # TODO: networkd dispatch script, if lan is present disable wlan, siehe 5.2.5 https://wiki.archlinux.org/title/NetworkManager
+  # TODO: figure out how this behaves with both lan + wlan -> maybe need to set route metric lower for wlan interface
+  # TODO: wireguard with https://unix.stackexchange.com/questions/554107/set-routing-metrics-for-static-ips-with-systemd-networkd -> RouteMetric
+  # TODO: see https://github.com/timon-schelling/timonos/blob/7b56ccb6e760ece2e60f99ce5765bc527f5c11e5/src/system/common/networking/system.nix
+
   # TODO: this namespace already exist, move all options to separate namespace?
   # TODO: switch to networkd? https://github.com/timon-schelling/timonos/tree/7b56ccb6e760ece2e60f99ce5765bc527f5c11e5/src/system/common/networking https://github.com/timon-schelling/timonos/blob/main/src/user/apps/settings/wifi/app.nix
   options.networking = {
@@ -29,34 +35,45 @@ in
       default = true;
     };
     networkd = {
+      enable = mkEnableOption "systemd-network instead of networkmanager";
+
       mac-random = mkEnableOption "MAC address randomization";
       bond = mkEnableOption "creating a bond out of Lan Wlan dock";
 
-      wlan.name = mkOption {
-        type = types.str;
-        default = "wlan0";
-        description = ''
-          Name for the wireless interface
-        '';
+      wlan = {
+        enable = mkEnableOption "wlan via networkd" // {
+          default = true;
+        };
+
+        name = mkOption {
+          type = types.str;
+          default = "wlan0";
+          description = ''
+            Name for the wireless interface
+          '';
+        };
+        mac = mkOption {
+          type = types.str;
+          description = ''
+            MAC addr for the wireless interface
+          '';
+        };
       };
-      wlan.mac = mkOption {
-        type = types.str;
-        description = ''
-          MAC addr for the wireless interface
-        '';
-      };
-      lan.name = mkOption {
-        type = types.str;
-        default = "eth0";
-        description = ''
-          Name for the wired interface
-        '';
-      };
-      lan.mac = mkOption {
-        type = types.str;
-        description = ''
-          MAC addr for the wired interface
-        '';
+
+      lan = {
+        name = mkOption {
+          type = types.str;
+          default = "eth0";
+          description = ''
+            Name for the wired interface
+          '';
+        };
+        mac = mkOption {
+          type = types.str;
+          description = ''
+            MAC addr for the wired interface
+          '';
+        };
       };
     };
     iwd = {
@@ -66,13 +83,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    # DNS resolver
-    services.resolved = mkIf cfg.dns.enable {
+    # browser for captive portals
+    programs.captive-browser = mkIf cfg.networkd.wlan.enable {
       enable = true;
-      dnsovertls = "true";
-      dnssec = "false";
-      domains = [ "~." ];
-      fallbackDns = config.networking.nameservers;
+      interface = wlan-name;
     };
 
     # NOTE: dont wait for network to be online while booting
@@ -82,35 +96,89 @@ in
         let
           name = [ "sys-subsystem-net-devices-${wlan-name}.device" ];
         in
-        mkIf cfg.iwd.enable {
+        mkIf (cfg.iwd.enable && cfg.networkd.wlan.enable) {
           after = name;
           requires = name;
           environment.IWD_TLS_DEBUG = mkIf cfg.iwd.debug "TRUE";
         };
 
-      # TODO: https://insanity.industries/post/random-mac-addresses-for-privacy/
-      network = {
-        enable = true;
-        wait-online.enable = false;
-        # TODO: remove
-        links = {
-          "10-${wlan-name}" = {
-            enable = true;
-            matchConfig.PermanentMACAddress = cfg.networkd.wlan.mac;
-            linkConfig = {
-              Name = wlan-name;
-              MACAddressPolicy = mkIf cfg.networkd.mac-random "random"; # problem with static ips
+      network = mkMerge [
+        {
+          enable = true;
+          wait-online.enable = false;
+          links = {
+            "10-${wlan-name}" = mkIf cfg.networkd.wlan.enable {
+              enable = true;
+              matchConfig.PermanentMACAddress = cfg.networkd.wlan.mac;
+              linkConfig = {
+                Name = wlan-name;
+                MACAddressPolicy = mkIf cfg.networkd.mac-random "random"; # problem with static ips
+              };
+            };
+            "10-${lan-name}" = {
+              matchConfig.PermanentMACAddress = cfg.networkd.lan.mac;
+              linkConfig = {
+                Name = lan-name;
+                MACAddressPolicy = mkIf cfg.networkd.mac-random "random";
+              };
             };
           };
-          "10-${lan-name}" = {
-            matchConfig.PermanentMACAddress = cfg.networkd.lan.mac;
-            linkConfig = {
-              Name = lan-name;
-              MACAddressPolicy = mkIf cfg.networkd.mac-random "random";
+        }
+        (mkIf cfg.networkd.enable {
+          networks = {
+            "40-${lan-name}" = {
+              enable = true;
+              matchConfig.Name = lan-name;
+              networkConfig = {
+                DHCP = true; # systemd-networkd will use its own dhcp client
+                IPv6PrivacyExtensions = true;
+                MulticastDNS = true;
+                IPv6AcceptRA = true;
+              };
+
+              dhcpV4Config = {
+                # [DHCP] DUIDType=link-layer-time:2021-07-01 08:31:00
+                Anonymize = cfg.networkd.mac-random; # should only be used if link MACAddressPolicy = random
+                UseDNS = false; # this might screw with captas
+                SendHostname = false;
+                # UseCaptivePortal = true; # should be displayed under networkctl
+              };
+              dhcpV6Config = {
+                SendHostname = false;
+                # UseCaptivePortal = true; # should be displayed under networkctl
+                # RapidCommit=true
+              };
+            };
+            "40-${wlan-name}" = mkIf cfg.networkd.wlan.enable {
+              enable = true;
+              matchConfig.Name = wlan-name;
+              networkConfig = {
+                # systemd-networkd will use its own dhcp client
+                DHCP = true;
+                IPv6PrivacyExtensions = true;
+                MulticastDNS = true;
+                IPv6AcceptRA = true;
+                IgnoreCarrierLoss = "2s";
+              };
+
+              dhcpV4Config = {
+                # [DHCP] DUIDType=link-layer-time:2021-07-01 08:31:00
+                Anonymize = cfg.networkd.mac-random; # should only be used if link MACAddressPolicy = random
+                UseDNS = false; # this might screw with captas
+                SendHostname = false;
+                RouteMetric = 2048; # prefer lan
+                # UseCaptivePortal = true; # should be displayed under networkctl
+              };
+              dhcpV6Config = {
+                SendHostname = false;
+                RouteMetric = 2048; # prefer lan
+                # UseCaptivePortal = true; # should be displayed under networkctl
+                # RapidCommit=true
+              };
             };
           };
-        };
-      };
+        })
+      ];
     };
 
     # TODO: Take a look at https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/main/nixos/mac-randomize.nix
@@ -129,17 +197,33 @@ in
     # };
 
     # from https://insanity.industries/post/simple-networking/
-    services.udev.extraRules = builtins.concatStringsSep "\n" [
-      (optionalString cfg.iwd.enable ''
-        SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="1", RUN+="${getExe' config.systemd.package "systemctl"} --no-block start iwd.service"
-        SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="0", RUN+="${getExe' config.systemd.package "systemctl"} --no-block stop iwd.service"
-      '')
-      (optionalString cfg.networkd.mac-random ''
-        SUBSYSTEM=="rfkill", ATTR{name}=="phy0", ACTION=="change", ATTR{soft}=="1", RUN+="${getExe pkgs.macchanger} -ab ${wlan-name}"
-      '')
-    ];
+    services = {
+      udev.extraRules = builtins.concatStringsSep "\n" [
+        # disable iwd when rfkill'ing wifi `rfkill list all`, `rfkill block wlan`, `rfkill unblock wlan` (hard block -> hardware) (TLP has `wifi <on|off|toggle>` utility)
+        (optionalString (cfg.iwd.enable && cfg.networkd.wlan.enable) ''
+          SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="1", RUN+="${getExe' config.systemd.package "systemctl"} --no-block restart iwd.service"
+          SUBSYSTEM=="rfkill", ENV{RFKILL_NAME}=="phy0", ENV{RFKILL_TYPE}=="wlan", ACTION=="change", ENV{RFKILL_STATE}=="0", RUN+="${getExe' config.systemd.package "systemctl"} --no-block stop iwd.service"
+        '')
+        (optionalString (cfg.networkd.mac-random && cfg.networkd.wlan.enable) ''
+          SUBSYSTEM=="rfkill", ATTR{name}=="phy0", ACTION=="change", ATTR{soft}=="1", RUN+="${getExe pkgs.macchanger} -ab ${wlan-name}"
+        '')
+      ];
+      # DNS resolver
+      resolved = mkIf cfg.dns.enable {
+        enable = true;
+        dnsovertls = "true";
+        dnssec = "false";
+        domains = [ "~." ];
+        fallbackDns = config.networking.nameservers;
+      };
 
-    environment.systemPackages = mkIf cfg.iwd.enable [
+      chrony = {
+        enable = true;
+        enableNTS = true;
+      };
+    };
+
+    environment.systemPackages = mkIf (cfg.iwd.enable && cfg.networkd.wlan.enable) [
       pkgs.iwgtk # applet is automatically included
       pkgs.impala # tui
     ];
@@ -177,12 +261,21 @@ in
         "1.nixos.pool.ntp.org"
         "2.nixos.pool.ntp.org"
         "3.nixos.pool.ntp.org"
+
+        "ntp.ripe.net"
+        "ntps1-0.cs.tu-berlin.de"
+        "ntps1-1.cs.tu-berlin.de"
+        "time.esa.int"
+        "time1.esa.int"
+        "ntppool1.time.nl"
+        "ntppool2.time.nl"
+        "europe.pool.ntp.org"
       ];
       dhcpcd.extraConfig = mkIf cfg.dns.enable "nohook resolv.conf";
       resolvconf.enable = mkIf cfg.dns.enable (mkForce false);
 
       networkmanager = {
-        enable = true;
+        enable = !cfg.networkd.enable;
         # TODO: this does not work
         dns = if cfg.dns.enable then mkForce "none" else "default"; # NOTE: tell nm not to touch /etc/resolv.conf
         wifi = {
@@ -200,7 +293,11 @@ in
       wireless.iwd = mkIf cfg.iwd.enable {
         enable = true;
         settings = {
-          General.AddressRandomization = mkIf cfg.networkd.mac-random "once";
+          General = {
+            AddressRandomization = mkIf cfg.networkd.mac-random "once";
+            EnableNetworkConfiguration = !cfg.networkd.enable; # let networkd handle dhcp/ ip assignment, if need for static mac for a specific network is needed, this is a good option since https://insanity.industries/post/simple-networking/
+          };
+
           DriverQuirks.UseDefaultInterface = true;
 
           # General.

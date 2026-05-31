@@ -1,13 +1,18 @@
 {
+  config,
   lib,
   ...
 }:
+let
+  inherit (lib) mkForce;
+in
 {
   # NOTE: disable virtualization
-  virt.enable = lib.mkForce false;
+  virt.enable = mkForce false;
   networking = {
     iwd.enable = true;
     networkd = {
+      enable = true;
       wlan.mac = "b8:1e:a4:46:37:3d";
       lan.mac = "74:5d:22:c4:4e:75";
     };
@@ -19,24 +24,28 @@
   # TODO: smartd for other hosts
 
   # TODO: https://rair.dev/zfs-smart-ntfy/
-  sops.secrets."ntfy" = { };
+  sops.secrets = {
+    "ntfy-token" = { };
+    "ntfy" = { };
+  };
 
   services = {
     element-desktop.enable = true;
+    pmail.enable = true; # protonmail with gnome-secrets
 
     # TODO: setup mail as a relay though vps
     msmartd.enable = true;
+    # TODO: https://codeberg.org/8bitbuddhist/nix-configuration/src/branch/main/modules/system/default.nix
 
     zfs = {
       trim.enable = true;
       autoScrub.enable = true;
-      # TODO: here -> probably needs a patch
-      # TODO: upstream a patch?
-      # zed.settings = {
-      #   ZED_NTFY_TOPIC = "zfs";
-      #   ZED_NTFY_URL = "https://ntfy.weriomat.com";
-      #   ZED_NTFY_ACCESS_TOKEN = "$(cat ${config.sops.secrets."ntfy".path})";
-      # };
+      # TODO: test this
+      zed.settings = {
+        ZED_NTFY_TOPIC = "zfs";
+        ZED_NTFY_URL = "https://ntfy.weriomat.com";
+        ZED_NTFY_ACCESS_TOKEN = "$(cat ${config.sops.secrets."ntfy-token".path})";
+      };
     };
 
     # set cache size for laglanguagetool to 8gb

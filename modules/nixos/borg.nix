@@ -79,7 +79,6 @@ in
         exclude_patterns = [
           "/home/*/.cache"
           "/home/*/.local"
-          "/home/*/.mozilla"
           "**/target"
           "/home/*/go/bin"
           "/home/*/go/pkg"
@@ -93,6 +92,7 @@ in
           "**/dist" # electron stuff i think
           "/home/*/.arduino15" # dont need arudinio libs to be backed up
           "/home/*/Leben"
+          "/home/*/.local/share/Steam" # dont store Steam games
         ];
 
         # Name of the archive. Borg placeholders can be used. See the

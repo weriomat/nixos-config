@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   config,
   ...
@@ -25,30 +26,31 @@ in
   };
 
   config = mkIf config.discord.enable {
-    catppuccin.vesktop.enable = true;
+    home.packages = [ pkgs.discord ];
+    # catppuccin.vesktop.enable = true;
 
-    programs = {
-      zsh.shellAliases.discord = "vesktop";
-      vesktop = {
-        enable = true;
-        vencord = {
-          settings = {
-            autoUpdate = false;
-            useQuickCss = true;
-            frameless = true;
-            plugins = {
-              messageLogger = {
-                enable = true;
-                collapseDeleted = true;
-              };
-              clearURLs.enable = true;
-              memberCount.enable = true;
-              showMeYourName.enable = true;
-              fakeNitro.enable = true;
-            };
-          };
-        };
-      };
-    };
+    # programs = {
+    #   zsh.shellAliases.discord = "vesktop";
+    #   vesktop = {
+    #     enable = true;
+    #     vencord = {
+    #       settings = {
+    #         autoUpdate = false;
+    #         useQuickCss = true;
+    #         frameless = true;
+    #         plugins = {
+    #           messageLogger = {
+    #             enable = true;
+    #             collapseDeleted = true;
+    #           };
+    #           clearURLs.enable = true;
+    #           memberCount.enable = true;
+    #           showMeYourName.enable = true;
+    #           fakeNitro.enable = true;
+    #         };
+    #       };
+    #     };
+    #   };
+    # };
   };
 }

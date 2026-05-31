@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [ ../shared ];
 
@@ -15,6 +15,14 @@
     enable = true;
     accent = "mauve";
     flavor = "mocha";
+  };
+
+  programs.zathura = {
+    enable = true;
+    extraConfig = ''
+      set synctex true
+      set synctex-editor-command "${pkgs.lib.getExe pkgs.texlab} inverse-search -i %{input} -l %{line}"
+    '';
   };
 
   home.stateVersion = "23.11";

@@ -1,4 +1,3 @@
-# TODO: make default flakes for c rust haskel python dev -> devshells -> shell.nix
 {
   description = "Marts - Nixos config flake";
   inputs = {
@@ -111,13 +110,32 @@
 
       # Full system build for x86
       nixosConfigurations = {
-        # nixos = import ./hosts/default { inherit inputs outputs; };
+        nixos = import ./hosts/default { inherit inputs outputs; };
         nixos-laptop = import ./hosts/lap { inherit inputs outputs; };
       };
 
       # Full hm build for aarch64
       darwinConfigurations.Eliass-MacBook-Pro-4 = import ./hosts/darwina { inherit inputs outputs; };
       darwinPackages = self.darwinConfigurations."Eliass-MacBook-Pro-4".pkgs;
+
+      templates = {
+        c = {
+          path = ./templates/c;
+          description = "A simple C/CPP template";
+        };
+        go = {
+          path = ./templates/go;
+          description = "A simple Go template";
+        };
+        rust = {
+          path = ./templates/rust;
+          description = "A simple Rust template";
+        };
+        typst = {
+          path = ./templates/typst;
+          description = "A simple Typst template";
+        };
+      };
     }
     // utils.lib.eachDefaultSystem (
       system:

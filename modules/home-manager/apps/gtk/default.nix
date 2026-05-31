@@ -12,10 +12,25 @@ in
 
   # TODO: theme gtk
   config = mkIf config.my_gtk.enable {
+    # TODO: https://github.com/Sly-Harvey/NixOS/blob/master/modules/themes/Catppuccin/default.nix
+    # TODO: https://github.com/different-name/nix-files/blob/master/modules/home/catppuccin-gtk.nix
+    # catppuccin.gtk = {
+    #   enable = true;
+    #   flavor = "mocha";
+    #   size = "compact";
+    #   accent = "lavender";
+    #   gnomeShellTheme = true;
+    #   icon = {
+    #     enable = true;
+    #     flavor = "mocha";
+    #     accent = "lavender";
+    #   };
+    # };
+    # TODO: https://github.com/camillemndn/infra/blob/main/profiles/home-manager/gtk/default.nix
     gtk = {
       enable = true;
-      gtk3.extraConfig.Settings = ''gtk-application-prefer-dark-theme=1 '';
-      gtk4.extraConfig.Settings = ''gtk-application-prefer-dark-theme=1 '';
+      gtk3.extraConfig.Settings = "gtk-application-prefer-dark-theme=1 ";
+      gtk4.extraConfig.Settings = "gtk-application-prefer-dark-theme=1 ";
       # Alternative     name = "BeautyLine"; package = pkgs.beauty-line-icon-theme;
       # iconTheme = {
       #   name = "Papirus-Dark";
@@ -48,6 +63,8 @@ in
       #      '';
       #    };
     };
+
+    # home.sessionVariables.GTK_THEME = "adw-gtk3";
 
     home.pointerCursor = {
       name = "Nordzy-cursors";
