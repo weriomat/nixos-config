@@ -27,7 +27,7 @@ in
       pkgs.imagemagick
       # ncdu
       pkgs.zip
-      pkgs.neofetch
+      pkgs.fastfetch
       pkgs.tree
       pkgs.tree-sitter
       pkgs.unzip
