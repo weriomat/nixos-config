@@ -35,7 +35,7 @@ in
       pkgs.taplo # toml
       pkgs.delve # go debugger
       pkgs.gopls # go lsp
-      pkgs.nodePackages.bash-language-server # bash
+      pkgs.bash-language-server # bash
       pkgs.yaml-language-server # yaml
       pkgs.pyright # python
       pkgs.jdt-language-server # java lsp
@@ -339,7 +339,7 @@ in
           name = "nix";
           auto-format = true;
           formatter = {
-            command = getExe pkgs.nixfmt-rfc-style;
+            command = getExe pkgs.nixfmt;
             args = [ "-q" ];
           };
           language-servers = [
