@@ -66,7 +66,7 @@ in
         # alternative to cmds
         ping = "${pkgs.prettyping}/bin/prettyping";
         df = "duf --all --theme dark";
-        dig = "dog";
+        dig = "doggo";
         du = "dust";
         grep = "rg --color=auto";
         pdw = "pwd";

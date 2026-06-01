@@ -25,7 +25,7 @@
     # scroll-reverser # Different scroll style for mouse vs. trackpad
     # mqtt-explorer
     unstable.lima
-    dogdns
+    doggo
     alt-tab-macos # alt tab with windows like overview
     stats # stats in bar
     monitorcontrol # control brightness of attached monitors
