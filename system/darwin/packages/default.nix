@@ -21,7 +21,6 @@
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = with pkgs; [
     # macos only
-    # TODO: here
     # scroll-reverser # Different scroll style for mouse vs. trackpad
     # mqtt-explorer
     unstable.lima
@@ -30,16 +29,17 @@
     stats # stats in bar
     monitorcontrol # control brightness of attached monitors
     rectangle # window manager
-    bartender # bar manager
-    aldente # battery saver
-    (coconutbattery.overrideAttrs (_: {
+
+    (bartender.overrideAttrs (finalAttrs: {
       src = fetchzip {
-        url = "https://coconut-flavour.com/downloads/coconutBattery_${
-          lib.replaceStrings [ "." "," ] [ "" "_" ] "4.2.0,192"
-        }.zip";
-        hash = "sha256-pzfg+RAlCbEaBHiU/ZQcBf0Tg0BCfs0UHh62dFQVbz0=";
+        url = "https://downloads.macbartender.com/B2/updates/${
+          builtins.replaceStrings [ "." ] [ "-" ] finalAttrs.version
+        }/Bartender%20${lib.versions.major finalAttrs.version}.zip";
+        hash = "sha256-UtLTfRhL7JTYzQXf7kyYyGZXy1TLJ0ODk1nRs2pLfQ4=";
       };
-    })) # battery info
+    })) # bar manager
+    aldente # battery saver
+    coconutbattery # battery info
 
     # shared
     unstable.devenv
@@ -49,50 +49,18 @@
     glow # fancy markdown viewer
     duf # df -> TODO: size is not reported right
 
-    unstable.zotero # install better-bibtex plugin
+    zotero # install better-bibtex plugin
 
     # packages from homebrew
-    cadical
-    # calibre
-    automake
-    swi-prolog
-    z3
     yubikey-manager
     yubikey-personalization
-    # texinfo
-    lua
-    gdbm
-    avrdude
-    dfu-programmer
-    dfu-util
-    graphviz
-    liblinear
-    libspectre
     libssh2
-    neovim
     openssh
-    pyenv
-    teensy-loader-cli
     gnupg
 
     # now other packages
     vim
-    wget
-    btop
-    helix
-    lazygit
-
     nmap
-
     cloc
-    gnumake
-    cmake
-    cmake-format
-    llvm-manpages
-
-    llvm
-    llvmPackages_latest.lldb
-    extra-cmake-modules
-    plasma5Packages.extra-cmake-modules
   ];
 }
