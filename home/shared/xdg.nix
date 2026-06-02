@@ -259,6 +259,7 @@ in
         TEXMFVAR = "${config.xdg.cacheHome}/texmf";
         TEXMFCONFIG = "${config.xdg.stateHome}/texmf";
 
+        PYTHON_HISTORY = "${config.xdg.stateHome}/python_history";
         CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
 
         NPM_CONFIG_USERCONFIG = "${config.xdg.dataHome}/npm/npmrc";

@@ -3,11 +3,10 @@
   inputs,
   outputs,
   lib,
+  pkgs,
   ...
 }:
 {
-  # inputs.self, inputs.nix-darwin, and inputs.nixpkgs can be accessed here
-
   documentation = {
     enable = true;
     man.enable = true;
@@ -39,13 +38,6 @@
   # };
 
   # power.sleep.computer = "";
-
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.unstable-packages
-    ];
-  };
 
   # Necessary for using flakes on this system.
   nix = {
@@ -95,24 +87,28 @@
 
     optimise.automatic = true;
     gc.automatic = true;
-  };
 
-  linux-builder = {
-    enable = true;
-    config.virtualisation.cores = 8;
-    systems = [
-      "x86_64-linux"
-      "aarch64-linux"
-    ];
-  };
+    linux-builder = {
+      enable = true;
+      ephemeral = true;
+      maxJobs = 6;
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh = {
-    enable = true; # default shell on catalina
-    # fzf
-    enableFzfCompletion = true;
-    enableFzfGit = true; # ctrl-g
-    enableFzfHistory = true; # ctrl-r
+      package = pkgs.darwin.linux-builder-x86_64;
+
+      config.virtualisation = {
+        cores = 8;
+
+        darwin-builder = {
+          diskSize = 60 * 1024;
+          memorySize = 8 * 1024;
+        };
+      };
+
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+    };
   };
 
   # Set Git commit hash for darwin-version.
@@ -133,6 +129,15 @@
     info.enable = true;
     man.enable = true;
     nix-index.enable = true;
+
+    # Create /etc/zshrc that loads the nix-darwin environment.
+    zsh = {
+      enable = true; # default shell on catalina
+      # fzf
+      enableFzfCompletion = true;
+      enableFzfGit = true; # ctrl-g
+      enableFzfHistory = true; # ctrl-r
+    };
   };
 
   nix.enable = true;
@@ -246,9 +251,12 @@
 
   # The platform the configuration will be used on.
   nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.unstable-packages
+    ];
+
+    config.allowUnfree = true;
     hostPlatform = "aarch64-darwin";
   };
 }

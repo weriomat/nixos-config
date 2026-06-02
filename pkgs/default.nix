@@ -12,4 +12,5 @@ rec {
   waybar-yubikey = pkgs.callPackage ./waybar-yubikey { };
   weriomat-wallpapers = pkgs.callPackage ./weriomat-wallpapers { };
   wl-ocr = pkgs.callPackage ./wl-ocr { };
+
 }

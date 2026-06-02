@@ -9,6 +9,14 @@ let
   inherit (lib) mkIf getExe getExe';
 in
 {
+  # pull snippets via `simple-completion-language-server fetch-external-snippets` && `simple-completion-language-server validate-snippets`
+  xdg.configFile."helix/external-snippets.toml".text = ''
+    [[sources]] 
+    name = "friendly-snippets"  
+    git = "https://github.com/rafamadriz/friendly-snippets.git" 
+  '';
+
+  home.packages = [ pkgs.simple-completion-language-server ];
 
   catppuccin.helix = {
     enable = true;
@@ -27,7 +35,7 @@ in
       pkgs.taplo # toml
       pkgs.delve # go debugger
       pkgs.gopls # go lsp
-      pkgs.nodePackages.bash-language-server # bash
+      pkgs.bash-language-server # bash
       pkgs.yaml-language-server # yaml
       pkgs.pyright # python
       pkgs.jdt-language-server # java lsp
@@ -102,42 +110,62 @@ in
           };
         };
 
+        scls = {
+          command = lib.getExe pkgs.simple-completion-language-server;
+
+          config = {
+            max_completion_items = 20;
+            snippets_first = true;
+
+            feature_snippets = true;
+            feature_unicode_input = true;
+            feature_words = true;
+          };
+
+          environment = {
+            RUST_LOG = "info,simple-completion-language-server=info";
+            LOG_FILE = "/tmp/completion.log";
+          };
+        };
+
         # NOTE: LaTeX
         texlab = {
           command = getExe pkgs.texlab;
-          auxDirectory = "auz";
-          chktex = {
-            onOpenAndSave = true;
-            onEdit = true;
-          };
-          forwardSearch = {
-            executable = if pkgs.stdenv.isDarwin then getExe pkgs.evince else getExe pkgs.kdePackages.okular;
-            args =
-              if pkgs.stdenv.isDarwin then
-                [
-                  "-o"
-                  "file:%p#src:%l%f"
-                ]
-              else
-                [
-                  "--unique"
-                  "file:%p#src:%l%f"
-                ];
-          };
+          config = {
+            auxDirectory = "auz";
+            chktex = {
+              onOpenAndSave = true;
+              onEdit = true;
+            };
+            forwardSearch = {
+              executable = if pkgs.stdenv.isDarwin then getExe pkgs.zathura else getExe pkgs.kdePackages.okular;
+              args =
+                if pkgs.stdenv.isDarwin then
+                  [
+                    "--synctex-forward"
+                    "%l:1:%f"
+                    "%p"
+                  ]
+                else
+                  [
+                    "--unique"
+                    "file:%p#src:%l%f"
+                  ];
+            };
 
-          build = {
-            forwardSearchAfter = true;
-            onSave = true;
+            build = {
+              forwardSearchAfter = true;
+              onSave = true;
 
-            executable = getExe' (pkgs.texlive.withPackages (ps: [ ps.latexmk ])) "latexmk";
-            args = [
-              "-pdf"
-              "-interaction=nonstopmode"
-              "-synctex=1"
-              "-shell-escape"
-              "-output-directory=build"
-              "%f"
-            ];
+              executable = "${getExe pkgs.tectonic}";
+              args = [
+                "-X"
+                "build"
+                "--synctex"
+                "--keep-logs"
+                "--keep-intermediates"
+              ];
+            };
           };
         };
 
@@ -200,6 +228,7 @@ in
           language-servers = [
             "tofu-ls"
             "typos"
+            "scls"
           ];
         }
         {
@@ -215,6 +244,7 @@ in
           language-servers = [
             "jdtls"
             "typos"
+            "scls"
           ];
         }
         {
@@ -227,6 +257,7 @@ in
           language-servers = [
             "tofu-ls"
             "typos"
+            "scls"
           ];
         }
         {
@@ -242,6 +273,7 @@ in
           language-servers = [
             "taplo"
             "typos"
+            "scls"
           ];
         }
         {
@@ -250,6 +282,7 @@ in
           language-servers = [
             "clangd"
             "typos"
+            "scls"
           ];
         }
         {
@@ -258,6 +291,7 @@ in
           language-servers = [
             "clangd"
             "typos"
+            "scls"
           ];
         }
 
@@ -293,6 +327,7 @@ in
             "marksman"
             "ltex"
             "typos"
+            "scls"
           ];
         }
         {
@@ -304,12 +339,13 @@ in
           name = "nix";
           auto-format = true;
           formatter = {
-            command = getExe pkgs.nixfmt-rfc-style;
+            command = getExe pkgs.nixfmt;
             args = [ "-q" ];
           };
           language-servers = [
             "nixd"
             "typos"
+            "scls"
           ];
         }
         {
@@ -318,6 +354,7 @@ in
           language-servers = [
             "gopls"
             "typos"
+            "scls"
           ];
         }
         {
@@ -328,17 +365,12 @@ in
         {
           name = "latex";
           auto-format = true;
-          formatter = {
-            command = getExe' pkgs.texlivePackages.latexindent "latexindent";
-            # TODO: so that no indent.log is displayed
-            # args = [
-            #   "-g /dev/null"
-            # ];
-          };
+          formatter.command = getExe' pkgs.texlivePackages.latexindent "latexindent";
           language-servers = [
             "texlab"
             "ltex"
             "typos"
+            "scls"
           ];
         }
         {
@@ -349,6 +381,7 @@ in
             "tinymist"
             "ltex"
             "typos"
+            "scls"
           ];
         }
         {
@@ -367,6 +400,7 @@ in
             "ruff"
             "pyright"
             "typos"
+            "scls"
           ];
         }
       ];

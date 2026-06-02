@@ -1,5 +1,9 @@
 { pkgs, ... }:
 {
+  # TODO: XDG NINJA
+  # TODO: package vorta for darwin
+  # TODO: export borg key for darwin repo
+  # TODO: firefox
   ###
   # Not installed via nix
   # Not available: cisco (tu vpn), powerpoint, pearcleaner, qmk toolbox, radio silence, via, vivid, vorta, wireguard
@@ -7,22 +11,24 @@
   # All licences can be found in the vaultwarden
   ###
 
+  # TODO: use wireshark/ wireshark-chmodbpf
+  # TODO: obsidian
+  # TODO: steam
+  # TODO: avrdude
+  # TODO: bootloadhid
+  # TODO: qmk (mdloader/qmk/hid_bootloader_cli)
   # TODO: merge with nixos conf
   # List packages installed in system profile. To search by name, run:
   environment.systemPackages = with pkgs; [
     # macos only
+    # TODO: here
+    # scroll-reverser # Different scroll style for mouse vs. trackpad
+    # mqtt-explorer
     unstable.lima
-    dogdns
+    doggo
     alt-tab-macos # alt tab with windows like overview
     stats # stats in bar
     monitorcontrol # control brightness of attached monitors
-    (airbuddy.overrideAttrs (_: {
-      src = fetchurl {
-        name = "AirBuddy.dmg";
-        url = "https://download.airbuddy.app/WebDownload/AirBuddy_v2.7.4.dmg";
-        hash = "sha256-envrZqcWASJN8j7LTdbOpE9RjOe3yeX8FzFYCxU/QlQ=";
-      };
-    })) # infos about ble devices
     rectangle # window manager
     bartender # bar manager
     aldente # battery saver
@@ -42,7 +48,8 @@
     dust # newer "du"
     glow # fancy markdown viewer
     duf # df -> TODO: size is not reported right
-    zotero
+
+    unstable.zotero # install better-bibtex plugin
 
     # packages from homebrew
     cadical

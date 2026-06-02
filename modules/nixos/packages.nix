@@ -30,7 +30,7 @@ in
       duf # df alternative
       ncdu # du alternative
       dust # du alternative
-      dogdns # dig alternative
+      doggo # dig alternative
       vim
       powertop # system power thingie
 
