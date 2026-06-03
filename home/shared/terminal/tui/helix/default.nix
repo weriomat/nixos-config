@@ -107,6 +107,8 @@ in
             preview.background.enabled = true;
             lint.enabled = true;
             exportPdf = "onSave";
+            formatterMode = "typstyle";
+            formatterPrintWidth = 80;
           };
         };
 
