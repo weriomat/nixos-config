@@ -36,15 +36,18 @@ in
     # display Manager
     greetd = {
       enable = true;
-      settings.default_session =
-        let
-          session = "${getExe pkgs.hyprland}";
-          tuigreet = "${getExe pkgs.tuigreet}";
-        in
-        {
-          command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' config.systemd.package "systemctl"} poweroff' --power-reboot '${getExe' config.systemd.package "systemctl"} poweroff' --cmd ${session}";
-          user = "greeter";
-        };
+      settings = {
+        terminal.vt = 1;
+        default_session =
+          let
+            session = "${getExe pkgs.hyprland}";
+            tuigreet = "${getExe pkgs.tuigreet}";
+          in
+          {
+            command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' config.systemd.package "systemctl"} poweroff' --power-reboot '${getExe' config.systemd.package "systemctl"} poweroff' --cmd ${session}";
+            user = "greeter";
+          };
+      };
     };
   };
 
