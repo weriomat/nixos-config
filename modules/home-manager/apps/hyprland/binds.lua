@@ -10,7 +10,6 @@ hl.bind(mod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mod .. " + D", hl.dsp.layout("togglesplit"))
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen())
 
--- hl.bind(mod .. " + SHIFT + E", hl.dsp.exec_cmd("pkill Hyprland"))
 -- hl.bind(mod .. " + G", hl.dsp.group.toggle())
 -- hl.bind(mod .. " + SHIFT + N", hl.dsp.group.next())
 -- hl.bind(mod .. " + SHIFT + P", hl.dsp.group.prev())
@@ -29,6 +28,18 @@ hl.bind(mod .. " + left", hl.dsp.focus({ direction = "l" }))
 hl.bind(mod .. " + right", hl.dsp.focus({ direction = "r" }))
 hl.bind(mod .. " + up", hl.dsp.focus({ direction = "u" }))
 hl.bind(mod .. " + down", hl.dsp.focus({ direction = "d" }))
+
+-- Resize windows
+hl.bind(mod .. " + SHIFT + right", hl.dsp.window.resize({ x = 30, y = 0, relative = true }), { repeating = true })
+hl.bind(mod .. " + SHIFT + left", hl.dsp.window.resize({ x = -30, y = 0, relative = true }), { repeating = true })
+hl.bind(mod .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -30, relative = true }), { repeating = true })
+hl.bind(mod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 30, relative = true }), { repeating = true })
+
+-- Resize windows with vim keys
+hl.bind(mod .. " + SHIFT + l", hl.dsp.window.resize({ x = 30, y = 0, relative = true }), { repeating = true })
+hl.bind(mod .. " + SHIFT + h", hl.dsp.window.resize({ x = -30, y = 0, relative = true }), { repeating = true })
+hl.bind(mod .. " + SHIFT + k", hl.dsp.window.resize({ x = 0, y = -30, relative = true }), { repeating = true })
+hl.bind(mod .. " + SHIFT + j", hl.dsp.window.resize({ x = 0, y = 30, relative = true }), { repeating = true })
 
 -- Switch workspaces with mod + [0-9], Move active window to a workspace with mod + SHIFT + [0-9]
 for i = 1, 10 do
@@ -49,18 +60,6 @@ hl.bind(mod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 -- to switch between windows in a floating workspace
 hl.bind(mod .. " + Tab", hl.dsp.window.cycle_next())
 hl.bind(mod .. " + Tab", hl.dsp.exec_cmd("hyprctl dispatch bringactivetotop"))
-
--- -- Resize windows
--- hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 30, y = 0 }), { repeating = true })
--- hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ x = -30, y = 0 }), { repeating = true })
--- hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = -30 }), { repeating = true })
--- hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = 30 }), { repeating = true })
-
--- -- Resize windows with hjkl keys
--- hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.resize({ x = 30, y = 0 }), { repeating = true })
--- hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.resize({ x = -30, y = 0 }), { repeating = true })
--- hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.resize({ x = 0, y = -30 }), { repeating = true })
--- hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.resize({ x = 0, y = 30 }), { repeating = true })
 
 -- move to the first empty workspace instantly with mod + CTRL + [↓]
 hl.bind(mod .. " + CTRL + down", hl.dsp.focus({ workspace = "empty" }))
