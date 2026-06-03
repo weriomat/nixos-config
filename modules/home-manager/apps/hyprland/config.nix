@@ -1,5 +1,3 @@
-# TODO: https://github.com/Frost-Phoenix/nixos-config/blob/main/modules/home/hyprland/config.nix
-# TODO: https://wiki.hyprland.org/Configuring/Binds/#switches
 {
   config,
   pkgs,
@@ -9,6 +7,7 @@
 }:
 let
   inherit (lib)
+    getExe
     getExe'
     mkIf
     ;
@@ -22,31 +21,6 @@ in
     };
 
     wayland.windowManager.hyprland = {
-      # Create a easy way to resize windows; from https://www.reddit.com/r/hyprland/comments/14jehzj/creating_keybindings_to_resize_a_window/
-      # extraConfig = /* hyprlang */ ''
-      #   # will switch to a submap called resize
-      #   bind = ALT, R, submap, resize
-
-      #   # will start a submap called "resize"
-      #   submap = resize
-
-      #   # sets repeatable binds for resizing the active window
-      #   binde = , right, resizeactive, 10 0
-      #   binde = , left, resizeactive, -10 0
-      #   binde = , up, resizeactive, 0 -10
-      #   binde = , down, resizeactive, 0 10
-      #   binde = , l, resizeactive, 50 0
-      #   binde = , h, resizeactive, -50 0
-      #   binde = , k, resizeactive, 0 -40
-      #   binde = , j, resizeactive, 0 40
-
-      #   # use reset to go back to the global submap
-      #   bind = , escape, submap, reset
-
-      #   # will reset the submap, which will return to the global submap
-      #   submap = reset
-      # '';
-
       extraConfig = /* lua */ ''
         mod = "SUPER"
 
@@ -58,7 +32,6 @@ in
         require("lua/monitors")
         require("lua/settings")
         require("lua/windowrules")
-
 
         hl.on("hyprland.start", function()
         	hl.exec_cmd("${getExe' globals.systemd "systemctl"} --user import-environment &")
@@ -72,6 +45,10 @@ in
         	hl.exec_cmd("${getExe' globals.systemd "systemctl"} --user restart kanshi.service waybar.service")
         	hl.exec_cmd("${getExe' pkgs.solaar "solaar"} --window=hide")
         end)
+
+        hl.permission({ binary = "${getExe pkgs.grim}", type = "screencopy", mode = "allow" })
+        hl.permission({ binary = "${getExe config.programs.hyprlock.package}", type = "screencopy", mode = "allow" })
+        hl.permission({ binary = "${config.wayland.windowManager.hyprland.portalPackage}/libexec/.xdg-desktop-portal-hyprland-wrapped", type = "screencopy", mode = "allow" })
       '';
 
       # TODO: fix this -> gnone auth agent
