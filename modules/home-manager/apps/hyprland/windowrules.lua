@@ -2,10 +2,10 @@ hl.window_rule({
 	match = { class = "^(xwaylandvideobridge)$" },
 
 	opacity = "0.0 0.0",
-  no_anim = true,
-  no_initial_focus = true,
-  max_size = { 1, 1},
-  no_blur = true,
+	no_anim = true,
+	no_initial_focus = true,
+	max_size = { 1, 1 },
+	no_blur = true,
 })
 
 -- thunderbird confirm window to next inbox

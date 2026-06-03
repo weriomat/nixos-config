@@ -30,7 +30,7 @@ hl.bind(mod .. " + right", hl.dsp.focus({ direction = "r" }))
 hl.bind(mod .. " + up", hl.dsp.focus({ direction = "u" }))
 hl.bind(mod .. " + down", hl.dsp.focus({ direction = "d" }))
 
--- Switch workspaces with mod + [0-9], Move active window to a workspace with mod + SHIFT + [0-9] 
+-- Switch workspaces with mod + [0-9], Move active window to a workspace with mod + SHIFT + [0-9]
 for i = 1, 10 do
   local key = i % 10
   hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))

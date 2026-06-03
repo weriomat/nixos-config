@@ -13,43 +13,9 @@ hl.config({
     },
   },
 
-  input = {
-      kb_layout = "us",
-      kb_variant = "",
-      kb_model = "",
-      kb_options = "",
-      kb_rules = "",
+  xwayland = { force_zero_scaling = true },
 
-      follow_mouse = 1,
-      sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
-
-      touchpad = {
-        natural_scroll = false,
-      },
-  },
-
-  xwayland = {
-    force_zero_scaling = true
-  },
-
-  dwindle = {
-    force_split            = 0,
-    special_scale_factor   = 1,
-    split_width_multiplier = 1.0,
-    use_active_for_splits  = true,
-    preserve_split         = true,
-
-    -- smart_split                  = false,
-    -- smart_resizing               = true,
-    -- permanent_direction_override = false,
-    -- default_split_ratio          = 1.0,
-    -- split_bias                   = 0,
-    -- precise_mouse_move           = false,
-  },
-
-  master = {
-    special_scale_factor = 1,
-  },
+  dwindle = { preserve_split = true, },
 
   misc = {
     force_default_wallpaper = 0,

@@ -1,8 +1,8 @@
 -- Define bezier curves
-hl.curve("fluent_decel", { type = "bezier", points = { {0, 0.2}, {0.4, 1} } })
-hl.curve("easeOutCirc", { type = "bezier", points = { {0, 0.55}, {0.45, 1} } })
-hl.curve("easeOutCubic", { type = "bezier", points = { {0.33, 1}, {0.68, 1} } })
-hl.curve("easeinoutsine", { type = "bezier", points = { {0.37, 0}, {0.63, 1} } })
+hl.curve("fluent_decel", { type = "bezier", points = { { 0, 0.2 }, { 0.4, 1 } } })
+hl.curve("easeOutCirc", { type = "bezier", points = { { 0, 0.55 }, { 0.45, 1 } } })
+hl.curve("easeOutCubic", { type = "bezier", points = { { 0.33, 1 }, { 0.68, 1 } } })
+hl.curve("easeinoutsine", { type = "bezier", points = { { 0.37, 0 }, { 0.63, 1 } } })
 
 -- Configure animations
 
@@ -31,4 +31,3 @@ hl.animation({ leaf = "border", enabled = true, speed = 2.7, bezier = "easeOutCi
 hl.animation({ leaf = "borderangle", enabled = true, speed = 30, bezier = "fluent_decel", style = "once" })
 -- styles: slide, slidevert, fade, slidefade, slidefadevert
 hl.animation({ leaf = "workspaces", enabled = true, speed = 4, bezier = "easeOutCubic", style = "fade" })
-
