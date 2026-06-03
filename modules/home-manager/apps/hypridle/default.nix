@@ -30,7 +30,7 @@ in
             lock_cmd = "${getExe' pkgs.toybox "pidof"} hyprlock || ${getExe config.programs.hyprlock.package}";
             unlock_cmd = "${getExe pkgs.killall} -q -s SIGUSR1 hyprlock";
             before_sleep_cmd = "${loginctl} lock-session";
-            after_sleep_cmd = "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} dispatch dpms on";
+            after_sleep_cmd = ''hyprctl dispatch 'hl.dsp.dpms({action = "enable"})'';
             ignore_dbus_inhibit = false;
           };
 
@@ -51,8 +51,8 @@ in
 
             {
               inherit timeout;
-              on-timeout = "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} dispatch dpms off";
-              on-resume = "${getExe' config.wayland.windowManager.hyprland.finalPackage "hyprctl"} dispatch dpms on";
+              on-timeout = ''hyprctl dispatch 'hl.dsp.dpms({action = "disable"})'';
+              on-resume = ''hyprctl dispatch 'hl.dsp.dpms({action = "enable"})'';
             }
 
             {
