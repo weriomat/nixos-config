@@ -67,7 +67,7 @@ in
 
       systemd = {
         enable = true;
-        target = "hyprland-session.target";
+        targets = [ "hyprland-session.target" ];
       };
 
       settings.mainBar = {
@@ -77,21 +77,20 @@ in
         margin-bottom = 0;
         margin-left = 0;
         margin-right = 0;
-        modules-left =
-          [
-            "custom/launcher"
-            "custom/playerctl#backward"
-            "custom/playerctl#play"
-            "custom/playerctl#forward"
-            "custom/audio_idle_inhibitor"
-            "custom/yubikey"
-            "cpu"
-          ]
-          ++ lib.optional globals.laptop "battery"
-          ++ [
-            "memory"
-            "disk"
-          ];
+        modules-left = [
+          "custom/launcher"
+          "custom/playerctl#backward"
+          "custom/playerctl#play"
+          "custom/playerctl#forward"
+          "custom/audio_idle_inhibitor"
+          "custom/yubikey"
+          "cpu"
+        ]
+        ++ lib.optional globals.laptop "battery"
+        ++ [
+          "memory"
+          "disk"
+        ];
         modules-center = [ "hyprland/workspaces" ];
         modules-right = [
           "tray"

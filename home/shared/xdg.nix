@@ -296,7 +296,7 @@ in
         userDirs = {
           enable = true;
           createDirectories = true;
-          extraConfig.XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+          extraConfig.SCREENSHOTS = "${config.xdg.userDirs.pictures}/Screenshots";
           publicShare = null;
           templates = null;
           desktop = null;

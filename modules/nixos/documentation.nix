@@ -16,7 +16,7 @@ in
       man = {
         enable = true;
         man-db.enable = true;
-        generateCaches = true;
+        cache.enable = true;
       };
       dev.enable = mkIf pkgs.stdenv.isLinux true;
       doc.enable = true;

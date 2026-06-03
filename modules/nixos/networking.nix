@@ -211,10 +211,12 @@ in
       # DNS resolver
       resolved = mkIf cfg.dns.enable {
         enable = true;
-        dnsovertls = "true";
-        dnssec = "false";
-        domains = [ "~." ];
-        fallbackDns = config.networking.nameservers;
+        settings.Resolve = {
+          DNSOverTLS = true;
+          DNSSEC = false;
+          Domains = [ "~." ];
+          FallbackDNS = config.networking.nameservers;
+        };
       };
 
       chrony = {
