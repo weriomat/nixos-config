@@ -10,10 +10,6 @@ hl.bind(mod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mod .. " + D", hl.dsp.layout("togglesplit"))
 hl.bind(mod .. " + F", hl.dsp.window.fullscreen())
 
--- hl.bind(mod .. " + G", hl.dsp.group.toggle())
--- hl.bind(mod .. " + SHIFT + N", hl.dsp.group.next())
--- hl.bind(mod .. " + SHIFT + P", hl.dsp.group.prev())
-
 -- utility
 hl.bind(mod .. " + T", hl.dsp.exec_cmd("thunderbird"))
 
@@ -43,10 +39,10 @@ hl.bind(mod .. " + SHIFT + j", hl.dsp.window.resize({ x = 0, y = 30, relative = 
 
 -- Switch workspaces with mod + [0-9], Move active window to a workspace with mod + SHIFT + [0-9]
 for i = 1, 10 do
-  local key = i % 10
-  hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-  hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
-  -- FIXME: hl.bind(mod .. " + CTRL + " .. key, hl.dsp.window.move({ workspace = i, follow = false }))
+	local key = i % 10
+	hl.bind(mod .. " + " .. key, hl.dsp.focus({ workspace = i }))
+	hl.bind(mod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	hl.bind(mod .. " + CTRL + " .. key, hl.dsp.window.move({ workspace = i, follow = false }))
 end
 
 -- Special workspaces (scratchpad)

@@ -19,6 +19,7 @@ let
   cfg = config.my_hyprland;
 in
 {
+  # FIXME: "$mainMod, E, exec, ${getExe pkgs.rofimoji} --selector wofi --clipboarder wl-copy --action copy --typer wtype"
 
   imports = [ ./config.nix ];
 

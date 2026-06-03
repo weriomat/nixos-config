@@ -52,6 +52,19 @@ hl.window_rule({
 	rounding = 0,
 })
 
+hl.window_rule({
+	match = { class = "^(org.kde.polkit-kde-authentication-agent-1)$" },
+	opacity = "0.80 0.70",
+	float = true,
+})
+
+-- -- Bitwarden extension
+hl.window_rule({ match = { title = "^(.*Bitwarden Password Manager.*)$" }, float = true })
+
+-- make Firefox/Zen PiP window floating and sticky
+hl.window_rule({ match = { title = "^(Picture-in-Picture)$" }, float = true })
+hl.window_rule({ match = { title = "^(Picture-in-Picture)$" }, pin = true })
+
 -- # throw sharing indicators away
 -- "workspace special silent, title:^(Firefox — Sharing Indicator)$"
 -- "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
