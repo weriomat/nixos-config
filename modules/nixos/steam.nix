@@ -51,6 +51,8 @@ in
         dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
         gamescopeSession.enable = true;
         platformOptimizations.enable = true; # from nix-gaming
+
+        extraCompatPackages = [ pkgs.proton-ge-bin ];
       };
     };
     environment.systemPackages = [
