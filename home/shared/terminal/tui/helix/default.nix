@@ -112,8 +112,10 @@ in
           };
         };
 
+        lua-language-server.command = getExe pkgs.lua-language-server;
+
         scls = {
-          command = lib.getExe pkgs.simple-completion-language-server;
+          command = getExe pkgs.simple-completion-language-server;
 
           config = {
             max_completion_items = 20;
@@ -382,6 +384,19 @@ in
           language-servers = [
             "tinymist"
             "ltex"
+            "typos"
+            "scls"
+          ];
+        }
+        {
+          name = "lua";
+          auto-format = true;
+          formatter = {
+            command = getExe pkgs.stylua;
+            args = [ "-" ];
+          };
+          language-servers = [
+            "lua-language-server"
             "typos"
             "scls"
           ];
