@@ -24,13 +24,7 @@ in
     # TODO: ipp-usb (IPP protocol for usb printers)
     printing = {
       enable = true;
-      drivers = [
-        pkgs.brlaser
-        pkgs.brgenml1lpr
-        pkgs.brgenml1cupswrapper
-        pkgs.gutenprint
-        pkgs.gutenprintBin
-      ];
+      drivers = [ ];
     };
 
     dbus = {
