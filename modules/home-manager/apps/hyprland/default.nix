@@ -13,16 +13,14 @@ let
     getExe'
     getExe
     ;
+
+  hyprland-pkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
+
   cfg = config.my_hyprland;
 in
 {
-  imports = [
-    inputs.hyprland.homeManagerModules.default
-    ./config.nix
-    ./settings.nix
-    ./binds.nix
-    ./windowrules.nix
-  ];
+
+  imports = [ ./config.nix ];
 
   options.my_hyprland.enable = mkEnableOption "Enable hyrpland config";
   # TODO: https://github.com/Vladimir-csp/uwsm?tab=readme-ov-file
@@ -31,10 +29,7 @@ in
     home.packages = [
       pkgs.libnotify
       pkgs.brightnessctl
-      # https://wiki.hyprland.org/Useful-Utilities/Screen-Sharing/
-      # pkgs.kdePackages.xwaylandvideobridge
       pkgs.wf-recorder
-      pkgs.wayland
     ];
 
     # from https://github.com/Sly-Harvey/NixOS/commit/6c47a6d22ad09f93d9bf62bdb69387e7762f2c92
@@ -59,11 +54,12 @@ in
     # TODO: https://github.com/Duckonaut/split-monitor-workspaces?tab=readme-ov-file -> pin workspaces to monitors and independent numbering
     wayland.windowManager.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-      xwayland.enable = true;
+      package = hyprland-pkgs.hyprland;
+      portalPackage = hyprland-pkgs.xdg-desktop-portal-hyprland;
 
+      configType = "lua";
+
+      xwayland.enable = true;
       systemd = {
         enable = true;
         enableXdgAutostart = true;
@@ -80,8 +76,6 @@ in
     };
 
     services = {
-      # NOTE: start nm-applet, blueblueman-applet at boot
-      network-manager-applet.enable = true;
       blueman-applet.enable = true;
 
       # NOTE: automatic mounting of new devices

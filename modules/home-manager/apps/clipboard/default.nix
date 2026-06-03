@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
 in
 {
   options.clipboard.enable = mkEnableOption "Enable Clipboard config with hyprland bindings";
@@ -31,10 +31,11 @@ in
         "--bind 'ctrl-y:execute-silent(${pkgs.toybox}/bin/printf {} | ${pkgs.toybox}/bin/cut -f 2- | ${pkgs.wl-clipboard}/bin/wl-copy --trim-newline)'"
       ];
     };
+    # -- hl.exec_cmd("rm '$XDG_CACHE_HOME/cliphist/db'")
 
     # $mainMod + o -> search through history and select item to copy
     # $mainMod + Shift + o -> search through history and delete selected item from it
-    wayland.windowManager.hyprland.settings.bind =
+    wayland.windowManager.hyprland.extraConfig =
       let
         hist-copy = pkgs.writeShellScriptBin "hist-copy" ''
           ${config.services.cliphist.package}/bin/cliphist list | ${config.programs.wofi.package}/bin/wofi --dmenu --prompt "Copy Item" | ${config.services.cliphist.package}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
@@ -43,9 +44,10 @@ in
           ${config.services.cliphist.package}/bin/cliphist list | ${config.programs.wofi.package}/bin/wofi --dmenu --prompt "Delete Item" | ${config.services.cliphist.package}/bin/cliphist delete
         '';
       in
-      [
-        "$mainMod, o, exec, ${hist-copy}/bin/hist-copy"
-        "$mainMod SHIFT, o, exec, ${hist-delete}/bin/hist-delete"
-      ];
+      /* lua */ ''
+          -- clipboard
+        hl.bind(mod .. " + O", hl.dsp.exec_cmd("${getExe hist-copy}"))
+        hl.bind(mod .. " + SHIFT + O", hl.dsp.exec_cmd("${getExe hist-delete}"))
+      '';
   };
 }

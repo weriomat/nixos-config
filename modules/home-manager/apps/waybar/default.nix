@@ -50,10 +50,10 @@ in
   };
 
   config = mkIf config.waybar.enable {
-    # kill waybar
-    wayland.windowManager.hyprland.settings.bind = [
-      "$mainMod SHIFT, B, exec, ${getExe' pkgs.toybox "pkill"} -SIGUSR1 .waybar-wrapped"
-    ];
+    wayland.windowManager.hyprland.extraConfig = /* lua */ ''
+      -- waybar
+      hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("${getExe' pkgs.toybox "pkill"} -SIGUSR1 .waybar-wrapped"))
+    '';
 
     services.usbguard-dbus.enable = globals.laptop;
 

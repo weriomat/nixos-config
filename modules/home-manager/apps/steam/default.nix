@@ -15,25 +15,43 @@ in
       enableSessionWide = true;
     };
 
-    wayland.windowManager.hyprland.settings = {
-      # from https://github.com/Sly-Harvey/NixOS/blob/master/modules/desktop/hyprland/default.nix
-      windowrule = [
-        "content game, tag:games"
-        "tag +games, content:game"
-        "tag +games, class:^(steam_app.*|steam_app_\d+)$"
-        "tag +games, class:^(gamescope)$"
-        "tag +games, class:(Waydroid)"
-        "tag +games, class:(osu!)"
-
-        # Games
-        "syncfullscreen,tag:games"
-        "fullscreen,tag:games"
-        "noborder 1,tag:games"
-        "noshadow,tag:games"
-        "noblur,tag:games"
-        "noanim,tag:games"
-      ];
-    };
+    # from https://github.com/Sly-Harvey/NixOS/blob/master/modules/desktop/hyprland/default.nix
+    wayland.windowManager.hyprland.extraConfig = /* lua */ ''
+      hl.window_rule({
+      	match = { tag = "games" },
+      	content = "game",
+      	sync_fullscreen = true,
+      	fullscreen = true,
+      	border_size = 0,
+      	no_shadow = true,
+      	no_blur = true,
+      	no_anim = true,
+      })
+      hl.window_rule({
+      	match = { content = "3" },
+      	tag = "+games",
+      })
+      hl.window_rule({
+      	match = { class = "^(steam_app.*|steam_app_\\d+)$" },
+      	tag = "+games",
+      })
+      hl.window_rule({
+      	match = { class = "^(gamescope)$" },
+      	tag = "+games",
+      })
+      hl.window_rule({
+      	match = { class = "(Waydroid)" },
+      	tag = "+games",
+      })
+      hl.window_rule({
+      	match = { class = "(osu!)" },
+      	tag = "+games",
+      })
+      hl.window_rule({
+      	match = { class = "^(com.libretro.RetroArch|[Rr]etro[Aa]rch)$" },
+      	tag = "+games",
+      })
+    '';
 
     # home.sessionVariables.STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
 

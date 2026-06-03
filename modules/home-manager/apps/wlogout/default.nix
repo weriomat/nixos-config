@@ -28,12 +28,12 @@ in
   };
 
   config = mkIf cfg.enable {
-    wayland.windowManager.hyprland.settings.bind = [
-      (
-        "$mainMod, Q, exec, ${getExe wlo.package}"
-        + lib.strings.optionalString (wlo.package == pkgs.wleave) " -p layer-shell"
-      )
-    ];
+    wayland.windowManager.hyprland.extraConfig = /* lua */ ''
+      -- wlogout
+      hl.bind(mod .. " + Q", hl.dsp.exec_cmd("${getExe wlo.package} ${
+        lib.strings.optionalString (wlo.package == pkgs.wleave) " -p layer-shell"
+      }"))
+    '';
 
     programs.wlogout = {
       enable = true;

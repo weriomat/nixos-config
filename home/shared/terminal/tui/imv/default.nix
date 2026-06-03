@@ -14,8 +14,13 @@ in
       };
     };
 
-    wayland.windowManager.hyprland.settings.windowrulev2 = [
-      "opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
-    ];
+    wayland.windowManager.hyprland.extraConfig = /* lua */ ''
+      -- imv
+      hl.window_rule({
+      	match = { class = "^(.*imv.*)$" },
+
+      	opacity = "1.0 override 1.0 override",
+      })
+    '';
   };
 }
