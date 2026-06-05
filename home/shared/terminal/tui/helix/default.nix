@@ -10,22 +10,11 @@ let
 in
 {
   # pull snippets via `simple-completion-language-server fetch-external-snippets` && `simple-completion-language-server validate-snippets`
-  xdg.configFile = {
-    "helix/external-snippets.toml".text = ''
-      [[sources]] 
-      name = "friendly-snippets"  
-      git = "https://github.com/rafamadriz/friendly-snippets.git" 
-    '';
-    "vale/.vale.ini".text = ''
-      StylesPath = styles
-      MinAlertLevel = suggestion
-      Packages = Google, proselint, write-good, alex, Joblint, Hugo, MDX
-
-      [*.{md}]
-      BasedOnStyles = Vale, Google, proselint, write-good, alex, Joblint
-    '';
-    "vale/styles/.test".text = "";
-  };
+  xdg.configFile."helix/external-snippets.toml".text = ''
+    [[sources]] 
+    name = "friendly-snippets"  
+    git = "https://github.com/rafamadriz/friendly-snippets.git" 
+  '';
 
   home.packages = [ pkgs.simple-completion-language-server ];
 
@@ -235,14 +224,6 @@ in
           environment.RUST_LOG = "error";
           config.diagnosticSeverity = "Warning";
         };
-
-        vale = {
-          command = getExe pkgs.vale-ls;
-          config = {
-            installVale = false;
-            configPath = config.home.homeDirectory + "/" + config.xdg.configFile."vale/.vale.ini".target;
-          };
-        };
       };
 
       language = [
@@ -360,7 +341,6 @@ in
             "typos"
             "scls"
             "harper"
-            "vale"
           ];
         }
         {
