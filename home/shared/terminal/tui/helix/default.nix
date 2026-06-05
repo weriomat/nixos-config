@@ -173,6 +173,11 @@ in
           };
         };
 
+        harper = {
+          command = getExe' pkgs.harper "harper-ls";
+          args = [ "--stdio" ];
+        };
+
         # LTeX LSP for grammar and spellchecking
         ltex = {
           command = getExe pkgs.ltex-ls;
@@ -219,6 +224,25 @@ in
           environment.RUST_LOG = "error";
           config.diagnosticSeverity = "Warning";
         };
+
+        vale = {
+          command = getExe pkgs.vale-ls;
+          config =
+            let
+              config = pkgs.writeText ".vale.ini" ''
+                StylesPath = styles
+                MinAlertLevel = suggestion
+                Packages = Google, proselint, write-good, alex, Joblint, Hugo, MDX
+
+                [*.{md}]
+                BasedOnStyles = Vale, Google, proselint, write-good, alex, Joblint
+              '';
+            in
+            {
+              installVale = false;
+              configPath = config;
+            };
+        };
       };
 
       language = [
@@ -249,6 +273,7 @@ in
             "jdtls"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -278,6 +303,7 @@ in
             "taplo"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -287,6 +313,7 @@ in
             "clangd"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -296,9 +323,9 @@ in
             "clangd"
             "typos"
             "scls"
+            "harper"
           ];
         }
-
         {
           name = "markdown";
           auto-format = true;
@@ -332,6 +359,8 @@ in
             "ltex"
             "typos"
             "scls"
+            "harper"
+            "vale"
           ];
         }
         {
@@ -350,6 +379,7 @@ in
             "nixd"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -359,6 +389,7 @@ in
             "gopls"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -375,6 +406,7 @@ in
             "ltex"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -386,6 +418,7 @@ in
             "ltex"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -399,6 +432,7 @@ in
             "lua-language-server"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -418,6 +452,7 @@ in
             "pyright"
             "typos"
             "scls"
+            "harper"
           ];
         }
       ];
@@ -457,11 +492,19 @@ in
         };
         "{" = "goto_prev_paragraph";
         "}" = "goto_next_paragraph";
-        # better window naivgation
+        # better window navigation
         "C-h" = "jump_view_left";
         "C-j" = "jump_view_down";
         "C-k" = "jump_view_up";
         "C-l" = "jump_view_right";
+
+        # lazygit
+        C-g = [
+          ":write-all"
+          ":insert-output lazygit >/dev/tty"
+          ":redraw"
+          ":reload-all"
+        ];
       };
     };
   };
