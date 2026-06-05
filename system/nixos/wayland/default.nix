@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -40,11 +41,13 @@ in
         terminal.vt = 1;
         default_session =
           let
-            session = "${getExe pkgs.hyprland}";
+            # keep in sync with home-manager package
+            hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+            session = "${getExe' hyprland "start-hyprland"}";
             tuigreet = "${getExe pkgs.tuigreet}";
           in
           {
-            command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' config.systemd.package "systemctl"} poweroff' --power-reboot '${getExe' config.systemd.package "systemctl"} poweroff' --cmd ${session}";
+            command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' config.systemd.package "systemctl"} poweroff' --power-reboot '${getExe' config.systemd.package "systemctl"} reboot' --cmd ${session}";
             user = "greeter";
           };
       };

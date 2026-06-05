@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   # TODO: document all shortcuts
   fshow = pkgs.writeShellApplication {
@@ -103,7 +103,7 @@
   # TODO: use this
   toggle_toggle_blur = pkgs.writeShellApplication {
     name = "toggle_blur";
-    runtimeInputs = [ pkgs.hyprland ];
+    runtimeInputs = [ config.wayland.windowManager.hyprland.package ];
     text = ''
         #!/usr/bin/env bash
       if hyprctl getoption decoration:blur:enabled | grep "int: 1" >/dev/null ; then
