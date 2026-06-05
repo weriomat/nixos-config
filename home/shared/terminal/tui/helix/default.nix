@@ -10,11 +10,22 @@ let
 in
 {
   # pull snippets via `simple-completion-language-server fetch-external-snippets` && `simple-completion-language-server validate-snippets`
-  xdg.configFile."helix/external-snippets.toml".text = ''
-    [[sources]] 
-    name = "friendly-snippets"  
-    git = "https://github.com/rafamadriz/friendly-snippets.git" 
-  '';
+  xdg.configFile = {
+    "helix/external-snippets.toml".text = ''
+      [[sources]] 
+      name = "friendly-snippets"  
+      git = "https://github.com/rafamadriz/friendly-snippets.git" 
+    '';
+    "vale/.vale.ini".text = ''
+      StylesPath = styles
+      MinAlertLevel = suggestion
+      Packages = Google, proselint, write-good, alex, Joblint, Hugo, MDX
+
+      [*.{md}]
+      BasedOnStyles = Vale, Google, proselint, write-good, alex, Joblint
+    '';
+    "vale/styles/.test".text = "";
+  };
 
   home.packages = [ pkgs.simple-completion-language-server ];
 
@@ -227,21 +238,10 @@ in
 
         vale = {
           command = getExe pkgs.vale-ls;
-          config =
-            let
-              config = pkgs.writeText ".vale.ini" ''
-                StylesPath = styles
-                MinAlertLevel = suggestion
-                Packages = Google, proselint, write-good, alex, Joblint, Hugo, MDX
-
-                [*.{md}]
-                BasedOnStyles = Vale, Google, proselint, write-good, alex, Joblint
-              '';
-            in
-            {
-              installVale = false;
-              configPath = config;
-            };
+          config = {
+            installVale = false;
+            configPath = config.home.homeDirectory + "/" + config.xdg.configFile."vale/.vale.ini".target;
+          };
         };
       };
 
