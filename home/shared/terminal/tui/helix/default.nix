@@ -1,4 +1,3 @@
-# to get helix running in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
 {
   config,
   lib,
@@ -9,6 +8,8 @@ let
   inherit (lib) mkIf getExe getExe';
 in
 {
+  # to get helix running in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
+
   # pull snippets via `simple-completion-language-server fetch-external-snippets` && `simple-completion-language-server validate-snippets`
   xdg.configFile."helix/external-snippets.toml".text = ''
     [[sources]] 
@@ -308,6 +309,16 @@ in
           ];
         }
         {
+          name = "rust";
+          auto-format = true;
+          language-servers = [
+            "rust-analyzer"
+            "typos"
+            "scls"
+            "harper"
+          ];
+        }
+        {
           name = "markdown";
           auto-format = true;
           formatter = {
@@ -346,7 +357,6 @@ in
         {
           name = "haskell";
           auto-format = true;
-          # TODO: lsp
         }
         {
           name = "nix";
