@@ -150,7 +150,7 @@
           default = pre-commit-hooks.lib.${system}.run {
             src = self.outPath;
             hooks = {
-              nixfmt-rfc-style.enable = true;
+              nixfmt.enable = true;
               deadnix.enable = true;
               statix.enable = true;
               nil.enable = true;

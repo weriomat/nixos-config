@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  # TODO: document all shortcuts
   fshow = pkgs.writeShellApplication {
     name = "fshow";
     runtimeInputs = [
