@@ -14,7 +14,7 @@
         pkgs.bat-extras.batman
         pkgs.bat-extras.batgrep
         pkgs.bat-extras.batwatch
-        pkgs.bat-extras.prettybat
+        # pkgs.bat-extras.prettybat
       ]; # missing batpipe
     };
 
