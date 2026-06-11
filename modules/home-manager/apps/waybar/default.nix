@@ -50,10 +50,10 @@ in
   };
 
   config = mkIf config.waybar.enable {
-    # kill waybar
-    wayland.windowManager.hyprland.settings.bind = [
-      "$mainMod SHIFT, B, exec, ${getExe' pkgs.toybox "pkill"} -SIGUSR1 .waybar-wrapped"
-    ];
+    wayland.windowManager.hyprland.extraConfig = /* lua */ ''
+      -- waybar
+      hl.bind(mod .. " + SHIFT + B", hl.dsp.exec_cmd("${getExe' pkgs.toybox "pkill"} -SIGUSR1 .waybar-wrapped"))
+    '';
 
     services.usbguard-dbus.enable = globals.laptop;
 
@@ -67,7 +67,7 @@ in
 
       systemd = {
         enable = true;
-        target = "hyprland-session.target";
+        targets = [ "hyprland-session.target" ];
       };
 
       settings.mainBar = {
@@ -77,21 +77,20 @@ in
         margin-bottom = 0;
         margin-left = 0;
         margin-right = 0;
-        modules-left =
-          [
-            "custom/launcher"
-            "custom/playerctl#backward"
-            "custom/playerctl#play"
-            "custom/playerctl#forward"
-            "custom/audio_idle_inhibitor"
-            "custom/yubikey"
-            "cpu"
-          ]
-          ++ lib.optional globals.laptop "battery"
-          ++ [
-            "memory"
-            "disk"
-          ];
+        modules-left = [
+          "custom/launcher"
+          "custom/playerctl#backward"
+          "custom/playerctl#play"
+          "custom/playerctl#forward"
+          "custom/audio_idle_inhibitor"
+          "custom/yubikey"
+          "cpu"
+        ]
+        ++ lib.optional globals.laptop "battery"
+        ++ [
+          "memory"
+          "disk"
+        ];
         modules-center = [ "hyprland/workspaces" ];
         modules-right = [
           "tray"

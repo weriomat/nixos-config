@@ -22,9 +22,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    wayland.windowManager.hyprland.settings.bind = [
-      "$mainMod, R, exec, ${config.programs.wofi.package}/bin/wofi --show drun"
-    ];
+    wayland.windowManager.hyprland.extraConfig = /* lua */ ''
+      -- wofi
+      hl.bind(mod .. " + R", hl.dsp.exec_cmd("${config.programs.wofi.package}/bin/wofi --show drun"))
+    '';
 
     programs.wofi = {
       enable = true;

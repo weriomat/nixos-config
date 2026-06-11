@@ -1,4 +1,5 @@
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -15,22 +16,13 @@ in
   hardware.graphics.enable = lib.mkDefault true;
 
   services = {
-    displayManager.defaultSession = "hyprland";
-
     # Window manager only sessions (unlike DEs) don't handle XDG
     # autostart files, so force them to run the service
     xserver.desktopManager.runXdgAutostartIfNone = lib.mkDefault true;
 
-    # TODO: ipp-usb (IPP protocol for usb printers)
     printing = {
       enable = true;
-      drivers = [
-        pkgs.brlaser
-        pkgs.brgenml1lpr
-        pkgs.brgenml1cupswrapper
-        pkgs.gutenprint
-        pkgs.gutenprintBin
-      ];
+      drivers = [ ];
     };
 
     dbus = {
@@ -42,15 +34,20 @@ in
     # display Manager
     greetd = {
       enable = true;
-      settings.default_session =
-        let
-          session = "${getExe pkgs.hyprland}";
-          tuigreet = "${getExe pkgs.tuigreet}";
-        in
-        {
-          command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' config.systemd.package "systemctl"} poweroff' --power-reboot '${getExe' config.systemd.package "systemctl"} poweroff' --cmd ${session}";
-          user = "greeter";
-        };
+      settings = {
+        terminal.vt = 1;
+        default_session =
+          let
+            # keep in sync with home-manager package
+            hyprland = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+            session = "${getExe' hyprland "start-hyprland"}";
+            tuigreet = "${getExe pkgs.tuigreet}";
+          in
+          {
+            command = "${tuigreet} --time --time-format '%I:%M %p | %a • %h | %F' --remember --power-shutdown '${getExe' config.systemd.package "systemctl"} poweroff' --power-reboot '${getExe' config.systemd.package "systemctl"} reboot' --cmd ${session}";
+            user = "greeter";
+          };
+      };
     };
   };
 
@@ -83,7 +80,7 @@ in
       StandardInput = "tty";
       StandardOutput = "tty";
       StandardError = "journal"; # Without this errors will spam on screen
-      # Without these bootlogs will spam on screen
+      # Without these boot logs will spam on screen
       TTYReset = true;
       TTYVHangup = true;
       TTYVTDisallocate = true;

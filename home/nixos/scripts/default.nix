@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-  # TODO: document all shortcuts
   fshow = pkgs.writeShellApplication {
     name = "fshow";
     runtimeInputs = [
@@ -73,46 +72,6 @@
     '';
   };
 
-  # TODO: here, exec at start of hyprland
-  # xdg = pkgs.writeShellApplication {
-  #   name = "xdg";
-  #   runtimeInputs = [ pkgs.killall ];
-  #   text = ''
-  #     sleep 1
-
-  #     # kill all possible running xdg-desktop-portals
-  #     killall xdg-desktop-portal-hyprland
-  #     killall xdg-desktop-portal-gnome
-  #     killall xdg-desktop-portal-kde
-  #     killall xdg-desktop-portal-lxqt
-  #     killall xdg-desktop-portal-wlr
-  #     killall xdg-desktop-portal-gtk
-  #     killall xdg-desktop-portal
-  #     sleep 1
-
-  #     # start xdg-desktop-portal-hyprland
-  #     /usr/lib/xdg-desktop-portal-hyprland &
-  #     sleep 2
-
-  #     # start xdg-desktop-portal
-  #     /usr/lib/xdg-desktop-portal &
-  #     sleep 1
-  #   '';
-  # };
-
-  # TODO: use this
-  toggle_toggle_blur = pkgs.writeShellApplication {
-    name = "toggle_blur";
-    runtimeInputs = [ pkgs.hyprland ];
-    text = ''
-        #!/usr/bin/env bash
-      if hyprctl getoption decoration:blur:enabled | grep "int: 1" >/dev/null ; then
-          hyprctl keyword decoration:blur:enabled false >/dev/null
-      else
-          hyprctl keyword decoration:blur:enabled true >/dev/null
-      fi
-    '';
-  };
   runbg = pkgs.writeShellApplication {
     name = "runbg";
     text = ''

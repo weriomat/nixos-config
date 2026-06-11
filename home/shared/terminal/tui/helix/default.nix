@@ -1,4 +1,3 @@
-# to get helix running in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
 {
   config,
   lib,
@@ -9,6 +8,8 @@ let
   inherit (lib) mkIf getExe getExe';
 in
 {
+  # to get helix running in sudo symlink it to root folder -> sudo -i -> cd .config -> ln -s ../../home/marts/.config/helix/ /root/.config/helix
+
   # pull snippets via `simple-completion-language-server fetch-external-snippets` && `simple-completion-language-server validate-snippets`
   xdg.configFile."helix/external-snippets.toml".text = ''
     [[sources]] 
@@ -107,11 +108,15 @@ in
             preview.background.enabled = true;
             lint.enabled = true;
             exportPdf = "onSave";
+            formatterMode = "typstyle";
+            formatterPrintWidth = 80;
           };
         };
 
+        lua-language-server.command = getExe pkgs.lua-language-server;
+
         scls = {
-          command = lib.getExe pkgs.simple-completion-language-server;
+          command = getExe pkgs.simple-completion-language-server;
 
           config = {
             max_completion_items = 20;
@@ -167,6 +172,11 @@ in
               ];
             };
           };
+        };
+
+        harper = {
+          command = getExe' pkgs.harper "harper-ls";
+          args = [ "--stdio" ];
         };
 
         # LTeX LSP for grammar and spellchecking
@@ -245,6 +255,7 @@ in
             "jdtls"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -274,6 +285,7 @@ in
             "taplo"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -283,6 +295,7 @@ in
             "clangd"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -292,9 +305,19 @@ in
             "clangd"
             "typos"
             "scls"
+            "harper"
           ];
         }
-
+        {
+          name = "rust";
+          auto-format = true;
+          language-servers = [
+            "rust-analyzer"
+            "typos"
+            "scls"
+            "harper"
+          ];
+        }
         {
           name = "markdown";
           auto-format = true;
@@ -328,12 +351,12 @@ in
             "ltex"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
           name = "haskell";
           auto-format = true;
-          # TODO: lsp
         }
         {
           name = "nix";
@@ -346,6 +369,7 @@ in
             "nixd"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -355,6 +379,7 @@ in
             "gopls"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -371,6 +396,7 @@ in
             "ltex"
             "typos"
             "scls"
+            "harper"
           ];
         }
         {
@@ -382,6 +408,21 @@ in
             "ltex"
             "typos"
             "scls"
+            "harper"
+          ];
+        }
+        {
+          name = "lua";
+          auto-format = true;
+          formatter = {
+            command = getExe pkgs.stylua;
+            args = [ "-" ];
+          };
+          language-servers = [
+            "lua-language-server"
+            "typos"
+            "scls"
+            "harper"
           ];
         }
         {
@@ -401,6 +442,7 @@ in
             "pyright"
             "typos"
             "scls"
+            "harper"
           ];
         }
       ];
@@ -440,11 +482,19 @@ in
         };
         "{" = "goto_prev_paragraph";
         "}" = "goto_next_paragraph";
-        # better window naivgation
+        # better window navigation
         "C-h" = "jump_view_left";
         "C-j" = "jump_view_down";
         "C-k" = "jump_view_up";
         "C-l" = "jump_view_right";
+
+        # lazygit
+        C-g = [
+          ":write-all"
+          ":insert-output lazygit >/dev/tty"
+          ":redraw"
+          ":reload-all"
+        ];
       };
     };
   };

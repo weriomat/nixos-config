@@ -1,9 +1,12 @@
 {
   description = "Marts - Nixos config flake";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     systems.url = "github:nix-systems/default";
     utils = {
@@ -13,10 +16,10 @@
 
     # hm
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin.url = "github:catppuccin/nix/release-25.11";
+    catppuccin.url = "github:catppuccin/nix/release-26.05";
 
     # Firefox addons
     firefox-addons = {
@@ -49,11 +52,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # hyprland, if we let it follow nixpkgs than the cache wont hit
+    hyprland.url = "github:hyprwm/Hyprland";
 
     hypr-contrib = {
       url = "github:hyprwm/contrib";
@@ -87,7 +87,7 @@
 
     # darwin
     nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -150,7 +150,7 @@
           default = pre-commit-hooks.lib.${system}.run {
             src = self.outPath;
             hooks = {
-              nixfmt-rfc-style.enable = true;
+              nixfmt.enable = true;
               deadnix.enable = true;
               statix.enable = true;
               nil.enable = true;

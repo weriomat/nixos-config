@@ -40,20 +40,27 @@ in
       };
     };
 
-    wayland.windowManager.hyprland.settings = {
-      bind = [ "$mainMod SHIFT, M, exec, ${getExe config.programs.firefox.finalPackage}" ];
-      windowrule = [
-        "opaque, class:^(firefox)"
-        "float,title:^(Firefox — Sharing Indicator)$"
-        "move 0 0,title:^(Firefox — Sharing Indicator)$"
-      ];
-      windowrulev2 = [
-        # idleinhibit
-        "idleinhibit fullscreen, class:^(firefox)$"
-        "idleinhibit focus, class:^(firefox)$"
-        "idleinhibit fullscreen, fullscreen:1"
-      ];
-    };
+    programs.firefox.configPath = ".mozilla/firefox";
+
+    wayland.windowManager.hyprland.extraConfig = /* lua */ ''
+      -- firefox
+      hl.bind(mod .. " + SHIFT + M", hl.dsp.exec_cmd("${getExe config.programs.firefox.finalPackage}"))
+      hl.window_rule({
+        name = "firefox",
+        match = { class = "firefox" },
+
+        opaque = true,
+      })
+      hl.window_rule({
+        name = "firefox sharing",
+        match = {
+          class = "Firefox — Sharing Indicator",
+        },
+
+        float = true,
+        move = {"0", "0"},
+      })
+    '';
 
     home.sessionVariables = {
       BROWSER = "firefox";

@@ -9,9 +9,9 @@ let
   inherit (lib)
     mkEnableOption
     mkIf
-    mkMerge
     getExe
     getExe'
+    optionalString
     ;
 in
 {
@@ -35,48 +35,27 @@ in
 
     services.swayosd.enable = true;
 
-    wayland.windowManager.hyprland.settings = {
-      exec-once = [
-        "${getExe pkgs.sway-audio-idle-inhibit} &"
-      ];
+    wayland.windowManager.hyprland.extraConfig = /* lua */ ''
+      -- audio
+      hl.on("hyprland.start", function()
+      	hl.exec_cmd("${getExe pkgs.sway-audio-idle-inhibit} &")
+      end)
 
-      # TODO: more keys to assign: "XF86Display", "XF86Favorites", "XF86WLAN" (assigned)
-      # NOTE: the [e] means repeating
-      binde = mkMerge [
-        [
-          ",XF86AudioRaiseVolume, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --output-volume raise"
-          ",XF86AudioLowerVolume, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --output-volume lower"
-          ",XF86AudioNext, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --playerctl next"
-          ",XF86AudioPrev, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --playerctl previous"
-        ]
-        (mkIf globals.laptop [
-          ",XF86MonBrightnessUp, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --brightness raise"
-          ",XF86MonBrightnessDown, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --brightness lower"
-        ])
-      ];
+      -- audio (repeating)
+      hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("${getExe' config.services.swayosd.package "swayosd-client"} --output-volume raise"), { repeating = true })
+      hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("${getExe' config.services.swayosd.package "swayosd-client"} --output-volume lower"), { repeating = true })
+      hl.bind("XF86AudioNext", hl.dsp.exec_cmd("${getExe' config.services.swayosd.package "swayosd-client"} --playerctl next"), { repeating = true })
+      hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("${getExe' config.services.swayosd.package "swayosd-client"} --playerctl previous"), { repeating = true })
+      ${optionalString globals.laptop "hl.bind(\"XF86MonBrightnessUp\", hl.dsp.exec_cmd(\"${getExe' config.services.swayosd.package "swayosd-client"}  --brightness raise\"), { repeating = true })"}
+      ${optionalString globals.laptop "hl.bind(\"XF86MonBrightnessDown\", hl.dsp.exec_cmd(\"${getExe' config.services.swayosd.package "swayosd-client"} --brightness lower\"), { repeating = true })"}
 
-      bind = mkMerge [
-        [
-          ",XF86AudioMute, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --output-volume mute-toggle"
-          ",XF86AudioMicMute, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --input-volume mute-toggle"
-          ",XF86AudioPlay, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --playerctl play-pause"
-          ",XF86AudioStop, exec, ${getExe' config.services.swayosd.package "swayosd-client"} --playerctl stop"
-        ]
+      -- audio (non-repeating)
+      hl.bind("XF86AudioMute", hl.dsp.exec_cmd("${getExe' config.services.swayosd.package "swayosd-client"} --output-volume mute-toggle"))
+      hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("${getExe' config.services.swayosd.package "swayosd-client"} --input-volume mute-toggle"))
+      hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("${getExe' config.services.swayosd.package "swayosd-client"} --playerctl play-pause"))
+      hl.bind("XF86AudioStop", hl.dsp.exec_cmd("${getExe' config.services.swayosd.package "swayosd-client"} --playerctl stop"))
+    '';
 
-        (mkIf globals.laptop [
-          "CTRL,XF86MonBrightnessUp, exec, ${getExe pkgs.external-monitor-brightness} -s --inc 5"
-          "CTRL,XF86MonBrightnessDown, exec, ${getExe pkgs.external-monitor-brightness} -s --dec 5"
-        ])
-      ];
 
-      # TODO: maybe this in per host config as well? `hyprctl clients`
-      #   windowrule = float,audacious
-      #   windowrule = workspace 8 silent, audacious
-      #   windowrule = float,title:^(Volume Control)$
-      #   windowrule = size 700 450,title:^(Volume Control)$
-      #   windowrule = move 40 55%,title:^(Volume Control)$
-      #   windowrulev2 = float,class:^(pavucontrol)$
-      #   windowrulev2 = float,class:^(SoundWireServer)$
-    };
   };
 }

@@ -71,11 +71,9 @@
     homeDirectory = "/home/${username}";
     stateVersion = "23.11"; # Has not to be changed
     packages = builtins.attrValues (import ./scripts { inherit pkgs globals inputs; });
+
     # Add ./local/bin to $PATH
-    sessionPath = [
-      "$HOME/.cargo/bin"
-      "$HOME/.local/bin"
-    ];
+    sessionPath = [ "$HOME/.local/bin" ];
     preferXdgDirectories = true;
   };
 

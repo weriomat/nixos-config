@@ -13,7 +13,6 @@ in
   options.nix-settings.enable = mkEnableOption "Enable nix settings";
 
   config = mkIf config.nix-settings.enable {
-    system.rebuild.enableNg = true;
     nix = {
       channel.enable = false;
       nixPath = [

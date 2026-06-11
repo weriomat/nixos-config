@@ -5,15 +5,16 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption mkIf;
+  inherit (lib) mkEnableOption mkIf getExe;
 in
 {
   options.kitty.enable = mkEnableOption "Enable my kitty options";
 
   config = mkIf config.kitty.enable {
-    wayland.windowManager.hyprland.settings.bind = [
-      "$mainMod SHIFT, K, exec, ${config.programs.kitty.package}/bin/kitty"
-    ];
+    wayland.windowManager.hyprland.extraConfig = /* lua */ ''
+      -- kitty
+      hl.bind(mod .. " + SHIFT + K", hl.dsp.exec_cmd("${getExe config.programs.kitty.package}"))
+    '';
 
     catppuccin.kitty = {
       enable = true;
