@@ -1,5 +1,4 @@
-{ ... }:
-{
+_: {
   # We install Vorta/ Borgbackup with proper fuse support, see https://github.com/borgbackup/homebrew-tap and https://vorta.borgbase.com/install/macos/
   homebrew = {
     enable = true;
