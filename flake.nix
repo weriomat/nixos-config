@@ -135,6 +135,10 @@
           path = ./templates/typst;
           description = "A simple Typst template";
         };
+        python-uv = {
+          path = ./templates/python-uv;
+          description = "A simple python template with the uv tool";
+        };
       };
     }
     // utils.lib.eachDefaultSystem (
