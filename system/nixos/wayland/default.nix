@@ -7,6 +7,8 @@
 }:
 let
   inherit (lib) getExe getExe';
+
+  hyprland-pkgs = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   imports = [ ./gnome.nix ];
@@ -14,6 +16,37 @@ in
   programs.xwayland.enable = true; # Enable simulation of x11
 
   hardware.graphics.enable = lib.mkDefault true;
+
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+        hyprland-pkgs.xdg-desktop-portal-hyprland
+      ];
+
+      xdgOpenUsePortal = true;
+
+      configPackages = [ hyprland-pkgs.hyprland ];
+      config.common = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.OpenURI" = "gtk";
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+        "org.freedesktop.impl.portal.Print" = "gtk";
+
+        "org.freedesktop.impl.portal.ScreenCast" = "hyprland";
+        "org.freedesktop.impl.portal.Screenshot" = "hyprland";
+      };
+    };
+
+    terminal-exec = {
+      enable = true;
+      settings.default = [ "kitty.desktop" ];
+    };
+  };
 
   services = {
     # Window manager only sessions (unlike DEs) don't handle XDG
@@ -60,12 +93,6 @@ in
       "audio"
     ];
     linger = true;
-  };
-
-  # portals managed by hm
-  xdg.terminal-exec = {
-    enable = true;
-    settings.default = [ "kitty.desktop" ];
   };
 
   # Enable polkit
