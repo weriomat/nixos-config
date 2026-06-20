@@ -17,6 +17,7 @@
     ./packages.nix
     ./power.nix
     ./protonmail.nix
+    ./rapl.nix
     ./security.nix
     ./sops.nix
     ./ssh.nix
