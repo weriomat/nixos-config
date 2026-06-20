@@ -12,7 +12,6 @@ in
   imports = [
     ./extensions.nix
     ./search.nix
-    ./bookmarks.nix
   ];
 
   options.firefox = {
