@@ -181,8 +181,10 @@ in
           "toolkit.telemetry.unified.enabled" = false;
           "toolkit.telemetry.updatePing.enabled" = false;
           "toolkit.telemetry.shutdownPingSender.enabled" = false;
-          "webgl.disabled" = true;
           "security.ssl.enable_false_start" = false;
+
+          # dawarich needs webgl
+          "webgl.disabled" = false;
 
           # wayland
           "media.peerconnection.enabled" = true;
