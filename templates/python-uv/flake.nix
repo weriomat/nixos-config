@@ -25,6 +25,8 @@
       {
         devShells.default = pkgs.mkShell {
           packages = [ pkgs.uv ];
+          # needed for numpy
+          LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
         };
       }
     );
