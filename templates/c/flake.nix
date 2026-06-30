@@ -28,6 +28,8 @@
             pkgs.ccache
             pkgs.clang-tools
             pkgs.cmake
+            pkgs.ninja
+            pkgs.gnumake
             pkgs.codespell
             pkgs.cppcheck
             pkgs.gbenchmark
