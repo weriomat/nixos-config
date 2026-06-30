@@ -38,7 +38,6 @@ in
       pkgs.gopls # go lsp
       pkgs.bash-language-server # bash
       pkgs.yaml-language-server # yaml
-      pkgs.pyright # python
       pkgs.jdt-language-server # java lsp
     ];
 
@@ -98,9 +97,17 @@ in
             "--ignore"
             "E501"
           ];
+
+          config = {
+            lint.select = [ "ALL" ];
+            preview = true;
+          };
         };
 
-        pyright.config.analysis.typeCheckingMode = "basic";
+        ty = {
+          command = getExe pkgs.ty;
+          args = [ "server" ];
+        };
 
         tinymist = {
           command = getExe pkgs.tinymist;
@@ -429,19 +436,18 @@ in
           name = "python";
           auto-format = true;
           formatter = {
-            command = getExe pkgs.black;
+            command = getExe pkgs.ruff;
             args = [
+              "format"
               "--line-length"
               "88"
-              "--quiet"
               "-"
             ];
           };
           language-servers = [
-            "ruff"
-            "pyright"
+            "ruff" # linter/ type-checker
+            "ty" # lsp
             "typos"
-            "scls"
             "harper"
           ];
         }
