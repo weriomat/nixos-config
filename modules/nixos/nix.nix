@@ -28,6 +28,16 @@ in
       });
 
       settings = {
+        auto-allocate-uids = true;
+        extra-system-features = [ "uid-range" ];
+        experimental-features = [
+          "auto-allocate-uids"
+          "cgroups"
+
+          "nix-command"
+          "flakes"
+        ];
+
         allowed-users = [
           "${globals.username}"
           "root"
@@ -39,7 +49,6 @@ in
           "@wheel"
         ];
         sandbox = true;
-        experimental-features = "nix-command flakes";
         auto-optimise-store = true;
         warn-dirty = false;
         use-xdg-base-directories = true;
