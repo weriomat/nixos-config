@@ -56,6 +56,7 @@
             pkgs.cargo-deny
             pkgs.cargo-edit
             pkgs.cargo-watch
+            pkgs.cargo-valgrind
             pkgs.mold
 
             # other tooling
