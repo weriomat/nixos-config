@@ -135,6 +135,10 @@
           path = ./templates/typst;
           description = "A simple Typst template";
         };
+        typst-letter = {
+          path = ./templates/typst-letter;
+          description = "A simple Typst letter template";
+        };
         python-uv = {
           path = ./templates/python-uv;
           description = "A simple python template with the uv tool";
