@@ -232,9 +232,19 @@ in
           environment.RUST_LOG = "error";
           config.diagnosticSeverity = "Warning";
         };
+
+        kotlin = {
+          command = getExe pkgs.kotlin-language-server;
+          timeout = 300;
+        };
       };
 
       language = [
+        {
+          name = "kotlin";
+          auto-format = true;
+          language-servers = [ "kotlin" ];
+        }
         {
           name = "hcl";
           auto-format = true;
