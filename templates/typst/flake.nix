@@ -29,6 +29,10 @@
             pkgs.typstyle
             pkgs.tinymist
           ];
+
+          shellHook = ''
+            unset SOURCE_DATE_EPOCH
+          '';
         };
       }
     );
